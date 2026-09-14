@@ -57,6 +57,9 @@ async def main():
                     )
 
                     for movie in movies:
+                        if movie.movie.ids.imdb is None:
+                            continue
+
                         results = await stremio_service.search_movie(
                             movie.movie.ids.imdb
                         )
@@ -74,6 +77,9 @@ async def main():
                             )
 
                     for show in shows:
+                        if show.show.ids.imdb is None:
+                            continue
+
                         results = await stremio_service.search_serie(
                             show.show.ids.imdb, season=1, episode=1
                         )
@@ -91,6 +97,9 @@ async def main():
                             )
 
                     for show in unfinished_shows:
+                        if show.show.ids.imdb is None or show.show.ids.slug is None:
+                            continue
+
                         next_episode = await trakt_service.get_next_episode(
                             user.trakt_slug, show.show.ids.slug
                         )
