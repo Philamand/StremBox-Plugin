@@ -1,6 +1,7 @@
 import os
 from datetime import UTC, datetime, timedelta
 
+from cache import cached_call
 from http_client import get_session
 from schemas.trakt import (
     TraktEpisode,
@@ -74,23 +75,35 @@ class TraktService:
             ]
 
     async def get_all_seasons(self, show_id: str) -> list[TraktSeason]:
-        url = f"{self.base_url}/shows/{show_id}/seasons"
-        params = {"extended": "episodes"}
+        async def fetch() -> list[dict]:
+            url = f"{self.base_url}/shows/{show_id}/seasons"
+            params = {"extended": "episodes"}
 
-        session = get_session()
-        async with session.get(
-            url, params=params, headers=self._get_headers()
-        ) as response:
-            data = await response.json()
-            return [TraktSeason.model_validate(season) for season in data]
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                return [TraktSeason.model_validate(season).model_dump() for season in data]
+
+        cached = await cached_call(
+            f"trakt:seasons:{show_id}", 86400, fetch, cache_none=True
+        )
+        return [TraktSeason.model_validate(season) for season in cached]
 
     async def get_all_episodes_season(self, id: str, season: int) -> list[TraktEpisode]:
-        url = f"{self.base_url}/shows/{id}/seasons/{season}"
+        async def fetch() -> list[dict]:
+            url = f"{self.base_url}/shows/{id}/seasons/{season}"
 
-        session = get_session()
-        async with session.get(url, headers=self._get_headers()) as response:
-            data = await response.json()
-            return [TraktEpisode.model_validate(episode) for episode in data]
+            session = get_session()
+            async with session.get(url, headers=self._get_headers()) as response:
+                data = await response.json()
+                return [TraktEpisode.model_validate(episode).model_dump() for episode in data]
+
+        cached = await cached_call(
+            f"trakt:episodes:{id}:{season}", 86400, fetch, cache_none=True
+        )
+        return [TraktEpisode.model_validate(episode) for episode in cached]
 
     async def get_show_history(
         self, user_slug: str, item_id: str
