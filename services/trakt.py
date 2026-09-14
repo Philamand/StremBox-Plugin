@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 
 from http_client import get_session
 from schemas.trakt import (
@@ -84,9 +84,7 @@ class TraktService:
             data = await response.json()
             return [TraktSeason.model_validate(season) for season in data]
 
-    async def get_all_episodes_season(
-        self, id: str, season: int
-    ) -> list[TraktEpisode]:
+    async def get_all_episodes_season(self, id: str, season: int) -> list[TraktEpisode]:
         url = f"{self.base_url}/shows/{id}/seasons/{season}"
 
         session = get_session()
@@ -129,7 +127,7 @@ class TraktService:
     ) -> list[TraktMovieHistoryEntry]:
         url = f"{self.base_url}/users/{user_slug}/history/movies"
 
-        today = datetime.now().date()
+        today = datetime.now(UTC).date()
         params = {
             "start_at": (today - timedelta(weeks=3)).strftime("%Y-%m-%d"),
             "end_at": (today - timedelta(weeks=2)).strftime("%Y-%m-%d"),
@@ -142,12 +140,10 @@ class TraktService:
             data = await response.json()
             return [TraktMovieHistoryEntry.model_validate(entry) for entry in data]
 
-    async def get_show_watched_history(
-        self, user_slug: str
-    ) -> list[TraktHistoryEntry]:
+    async def get_show_watched_history(self, user_slug: str) -> list[TraktHistoryEntry]:
         url = f"{self.base_url}/users/{user_slug}/history/shows"
 
-        today = datetime.now().date()
+        today = datetime.now(UTC).date()
         params = {
             "start_at": (today - timedelta(weeks=3)).strftime("%Y-%m-%d"),
             "end_at": (today - timedelta(weeks=2)).strftime("%Y-%m-%d"),
