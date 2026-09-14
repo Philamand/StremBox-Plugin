@@ -1,10 +1,13 @@
 import asyncio
+import json
 import xml.etree.ElementTree as ET
 from typing import Any
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import aiohttp
 from aiohttp import ClientTimeout
 
+from cache import cached_call
 from http_client import get_session
 from schemas.stremio import (
     StremioStreamData,
@@ -19,6 +22,34 @@ from utils.stremio import (
     parse_torrent_name,
     sort_dicts_by_seeders_desc,
 )
+
+
+def _strip_apikey(url: str | None) -> str | None:
+    """Return *url* with its `apikey` query parameter removed.
+
+    The apikey is the only user-specific value in tracker download links, so
+    stripping it lets the same search results be cached and shared across users.
+    """
+    if not url:
+        return url
+    parsed = urlparse(url)
+    query = [
+        (key, value)
+        for key, value in parse_qsl(parsed.query, keep_blank_values=True)
+        if key != "apikey"
+    ]
+    return urlunparse(parsed._replace(query=urlencode(query)))
+
+
+def _reinject_apikey(url: str | None, apikey: str) -> str | None:
+    """Return *url* with *apikey* appended back to its query string."""
+    if not url:
+        return url
+    parsed = urlparse(url)
+    query = parse_qsl(parsed.query, keep_blank_values=True)
+    query.append(("apikey", apikey))
+    return urlunparse(parsed._replace(query=urlencode(query)))
+
 
 
 class C411Service:
@@ -77,12 +108,20 @@ class C411Service:
         params["apikey"] = self.apikey
         params["o"] = "json"
 
-        session = get_session()
-        try:
-            async with session.get(
-                self.base_url, params=params, timeout=ClientTimeout(total=20)
-            ) as response:
-                if response.status == 200:
+        cache_key = "c411:search:" + json.dumps(
+            {k: v for k, v in params.items() if k != "apikey"},
+            sort_keys=True,
+            default=str,
+        )
+
+        async def fetch() -> list[dict[str, Any]] | None:
+            session = get_session()
+            try:
+                async with session.get(
+                    self.base_url, params=params, timeout=ClientTimeout(total=20)
+                ) as response:
+                    if response.status != 200:
+                        return None
                     data = await response.json()
                     channel = data.get("channel", {})
                     items = channel.get("item", [])
@@ -132,16 +171,21 @@ class C411Service:
                             "tracker_name": "C411",
                             "info_hash": info_hash,
                             "magnet": None,
-                            "link": download_link,
+                            "link": _strip_apikey(download_link),
                             "source": "c411",
                             "seeders": seeders,
                             "leechers": leechers,
                         }
                         normalized.append(item)
-                    return normalized
-        except TimeoutError, aiohttp.ClientError, ValueError:
-            pass
-        return []
+                    return normalized or None
+            except TimeoutError, aiohttp.ClientError, ValueError:
+                return None
+
+        cached = await cached_call(cache_key, 900, fetch, cache_none=False)
+        results = cached or []
+        for result in results:
+            result["link"] = _reinject_apikey(result["link"], self.apikey)
+        return results
 
     async def search_movie(
         self,
@@ -232,20 +276,35 @@ class Tr4kerService:
 
         params["apikey"] = self.apikey
 
-        session = get_session()
-        try:
-            async with session.get(
-                self.base_url,
-                params=params,
-                timeout=aiohttp.ClientTimeout(total=20),
-            ) as response:
-                if response.status == 200:
+        cache_key = "tr4ker:search:" + json.dumps(
+            {k: v for k, v in params.items() if k != "apikey"},
+            sort_keys=True,
+            default=str,
+        )
+
+        async def fetch() -> list[dict[str, Any]] | None:
+            session = get_session()
+            try:
+                async with session.get(
+                    self.base_url,
+                    params=params,
+                    timeout=aiohttp.ClientTimeout(total=20),
+                ) as response:
+                    if response.status != 200:
+                        return None
                     text = await response.text()
                     results = self._parse_xml(text)
-                    return results
-        except TimeoutError, aiohttp.ClientError:
-            pass
-        return []
+                    for result in results:
+                        result["link"] = _strip_apikey(result["link"])
+                    return results or None
+            except TimeoutError, aiohttp.ClientError:
+                return None
+
+        cached = await cached_call(cache_key, 900, fetch, cache_none=False)
+        results = cached or []
+        for result in results:
+            result["link"] = _reinject_apikey(result["link"], self.apikey)
+        return results
 
     def _parse_xml(self, xml_text):
         try:
