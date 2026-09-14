@@ -47,8 +47,7 @@ class BauxiteService:
         session = get_session()
         headers = {"Authorization": f"Bearer {self.bearer_token}"}
         async with session.post(
-            f"{self.base_url}/api/remove/",
+            f"{self.base_url}/api/remove/{torrent_hash}/",
             headers=headers,
-            params={"torrent_hash": torrent_hash},
         ) as response:
-            await response.json()
+            print(await response.json())
