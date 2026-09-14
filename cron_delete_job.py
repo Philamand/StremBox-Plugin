@@ -3,6 +3,7 @@ import os
 
 import asyncpg
 
+from cache import close_cache_client, init_cache_client
 from http_client import close_http_session, init_http_session
 from services.bauxite import BauxiteService
 from services.stremio import C411Service, StremioOrchestrationService, Tr4kerService
@@ -15,6 +16,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 async def main():
     await init_http_session()
+    await init_cache_client()
 
     pool = await asyncpg.create_pool(
         dsn=DATABASE_URL,
@@ -120,6 +122,7 @@ async def main():
 
     finally:
         await pool.close()
+        await close_cache_client()
         await close_http_session()
 
 

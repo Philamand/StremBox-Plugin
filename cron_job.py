@@ -3,6 +3,7 @@ import os
 
 import asyncpg
 
+from cache import close_cache_client, init_cache_client
 from http_client import close_http_session, init_http_session
 from services.bauxite import BauxiteService
 from services.stremio import C411Service, StremioOrchestrationService, Tr4kerService
