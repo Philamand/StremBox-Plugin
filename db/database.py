@@ -7,6 +7,7 @@ from typing import cast
 import asyncpg
 from fastapi import FastAPI
 
+from cache import close_cache_client, init_cache_client
 from http_client import close_http_session, init_http_session
 
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -21,8 +22,8 @@ async def lifespan(app: FastAPI):
 
     On startup this function creates a global asyncpg connection pool and registers
     JSON codecs so that PostgreSQL `json`/`jsonb` values are decoded to Python
-    objects automatically, and a shared aiohttp ClientSession. On shutdown it
-    closes both cleanly.
+    objects automatically, a shared aiohttp ClientSession, and a shared Redis
+    cache client. On shutdown it closes all three cleanly.
 
     This should be passed to FastAPI(...) as the `lifespan` argument.
 
@@ -42,9 +43,11 @@ async def lifespan(app: FastAPI):
         command_timeout=60,
     )
     await init_http_session()
+    await init_cache_client()
 
     yield
 
+    await close_cache_client()
     await close_http_session()
     await _pool.close()
     _pool = None
