@@ -41,3 +41,14 @@ class BauxiteService:
             params={"torrent_url": torrent_url},
         ) as response:
             await response.json()
+
+    async def remove_torrent(self, torrent_hash: str) -> None:
+        """Remove a torrent."""
+        session = get_session()
+        headers = {"Authorization": f"Bearer {self.bearer_token}"}
+        async with session.post(
+            f"{self.base_url}/api/remove/",
+            headers=headers,
+            params={"torrent_hash": torrent_hash},
+        ) as response:
+            await response.json()
