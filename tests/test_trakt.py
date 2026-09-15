@@ -348,4 +348,35 @@ async def test_get_movie_watched_history_returns_parsed_history(
     assert first.movie.ids.trakt == 717155
 
 
+# ---------------------------------------------------------------------------
+# get_show_history
+# ---------------------------------------------------------------------------
+
+
+async def test_get_show_history_returns_parsed_history(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_show_history should parse the Trakt history into TraktHistoryEntry models."""
+    payload = load_fixture("bluey_history.json")
+    url = f"{TRAKT_BASE_URL}/users/me/history/shows/136999"
+    trakt_api.get(url, payload=payload)
+
+    history = await service.get_show_history("me", "136999")
+
+    assert len(history) == 100
+    assert all(isinstance(h, TraktHistoryEntry) for h in history)
+
+    first = history[0]
+    assert first.id == 14422837870
+    assert first.action == "watch"
+    assert first.type == "episode"
+    assert first.watched_at == "2026-09-03T11:29:00.000Z"
+    assert first.episode.title == "Easter"
+    assert first.episode.season == 2
+    assert first.episode.number == 52
+    assert first.episode.ids.trakt == 5048850
+    assert first.show.title == "Bluey"
+    assert first.show.ids.trakt == 136999
+
+
 
