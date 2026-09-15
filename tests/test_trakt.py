@@ -379,4 +379,31 @@ async def test_get_show_history_returns_parsed_history(
     assert first.show.ids.trakt == 136999
 
 
+# ---------------------------------------------------------------------------
+# get_next_episode
+# ---------------------------------------------------------------------------
+
+
+async def test_get_next_episode_returns_first_unwatched(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_next_episode should return the first episode (by season/number) not in history."""
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/shows/136999/seasons?extended=episodes",
+        payload=load_fixture("bluey_seasons.json"),
+    )
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/users/me/history/shows/136999",
+        payload=load_fixture("bluey_history.json"),
+    )
+
+    next_episode = await service.get_next_episode("me", "136999")
+
+    assert isinstance(next_episode, TraktEpisode)
+    assert next_episode.season == 1
+    assert next_episode.number == 1
+    assert next_episode.title == "The Magic Xylophone"
+    assert next_episode.ids.trakt == 3178595
+
+
 
