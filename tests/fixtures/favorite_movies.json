@@ -1,0 +1,112 @@
+[
+  {
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt0289043",
+        "plex": {
+          "guid": "5d776824f54112001f5bbdd7",
+          "slug": "28-days-later"
+        },
+        "slug": "28-days-later-2002",
+        "tmdb": 170,
+        "trakt": 135
+      },
+      "year": 2002,
+      "title": "28 Days Later"
+    },
+    "rank": 1,
+    "id": 1544604587,
+    "listed_at": "2026-09-15T11:12:15.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt0120737",
+        "plex": {
+          "guid": "5d7768248a7581001f12bc70",
+          "slug": "the-lord-of-the-rings-the-fellowship-of-the-ring"
+        },
+        "slug": "the-lord-of-the-rings-the-fellowship-of-the-ring-2001",
+        "tmdb": 120,
+        "trakt": 88
+      },
+      "year": 2001,
+      "title": "The Lord of the Rings: The Fellowship of the Ring"
+    },
+    "rank": 3,
+    "id": 1544604618,
+    "listed_at": "2026-09-15T11:12:41.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt0167261",
+        "plex": {
+          "guid": "5d776824f59e580021897860",
+          "slug": "the-lord-of-the-rings-the-two-towers"
+        },
+        "slug": "the-lord-of-the-rings-the-two-towers-2002",
+        "tmdb": 121,
+        "trakt": 89
+      },
+      "year": 2002,
+      "title": "The Lord of the Rings: The Two Towers"
+    },
+    "rank": 4,
+    "id": 1544604629,
+    "listed_at": "2026-09-15T11:12:49.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt0167260",
+        "plex": {
+          "guid": "5d7768248a7581001f12bc73",
+          "slug": "the-lord-of-the-rings-the-return-of-the-king"
+        },
+        "slug": "the-lord-of-the-rings-the-return-of-the-king-2003",
+        "tmdb": 122,
+        "trakt": 90
+      },
+      "year": 2003,
+      "title": "The Lord of the Rings: The Return of the King"
+    },
+    "rank": 5,
+    "id": 1544604641,
+    "listed_at": "2026-09-15T11:13:00.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt0109440",
+        "plex": {
+          "guid": "5d77683ca091de001f2e8e0f",
+          "slug": "fear-city-a-family-style-comedy"
+        },
+        "slug": "fear-city-a-family-style-comedy-1994",
+        "tmdb": 15097,
+        "trakt": 9159
+      },
+      "year": 1994,
+      "title": "Fear City: A Family-Style Comedy"
+    },
+    "rank": 6,
+    "id": 1544604667,
+    "listed_at": "2026-09-15T11:13:31.000Z",
+    "notes": null,
+    "my_rating": null
+  }
+]
