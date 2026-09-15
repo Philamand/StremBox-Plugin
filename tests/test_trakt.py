@@ -224,3 +224,37 @@ async def test_get_unwatched_shows_returns_parsed_watchlist(
     assert first.show.ids.trakt == 275053
 
 
+# ---------------------------------------------------------------------------
+# get_unfinished_shows
+# ---------------------------------------------------------------------------
+
+
+async def test_get_unfinished_shows_filters_partially_watched(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_unfinished_shows should keep only shows with plays below aired_episodes."""
+    payload = load_fixture("watched_shows.json")
+    url = f"{TRAKT_BASE_URL}/users/me/watched/shows?hidden=false&specials=false"
+    trakt_api.get(url, payload=payload)
+
+    shows = await service.get_unfinished_shows("me")
+
+    # 17 watched shows, but only 5 are not fully watched.
+    assert len(shows) == 5
+    assert all(isinstance(s, TraktWatchedShow) for s in shows)
+    assert all(s.plays < s.show.aired_episodes for s in shows)
+    assert [s.show.title for s in shows] == [
+        "PAW Patrol",
+        "Kaamelott",
+        "Bluey",
+        "Futurama",
+        "American Dad!",
+    ]
+
+    first = shows[0]
+    assert first.plays == 46
+    assert first.show.aired_episodes == 570
+    assert first.show.ids.trakt == 57161
+
+
+
