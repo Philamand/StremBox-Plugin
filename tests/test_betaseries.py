@@ -143,3 +143,14 @@ async def test_get_tmdb_id_returns_movie_tmdb_id_without_other_title(
     tmdb_id = await service.get_tmdb_id("tt9844322", movie=True)
 
     assert tmdb_id == 577242
+
+
+async def test_get_tmdb_id_returns_none_without_api_key(
+    monkeypatch: pytest.MonkeyPatch, http_session: None
+) -> None:
+    """get_tmdb_id should short-circuit to None without an API key (both branches)."""
+    monkeypatch.delenv("BETASERIES_API_KEY")
+    service = BetaSeriesService()
+
+    assert await service.get_tmdb_id("tt3121722") is None
+    assert await service.get_tmdb_id("tt11832046", movie=True) is None
