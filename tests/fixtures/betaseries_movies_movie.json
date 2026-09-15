@@ -1,0 +1,126 @@
+{
+  "movie": {
+    "id": 80814,
+    "title": "PAW Patrol: The Movie",
+    "original_title": "PAW Patrol: The Movie",
+    "tmdb_id": 675445,
+    "imdb_id": "tt11832046",
+    "url": "paw-patrol-the-movie",
+    "poster": "https://pictures.betaseries.com/films/affiches/original/80814.jpg",
+    "backdrop": "https://pictures.betaseries.com/films/backdrops/original/80814.jpg",
+    "production_year": 2021,
+    "release_date": "2021-09-17",
+    "original_release_date": "2021-08-11",
+    "sale_date": "1970-01-01",
+    "director": "Cal Brunker",
+    "length": 5160,
+    "genres": [
+      "Action",
+      "Aventure",
+      "Animation",
+      "Comédie",
+      "Familial"
+    ],
+    "synopsis": "La Pat’ Patrouille part en mission pour sa première grande aventure au cinéma ! Près de chez eux, leur plus grand rival, Monsieur Hellinger, devient le maire d' Aventureville et commence à semer le trouble. C'est à Ryder et les chiens intrépides de la Pat’ Patrouille de plonger dans l'action pour l'arrêter. Tandis que l'un de nos héros se voit confronté à son passé dans cette nouvelle ville, l’équipe va trouver une nouvelle alliée : Liberty, une teckel futée et pleine d'énergie. Équipée de gadgets inédits et de nouveaux équipements, la Pat’ Patrouille va voler au secours des citoyens d’Aventureville. Aucune mission n'est trop dure car la Pat' Patrouille assure !",
+    "tagline": "Notre destin est dans leurs pattes.",
+    "language": "Anglais",
+    "notes": {
+      "mean": 3.94,
+      "total": 62,
+      "user": 0
+    },
+    "followers": 1629,
+    "comments": 2,
+    "similars": 1,
+    "characters": 24,
+    "crew": {
+      "producers": [
+        {
+          "id": 545010,
+          "name": "Peter Schlessel",
+          "slug": "peter-schlessel",
+          "picture": "https://pictures.betaseries.com/persons/b2z1mYePuy6gGA8AxopcGNKydwK.jpg"
+        },
+        {
+          "id": 545012,
+          "name": "Jennifer Dodge",
+          "slug": "jennifer-dodge",
+          "picture": null
+        },
+        {
+          "id": 545013,
+          "name": "Lisa A. Becker",
+          "slug": "lisa-a-becker",
+          "picture": null
+        },
+        {
+          "id": 545014,
+          "name": "Ronnen Harary",
+          "slug": "ronnen-harary",
+          "picture": null
+        },
+        {
+          "id": 545016,
+          "name": "Adam Beder",
+          "slug": "adam-beder",
+          "picture": null
+        }
+      ],
+      "writers": [
+        {
+          "id": 483807,
+          "name": "Cal Brunker",
+          "slug": "cal-brunker",
+          "picture": "https://pictures.betaseries.com/persons/40FRTywgDa9KwFwHUxkVqeSrESl.jpg"
+        },
+        {
+          "id": 544326,
+          "name": "Billy Frolick",
+          "slug": "billy-frolick",
+          "picture": null
+        },
+        {
+          "id": 545011,
+          "name": "Bob Barlen",
+          "slug": "bob-barlen",
+          "picture": "https://pictures.betaseries.com/persons/iPLLsU3zt7DDcmsEYGYIkKg4nRB.jpg"
+        }
+      ],
+      "directors": [
+        {
+          "id": 483807,
+          "name": "Cal Brunker",
+          "slug": "cal-brunker",
+          "picture": "https://pictures.betaseries.com/persons/40FRTywgDa9KwFwHUxkVqeSrESl.jpg"
+        }
+      ]
+    },
+    "user": {
+      "in_account": false,
+      "status": -1,
+      "date": null,
+      "mail": false,
+      "twitter": false,
+      "profile": false,
+      "tags": "",
+      "favorited": false,
+      "friends_watched": [],
+      "friends_want_to_watch": [],
+      "rewatch": {
+        "total": 0,
+        "dates": [],
+        "agenda": false
+      }
+    },
+    "trailer": "3ES5kSS14Uk",
+    "resource_url": "https://www.betaseries.com/film/80814-paw-patrol-the-movie",
+    "platform_links": [],
+    "platforms_svod": [],
+    "releasesSvod": [],
+    "other_title": {
+      "language": "fr",
+      "title": "La Pat' Patrouille : Le Film"
+    }
+  },
+  "errors": []
+}
