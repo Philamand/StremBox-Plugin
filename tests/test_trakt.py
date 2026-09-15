@@ -26,6 +26,8 @@ import pytest_asyncio
 from aioresponses import aioresponses as aioresponses_ctx
 
 from http_client import init_http_session
+from datetime import UTC, datetime, timedelta
+
 from schemas.trakt import (
     TraktEpisode,
     TraktFavoriteMovieEntry,
@@ -309,6 +311,41 @@ async def test_get_favorite_shows_returns_parsed_favorites(
     assert first.show.title == "The Lord of the Rings: The Rings of Power"
     assert first.show.aired_episodes == 16
     assert first.show.ids.trakt == 150900
+
+
+# ---------------------------------------------------------------------------
+# get_movie_watched_history
+# ---------------------------------------------------------------------------
+
+
+def _history_date_params() -> str:
+    """Reproduce the start_at/end_at window the service derives from today."""
+    today = datetime.now(UTC).date()
+    start_at = (today - timedelta(weeks=3)).strftime("%Y-%m-%d")
+    end_at = (today - timedelta(weeks=2)).strftime("%Y-%m-%d")
+    return f"start_at={start_at}&end_at={end_at}"
+
+
+async def test_get_movie_watched_history_returns_parsed_history(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_movie_watched_history should parse the Trakt history into TraktMovieHistoryEntry models."""
+    payload = load_fixture("movies_history.json")
+    url = f"{TRAKT_BASE_URL}/users/me/history/movies?{_history_date_params()}"
+    trakt_api.get(url, payload=payload)
+
+    history = await service.get_movie_watched_history("me")
+
+    assert len(history) == 2
+    assert all(isinstance(h, TraktMovieHistoryEntry) for h in history)
+
+    first = history[0]
+    assert first.id == 14414612025
+    assert first.action == "scrobble"
+    assert first.type == "movie"
+    assert first.watched_at == "2026-09-13T12:13:00.000Z"
+    assert first.movie.title == "PAW Patrol: The Mighty Movie"
+    assert first.movie.ids.trakt == 717155
 
 
 
