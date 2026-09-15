@@ -69,3 +69,21 @@ def betaseries_api() -> AsyncGenerator[aioresponses_ctx, None]:
     """
     with aioresponses_ctx() as mocked:
         yield mocked
+
+
+# ---------------------------------------------------------------------------
+# get_show_french_title
+# ---------------------------------------------------------------------------
+
+
+async def test_get_show_french_title_returns_title(
+    service: BetaSeriesService, betaseries_api: aioresponses_ctx
+) -> None:
+    """get_show_french_title should return the BetaSeries show title."""
+    payload = load_fixture("betaseries_shows_display.json")
+    url = f"{BETASERIES_BASE_URL}/shows/display?imdb_id=tt3121722&summary=true"
+    betaseries_api.get(url, payload=payload)
+
+    title = await service.get_show_french_title("tt3121722")
+
+    assert title == "Paw Patrol"
