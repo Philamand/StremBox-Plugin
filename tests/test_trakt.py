@@ -406,4 +406,35 @@ async def test_get_next_episode_returns_first_unwatched(
     assert next_episode.ids.trakt == 3178595
 
 
+# ---------------------------------------------------------------------------
+# get_show_watched_history
+# ---------------------------------------------------------------------------
+
+
+async def test_get_show_watched_history_returns_parsed_history(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_show_watched_history should parse the Trakt history into TraktHistoryEntry models."""
+    payload = load_fixture("shows_history.json")
+    url = f"{TRAKT_BASE_URL}/users/me/history/shows?{_history_date_params()}"
+    trakt_api.get(url, payload=payload)
+
+    history = await service.get_show_watched_history("me")
+
+    assert len(history) == 100
+    assert all(isinstance(h, TraktHistoryEntry) for h in history)
+
+    first = history[0]
+    assert first.id == 14415362570
+    assert first.action == "scrobble"
+    assert first.type == "episode"
+    assert first.watched_at == "2026-09-13T16:19:00.000Z"
+    assert first.episode.title == "Le Négociateur"
+    assert first.episode.season == 1
+    assert first.episode.number == 10
+    assert first.episode.ids.trakt == 460995
+    assert first.show.title == "Kaamelott"
+    assert first.show.ids.trakt == 11414
+
+
 
