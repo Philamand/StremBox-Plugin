@@ -1,10 +1,39 @@
 # This file is AI-generated
 import os
 from collections.abc import AsyncGenerator
+from unittest.mock import Mock
 
 import asyncpg
 import pytest
 import pytest_asyncio
+
+
+def _patch_aioresponses_stream_writer() -> None:
+    """Compat shim for aiohttp 3.14 + aioresponses 0.7.9.
+
+    aiohttp 3.14 added a required keyword-only ``stream_writer`` argument to
+    ``ClientResponse.__init__`` that aioresponses 0.7.9 (latest) does not pass,
+    so every mocked response raised ``TypeError: ... missing ... 'stream_writer'``.
+    Upstream fix (pnuckowski/aioresponses#288) is unreleased. aiohttp only reads
+    ``stream_writer.output_size``, so a ``Mock(output_size=0)`` is sufficient.
+    """
+    import aiohttp
+
+    if getattr(aiohttp.ClientResponse, "_strembox_stream_writer_patched", False):
+        return
+
+    _orig_init = aiohttp.ClientResponse.__init__
+
+    def _init(self, *args, stream_writer=None, **kwargs):
+        if stream_writer is None:
+            stream_writer = Mock(output_size=0)
+        return _orig_init(self, *args, stream_writer=stream_writer, **kwargs)
+
+    aiohttp.ClientResponse.__init__ = _init
+    aiohttp.ClientResponse._strembox_stream_writer_patched = True
+
+
+_patch_aioresponses_stream_writer()
 
 # ---------------------------------------------------------------------------
 # Test database URL – MUST point at a separate database from dev/prod.

@@ -13,10 +13,12 @@ backing is required:
 * ``TRAKT_API_KEY`` / ``TRAKT_ACCESS_TOKEN`` are injected through the
   ``trakt_env`` fixture so ``TraktService._get_headers`` succeeds.
 
-Only the scaffolding is set up below: fixtures, helpers and ``aioresponses``
-context manager wiring. Concrete test functions live in a separate commit.
+Canned Trakt API payloads live under ``tests/fixtures`` as JSON and are loaded
+with the ``load_fixture`` helper.
 """
+import json
 from collections.abc import AsyncGenerator
+from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
 import pytest
@@ -24,11 +26,19 @@ import pytest_asyncio
 from aioresponses import aioresponses as aioresponses_ctx
 
 from http_client import init_http_session
+from schemas.trakt import TraktEpisode, TraktSeason
 from services.trakt import TraktService
 
 TRAKT_API_KEY = "test-trakt-api-key"
 TRAKT_ACCESS_TOKEN = "test-trakt-access-token"
 TRAKT_BASE_URL = "https://api.trakt.tv"
+
+FIXTURES_DIR = Path(__file__).parent / "fixtures"
+
+
+def load_fixture(name: str):
+    """Load a JSON fixture from ``tests/fixtures``."""
+    return json.loads((FIXTURES_DIR / name).read_text())
 
 
 @pytest.fixture(autouse=True)
@@ -85,3 +95,36 @@ def trakt_api() -> AsyncGenerator[aioresponses_ctx, None]:
     """
     with aioresponses_ctx() as mocked:
         yield mocked
+
+
+# ---------------------------------------------------------------------------
+# get_all_seasons
+# ---------------------------------------------------------------------------
+
+
+async def test_get_all_seasons_returns_parsed_seasons(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_all_seasons should parse the Trakt response into TraktSeason models."""
+    payload = load_fixture("bluey_seasons.json")
+    # aioresponses normalizes both the registered and request URLs (sorting
+    # query params), so the params the service sends must be part of the mock URL.
+    url = f"{TRAKT_BASE_URL}/shows/bluey/seasons?extended=episodes"
+    trakt_api.get(url, payload=payload)
+
+    seasons = await service.get_all_seasons("bluey")
+
+    assert len(seasons) == 5
+    assert [s.number for s in seasons] == [0, 1, 2, 3, 4]
+    assert [len(s.episodes) for s in seasons] == [54, 52, 52, 49, 1]
+    assert all(isinstance(s, TraktSeason) for s in seasons)
+    assert all(isinstance(e, TraktEpisode) for s in seasons for e in s.episodes)
+
+    first = seasons[1]
+    assert first.ids.trakt == 173086
+    assert first.episodes[0].title == "The Magic Xylophone"
+    assert first.episodes[0].ids.trakt == 3178595
+
+    last_season = seasons[-1]
+    assert last_season.number == 4
+    assert last_season.episodes[0].title == "Episode #4.1"
