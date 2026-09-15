@@ -1,0 +1,98 @@
+[
+  {
+    "type": "show",
+    "show": {
+      "ids": {
+        "imdb": "tt7631058",
+        "plex": {
+          "guid": "5d9c09154eefaa001f5e7cd2",
+          "slug": "the-lord-of-the-rings-the-rings-of-power"
+        },
+        "slug": "the-lord-of-the-rings-the-rings-of-power",
+        "tmdb": 84773,
+        "tvdb": 367506,
+        "trakt": 150900
+      },
+      "year": 2022,
+      "title": "The Lord of the Rings: The Rings of Power",
+      "aired_episodes": 16
+    },
+    "rank": 2,
+    "id": 1544604605,
+    "listed_at": "2026-09-15T11:12:34.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "show",
+    "show": {
+      "ids": {
+        "imdb": "tt12327578",
+        "plex": {
+          "guid": "5ec75ff037d69c0039b83267",
+          "slug": "star-trek-strange-new-worlds"
+        },
+        "slug": "star-trek-strange-new-worlds",
+        "tmdb": 103516,
+        "tvdb": 382389,
+        "trakt": 162206
+      },
+      "year": 2022,
+      "title": "Star Trek: Strange New Worlds",
+      "aired_episodes": 38
+    },
+    "rank": 7,
+    "id": 1544606311,
+    "listed_at": "2026-09-15T11:32:15.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "show",
+    "show": {
+      "ids": {
+        "imdb": "tt0212671",
+        "plex": {
+          "guid": "5d9c0872ba6eb9001fba4565",
+          "slug": "malcolm-in-the-middle"
+        },
+        "slug": "malcolm-in-the-middle",
+        "tmdb": 2004,
+        "tvdb": 73838,
+        "trakt": 1991
+      },
+      "year": 2000,
+      "title": "Malcolm in the Middle",
+      "aired_episodes": 151
+    },
+    "rank": 8,
+    "id": 1544616456,
+    "listed_at": "2026-09-15T12:26:17.000Z",
+    "notes": null,
+    "my_rating": null
+  },
+  {
+    "type": "show",
+    "show": {
+      "ids": {
+        "imdb": "tt12637874",
+        "plex": {
+          "guid": "5f1b325f4e3eb7003f6a4140",
+          "slug": "fallout-1"
+        },
+        "slug": "fallout",
+        "tmdb": 106379,
+        "tvdb": 416744,
+        "trakt": 163965
+      },
+      "year": 2024,
+      "title": "Fallout",
+      "aired_episodes": 16
+    },
+    "rank": 9,
+    "id": 1544616475,
+    "listed_at": "2026-09-15T12:26:36.000Z",
+    "notes": null,
+    "my_rating": null
+  }
+]
