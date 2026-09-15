@@ -87,3 +87,15 @@ async def test_get_show_french_title_returns_title(
     title = await service.get_show_french_title("tt3121722")
 
     assert title == "Paw Patrol"
+
+
+async def test_get_show_french_title_returns_none_without_api_key(
+    monkeypatch: pytest.MonkeyPatch, http_session: None
+) -> None:
+    """get_show_french_title should short-circuit to None without an API key."""
+    monkeypatch.delenv("BETASERIES_API_KEY")
+    service = BetaSeriesService()
+
+    title = await service.get_show_french_title("tt3121722")
+
+    assert title is None
