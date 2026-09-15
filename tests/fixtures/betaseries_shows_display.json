@@ -1,0 +1,172 @@
+{
+  "show": {
+    "id": 10520,
+    "thetvdb_id": 272472,
+    "imdb_id": "tt3121722",
+    "themoviedb_id": 57532,
+    "slug": "paw-patrol",
+    "title": "Paw Patrol",
+    "original_title": "Paw Patrol",
+    "description": "Ryder, un jeune garçon de 10 ans, est toujours prêt à venir en aide aux gens de la Grande Vallée. Pour cela, il peut compter sur la Pat’Patrouille pour solutionner n’importe quelle mission de sauvetage.",
+    "seasons": 13,
+    "seasons_details": [
+      {
+        "number": 0,
+        "episodes": 25
+      },
+      {
+        "number": 1,
+        "episodes": 48
+      },
+      {
+        "number": 2,
+        "episodes": 48
+      },
+      {
+        "number": 3,
+        "episodes": 48
+      },
+      {
+        "number": 4,
+        "episodes": 47
+      },
+      {
+        "number": 5,
+        "episodes": 47
+      },
+      {
+        "number": 6,
+        "episodes": 49
+      },
+      {
+        "number": 7,
+        "episodes": 45
+      },
+      {
+        "number": 8,
+        "episodes": 45
+      },
+      {
+        "number": 9,
+        "episodes": 46
+      },
+      {
+        "number": 10,
+        "episodes": 47
+      },
+      {
+        "number": 11,
+        "episodes": 46
+      },
+      {
+        "number": 12,
+        "episodes": 24
+      },
+      {
+        "number": 13,
+        "episodes": 12
+      }
+    ],
+    "episodes": 563,
+    "followers": 2207,
+    "comments": 9,
+    "similars": 0,
+    "characters": 0,
+    "creation": 0,
+    "showrunner": {
+      "id": 30911,
+      "name": "Keith Chapman",
+      "picture": null
+    },
+    "showrunners": [
+      {
+        "id": 30911,
+        "name": "Keith Chapman",
+        "slug": "keith-chapman",
+        "picture": null
+      }
+    ],
+    "genres": {
+      "Family": "Famille",
+      "Comedy": "Comédie",
+      "Children": "Enfant",
+      "Animation": "Animation",
+      "Adventure": "Aventure",
+      "Action": "Action"
+    },
+    "length": 12,
+    "network": "TVOkids",
+    "country": "États-Unis",
+    "rating": "TV-Y",
+    "status": "Continuing",
+    "language": "en",
+    "originalLanguage": "anglais",
+    "notes": {
+      "total": 30,
+      "mean": 4,
+      "user": 0
+    },
+    "in_account": false,
+    "images": {
+      "show": "https://pictures.betaseries.com/fonds/show/10520_63162723.jpg",
+      "banner": "https://pictures.betaseries.com/fonds/banner/10520_1375933.jpg",
+      "box": "https://pictures.betaseries.com/fonds/box/10520_1375933.jpg",
+      "poster": "https://pictures.betaseries.com/fonds/poster/f366f52de148fe567fc5092f03e95872.jpg",
+      "clearlogo": {
+        "url": "https://pictures.betaseries.com/clearlogo/en/10520_62753315.png",
+        "width": 800,
+        "height": 310
+      }
+    },
+    "aliases": {
+      "5365": "Paw Patrol",
+      "7301": "La Pat' Patrouille",
+      "8931": "La Pat'Patrouille",
+      "13889": "La Patrulla Canina",
+      "16478": "PAW Patrol : La Pat'Patrouille",
+      "41698": "Psi Patrol",
+      "41699": "Patrulha Canina",
+      "41700": "Щенячий патруль",
+      "68557": "Patrulha Pata"
+    },
+    "social_links": [
+      {
+        "type": "facebook",
+        "external_id": "PAWPatrol"
+      },
+      {
+        "type": "twitter",
+        "external_id": "pawpatrol"
+      },
+      {
+        "type": "instagram",
+        "external_id": "pawpatrol"
+      }
+    ],
+    "user": {
+      "archived": false,
+      "favorited": false,
+      "remaining": 0,
+      "status": 0,
+      "last": "S00E00",
+      "tags": null,
+      "next": {
+        "id": null,
+        "code": "S00E00",
+        "date": null,
+        "title": null,
+        "image": null
+      },
+      "friends_watching": [],
+      "rewatch": {
+        "total": 0,
+        "agenda": false
+      }
+    },
+    "next_trailer": "eOYL8qQxxPw",
+    "next_trailer_host": "youtube",
+    "resource_url": "https://www.betaseries.com/serie/paw-patrol",
+    "platforms": null
+  },
+  "errors": []
+}
