@@ -1,0 +1,3602 @@
+[
+  {
+    "id": 14422837870,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt14433116",
+        "plex": {
+          "guid": "606c099f6577e6002c78e6c0"
+        },
+        "tmdb": 2849947,
+        "tvdb": 9196031,
+        "trakt": 5048850
+      },
+      "title": "Easter",
+      "number": 52,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837869,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13509874",
+        "plex": {
+          "guid": "5fbdc9a2bd6a1c002deb79cf"
+        },
+        "tmdb": 2546303,
+        "tvdb": 8062307,
+        "trakt": 4608768
+      },
+      "title": "Christmas Swim",
+      "number": 51,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837868,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13429908",
+        "plex": {
+          "guid": "5fbdc9a1bd6a1c002deb79cc"
+        },
+        "tmdb": 2499236,
+        "tvdb": 8031280,
+        "trakt": 4576256
+      },
+      "title": "Baby Race",
+      "number": 50,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837867,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417378",
+        "plex": {
+          "guid": "5fbdc99cbd6a1c002deb79a8"
+        },
+        "tmdb": 2499235,
+        "tvdb": 8031278,
+        "trakt": 4576255
+      },
+      "title": "Handstand",
+      "number": 45,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837866,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417368",
+        "plex": {
+          "guid": "5fbdc99bbd6a1c002deb79a0"
+        },
+        "tmdb": 2499234,
+        "tvdb": 8031276,
+        "trakt": 4576254
+      },
+      "title": "Duck Cake",
+      "number": 44,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837865,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303718",
+        "plex": {
+          "guid": "5fbdc99dbd6a1c002deb79af"
+        },
+        "tmdb": 2477748,
+        "tvdb": 8014137,
+        "trakt": 4576253
+      },
+      "title": "Road Trip",
+      "number": 46,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837864,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303722",
+        "plex": {
+          "guid": "5fbdc9a0bd6a1c002deb79c6"
+        },
+        "tmdb": 2477738,
+        "tvdb": 8014134,
+        "trakt": 4576252
+      },
+      "title": "Typewriter",
+      "number": 49,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837863,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303720",
+        "plex": {
+          "guid": "5fbdc99fbd6a1c002deb79be"
+        },
+        "tmdb": 2477745,
+        "tvdb": 8014125,
+        "trakt": 4576251
+      },
+      "title": "Dunny",
+      "number": 48,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837862,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13423316",
+        "plex": {
+          "guid": "5fbdc99ebd6a1c002deb79b7"
+        },
+        "tmdb": 2477742,
+        "tvdb": 8014111,
+        "trakt": 4576250
+      },
+      "title": "Ice Cream",
+      "number": 47,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837861,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417358",
+        "plex": {
+          "guid": "5fbdc99abd6a1c002deb7998"
+        },
+        "tmdb": 2499233,
+        "tvdb": 8031275,
+        "trakt": 4558008
+      },
+      "title": "Muffin Cone",
+      "number": 43,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837860,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303694",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d45"
+        },
+        "tmdb": 2477728,
+        "tvdb": 8010507,
+        "trakt": 4558007
+      },
+      "title": "Seesaw",
+      "number": 28,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837859,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417330",
+        "plex": {
+          "guid": "5fbdc998bd6a1c002deb7987"
+        },
+        "tmdb": 2499230,
+        "tvdb": 8031270,
+        "trakt": 4555791
+      },
+      "title": "Octopus",
+      "number": 41,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837858,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13451960",
+        "plex": {
+          "guid": "5fbdc997bd6a1c002deb7980"
+        },
+        "tmdb": 2499229,
+        "tvdb": 8031269,
+        "trakt": 4555788
+      },
+      "title": "Bad Mood",
+      "number": 40,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837857,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303696",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d47"
+        },
+        "tmdb": 2480557,
+        "tvdb": 8010508,
+        "trakt": 4555785
+      },
+      "title": "Movies",
+      "number": 29,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837856,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417346",
+        "plex": {
+          "guid": "5fbdc999bd6a1c002deb798d"
+        },
+        "tmdb": 2499231,
+        "tvdb": 8031273,
+        "trakt": 4555780
+      },
+      "title": "Bin Night",
+      "number": 42,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837855,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13424700",
+        "plex": {
+          "guid": "5fbdc996bd6a1c002deb7978"
+        },
+        "tmdb": 2477739,
+        "tvdb": 8010524,
+        "trakt": 4550129
+      },
+      "title": "Double Babysitter",
+      "number": 39,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837854,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417258",
+        "plex": {
+          "guid": "5fbdc995bd6a1c002deb7971"
+        },
+        "tmdb": 2477737,
+        "tvdb": 8010523,
+        "trakt": 4550128
+      },
+      "title": "Mr Monkeyjocks",
+      "number": 38,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837853,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13417248",
+        "plex": {
+          "guid": "5ea7d7412e7ab10042e74d61"
+        },
+        "tmdb": 2477736,
+        "tvdb": 8010522,
+        "trakt": 4550127
+      },
+      "title": "The Quiet Game",
+      "number": 37,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837852,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13424490",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d55"
+        },
+        "tmdb": 2477735,
+        "tvdb": 8010521,
+        "trakt": 4550126
+      },
+      "title": "Postman",
+      "number": 36,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837851,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13424484",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d53"
+        },
+        "tmdb": 2477734,
+        "tvdb": 8010520,
+        "trakt": 4550125
+      },
+      "title": "Cafe",
+      "number": 35,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837850,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13451968",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d51"
+        },
+        "tmdb": 2477733,
+        "tvdb": 8010518,
+        "trakt": 4550124
+      },
+      "title": "Swim School",
+      "number": 34,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837849,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303712",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d4f"
+        },
+        "tmdb": 2477732,
+        "tvdb": 8010515,
+        "trakt": 4550123
+      },
+      "title": "Circus",
+      "number": 33,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837848,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303706",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d4d"
+        },
+        "tmdb": 2477731,
+        "tvdb": 8010512,
+        "trakt": 4550122
+      },
+      "title": "Burger Shop",
+      "number": 32,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837847,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303704",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d4b"
+        },
+        "tmdb": 2477730,
+        "tvdb": 8010510,
+        "trakt": 4550121
+      },
+      "title": "Barky Boats",
+      "number": 31,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837846,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303700",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d49"
+        },
+        "tmdb": 2477729,
+        "tvdb": 8010509,
+        "trakt": 4550120
+      },
+      "title": "Library",
+      "number": 30,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837845,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt13303692",
+        "plex": {
+          "guid": "5ea7d7402e7ab10042e74d43"
+        },
+        "tmdb": 2477727,
+        "tvdb": 8010501,
+        "trakt": 4145314
+      },
+      "title": "Grandad",
+      "number": 27,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837844,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539164",
+        "plex": {
+          "guid": "5e887dbb90a0110040de6bdb"
+        },
+        "tmdb": 2218576,
+        "tvdb": 7662149,
+        "trakt": 4086861
+      },
+      "title": "Sleepytime",
+      "number": 26,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837843,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587846",
+        "plex": {
+          "guid": "5e85db90d109520041043e47"
+        },
+        "tmdb": 2218575,
+        "tvdb": 7661889,
+        "trakt": 4086859
+      },
+      "title": "Helicopter",
+      "number": 25,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837842,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587840",
+        "plex": {
+          "guid": "5e85db90d109520041043e49"
+        },
+        "tmdb": 2218574,
+        "tvdb": 7659852,
+        "trakt": 4086856
+      },
+      "title": "Flat Pack",
+      "number": 24,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837841,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587834",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b6e"
+        },
+        "tmdb": 2218573,
+        "tvdb": 7658405,
+        "trakt": 4083824
+      },
+      "title": "Queens",
+      "number": 23,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837840,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587830",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b6c"
+        },
+        "tmdb": 2218572,
+        "tvdb": 7656718,
+        "trakt": 4079902
+      },
+      "title": "Bus",
+      "number": 22,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837839,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587828",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b70"
+        },
+        "tmdb": 2218571,
+        "tvdb": 7656717,
+        "trakt": 4079901
+      },
+      "title": "Escape",
+      "number": 21,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837838,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587822",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b6a"
+        },
+        "tmdb": 2204638,
+        "tvdb": 7648248,
+        "trakt": 4072621
+      },
+      "title": "Ticklecrabs",
+      "number": 20,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837837,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587818",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b68"
+        },
+        "tmdb": 2204637,
+        "tvdb": 7644674,
+        "trakt": 4067388
+      },
+      "title": "The Show",
+      "number": 19,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837836,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587810",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b66"
+        },
+        "tmdb": 2204636,
+        "tvdb": 7644673,
+        "trakt": 4067386
+      },
+      "title": "Piggyback",
+      "number": 18,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837835,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587806",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b62"
+        },
+        "tmdb": 2204634,
+        "tvdb": 7644672,
+        "trakt": 4067384
+      },
+      "title": "Fancy Restaurant",
+      "number": 17,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837834,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587798",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b64"
+        },
+        "tmdb": 2194162,
+        "tvdb": 7644670,
+        "trakt": 4067382
+      },
+      "title": "Army",
+      "number": 16,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837833,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587790",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b60"
+        },
+        "tmdb": 2204633,
+        "tvdb": 7644669,
+        "trakt": 4067380
+      },
+      "title": "Trains",
+      "number": 15,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837832,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587784",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b5e"
+        },
+        "tmdb": 2204632,
+        "tvdb": 7644667,
+        "trakt": 4067377
+      },
+      "title": "Mum School",
+      "number": 14,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837831,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587780",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b58"
+        },
+        "tmdb": 2204631,
+        "tvdb": 7644666,
+        "trakt": 4067374
+      },
+      "title": "Dad Baby",
+      "number": 13,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837830,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587778",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b5c"
+        },
+        "tmdb": 2170397,
+        "tvdb": 7635079,
+        "trakt": 4057784
+      },
+      "title": "Sticky Gecko",
+      "number": 12,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837829,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587758",
+        "plex": {
+          "guid": "5e833ca95161b50041ca8b5a"
+        },
+        "tmdb": 2194160,
+        "tvdb": 7635076,
+        "trakt": 4057783
+      },
+      "title": "Charades",
+      "number": 11,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837828,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587752",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b4c"
+        },
+        "tmdb": 2194072,
+        "tvdb": 7635072,
+        "trakt": 4057782
+      },
+      "title": "Rug Island",
+      "number": 10,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837827,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12567156",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b56"
+        },
+        "tmdb": 2194074,
+        "tvdb": 7635068,
+        "trakt": 4057781
+      },
+      "title": "Bingo",
+      "number": 9,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837826,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587744",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b52"
+        },
+        "tmdb": 2194073,
+        "tvdb": 7635061,
+        "trakt": 4057780
+      },
+      "title": "Daddy Dropoff",
+      "number": 8,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837825,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12567150",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b48"
+        },
+        "tmdb": 2194157,
+        "tvdb": 7635057,
+        "trakt": 4057779
+      },
+      "title": "Favourite Thing",
+      "number": 7,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837824,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12567140",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b54"
+        },
+        "tmdb": 2194155,
+        "tvdb": 7635053,
+        "trakt": 4057778
+      },
+      "title": "Stumpfest",
+      "number": 6,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837823,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539162",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b50"
+        },
+        "tmdb": 2194122,
+        "tvdb": 7629370,
+        "trakt": 4050708
+      },
+      "title": "Hairdressers",
+      "number": 5,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837822,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539160",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b4a"
+        },
+        "tmdb": 2194120,
+        "tvdb": 7629369,
+        "trakt": 4050706
+      },
+      "title": "Squash",
+      "number": 4,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837821,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539152",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b44"
+        },
+        "tmdb": 2194119,
+        "tvdb": 7629368,
+        "trakt": 4050705
+      },
+      "title": "Featherwand",
+      "number": 3,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837820,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539148",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b46"
+        },
+        "tmdb": 2194076,
+        "tvdb": 7629367,
+        "trakt": 4049963
+      },
+      "title": "Hammerbarn",
+      "number": 2,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837819,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539144",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b4e"
+        },
+        "tmdb": 2194075,
+        "tvdb": 7591711,
+        "trakt": 4002223
+      },
+      "title": "Dance Mode",
+      "number": 1,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837523,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12612638",
+        "plex": {
+          "guid": "5e1618ae67f14f001e692e1c"
+        },
+        "tmdb": 1836023,
+        "tvdb": 7116600,
+        "trakt": 3477414
+      },
+      "title": "Daddy Putdown",
+      "number": 51,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837522,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587990",
+        "plex": {
+          "guid": "5e1ade8bdd619f003d8326e6"
+        },
+        "tmdb": 4121335,
+        "tvdb": 7432609,
+        "trakt": 3477402
+      },
+      "title": "Verandah Santa",
+      "number": 52,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837521,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378012",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b2a"
+        },
+        "tmdb": 1836022,
+        "tvdb": 7116596,
+        "trakt": 3462178
+      },
+      "title": "Shaun",
+      "number": 50,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837520,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587964",
+        "plex": {
+          "guid": "5e1618ab67f14f001e692e0f"
+        },
+        "tmdb": 1836021,
+        "tvdb": 7116601,
+        "trakt": 3462177
+      },
+      "title": "Asparagus",
+      "number": 49,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837519,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377912",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b21"
+        },
+        "tmdb": 1836020,
+        "tvdb": 7116590,
+        "trakt": 3462176
+      },
+      "title": "Teasing",
+      "number": 48,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837518,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377998",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b32"
+        },
+        "tmdb": 1836019,
+        "tvdb": 7116602,
+        "trakt": 3462175
+      },
+      "title": "Neighbours",
+      "number": 47,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837517,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377920",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b24"
+        },
+        "tmdb": 1836018,
+        "tvdb": 7116595,
+        "trakt": 3462170
+      },
+      "title": "Chickenrat",
+      "number": 46,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837516,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378018",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b37"
+        },
+        "tmdb": 1836017,
+        "tvdb": 7116599,
+        "trakt": 3462168
+      },
+      "title": "Kids",
+      "number": 45,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837515,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377986",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b2d"
+        },
+        "tmdb": 1836016,
+        "tvdb": 7116597,
+        "trakt": 3462167
+      },
+      "title": "Mount Mumandad",
+      "number": 44,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837514,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12587960",
+        "plex": {
+          "guid": "5e1618aa67f14f001e692e03"
+        },
+        "tmdb": 1836014,
+        "tvdb": 7131409,
+        "trakt": 3462166
+      },
+      "title": "Camping",
+      "number": 43,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837513,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378022",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b1c"
+        },
+        "tmdb": 1836013,
+        "tvdb": 7116591,
+        "trakt": 3462164
+      },
+      "title": "Hide and Seek",
+      "number": 42,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837512,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt11605520",
+        "plex": {
+          "guid": "5e1618aa67f14f001e692e01"
+        },
+        "tmdb": 1836012,
+        "tvdb": 7131408,
+        "trakt": 3462163
+      },
+      "title": "Mums and Dads",
+      "number": 41,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837511,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378008",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b27"
+        },
+        "tmdb": 1836011,
+        "tvdb": 7116592,
+        "trakt": 3462162
+      },
+      "title": "Early Baby",
+      "number": 40,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837510,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12612680",
+        "plex": {
+          "guid": "5e1618aa67f14f001e692dfd"
+        },
+        "tmdb": 1836010,
+        "tvdb": 7131404,
+        "trakt": 3462161
+      },
+      "title": "The Sleepover",
+      "number": 39,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837509,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12612678",
+        "plex": {
+          "guid": "5e1618ac67f14f001e692e11"
+        },
+        "tmdb": 1836009,
+        "tvdb": 7116589,
+        "trakt": 3462160
+      },
+      "title": "Copycat",
+      "number": 38,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837508,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12612672",
+        "plex": {
+          "guid": "5e1618ac67f14f001e692e13"
+        },
+        "tmdb": 1836008,
+        "tvdb": 7116588,
+        "trakt": 3462159
+      },
+      "title": "The Adventure",
+      "number": 37,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837507,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377952",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b15"
+        },
+        "tmdb": 1836007,
+        "tvdb": 7116587,
+        "trakt": 3462157
+      },
+      "title": "Backpackers",
+      "number": 36,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837506,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12612658",
+        "plex": {
+          "guid": "5e1618aa67f14f001e692dfb"
+        },
+        "tmdb": 1836006,
+        "tvdb": 7116586,
+        "trakt": 3462152
+      },
+      "title": "Zoo",
+      "number": 35,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837505,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12612654",
+        "plex": {
+          "guid": "5e1618a967f14f001e692df5"
+        },
+        "tmdb": 1833721,
+        "tvdb": 7116584,
+        "trakt": 3462149
+      },
+      "title": "The Dump",
+      "number": 34,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837504,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377990",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b10"
+        },
+        "tmdb": 1833720,
+        "tvdb": 7116583,
+        "trakt": 3462141
+      },
+      "title": "Trampoline",
+      "number": 33,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837503,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378000",
+        "plex": {
+          "guid": "5e833ca85161b50041ca8b0d"
+        },
+        "tmdb": 1833719,
+        "tvdb": 7116577,
+        "trakt": 3462132
+      },
+      "title": "Bumpy and the Wise Old Wolfhound",
+      "number": 32,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837502,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378016",
+        "plex": {
+          "guid": "5e1618a967f14f001e692df1"
+        },
+        "tmdb": 1833716,
+        "tvdb": 7101938,
+        "trakt": 3443857
+      },
+      "title": "Work",
+      "number": 31,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837501,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt10655430",
+        "plex": {
+          "guid": "5e1618a967f14f001e692def"
+        },
+        "tmdb": 1833714,
+        "tvdb": 7101936,
+        "trakt": 3443853
+      },
+      "title": "Fairies",
+      "number": 30,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837500,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9377992",
+        "plex": {
+          "guid": "5e1618a967f14f001e692de9"
+        },
+        "tmdb": 1833713,
+        "tvdb": 7101935,
+        "trakt": 3443848
+      },
+      "title": "The Creek",
+      "number": 29,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837499,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9378024",
+        "plex": {
+          "guid": "5e1618a967f14f001e692deb"
+        },
+        "tmdb": 1833712,
+        "tvdb": 7101934,
+        "trakt": 3443841
+      },
+      "title": "Grannies",
+      "number": 28,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837498,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150650",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f400"
+        },
+        "tmdb": 1601152,
+        "tvdb": 6871585,
+        "trakt": 3203408
+      },
+      "title": "The Beach",
+      "number": 26,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837497,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150648",
+        "plex": {
+          "guid": "5d9c1a15705e7a001e7ab5da"
+        },
+        "tmdb": 1601151,
+        "tvdb": 6870673,
+        "trakt": 3201888
+      },
+      "title": "Taxi",
+      "number": 25,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837496,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150646",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f3fd"
+        },
+        "tmdb": 1601150,
+        "tvdb": 6869403,
+        "trakt": 3200928
+      },
+      "title": "Wagonride",
+      "number": 24,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837495,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150644",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f409"
+        },
+        "tmdb": 1597234,
+        "tvdb": 6868489,
+        "trakt": 3200577
+      },
+      "title": "Shops",
+      "number": 23,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837494,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150642",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f406"
+        },
+        "tmdb": 1597233,
+        "tvdb": 6868485,
+        "trakt": 3200576
+      },
+      "title": "The Pool",
+      "number": 22,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837493,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150640",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f403"
+        },
+        "tmdb": 1597232,
+        "tvdb": 6867150,
+        "trakt": 3199392
+      },
+      "title": "Blue Mountains",
+      "number": 21,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837492,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150630",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f3f7"
+        },
+        "tmdb": 1597231,
+        "tvdb": 6866133,
+        "trakt": 3198437
+      },
+      "title": "Markets",
+      "number": 20,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837491,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150616",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f358407"
+        },
+        "tmdb": 1593943,
+        "tvdb": 6866130,
+        "trakt": 3198436
+      },
+      "title": "The Doctor",
+      "number": 18,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837490,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150606",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f358410"
+        },
+        "tmdb": 1593940,
+        "tvdb": 6859038,
+        "trakt": 3192464
+      },
+      "title": "Butterflies",
+      "number": 15,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837489,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150596",
+        "plex": {
+          "guid": "5d9c1a157b5c2e001e70b066"
+        },
+        "tmdb": 1593885,
+        "tvdb": 6857148,
+        "trakt": 3190794
+      },
+      "title": "Bike",
+      "number": 11,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837488,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150594",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f3f4"
+        },
+        "tmdb": 1593882,
+        "tvdb": 6852862,
+        "trakt": 3190788
+      },
+      "title": "Hotel",
+      "number": 10,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837487,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150610",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f358413"
+        },
+        "tmdb": 1593942,
+        "tvdb": 6852853,
+        "trakt": 3190787
+      },
+      "title": "Calypso",
+      "number": 17,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837486,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150598",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f3fa"
+        },
+        "tmdb": 1593937,
+        "tvdb": 6852849,
+        "trakt": 3190786
+      },
+      "title": "Bob Bilby",
+      "number": 12,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837485,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt12539140",
+        "plex": {
+          "guid": "5e1618a967f14f001e692ded"
+        },
+        "tmdb": 1833711,
+        "tvdb": 7053096,
+        "trakt": 3186207
+      },
+      "title": "Pirates",
+      "number": 27,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837484,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150608",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f35840d"
+        },
+        "tmdb": 1593941,
+        "tvdb": 6862364,
+        "trakt": 3186200
+      },
+      "title": "Yoga Ball",
+      "number": 16,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837483,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150602",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f358401"
+        },
+        "tmdb": 1593939,
+        "tvdb": 6857270,
+        "trakt": 3186185
+      },
+      "title": "Takeaway",
+      "number": 14,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837482,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150618",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f358404"
+        },
+        "tmdb": 1593966,
+        "tvdb": 6852863,
+        "trakt": 3186172
+      },
+      "title": "The Claw",
+      "number": 19,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837481,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150600",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f3583fb"
+        },
+        "tmdb": 1593938,
+        "tvdb": 6857149,
+        "trakt": 3186157
+      },
+      "title": "Spy Game",
+      "number": 13,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837480,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150592",
+        "plex": {
+          "guid": "5d9c1a153c3f87001f407915"
+        },
+        "tmdb": 1593881,
+        "tvdb": 6850507,
+        "trakt": 3183546
+      },
+      "title": "Horsey Ride",
+      "number": 9,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837479,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150590",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f35840a"
+        },
+        "tmdb": 1593874,
+        "tvdb": 6850506,
+        "trakt": 3183532
+      },
+      "title": "Fruitbat",
+      "number": 8,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837478,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150220",
+        "plex": {
+          "guid": "5d9c1a15ba6eb9001fc5f3f1"
+        },
+        "tmdb": 1593873,
+        "tvdb": 6850505,
+        "trakt": 3183518
+      },
+      "title": "BBQ",
+      "number": 7,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837477,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150216",
+        "plex": {
+          "guid": "5d9c1a1508fddd001f3583fe"
+        },
+        "tmdb": 1593872,
+        "tvdb": 6850502,
+        "trakt": 3183499
+      },
+      "title": "The Weekend",
+      "number": 6,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "id": 14422837476,
+    "watched_at": "2026-09-03T11:29:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt9150214",
+        "plex": {
+          "guid": "5d9c1a152df347001e45daaa"
+        },
+        "tmdb": 1583486,
+        "tvdb": 6846443,
+        "trakt": 3178606
+      },
+      "title": "Shadowlands",
+      "number": 5,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  }
+]
