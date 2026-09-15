@@ -284,4 +284,31 @@ async def test_get_favorite_movies_returns_parsed_favorites(
     assert first.movie.ids.trakt == 135
 
 
+# ---------------------------------------------------------------------------
+# get_favorite_shows
+# ---------------------------------------------------------------------------
+
+
+async def test_get_favorite_shows_returns_parsed_favorites(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_favorite_shows should parse the Trakt favorites into TraktFavoriteShowEntry models."""
+    payload = load_fixture("favorite_shows.json")
+    url = f"{TRAKT_BASE_URL}/users/me/favorites/shows/rank"
+    trakt_api.get(url, payload=payload)
+
+    favorites = await service.get_favorite_shows("me")
+
+    assert len(favorites) == 4
+    assert all(isinstance(f, TraktFavoriteShowEntry) for f in favorites)
+
+    first = favorites[0]
+    assert first.type == "show"
+    assert first.rank == 2
+    assert first.id == 1544604605
+    assert first.show.title == "The Lord of the Rings: The Rings of Power"
+    assert first.show.aired_episodes == 16
+    assert first.show.ids.trakt == 150900
+
+
 
