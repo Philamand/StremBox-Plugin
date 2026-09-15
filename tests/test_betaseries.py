@@ -1,0 +1,71 @@
+# This file is AI-generated
+"""Tests for :class:`services.betaseries.BetaSeriesService`.
+
+The BetaSeries API is reached through aiohttp (via ``http_client.get_session``)
+and authenticated with a single ``X-BetaSeries-Key`` header derived from the
+``BETASERIES_API_KEY`` environment variable. No Redis cache is involved.
+
+* ``aioresponses`` intercepts every aiohttp request issued by the shared
+  session and replays canned responses.
+* ``BETASERIES_API_KEY`` is injected through the ``betaseries_env`` fixture so
+  ``BetaSeriesService`` reads a configured key.
+* ``init_http_session`` / ``close_http_session`` manage the shared session.
+
+Canned BetaSeries API payloads live under ``tests/fixtures`` as JSON and are
+loaded with the ``load_fixture`` helper.
+"""
+import json
+from collections.abc import AsyncGenerator
+from pathlib import Path
+
+import pytest
+import pytest_asyncio
+from aioresponses import aioresponses as aioresponses_ctx
+
+from http_client import init_http_session
+from services.betaseries import BetaSeriesService
+
+BETASERIES_API_KEY = "test-betaseries-api-key"
+BETASERIES_BASE_URL = "https://api.betaseries.com"
+
+FIXTURES_DIR = Path(__file__).parent / "fixtures"
+
+
+def load_fixture(name: str):
+    """Load a JSON fixture from ``tests/fixtures``."""
+    return json.loads((FIXTURES_DIR / name).read_text())
+
+
+@pytest.fixture(autouse=True)
+def betaseries_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Populate the API key BetaSeriesService reads from the environment."""
+    monkeypatch.setenv("BETASERIES_API_KEY", BETASERIES_API_KEY)
+
+
+@pytest_asyncio.fixture
+async def http_session() -> AsyncGenerator[None, None]:
+    """Initialise the shared aiohttp session for the duration of each test."""
+    await init_http_session()
+    try:
+        yield
+    finally:
+        from http_client import close_http_session
+
+        await close_http_session()
+
+
+@pytest_asyncio.fixture
+async def service(http_session: None) -> BetaSeriesService:
+    """A BetaSeriesService wired against the mocked HTTP session."""
+    return BetaSeriesService()
+
+
+@pytest.fixture
+def betaseries_api() -> AsyncGenerator[aioresponses_ctx, None]:
+    """Mock the BetaSeries HTTP API for the duration of a test.
+
+    Use ``betaseries_api.get(url, payload=...)`` to register canned responses
+    for the endpoints under ``BETASERIES_BASE_URL``.
+    """
+    with aioresponses_ctx() as mocked:
+        yield mocked
