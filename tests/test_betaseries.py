@@ -130,3 +130,16 @@ async def test_get_tmdb_id_returns_movie_tmdb_id(
     tmdb_id = await service.get_tmdb_id("tt11832046", movie=True)
 
     assert tmdb_id == 675445
+
+
+async def test_get_tmdb_id_returns_movie_tmdb_id_without_other_title(
+    service: BetaSeriesService, betaseries_api: aioresponses_ctx
+) -> None:
+    """get_tmdb_id (movie) should still return tmdb_id when other_title is None."""
+    payload = load_fixture("betaseries_movies_movie_no_other_title.json")
+    url = f"{BETASERIES_BASE_URL}/movies/movie?imdb_id=tt9844322&summary=true"
+    betaseries_api.get(url, payload=payload)
+
+    tmdb_id = await service.get_tmdb_id("tt9844322", movie=True)
+
+    assert tmdb_id == 577242
