@@ -1,0 +1,934 @@
+[
+  {
+    "id": 14410686867,
+    "watched_at": "2026-09-14T17:08:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "676cac965e3a789c35ebe57a"
+        },
+        "tmdb": 5860448,
+        "tvdb": 10806244,
+        "trakt": 12346840
+      },
+      "title": "Hum-Patrol to the Rescue",
+      "number": 26,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14419632763,
+    "watched_at": "2026-09-14T16:55:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "60340e68d3326a002df0d6c7"
+        },
+        "tmdb": 452793,
+        "tvdb": 329463,
+        "trakt": 461017
+      },
+      "title": "L'Imposteur",
+      "number": 32,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419625461,
+    "watched_at": "2026-09-14T16:52:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece756a"
+        },
+        "tmdb": 452792,
+        "tvdb": 329462,
+        "trakt": 461016
+      },
+      "title": "Basidiomycètes",
+      "number": 31,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419619109,
+    "watched_at": "2026-09-14T16:48:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece755e"
+        },
+        "tmdb": 452647,
+        "tvdb": 329461,
+        "trakt": 461015
+      },
+      "title": "Le Trois de coeur",
+      "number": 30,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419609550,
+    "watched_at": "2026-09-14T16:44:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece7567"
+        },
+        "tmdb": 452791,
+        "tvdb": 329460,
+        "trakt": 461014
+      },
+      "title": "L'Assassin de Kaamelott",
+      "number": 29,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419598782,
+    "watched_at": "2026-09-14T16:38:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "60340e68d3326a002df0d6c1"
+        },
+        "tmdb": 452790,
+        "tvdb": 329459,
+        "trakt": 461013
+      },
+      "title": "La Botte secrète",
+      "number": 28,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419592041,
+    "watched_at": "2026-09-14T16:35:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece754f"
+        },
+        "tmdb": 452789,
+        "tvdb": 329458,
+        "trakt": 461012
+      },
+      "title": "De retour de Judée",
+      "number": 27,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419582896,
+    "watched_at": "2026-09-14T16:31:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "60340e67d3326a002df0d6bd"
+        },
+        "tmdb": 452788,
+        "tvdb": 329457,
+        "trakt": 461011
+      },
+      "title": "À la volette",
+      "number": 26,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419565706,
+    "watched_at": "2026-09-14T16:26:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece755b"
+        },
+        "tmdb": 452787,
+        "tvdb": 329455,
+        "trakt": 461010
+      },
+      "title": "Le Sacrifice",
+      "number": 25,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419559909,
+    "watched_at": "2026-09-14T16:23:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece7561"
+        },
+        "tmdb": 452786,
+        "tvdb": 329454,
+        "trakt": 461009
+      },
+      "title": "L'Interprète",
+      "number": 24,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419515987,
+    "watched_at": "2026-09-14T16:17:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b6c3e37001ece7552"
+        },
+        "tmdb": 452785,
+        "tvdb": 329453,
+        "trakt": 461008
+      },
+      "title": "La Potion de fécondité",
+      "number": 23,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419503475,
+    "watched_at": "2026-09-14T16:14:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad36"
+        },
+        "tmdb": 452784,
+        "tvdb": 329452,
+        "trakt": 461007
+      },
+      "title": "La Queue du scorpion",
+      "number": 22,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419495489,
+    "watched_at": "2026-09-14T16:10:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b3c3f87001f376d7c"
+        },
+        "tmdb": 452783,
+        "tvdb": 329451,
+        "trakt": 461006
+      },
+      "title": "La Taxe militaire",
+      "number": 21,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14419486166,
+    "watched_at": "2026-09-14T16:06:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad39"
+        },
+        "tmdb": 452782,
+        "tvdb": 329450,
+        "trakt": 461005
+      },
+      "title": "La Dent de requin",
+      "number": 20,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418696194,
+    "watched_at": "2026-09-14T10:51:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "6703fcdec498cac5850446bf"
+        },
+        "tmdb": 5651082,
+        "tvdb": 10806252,
+        "trakt": 12346833
+      },
+      "title": "Pups Save the Puppets",
+      "number": 19,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14418665622,
+    "watched_at": "2026-09-14T10:31:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad24"
+        },
+        "tmdb": 452781,
+        "tvdb": 329449,
+        "trakt": 461004
+      },
+      "title": "Le Repos du guerrier",
+      "number": 19,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418661413,
+    "watched_at": "2026-09-14T10:28:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad3c"
+        },
+        "tmdb": 452780,
+        "tvdb": 329456,
+        "trakt": 461003
+      },
+      "title": "En forme de Graal",
+      "number": 18,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418661301,
+    "watched_at": "2026-09-14T10:28:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "6703fcdfc498cac5850446cc"
+        },
+        "tmdb": 5651081,
+        "tvdb": 10806251,
+        "trakt": 12346832
+      },
+      "title": "Pups Save the Big Book Delivery",
+      "number": 18,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14418656356,
+    "watched_at": "2026-09-14T10:24:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad30"
+        },
+        "tmdb": 452779,
+        "tvdb": 329448,
+        "trakt": 461002
+      },
+      "title": "Le Signe",
+      "number": 17,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418644560,
+    "watched_at": "2026-09-14T10:21:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad2d"
+        },
+        "tmdb": 452778,
+        "tvdb": 329447,
+        "trakt": 461001
+      },
+      "title": "Le Banquet des chefs",
+      "number": 16,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418639474,
+    "watched_at": "2026-09-14T10:18:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad33"
+        },
+        "tmdb": 452777,
+        "tvdb": 329446,
+        "trakt": 461000
+      },
+      "title": "Les Défis de Merlin",
+      "number": 15,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418632064,
+    "watched_at": "2026-09-14T10:14:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad2a"
+        },
+        "tmdb": 452776,
+        "tvdb": 329445,
+        "trakt": 460999
+      },
+      "title": "Monogame",
+      "number": 14,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418623809,
+    "watched_at": "2026-09-14T10:09:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad27"
+        },
+        "tmdb": 452775,
+        "tvdb": 329444,
+        "trakt": 460998
+      },
+      "title": "Arthur et la Question",
+      "number": 13,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418617441,
+    "watched_at": "2026-09-14T10:06:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b08fddd001f2cad21"
+        },
+        "tmdb": 452774,
+        "tvdb": 329443,
+        "trakt": 460997
+      },
+      "title": "Le sixième sens",
+      "number": 12,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14418616107,
+    "watched_at": "2026-09-14T10:04:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "6703fcdfc498cac5850446d4"
+        },
+        "tmdb": 5651079,
+        "tvdb": 10806250,
+        "trakt": 12346830
+      },
+      "title": "Pups Save the Yumi Bee",
+      "number": 16,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14418613673,
+    "watched_at": "2026-09-14T10:02:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b46115600200ba07f"
+        },
+        "tmdb": 452773,
+        "tvdb": 329442,
+        "trakt": 460996
+      },
+      "title": "Dîner dansant",
+      "number": 11,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelo
