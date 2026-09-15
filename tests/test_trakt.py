@@ -128,3 +128,34 @@ async def test_get_all_seasons_returns_parsed_seasons(
     last_season = seasons[-1]
     assert last_season.number == 4
     assert last_season.episodes[0].title == "Episode #4.1"
+
+
+# ---------------------------------------------------------------------------
+# get_all_episodes_season
+# ---------------------------------------------------------------------------
+
+
+async def test_get_all_episodes_season_returns_parsed_episodes(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_all_episodes_season should parse the Trakt response into TraktEpisode models."""
+    payload = load_fixture("bluey_episodes.json")
+    url = f"{TRAKT_BASE_URL}/shows/bluey/seasons/1"
+    trakt_api.get(url, payload=payload)
+
+    episodes = await service.get_all_episodes_season("bluey", 1)
+
+    assert len(episodes) == 52
+    assert [e.number for e in episodes] == list(range(1, 53))
+    assert all(isinstance(e, TraktEpisode) for e in episodes)
+    assert all(e.season == 1 for e in episodes)
+
+    first = episodes[0]
+    assert first.title == "The Magic Xylophone"
+    assert first.ids.trakt == 3178595
+    assert first.ids.imdb == "tt8865002"
+
+    last = episodes[-1]
+    assert last.number == 52
+    assert last.title == "Verandah Santa"
+    assert last.ids.trakt == 3477402
