@@ -99,3 +99,21 @@ async def test_get_show_french_title_returns_none_without_api_key(
     title = await service.get_show_french_title("tt3121722")
 
     assert title is None
+
+
+# ---------------------------------------------------------------------------
+# get_tmdb_id
+# ---------------------------------------------------------------------------
+
+
+async def test_get_tmdb_id_returns_show_themoviedb_id(
+    service: BetaSeriesService, betaseries_api: aioresponses_ctx
+) -> None:
+    """get_tmdb_id (show) should return the BetaSeries show themoviedb_id."""
+    payload = load_fixture("betaseries_shows_display.json")
+    url = f"{BETASERIES_BASE_URL}/shows/display?imdb_id=tt3121722&summary=true"
+    betaseries_api.get(url, payload=payload)
+
+    tmdb_id = await service.get_tmdb_id("tt3121722")
+
+    assert tmdb_id == 57532
