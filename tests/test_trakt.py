@@ -257,4 +257,31 @@ async def test_get_unfinished_shows_filters_partially_watched(
     assert first.show.ids.trakt == 57161
 
 
+# ---------------------------------------------------------------------------
+# get_favorite_movies
+# ---------------------------------------------------------------------------
+
+
+async def test_get_favorite_movies_returns_parsed_favorites(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_favorite_movies should parse the Trakt favorites into TraktFavoriteMovieEntry models."""
+    payload = load_fixture("favorite_movies.json")
+    url = f"{TRAKT_BASE_URL}/users/me/favorites/movies/rank"
+    trakt_api.get(url, payload=payload)
+
+    favorites = await service.get_favorite_movies("me")
+
+    assert len(favorites) == 5
+    assert all(isinstance(f, TraktFavoriteMovieEntry) for f in favorites)
+
+    first = favorites[0]
+    assert first.type == "movie"
+    assert first.rank == 1
+    assert first.id == 1544604587
+    assert first.movie.title == "28 Days Later"
+    assert first.movie.year == 2002
+    assert first.movie.ids.trakt == 135
+
+
 
