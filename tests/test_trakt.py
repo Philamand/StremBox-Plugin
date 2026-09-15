@@ -197,3 +197,30 @@ async def test_get_unwatched_movies_returns_parsed_watchlist(
     assert first.movie.year == 2026
     assert first.movie.ids.trakt == 1033738
 
+
+# ---------------------------------------------------------------------------
+# get_unwatched_shows
+# ---------------------------------------------------------------------------
+
+
+async def test_get_unwatched_shows_returns_parsed_watchlist(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_unwatched_shows should parse the Trakt watchlist into TraktWatchlistShow models."""
+    payload = load_fixture("show_watchlist.json")
+    url = f"{TRAKT_BASE_URL}/users/me/watchlist/shows/title?hide=unreleased"
+    trakt_api.get(url, payload=payload)
+
+    shows = await service.get_unwatched_shows("me")
+
+    assert len(shows) == 2
+    assert all(isinstance(s, TraktWatchlistShow) for s in shows)
+
+    first = shows[0]
+    assert first.type == "show"
+    assert first.rank == 3
+    assert first.show.title == "Little House on the Prairie"
+    assert first.show.aired_episodes == 8
+    assert first.show.ids.trakt == 275053
+
+
