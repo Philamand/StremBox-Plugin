@@ -26,7 +26,17 @@ import pytest_asyncio
 from aioresponses import aioresponses as aioresponses_ctx
 
 from http_client import init_http_session
-from schemas.trakt import TraktEpisode, TraktSeason
+from schemas.trakt import (
+    TraktEpisode,
+    TraktFavoriteMovieEntry,
+    TraktFavoriteShowEntry,
+    TraktHistoryEntry,
+    TraktMovieHistoryEntry,
+    TraktSeason,
+    TraktWatchedShow,
+    TraktWatchlistMovie,
+    TraktWatchlistShow,
+)
 from services.trakt import TraktService
 
 TRAKT_API_KEY = "test-trakt-api-key"
@@ -159,3 +169,31 @@ async def test_get_all_episodes_season_returns_parsed_episodes(
     assert last.number == 52
     assert last.title == "Verandah Santa"
     assert last.ids.trakt == 3477402
+
+
+# ---------------------------------------------------------------------------
+# get_unwatched_movies
+# ---------------------------------------------------------------------------
+
+
+async def test_get_unwatched_movies_returns_parsed_watchlist(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_unwatched_movies should parse the Trakt watchlist into TraktWatchlistMovie models."""
+    payload = load_fixture("movie_watchlist.json")
+    url = f"{TRAKT_BASE_URL}/users/me/watchlist/movies/title?hide=unreleased"
+    trakt_api.get(url, payload=payload)
+
+    movies = await service.get_unwatched_movies("me")
+
+    assert len(movies) == 2
+    assert all(isinstance(m, TraktWatchlistMovie) for m in movies)
+
+    first = movies[0]
+    assert first.type == "movie"
+    assert first.rank == 2
+    assert first.id == 1544201352
+    assert first.movie.title == "28 Years Later: The Bone Temple"
+    assert first.movie.year == 2026
+    assert first.movie.ids.trakt == 1033738
+
