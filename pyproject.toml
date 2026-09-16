@@ -23,4 +23,6 @@ dev = [
     "aioresponses>=0.7.9",
     "pytest>=9",
     "pytest-asyncio>=1",
+    "ruff>=0.16.7",
+    "ty>=0.0.81",
 ]
