@@ -96,12 +96,13 @@ async def main():
                     for show in shows:
                         if (
                             show.show.ids.imdb is None
+                            or show.show.ids.slug is None
                             or show.show.ids.imdb in favorite_shows_ids
                         ):
                             continue
 
                         next_episode = await trakt_service.get_next_episode(
-                            user.trakt_slug, show.show.ids.imdb
+                            user.trakt_slug, show.show.ids.slug
                         )
                         if next_episode is None:
                             continue
