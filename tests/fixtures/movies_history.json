@@ -1,0 +1,42 @@
+[
+  {
+    "id": 14414612025,
+    "watched_at": "2026-09-13T12:13:00.000Z",
+    "action": "scrobble",
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt15837338",
+        "plex": {
+          "guid": "6183f8855df7955fbe0342b3",
+          "slug": "paw-patrol-the-mighty-movie"
+        },
+        "slug": "paw-patrol-the-mighty-movie-2023",
+        "tmdb": 893723,
+        "trakt": 717155
+      },
+      "year": 2023,
+      "title": "PAW Patrol: The Mighty Movie"
+    }
+  },
+  {
+    "id": 14422684861,
+    "watched_at": "2026-09-06T13:44:00.000Z",
+    "action": "watch",
+    "type": "movie",
+    "movie": {
+      "ids": {
+        "imdb": "tt1679335",
+        "plex": {
+          "guid": "5d7769a17a53e9001e6ebab2",
+          "slug": "trolls"
+        },
+        "slug": "trolls-2016",
+        "tmdb": 136799,
+        "trakt": 92063
+      },
+      "year": 2016,
+      "title": "Trolls"
+    }
+  }
+]

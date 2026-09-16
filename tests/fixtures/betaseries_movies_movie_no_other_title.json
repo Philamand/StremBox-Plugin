@@ -1,0 +1,97 @@
+{
+  "movie": {
+    "id": 67572,
+    "title": "Kaamelott : Premier Volet",
+    "original_title": "Kaamelott : Premier Volet",
+    "tmdb_id": 577242,
+    "imdb_id": "tt9844322",
+    "url": "kaamelott-premier-volet",
+    "poster": "https://pictures.betaseries.com/films/affiches/original/67572.jpg",
+    "backdrop": "https://pictures.betaseries.com/films/backdrops/original/67572.jpg",
+    "production_year": 2021,
+    "release_date": "2021-07-21",
+    "original_release_date": "2021-07-21",
+    "sale_date": "2021-11-17",
+    "director": "Alexandre Astier",
+    "length": 7200,
+    "genres": [
+      "Aventure",
+      "Fantastique",
+      "Comédie"
+    ],
+    "synopsis": "Le tyrannique Lancelot-du-Lac et ses mercenaires saxons font régner la terreur sur le royaume de Logres. Les Dieux, insultés par cette cruelle dictature, provoquent le retour d'Arthur Pendragon et l'avènement de la résistance. Arthur parviendra-t-il à fédérer les clans rebelles, renverser son rival, reprendre Kaamelott et restaurer la paix sur l'île de Bretagne ?",
+    "tagline": "Il revient pas pour trier les lentilles.",
+    "language": "Français",
+    "notes": {
+      "mean": 3.84,
+      "total": 1327,
+      "user": 0
+    },
+    "followers": 17081,
+    "comments": 51,
+    "similars": 14,
+    "characters": 24,
+    "crew": {
+      "producers": [
+        {
+          "id": 24848,
+          "name": "Alexandre Astier",
+          "slug": "alexandre-astier",
+          "picture": "https://pictures.betaseries.com/persons/itQkV39IyDouF7lWy9xmwJdgy3f.jpg"
+        },
+        {
+          "id": 570595,
+          "name": "Henri Deneubourg",
+          "slug": "henri-deneubourg",
+          "picture": null
+        },
+        {
+          "id": 570596,
+          "name": "Agathe Sofer",
+          "slug": "agathe-sofer",
+          "picture": null
+        }
+      ],
+      "writers": [
+        {
+          "id": 24848,
+          "name": "Alexandre Astier",
+          "slug": "alexandre-astier",
+          "picture": "https://pictures.betaseries.com/persons/itQkV39IyDouF7lWy9xmwJdgy3f.jpg"
+        }
+      ],
+      "directors": [
+        {
+          "id": 24848,
+          "name": "Alexandre Astier",
+          "slug": "alexandre-astier",
+          "picture": "https://pictures.betaseries.com/persons/itQkV39IyDouF7lWy9xmwJdgy3f.jpg"
+        }
+      ]
+    },
+    "user": {
+      "in_account": false,
+      "status": -1,
+      "date": null,
+      "mail": false,
+      "twitter": false,
+      "profile": false,
+      "tags": "",
+      "favorited": false,
+      "friends_watched": [],
+      "friends_want_to_watch": [],
+      "rewatch": {
+        "total": 0,
+        "dates": [],
+        "agenda": false
+      }
+    },
+    "trailer": "NoUEzrss6ww",
+    "resource_url": "https://www.betaseries.com/film/67572-kaamelott-premier-volet",
+    "platform_links": [],
+    "platforms_svod": [],
+    "releasesSvod": [],
+    "other_title": null
+  },
+  "errors": []
+}

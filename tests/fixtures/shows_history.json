@@ -1,0 +1,3602 @@
+[
+  {
+    "id": 14415362570,
+    "watched_at": "2026-09-13T16:19:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b705e7a001e70ec65"
+        },
+        "tmdb": 452772,
+        "tvdb": 329441,
+        "trakt": 460995
+      },
+      "title": "Le Négociateur",
+      "number": 10,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14414704575,
+    "watched_at": "2026-09-13T12:48:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "670fef8ffb5cda66a95f18ea"
+        },
+        "tmdb": 5678304,
+        "tvdb": 10806248,
+        "trakt": 12346834
+      },
+      "title": "Pups vs. The Robo-Ducky",
+      "number": 20,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14414641794,
+    "watched_at": "2026-09-13T12:25:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "6703fce2c498cac5850446f1"
+        },
+        "tmdb": 5651076,
+        "tvdb": 10806247,
+        "trakt": 12649709
+      },
+      "title": "Air Rescue: Pups vs. the Hum-Cloud",
+      "number": 31,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14411768131,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4589904",
+        "plex": {
+          "guid": "5f9a8793f936e5002dd66daf"
+        },
+        "tmdb": 1728512,
+        "tvdb": 7068752,
+        "trakt": 3408978
+      },
+      "title": "The Fallout",
+      "number": 16,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768130,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861494",
+        "plex": {
+          "guid": "5f9a8793f936e5002dd66dae"
+        },
+        "tmdb": 1728511,
+        "tvdb": 7068751,
+        "trakt": 3408977
+      },
+      "title": "Courting Disasters",
+      "number": 15,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768129,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861490",
+        "plex": {
+          "guid": "5f9a8793f936e5002dd66dad"
+        },
+        "tmdb": 1728510,
+        "tvdb": 7068750,
+        "trakt": 3408976
+      },
+      "title": "Saving for Arraignment Day",
+      "number": 14,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768128,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861484",
+        "plex": {
+          "guid": "5f9a8794f936e5002dd66db1"
+        },
+        "tmdb": 1728509,
+        "tvdb": 7068749,
+        "trakt": 3408975
+      },
+      "title": "The Untethered Sole",
+      "number": 13,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768127,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861486",
+        "plex": {
+          "guid": "5f9a8794f936e5002dd66db0"
+        },
+        "tmdb": 1728508,
+        "tvdb": 7068748,
+        "trakt": 3408974
+      },
+      "title": "Check Mates",
+      "number": 12,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768126,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861482",
+        "plex": {
+          "guid": "5f9a8793f936e5002dd66dac"
+        },
+        "tmdb": 1728487,
+        "tvdb": 7068746,
+        "trakt": 3408973
+      },
+      "title": "Chain Migration",
+      "number": 11,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768125,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861478",
+        "plex": {
+          "guid": "5f9a878ff936e5002dd66d85"
+        },
+        "tmdb": 1728486,
+        "tvdb": 7068745,
+        "trakt": 3408972
+      },
+      "title": "Taste Makers",
+      "number": 10,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768124,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2826310",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba8e"
+        },
+        "tmdb": 331713,
+        "tvdb": 4543822,
+        "trakt": 340019
+      },
+      "title": "Blockheads",
+      "number": 15,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768123,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2604338",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba80"
+        },
+        "tmdb": 331629,
+        "tvdb": 4460015,
+        "trakt": 340018
+      },
+      "title": "Off the Hook",
+      "number": 14,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768122,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2604334",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba87"
+        },
+        "tmdb": 331711,
+        "tvdb": 4460014,
+        "trakt": 340017
+      },
+      "title": "It Gets Better",
+      "number": 13,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768121,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2604336",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba92"
+        },
+        "tmdb": 331712,
+        "tvdb": 4460013,
+        "trakt": 340016
+      },
+      "title": "Señoritis",
+      "number": 12,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768120,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2495824",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba78"
+        },
+        "tmdb": 331628,
+        "tvdb": 4460012,
+        "trakt": 340015
+      },
+      "title": "A New Attitude",
+      "number": 11,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768119,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128814",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba96"
+        },
+        "tmdb": 331710,
+        "tvdb": 4460011,
+        "trakt": 340014
+      },
+      "title": "Queen B.",
+      "number": 10,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768118,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128822",
+        "plex": {
+          "guid": "5d9c12d902391c001f5fba7c"
+        },
+        "tmdb": 331709,
+        "tvdb": 4460009,
+        "trakt": 340013
+      },
+      "title": "Smashed",
+      "number": 9,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768117,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128821",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6da"
+        },
+        "tmdb": 331627,
+        "tvdb": 4460008,
+        "trakt": 340012
+      },
+      "title": "Red Hairing",
+      "number": 8,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768116,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128820",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6d2"
+        },
+        "tmdb": 331707,
+        "tvdb": 4460007,
+        "trakt": 340011
+      },
+      "title": "Colony Collapse",
+      "number": 7,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768115,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128819",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6d6"
+        },
+        "tmdb": 331708,
+        "tvdb": 4460005,
+        "trakt": 340010
+      },
+      "title": "Double Crossers",
+      "number": 6,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768114,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128818",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6e9"
+        },
+        "tmdb": 331706,
+        "tvdb": 4460004,
+        "trakt": 340009
+      },
+      "title": "A New Start",
+      "number": 5,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768113,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128817",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6e5"
+        },
+        "tmdb": 331704,
+        "tvdb": 4460003,
+        "trakt": 340008
+      },
+      "title": "The B. Team",
+      "number": 4,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768112,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128816",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6ca"
+        },
+        "tmdb": 331705,
+        "tvdb": 4460002,
+        "trakt": 340007
+      },
+      "title": "Indian Takers",
+      "number": 3,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768111,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128815",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6de"
+        },
+        "tmdb": 331703,
+        "tvdb": 4460000,
+        "trakt": 340006
+      },
+      "title": "Borderline Personalities",
+      "number": 2,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768110,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt2128813",
+        "plex": {
+          "guid": "5d9c12d9e264b7001fcaf6ce"
+        },
+        "tmdb": 331702,
+        "tvdb": 4392165,
+        "trakt": 340005
+      },
+      "title": "Flight of the Phoenix",
+      "number": 1,
+      "season": 4
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768109,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0757386",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b52e"
+        },
+        "tmdb": 331699,
+        "tvdb": 306163,
+        "trakt": 340004
+      },
+      "title": "Development Arrested",
+      "number": 13,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768108,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515215",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b522"
+        },
+        "tmdb": 331698,
+        "tvdb": 306162,
+        "trakt": 340003
+      },
+      "title": "Exit Strategy",
+      "number": 12,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768107,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515217",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b512"
+        },
+        "tmdb": 331697,
+        "tvdb": 306161,
+        "trakt": 340002
+      },
+      "title": "Family Ties",
+      "number": 11,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768106,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515216",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b516"
+        },
+        "tmdb": 331696,
+        "tvdb": 306160,
+        "trakt": 340001
+      },
+      "title": "Fakin' It",
+      "number": 10,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768105,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515242",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b526"
+        },
+        "tmdb": 331695,
+        "tvdb": 304984,
+        "trakt": 340000
+      },
+      "title": "S.O.B.s",
+      "number": 9,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768104,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515225",
+        "plex": {
+          "guid": "5d9c12d9e98e47001eb88a55"
+        },
+        "tmdb": 331694,
+        "tvdb": 302606,
+        "trakt": 339999
+      },
+      "title": "Making a Stand",
+      "number": 8,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768103,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515237",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b50e"
+        },
+        "tmdb": 331693,
+        "tvdb": 306159,
+        "trakt": 339998
+      },
+      "title": "Prison Break-In",
+      "number": 7,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768102,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515252",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388df1"
+        },
+        "tmdb": 331692,
+        "tvdb": 306158,
+        "trakt": 339997
+      },
+      "title": "The Ocean Walker",
+      "number": 6,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768101,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515230",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388e01"
+        },
+        "tmdb": 331691,
+        "tvdb": 306157,
+        "trakt": 339996
+      },
+      "title": "Mr. F",
+      "number": 5,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768100,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515233",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388e11"
+        },
+        "tmdb": 331690,
+        "tvdb": 306156,
+        "trakt": 339995
+      },
+      "title": "Notapusy",
+      "number": 4,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768099,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515218",
+        "plex": {
+          "guid": "5d9c12d908fddd001f31b51e"
+        },
+        "tmdb": 331689,
+        "tvdb": 306155,
+        "trakt": 339994
+      },
+      "title": "Forget-Me-Now",
+      "number": 3,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768098,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515249",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388dfd"
+        },
+        "tmdb": 331688,
+        "tvdb": 306154,
+        "trakt": 339993
+      },
+      "title": "For British Eyes Only",
+      "number": 2,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768097,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515250",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388e0d"
+        },
+        "tmdb": 331687,
+        "tvdb": 302635,
+        "trakt": 339992
+      },
+      "title": "The Cabin Show",
+      "number": 1,
+      "season": 3
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768096,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515241",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740da"
+        },
+        "tmdb": 331686,
+        "tvdb": 75873,
+        "trakt": 339991
+      },
+      "title": "The Righteous Brothers",
+      "number": 18,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768095,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515245",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740fa"
+        },
+        "tmdb": 331685,
+        "tvdb": 75872,
+        "trakt": 339990
+      },
+      "title": "Spring Breakout",
+      "number": 17,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768094,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515227",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c70"
+        },
+        "tmdb": 331684,
+        "tvdb": 75871,
+        "trakt": 339989
+      },
+      "title": "Meat the Veals",
+      "number": 16,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768093,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515255",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740ee"
+        },
+        "tmdb": 331683,
+        "tvdb": 75870,
+        "trakt": 339988
+      },
+      "title": "Sword of Destiny",
+      "number": 15,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768092,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515251",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740de"
+        },
+        "tmdb": 331682,
+        "tvdb": 75869,
+        "trakt": 339987
+      },
+      "title": "The Immaculate Election",
+      "number": 14,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768091,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515229",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740e2"
+        },
+        "tmdb": 331681,
+        "tvdb": 75868,
+        "trakt": 339986
+      },
+      "title": "Motherboy XXX",
+      "number": 13,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768090,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515220",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740ea"
+        },
+        "tmdb": 331680,
+        "tvdb": 75867,
+        "trakt": 339985
+      },
+      "title": "Hand to God",
+      "number": 12,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768089,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515234",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740e6"
+        },
+        "tmdb": 331679,
+        "tvdb": 75866,
+        "trakt": 339984
+      },
+      "title": "Out on a Limb",
+      "number": 11,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768088,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515240",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740f2"
+        },
+        "tmdb": 331678,
+        "tvdb": 75865,
+        "trakt": 339983
+      },
+      "title": "Ready, Aim, Marry Me",
+      "number": 10,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768087,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515213",
+        "plex": {
+          "guid": "5d9c12d91cae62001f7740f6"
+        },
+        "tmdb": 331677,
+        "tvdb": 75864,
+        "trakt": 339982
+      },
+      "title": "Burning Love",
+      "number": 9,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768086,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515239",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c6c"
+        },
+        "tmdb": 331676,
+        "tvdb": 75863,
+        "trakt": 339981
+      },
+      "title": "Queen for a Day",
+      "number": 8,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768085,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515248",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc347"
+        },
+        "tmdb": 331675,
+        "tvdb": 75862,
+        "trakt": 339980
+      },
+      "title": "Switch Hitter",
+      "number": 7,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768084,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515207",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc343"
+        },
+        "tmdb": 331674,
+        "tvdb": 75861,
+        "trakt": 339979
+      },
+      "title": "Afternoon Delight",
+      "number": 6,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768083,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515243",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc34f"
+        },
+        "tmdb": 331673,
+        "tvdb": 75860,
+        "trakt": 339978
+      },
+      "title": "Sad Sack",
+      "number": 5,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768082,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515219",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc33b"
+        },
+        "tmdb": 331672,
+        "tvdb": 75859,
+        "trakt": 339977
+      },
+      "title": "Good Grief",
+      "number": 4,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768081,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515209",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc33f"
+        },
+        "tmdb": 331671,
+        "tvdb": 75858,
+        "trakt": 339976
+      },
+      "title": "Amigos",
+      "number": 3,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768080,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515254",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc34b"
+        },
+        "tmdb": 331670,
+        "tvdb": 75857,
+        "trakt": 339975
+      },
+      "title": "The One Where They Build a House",
+      "number": 2,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768079,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515253",
+        "plex": {
+          "guid": "5d9c12d97b5c2e001e6cc337"
+        },
+        "tmdb": 331669,
+        "tvdb": 75856,
+        "trakt": 339974
+      },
+      "title": "The One Where Michael Leaves",
+      "number": 1,
+      "season": 2
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768078,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515224",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388e09"
+        },
+        "tmdb": 331668,
+        "tvdb": 75855,
+        "trakt": 339973
+      },
+      "title": "Let 'Em Eat Cake",
+      "number": 22,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768077,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515232",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388e05"
+        },
+        "tmdb": 331667,
+        "tvdb": 75854,
+        "trakt": 339972
+      },
+      "title": "Not Without My Daughter",
+      "number": 21,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768076,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515258",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388df9"
+        },
+        "tmdb": 331666,
+        "tvdb": 75853,
+        "trakt": 339971
+      },
+      "title": "Whistler's Mother",
+      "number": 20,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768075,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515211",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15c5"
+        },
+        "tmdb": 331665,
+        "tvdb": 75852,
+        "trakt": 339970
+      },
+      "title": "Best Man for the Gob",
+      "number": 19,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768074,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515228",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388ded"
+        },
+        "tmdb": 331664,
+        "tvdb": 75850,
+        "trakt": 339969
+      },
+      "title": "Missing Kitty",
+      "number": 18,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768073,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515222",
+        "plex": {
+          "guid": "5d9c12d92192ba001f388df5"
+        },
+        "tmdb": 331663,
+        "tvdb": 75849,
+        "trakt": 339968
+      },
+      "title": "Justice Is Blind",
+      "number": 17,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768072,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515208",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15b5"
+        },
+        "tmdb": 331662,
+        "tvdb": 75851,
+        "trakt": 339967
+      },
+      "title": "Altar Egos",
+      "number": 16,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768071,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515246",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15b9"
+        },
+        "tmdb": 331661,
+        "tvdb": 75848,
+        "trakt": 339966
+      },
+      "title": "Staff Infection",
+      "number": 15,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768070,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515244",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15c1"
+        },
+        "tmdb": 331660,
+        "tvdb": 75847,
+        "trakt": 339965
+      },
+      "title": "Shock and Aww",
+      "number": 14,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768069,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515210",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15d1"
+        },
+        "tmdb": 331659,
+        "tvdb": 75846,
+        "trakt": 339964
+      },
+      "title": "Beef Consommé",
+      "number": 13,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768068,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515226",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15c9"
+        },
+        "tmdb": 331658,
+        "tvdb": 75845,
+        "trakt": 339963
+      },
+      "title": "Marta Complex",
+      "number": 12,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768067,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515238",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15cd"
+        },
+        "tmdb": 331657,
+        "tvdb": 75844,
+        "trakt": 339962
+      },
+      "title": "Public Relations",
+      "number": 11,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768066,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515235",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15d5"
+        },
+        "tmdb": 331656,
+        "tvdb": 75843,
+        "trakt": 339961
+      },
+      "title": "Pier Pressure",
+      "number": 10,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768065,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515247",
+        "plex": {
+          "guid": "5d9c12d9170e24001f2d15bd"
+        },
+        "tmdb": 331655,
+        "tvdb": 75842,
+        "trakt": 339960
+      },
+      "title": "Storming the Castle",
+      "number": 9,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768064,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515231",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c68"
+        },
+        "tmdb": 331654,
+        "tvdb": 75841,
+        "trakt": 339959
+      },
+      "title": "My Mother, the Car",
+      "number": 8,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768063,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515221",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c88"
+        },
+        "tmdb": 331653,
+        "tvdb": 75840,
+        "trakt": 339958
+      },
+      "title": "In God We Trust",
+      "number": 7,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768062,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515257",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c84"
+        },
+        "tmdb": 331652,
+        "tvdb": 75839,
+        "trakt": 339957
+      },
+      "title": "Visiting Ours",
+      "number": 6,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768061,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515214",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c7c"
+        },
+        "tmdb": 331651,
+        "tvdb": 75838,
+        "trakt": 339956
+      },
+      "title": "Charity Drive",
+      "number": 5,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768060,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515223",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c80"
+        },
+        "tmdb": 331650,
+        "tvdb": 75837,
+        "trakt": 339955
+      },
+      "title": "Key Decisions",
+      "number": 4,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768059,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515212",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c74"
+        },
+        "tmdb": 331649,
+        "tvdb": 75836,
+        "trakt": 339954
+      },
+      "title": "Bringing Up Buster",
+      "number": 3,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768058,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515256",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c78"
+        },
+        "tmdb": 331648,
+        "tvdb": 75835,
+        "trakt": 339953
+      },
+      "title": "Top Banana",
+      "number": 2,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768057,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt0515236",
+        "plex": {
+          "guid": "5d9c12d93c3f87001f3c4c8c"
+        },
+        "tmdb": 331647,
+        "tvdb": 75834,
+        "trakt": 339952
+      },
+      "title": "Pilot",
+      "number": 1,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768056,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861472",
+        "plex": {
+          "guid": "5f9a8791f936e5002dd66d8e"
+        },
+        "tmdb": 1728485,
+        "tvdb": 7015885,
+        "trakt": 3088187
+      },
+      "title": "Unexpected Company",
+      "number": 9,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768055,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861470",
+        "plex": {
+          "guid": "5f9a8791f936e5002dd66d8d"
+        },
+        "tmdb": 1497886,
+        "tvdb": 6692433,
+        "trakt": 3000258
+      },
+      "title": "Premature Independence",
+      "number": 8,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768054,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861466",
+        "plex": {
+          "guid": "5f9a8791f936e5002dd66d8c"
+        },
+        "tmdb": 1497887,
+        "tvdb": 6692432,
+        "trakt": 3000210
+      },
+      "title": "Rom-Traum",
+      "number": 7,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768053,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861462",
+        "plex": {
+          "guid": "5f9a8791f936e5002dd66d8b"
+        },
+        "tmdb": 1497883,
+        "tvdb": 6692431,
+        "trakt": 3000185
+      },
+      "title": "Emotional Baggage",
+      "number": 6,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768052,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861460",
+        "plex": {
+          "guid": "5f9a8790f936e5002dd66d8a"
+        },
+        "tmdb": 1497884,
+        "tvdb": 6692430,
+        "trakt": 3000162
+      },
+      "title": "Sinking Feelings",
+      "number": 5,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768051,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861458",
+        "plex": {
+          "guid": "5f9a8790f936e5002dd66d89"
+        },
+        "tmdb": 1497885,
+        "tvdb": 6692429,
+        "trakt": 3000142
+      },
+      "title": "Old Start, An",
+      "number": 4,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768050,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861456",
+        "plex": {
+          "guid": "5f9a8790f936e5002dd66d88"
+        },
+        "tmdb": 1497882,
+        "tvdb": 6692428,
+        "trakt": 3000096
+      },
+      "title": "Everyone Gets Atrophy",
+      "number": 3,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768049,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4861452",
+        "plex": {
+          "guid": "5f9a8790f936e5002dd66d87"
+        },
+        "tmdb": 1497881,
+        "tvdb": 6692426,
+        "trakt": 3000071
+      },
+      "title": "Self-Deportation",
+      "number": 2,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411768048,
+    "watched_at": "2026-09-12T18:13:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt4589902",
+        "plex": {
+          "guid": "5f9a8790f936e5002dd66d86"
+        },
+        "tmdb": 1484090,
+        "tvdb": 6681021,
+        "trakt": 2987148
+      },
+      "title": "Family Leave",
+      "number": 1,
+      "season": 5
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "id": 14411573702,
+    "watched_at": "2026-09-12T17:12:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b705e7a001e70ec68"
+        },
+        "tmdb": 452771,
+        "tvdb": 329440,
+        "trakt": 460994
+      },
+      "title": "Le Maître d'armes",
+      "number": 9,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14411566855,
+    "watched_at": "2026-09-12T17:07:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b705e7a001e70ec6b"
+        },
+        "tmdb": 452642,
+        "tvdb": 329439,
+        "trakt": 460993
+      },
+      "title": "Codes et Stratégies",
+      "number": 8,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14411552074,
+    "watched_at": "2026-09-12T17:03:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b705e7a001e70ec56"
+        },
+        "tmdb": 452770,
+        "tvdb": 329438,
+        "trakt": 460992
+      },
+      "title": "Des nouvelles du monde",
+      "number": 7,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14410828567,
+    "watched_at": "2026-09-12T12:13:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "6703fce2c498cac585044700"
+        },
+        "tmdb": 5651075,
+        "tvdb": 10806246,
+        "trakt": 12634605
+      },
+      "title": "Air Rescue: Pups Save the Sky-High Stunt Show",
+      "number": 30,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14410748521,
+    "watched_at": "2026-09-12T11:50:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "6703fce3c498cac585044708"
+        },
+        "tmdb": 5651074,
+        "tvdb": 10806245,
+        "trakt": 12634594
+      },
+      "title": "Air Rescue: Pups Stop a Rocket-Powered Pogo Stick",
+      "number": 29,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14406746704,
+    "watched_at": "2026-09-11T10:37:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "5d9c0c6b705e7a001e70ec5c"
+        },
+        "tmdb": 452769,
+        "tvdb": 329437,
+        "trakt": 460991
+      },
+      "title": "Le Garde du corps",
+      "number": 6,
+      "season": 1
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "id": 14403792942,
+    "watched_at": "2026-09-10T16:46:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "66cab302ab54c5c745015923"
+        },
+        "tmdb": 5549358,
+        "tvdb": 10654195,
+        "trakt": 12147070
+      },
+      "title": "Pups Save the Crop Circles",
+      "number": 6,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14366635804,
+    "watched_at": "2026-09-10T16:46:00.000Z",
+    "action": "watch",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": "tt29730901",
+        "plex": {
+          "guid": "673f3d9bdf4a55d416ac66b9"
+        },
+        "tmdb": 7269637,
+        "tvdb": 11793063,
+        "trakt": 14185185
+      },
+      "title": "The Charm Offensive",
+      "number": 5,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt0149460",
+        "plex": {
+          "guid": "5d9c0819cb3ffa001f1b207c",
+          "slug": "futurama"
+        },
+        "slug": "futurama",
+        "tmdb": 615,
+        "tvdb": 73871,
+        "trakt": 614
+      },
+      "year": 1999,
+      "title": "Futurama",
+      "aired_episodes": 162
+    }
+  },
+  {
+    "id": 14399282050,
+    "watched_at": "2026-09-09T11:11:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "66cab302ab54c5c745015922"
+        },
+        "tmdb": 5549352,
+        "tvdb": 10654194,
+        "trakt": 12147069
+      },
+      "title": "Pups Get Your Goat",
+      "number": 5,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14399210395,
+    "watched_at": "2026-09-09T10:48:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "66c22675cbc836b66e91f4c7"
+        },
+        "tmdb": 5535656,
+        "tvdb": 10654193,
+        "trakt": 12224329
+      },
+      "title": "Pups Save Humdinger's Home Away from Home",
+      "number": 14,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14399078550,
+    "watched_at": "2026-09-09T10:25:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "66c22675cbc836b66e91f4cf"
+        },
+        "tmdb": 5535654,
+        "tvdb": 10654192,
+        "trakt": 12205377
+      },
+      "title": "Pups Save the Mountain Surfers",
+      "number": 13,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14399014073,
+    "watched_at": "2026-09-09T10:02:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "676571ac346c3b4b5eb323fc"
+        },
+        "tmdb": 5845323,
+        "tvdb": 10654191,
+        "trakt": 12346839
+      },
+      "title": "Pups Save Fogstock",
+      "number": 25,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "id": 14398927547,
+    "watched_at": "2026-09-09T09:38:00.000Z",
+    "action": "scrobble",
+    "type": "episode",
+    "episode": {
+      "ids": {
+        "imdb": null,
+        "plex": {
+          "guid": "66b1529dd1e97a29da854ce4"
+        },
+        "tmdb": 5514308,
+        "tvdb": 10654190,
+        "trakt": 12205376
+      },
+      "title": "Pups Save the Super Cows",
+      "number": 12,
+      "season": 11
+    },
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  }
+]

@@ -1,0 +1,376 @@
+[
+  {
+    "plays": 46,
+    "last_watched_at": "2026-09-15T10:52:00.000Z",
+    "last_updated_at": "2026-09-15T10:52:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt3121722",
+        "plex": {
+          "guid": "5d9c0831e264b7001fc3e862",
+          "slug": "paw-patrol"
+        },
+        "slug": "paw-patrol",
+        "tmdb": 57532,
+        "tvdb": 272472,
+        "trakt": 57161
+      },
+      "year": 2013,
+      "title": "PAW Patrol",
+      "aired_episodes": 570
+    }
+  },
+  {
+    "plays": 31,
+    "last_watched_at": "2026-09-15T10:04:00.000Z",
+    "last_updated_at": "2026-09-15T10:04:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt0441059",
+        "plex": {
+          "guid": "5d9c07ffffd9ef001e98a0ce",
+          "slug": "kaamelott"
+        },
+        "slug": "kaamelott",
+        "tmdb": 11466,
+        "tvdb": 79175,
+        "trakt": 11414
+      },
+      "year": 2005,
+      "title": "Kaamelott",
+      "aired_episodes": 458
+    }
+  },
+  {
+    "plays": 38,
+    "last_watched_at": "2026-09-14T09:59:00.000Z",
+    "last_updated_at": "2026-09-14T09:59:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt12327578",
+        "plex": {
+          "guid": "5ec75ff037d69c0039b83267",
+          "slug": "star-trek-strange-new-worlds"
+        },
+        "slug": "star-trek-strange-new-worlds",
+        "tmdb": 103516,
+        "tvdb": 382389,
+        "trakt": 162206
+      },
+      "year": 2022,
+      "title": "Star Trek: Strange New Worlds",
+      "aired_episodes": 38
+    }
+  },
+  {
+    "plays": 58,
+    "last_watched_at": "2026-09-13T17:31:00.000Z",
+    "last_updated_at": "2026-09-13T17:31:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt7678620",
+        "plex": {
+          "guid": "5d9c090e705e7a001e6e94d8",
+          "slug": "bluey-2018"
+        },
+        "slug": "bluey",
+        "tmdb": 82728,
+        "tvdb": 353546,
+        "trakt": 136999
+      },
+      "year": 2018,
+      "title": "Bluey",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "plays": 84,
+    "last_watched_at": "2026-09-12T18:13:00.000Z",
+    "last_updated_at": "2026-09-12T18:13:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt0367279",
+        "plex": {
+          "guid": "5d9c086f2df347001e3b27b0",
+          "slug": "arrested-development"
+        },
+        "slug": "arrested-development",
+        "tmdb": 4589,
+        "tvdb": 72173,
+        "trakt": 4565
+      },
+      "year": 2003,
+      "title": "Arrested Development",
+      "aired_episodes": 84
+    }
+  },
+  {
+    "plays": 161,
+    "last_watched_at": "2026-09-10T16:46:00.000Z",
+    "last_updated_at": "2026-09-10T16:46:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt0149460",
+        "plex": {
+          "guid": "5d9c0819cb3ffa001f1b207c",
+          "slug": "futurama"
+        },
+        "slug": "futurama",
+        "tmdb": 615,
+        "tvdb": 73871,
+        "trakt": 614
+      },
+      "year": 1999,
+      "title": "Futurama",
+      "aired_episodes": 162
+    }
+  },
+  {
+    "plays": 91,
+    "last_watched_at": "2026-07-27T03:24:00.000Z",
+    "last_updated_at": "2026-07-27T03:24:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt2861424",
+        "plex": {
+          "guid": "5d9c08382192ba001f30a9c7",
+          "slug": "rick-and-morty"
+        },
+        "slug": "rick-and-morty",
+        "tmdb": 60625,
+        "tvdb": 275274,
+        "trakt": 69829
+      },
+      "year": 2013,
+      "title": "Rick and Morty",
+      "aired_episodes": 91
+    }
+  },
+  {
+    "plays": 399,
+    "last_watched_at": "2026-06-22T02:22:00.000Z",
+    "last_updated_at": "2026-06-22T02:22:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt0397306",
+        "plex": {
+          "guid": "5d9c086c7d06d9001ffd27b2",
+          "slug": "american-dad"
+        },
+        "slug": "american-dad",
+        "tmdb": 1433,
+        "tvdb": 73141,
+        "trakt": 1424
+      },
+      "year": 2005,
+      "title": "American Dad!",
+      "aired_episodes": 401
+    }
+  },
+  {
+    "plays": 4,
+    "last_watched_at": "2026-04-10T04:35:00.000Z",
+    "last_updated_at": "2026-04-10T04:35:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt35466672",
+        "plex": {
+          "guid": "679960dab0ac6cec256baf3f",
+          "slug": "malcolm-in-the-middle-lifes-still-unfair"
+        },
+        "slug": "malcolm-in-the-middle-life-s-still-unfair",
+        "tmdb": 279471,
+        "tvdb": 457779,
+        "trakt": 269843
+      },
+      "year": 2026,
+      "title": "Malcolm in the Middle: Life's Still Unfair",
+      "aired_episodes": 4
+    }
+  },
+  {
+    "plays": 15,
+    "last_watched_at": "2026-03-05T11:37:00.000Z",
+    "last_updated_at": "2026-03-05T11:37:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt14824792",
+        "plex": {
+          "guid": "627e76a87d645e56a1cb3080",
+          "slug": "ted"
+        },
+        "slug": "ted",
+        "tmdb": 201834,
+        "tvdb": 404604,
+        "trakt": 195458
+      },
+      "year": 2024,
+      "title": "ted",
+      "aired_episodes": 15
+    }
+  },
+  {
+    "plays": 16,
+    "last_watched_at": "2026-02-04T02:57:00.000Z",
+    "last_updated_at": "2026-02-04T02:57:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt12637874",
+        "plex": {
+          "guid": "5f1b325f4e3eb7003f6a4140",
+          "slug": "fallout-1"
+        },
+        "slug": "fallout",
+        "tmdb": 106379,
+        "tvdb": 416744,
+        "trakt": 163965
+      },
+      "year": 2024,
+      "title": "Fallout",
+      "aired_episodes": 16
+    }
+  },
+  {
+    "plays": 16,
+    "last_watched_at": "2024-10-03T08:14:00.000Z",
+    "last_updated_at": "2024-10-03T08:14:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt7631058",
+        "plex": {
+          "guid": "5d9c09154eefaa001f5e7cd2",
+          "slug": "the-lord-of-the-rings-the-rings-of-power"
+        },
+        "slug": "the-lord-of-the-rings-the-rings-of-power",
+        "tmdb": 84773,
+        "tvdb": 367506,
+        "trakt": 150900
+      },
+      "year": 2022,
+      "title": "The Lord of the Rings: The Rings of Power",
+      "aired_episodes": 16
+    }
+  },
+  {
+    "plays": 36,
+    "last_watched_at": "2022-08-04T06:21:00.000Z",
+    "last_updated_at": "2022-08-04T06:21:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt5691552",
+        "plex": {
+          "guid": "5d9c08d1e9d5a1001f4dcd50",
+          "slug": "the-orville"
+        },
+        "slug": "the-orville",
+        "tmdb": 71738,
+        "tvdb": 328487,
+        "trakt": 119017
+      },
+      "year": 2017,
+      "title": "The Orville",
+      "aired_episodes": 36
+    }
+  },
+  {
+    "plays": 62,
+    "last_watched_at": "2022-01-14T01:03:00.000Z",
+    "last_updated_at": "2022-01-14T01:03:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt3230854",
+        "plex": {
+          "guid": "5d9c080602391c001f57f2ce",
+          "slug": "the-expanse"
+        },
+        "slug": "the-expanse",
+        "tmdb": 63639,
+        "tvdb": 280619,
+        "trakt": 77199
+      },
+      "year": 2015,
+      "title": "The Expanse",
+      "aired_episodes": 62
+    }
+  },
+  {
+    "plays": 153,
+    "last_watched_at": "2021-12-05T19:30:00.000Z",
+    "last_updated_at": "2021-12-05T19:30:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt0436992",
+        "plex": {
+          "guid": "5d9c082bd4f2a9001f7fe962",
+          "slug": "doctor-who-2005"
+        },
+        "slug": "doctor-who-2005",
+        "tmdb": 57243,
+        "tvdb": 78804,
+        "trakt": 56872
+      },
+      "year": 2005,
+      "title": "Doctor Who",
+      "aired_episodes": 153
+    }
+  },
+  {
+    "plays": 44,
+    "last_watched_at": "2021-11-25T05:30:00.000Z",
+    "last_updated_at": "2021-11-25T05:30:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt4326894",
+        "plex": {
+          "guid": "5d9c08057d06d9001ffcef0c",
+          "slug": "f-is-for-family"
+        },
+        "slug": "f-is-for-family",
+        "tmdb": 63522,
+        "tvdb": 287299,
+        "trakt": 81274
+      },
+      "year": 2015,
+      "title": "F is for Family",
+      "aired_episodes": 44
+    }
+  },
+  {
+    "plays": 151,
+    "last_watched_at": "2006-05-14T23:52:00.000Z",
+    "last_updated_at": "2006-05-14T23:52:00.000Z",
+    "reset_at": null,
+    "show": {
+      "ids": {
+        "imdb": "tt0212671",
+        "plex": {
+          "guid": "5d9c0872ba6eb9001fba4565",
+          "slug": "malcolm-in-the-middle"
+        },
+        "slug": "malcolm-in-the-middle",
+        "tmdb": 2004,
+        "tvdb": 73838,
+        "trakt": 1991
+      },
+      "year": 2000,
+      "title": "Malcolm in the Middle",
+      "aired_episodes": 151
+    }
+  }
+]

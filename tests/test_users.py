@@ -1,4 +1,5 @@
 # This file is AI-generated
+import re
 import uuid
 from collections.abc import AsyncGenerator
 
@@ -21,7 +22,7 @@ def _make_create_data(
     librebox_token: str = "token-abc",
     *,
     c411_key: str | None = "c411-key-123",
-    torr9_key: str | None = "torr9-key-456",
+    tr4ker_key: str | None = "tr4ker-key-456",
     lacale_key: str | None = "lacale-key-789",
 ) -> UserCreateData:
     """Build a UserCreateData with sensible defaults so tests stay concise."""
@@ -29,9 +30,21 @@ def _make_create_data(
         librebox_url=librebox_url,
         librebox_token=librebox_token,
         c411_key=c411_key,
-        torr9_key=torr9_key,
+        tr4ker_key=tr4ker_key,
         lacale_key=lacale_key,
     )
+
+
+# Match the user_id embedded in the Stremio install link of success.html,
+# e.g. stremio://strembox.lidzee.fr/<user_id>/manifest.json
+_USER_ID_RE = re.compile(r"stremio://[^/]+/([^/]+)/manifest\.json")
+
+
+def _extract_user_id(html: str) -> str:
+    """Pull the user_id out of the success page's Stremio install link."""
+    match = _USER_ID_RE.search(html)
+    assert match is not None, f"user_id not found in response: {html!r}"
+    return match.group(1)
 
 
 # ---------------------------------------------------------------------------
@@ -55,7 +68,7 @@ async def test_create_user_persists_all_fields(conn: asyncpg.Connection) -> None
         librebox_url="https://box.org",
         librebox_token="secret",
         c411_key="c411-x",
-        torr9_key="torr9-y",
+        tr4ker_key="tr4ker-y",
         lacale_key="lacale-z",
     )
     user_id = await svc.create_user(data)
@@ -65,20 +78,20 @@ async def test_create_user_persists_all_fields(conn: asyncpg.Connection) -> None
     assert row["librebox_url"] == data.librebox_url
     assert row["librebox_token"] == data.librebox_token
     assert row["c411_key"] == data.c411_key
-    assert row["torr9_key"] == data.torr9_key
+    assert row["tr4ker_key"] == data.tr4ker_key
     assert row["lacale_key"] == data.lacale_key
 
 
 async def test_create_user_optional_keys_can_be_none(conn: asyncpg.Connection) -> None:
     """None values in optional key fields should round-trip as NULL."""
     svc = UserService(conn)
-    data = _make_create_data(c411_key=None, torr9_key=None, lacale_key=None)
+    data = _make_create_data(c411_key=None, tr4ker_key=None, lacale_key=None)
     user_id = await svc.create_user(data)
 
     row = await conn.fetchrow("SELECT * FROM users WHERE id = $1", user_id)
     assert row is not None
     assert row["c411_key"] is None
-    assert row["torr9_key"] is None
+    assert row["tr4ker_key"] is None
     assert row["lacale_key"] is None
 
 
@@ -105,7 +118,7 @@ async def test_get_user_returns_user_data(conn: asyncpg.Connection) -> None:
             librebox_url="https://get.me",
             librebox_token="tok",
             c411_key="ck",
-            torr9_key="tk",
+            tr4ker_key="tk",
             lacale_key="lk",
         )
     )
@@ -117,7 +130,7 @@ async def test_get_user_returns_user_data(conn: asyncpg.Connection) -> None:
     assert user.librebox_url == "https://get.me"
     assert user.librebox_token == "tok"
     assert user.c411_key == "ck"
-    assert user.torr9_key == "tk"
+    assert user.tr4ker_key == "tk"
     assert user.lacale_key == "lk"
 
 
@@ -138,7 +151,7 @@ async def test_get_user_nonexistent_raises_valueerror(conn: asyncpg.Connection) 
 @pytest.fixture
 async def client(
     conn: asyncpg.Connection,
-) -> AsyncGenerator[AsyncClient, None]:
+) -> AsyncGenerator[AsyncClient]:
     """Async HTTP client with UserService dependency overridden for testing.
 
     The ``get_user_service`` dependency is replaced so that the test database
@@ -174,10 +187,11 @@ async def test_create_user_returns_user_id(client: AsyncClient) -> None:
         },
     )
     assert resp.status_code == 200
-    data = resp.json()
-    assert "user_id" in data
+    assert "text/html" in resp.headers["content-type"]
+    # The ID is rendered into the Stremio install link on the success page.
+    user_id = _extract_user_id(resp.text)
     # Must be a valid UUID
-    uuid.UUID(data["user_id"])
+    uuid.UUID(user_id)
 
 
 async def test_create_user_persists_in_db(
@@ -190,19 +204,19 @@ async def test_create_user_persists_in_db(
             "librebox_url": "https://persist.example.com",
             "librebox_token": "persist-token",
             "c411_key": "c411-persist",
-            "torr9_key": "torr9-persist",
+            "tr4ker_key": "tr4ker-persist",
             "lacale_key": "lacale-persist",
         },
     )
     assert resp.status_code == 200
-    user_id = resp.json()["user_id"]
+    user_id = _extract_user_id(resp.text)
 
     row = await conn.fetchrow("SELECT * FROM users WHERE id = $1", user_id)
     assert row is not None
     assert row["librebox_url"] == "https://persist.example.com"
     assert row["librebox_token"] == "persist-token"
     assert row["c411_key"] == "c411-persist"
-    assert row["torr9_key"] == "torr9-persist"
+    assert row["tr4ker_key"] == "tr4ker-persist"
     assert row["lacale_key"] == "lacale-persist"
 
 
@@ -216,5 +230,5 @@ async def test_create_user_optional_keys_can_be_omitted(client: AsyncClient) -> 
         },
     )
     assert resp.status_code == 200
-    user_id = resp.json()["user_id"]
+    user_id = _extract_user_id(resp.text)
     uuid.UUID(user_id)

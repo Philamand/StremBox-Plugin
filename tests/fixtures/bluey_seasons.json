@@ -1,0 +1,2979 @@
+[
+  {
+    "ids": {
+      "plex": {
+        "guid": "602e754d67f4c8002ce54b42"
+      },
+      "tmdb": 138212,
+      "tvdb": 780843,
+      "trakt": 205892
+    },
+    "number": 0,
+    "episodes": [
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6073246b6cedb6002c67e334"
+          },
+          "tmdb": 2863745,
+          "tvdb": 7432609,
+          "trakt": 5355563
+        },
+        "title": "Christmas Clips - The Countdown Is On!",
+        "number": 1,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6073246b6cedb6002c67e333"
+          },
+          "tmdb": 2863746,
+          "tvdb": 7503880,
+          "trakt": 3890811
+        },
+        "title": "Crazy Christmas Lights",
+        "number": 2,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534616",
+          "plex": {
+            "guid": "6073246b6cedb6002c67e332"
+          },
+          "tmdb": 2863747,
+          "tvdb": 7503882,
+          "trakt": 3890812
+        },
+        "title": "Silent Night (Before Christmas)",
+        "number": 3,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "612b5c1b6b264e002da3ba99"
+          },
+          "tmdb": 2863750,
+          "tvdb": 8022710,
+          "trakt": 4567128
+        },
+        "title": "Jingle Bells",
+        "number": 4,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt13690030",
+          "plex": {
+            "guid": "634575c7b301282cd3f575fe"
+          },
+          "tmdb": 2863751,
+          "tvdb": 11611238,
+          "trakt": 4749154
+        },
+        "title": "Lollipop Song",
+        "number": 5,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534630",
+          "plex": {
+            "guid": "634575c9b301282cd3f57600"
+          },
+          "tmdb": 2863752,
+          "tvdb": 11611234,
+          "trakt": 4982184
+        },
+        "title": "Tea Party",
+        "number": 6,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534634",
+          "plex": {
+            "guid": "634575cab301282cd3f57602"
+          },
+          "tmdb": 2863753,
+          "tvdb": 11611231,
+          "trakt": 4982186
+        },
+        "title": "Humpty Dumpty",
+        "number": 7,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534644",
+          "plex": {
+            "guid": "634575cbb301282cd3f57604"
+          },
+          "tmdb": 2863754,
+          "tvdb": 11611233,
+          "trakt": 4982187
+        },
+        "title": "Flying Saucer",
+        "number": 8,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534648",
+          "plex": {
+            "guid": "634575cdb301282cd3f57606"
+          },
+          "tmdb": 2863756,
+          "tvdb": 11611235,
+          "trakt": 4982189
+        },
+        "title": "Pea Pod Sausages",
+        "number": 9,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534654",
+          "plex": {
+            "guid": "63c1598a85dec95ee6c58cdc"
+          },
+          "tmdb": 2863757,
+          "tvdb": 8310157,
+          "trakt": 4982191
+        },
+        "title": "Easter",
+        "number": 10,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6073246a6cedb6002c67e328"
+          },
+          "tmdb": 2863743,
+          "tvdb": 11611239,
+          "trakt": 5355564
+        },
+        "title": "Cinderella",
+        "number": 11,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14534660",
+          "plex": {
+            "guid": "634575cfb301282cd3f5760a"
+          },
+          "tmdb": 2902868,
+          "tvdb": 11611232,
+          "trakt": 5093127
+        },
+        "title": "Green Bottles",
+        "number": 12,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14716048",
+          "plex": {
+            "guid": "614e3436b3d1f8dc312e41d0"
+          },
+          "tmdb": 3053979,
+          "tvdb": 11611236,
+          "trakt": 5176055
+        },
+        "title": "Old Macdonald",
+        "number": 13,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": "tt14709944",
+          "plex": {
+            "guid": "634575d1b301282cd3f5760b"
+          },
+          "tmdb": 3053980,
+          "tvdb": 11611240,
+          "trakt": 5207953
+        },
+        "title": "Make Mum Laugh",
+        "number": 14,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "634575d3b301282cd3f5760c"
+          },
+          "tmdb": 3053981,
+          "tvdb": 8478225,
+          "trakt": 5211744
+        },
+        "title": "Mower",
+        "number": 15,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "634575d4b301282cd3f5760e"
+          },
+          "tmdb": 3053982,
+          "tvdb": 11611237,
+          "trakt": 5221017
+        },
+        "title": "Honk",
+        "number": 16,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "634575d6b301282cd3f5760f"
+          },
+          "tmdb": 3053983,
+          "tvdb": 8497008,
+          "trakt": 5249196
+        },
+        "title": "High Ball",
+        "number": 17,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "634575d7b301282cd3f57610"
+          },
+          "tmdb": 3792373,
+          "tvdb": 8510472,
+          "trakt": 5266264
+        },
+        "title": "K9 News",
+        "number": 18,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "629690d45a162082f9a632a0"
+          },
+          "tmdb": 3974935,
+          "tvdb": null,
+          "trakt": 6471699
+        },
+        "title": "Tongue Twisters",
+        "number": 19,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "634575ceb301282cd3f57608"
+          },
+          "tmdb": 3974939,
+          "tvdb": null,
+          "trakt": 6832193
+        },
+        "title": "Crazy Lights",
+        "number": 20,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "63c1598a85dec95ee6c58cde"
+          },
+          "tmdb": 3974944,
+          "tvdb": null,
+          "trakt": 6832208
+        },
+        "title": "Fun in the Car",
+        "number": 21,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "62f18905bf2a73760b940247"
+          },
+          "tmdb": 3974957,
+          "tvdb": null,
+          "trakt": 6832214
+        },
+        "title": "Let's Play Hide and Seek!",
+        "number": 22,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "62f18905bf2a73760b940248"
+          },
+          "tmdb": 3974991,
+          "tvdb": null,
+          "trakt": 6832221
+        },
+        "title": "Scooter Fun",
+        "number": 23,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "629d1efec2bf7de7da430620"
+          },
+          "tmdb": 3974992,
+          "tvdb": null,
+          "trakt": 6832228
+        },
+        "title": "One Man Went to Mow",
+        "number": 24,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6331e1e96d48d4553e4ea34a"
+          },
+          "tmdb": 3974993,
+          "tvdb": null,
+          "trakt": 6832237
+        },
+        "title": "Archaeology",
+        "number": 25,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "645dc8fa156e52e1df898887"
+          },
+          "tmdb": 4642481,
+          "tvdb": null,
+          "trakt": 6832267
+        },
+        "title": "Bingo's Dance Lesson",
+        "number": 26,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67179b7248f94e8cddbceba6"
+          },
+          "tmdb": 5691297,
+          "tvdb": 10248225,
+          "trakt": 7487338
+        },
+        "title": "The Sign",
+        "number": 27,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": null
+          },
+          "tmdb": 6021120,
+          "tvdb": null,
+          "trakt": 10816364
+        },
+        "title": "The Christmas Xylophone",
+        "number": 28,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "643ac194518839f248a6cd60"
+          },
+          "tmdb": 6783193,
+          "tvdb": 11519793,
+          "trakt": 12455609
+        },
+        "title": "Bluey: Christmas Cricket",
+        "number": 29,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67a24e0bc15665e87a622d2d"
+          },
+          "tmdb": 4365671,
+          "tvdb": null,
+          "trakt": 12792944
+        },
+        "title": "Animation Sample",
+        "number": 30,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "643ac194518839f248a6cd60"
+          },
+          "tmdb": 4365672,
+          "tvdb": null,
+          "trakt": 12792945
+        },
+        "title": "Unaired Pilot",
+        "number": 31,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67a24e0bc15665e87a622d27"
+          },
+          "tmdb": 5958625,
+          "tvdb": null,
+          "trakt": 12792946
+        },
+        "title": "Episode 32",
+        "number": 32,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c947"
+          },
+          "tmdb": 6003076,
+          "tvdb": null,
+          "trakt": 12850155
+        },
+        "title": "Muffin Unboxing",
+        "number": 33,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": null
+          },
+          "tmdb": null,
+          "tvdb": null,
+          "trakt": 12871848
+        },
+        "title": "Christmas Xylophone",
+        "number": 34,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6807903bdd065ea128372051"
+          },
+          "tmdb": 6151997,
+          "tvdb": null,
+          "trakt": 13028027
+        },
+        "title": "Bluey's Big Play",
+        "number": 35,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67574822ad5c02acf5efaf75"
+          },
+          "tmdb": 6399317,
+          "tvdb": null,
+          "trakt": 13342008
+        },
+        "title": "Alongside",
+        "number": 36,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c94f"
+          },
+          "tmdb": 6399318,
+          "tvdb": null,
+          "trakt": 13342009
+        },
+        "title": "Animals",
+        "number": 37,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c945"
+          },
+          "tmdb": 6399319,
+          "tvdb": null,
+          "trakt": 13342010
+        },
+        "title": "Bingo 3000",
+        "number": 38,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c94b"
+          },
+          "tmdb": 6399320,
+          "tvdb": null,
+          "trakt": 13342011
+        },
+        "title": "Hungry",
+        "number": 39,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c949"
+          },
+          "tmdb": 6399321,
+          "tvdb": null,
+          "trakt": 13342012
+        },
+        "title": "Letter",
+        "number": 40,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c94d"
+          },
+          "tmdb": 6399322,
+          "tvdb": null,
+          "trakt": 13342013
+        },
+        "title": "Three Pigs",
+        "number": 41,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "672b99334717ac2d5755c943"
+          },
+          "tmdb": 6399323,
+          "tvdb": null,
+          "trakt": 13342014
+        },
+        "title": "Burger Dog",
+        "number": 42,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "666e5b4305ac6cc7dff05b16"
+          },
+          "tmdb": 6399325,
+          "tvdb": null,
+          "trakt": 12138946
+        },
+        "title": "Tattoo Shop",
+        "number": 43,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "666e5b4305ac6cc7dff05b1f"
+          },
+          "tmdb": 6399326,
+          "tvdb": null,
+          "trakt": 12138956
+        },
+        "title": "Phoney",
+        "number": 44,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "666e5b4405ac6cc7dff05b20"
+          },
+          "tmdb": 6399327,
+          "tvdb": null,
+          "trakt": 12138967
+        },
+        "title": "Government",
+        "number": 45,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "666e5b4405ac6cc7dff05b21"
+          },
+          "tmdb": 6399328,
+          "tvdb": null,
+          "trakt": 12138997
+        },
+        "title": "Drums",
+        "number": 46,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "666e5b4405ac6cc7dff05b27"
+          },
+          "tmdb": 6399329,
+          "tvdb": null,
+          "trakt": 12139020
+        },
+        "title": "Browny Bear",
+        "number": 47,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "666e5b4505ac6cc7dff05b28"
+          },
+          "tmdb": 6399330,
+          "tvdb": null,
+          "trakt": 12139044
+        },
+        "title": "Whirlpool",
+        "number": 48,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6679547194e24120e7d2908c"
+          },
+          "tmdb": 6399331,
+          "tvdb": null,
+          "trakt": 12139117
+        },
+        "title": "Strong Potion",
+        "number": 49,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6690776ee31bc56a4fe7d180"
+          },
+          "tmdb": 6399332,
+          "tvdb": null,
+          "trakt": 13342015
+        },
+        "title": "Robo Bingo",
+        "number": 50,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67574822ad5c02acf5efaf72"
+          },
+          "tmdb": 6399333,
+          "tvdb": null,
+          "trakt": 13342016
+        },
+        "title": "Butlers",
+        "number": 51,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67574822ad5c02acf5efaf73"
+          },
+          "tmdb": 6399334,
+          "tvdb": null,
+          "trakt": 13342017
+        },
+        "title": "Where's Bingo?",
+        "number": 52,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "67574822ad5c02acf5efaf74"
+          },
+          "tmdb": 6399336,
+          "tvdb": null,
+          "trakt": 13342018
+        },
+        "title": "Goldilocks",
+        "number": 53,
+        "season": 0
+      },
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": "6709023989f35a8f56c0acb7"
+          },
+          "tmdb": 6399344,
+          "tvdb": null,
+          "trakt": 13342019
+        },
+        "title": "Blocks",
+        "number": 54,
+        "season": 0
+      }
+    ]
+  },
+  {
+    "ids": {
+      "plex": {
+        "guid": "602e754e67f4c8002ce54b47"
+      },
+      "tmdb": 110147,
+      "tvdb": 780844,
+      "trakt": 173086
+    },
+    "number": 1,
+    "episodes": [
+      {
+        "ids": {
+          "imdb": "tt8865002",
+          "plex": {
+            "guid": "5d9c1a152df347001e45da9e"
+          },
+          "tmdb": 1583478,
+          "tvdb": 6846432,
+          "trakt": 3178595
+        },
+        "title": "The Magic Xylophone",
+        "number": 1,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt8865934",
+          "plex": {
+            "guid": "5d9c1a152df347001e45daa4"
+          },
+          "tmdb": 1583479,
+          "tvdb": 6846445,
+          "trakt": 3178603
+        },
+        "title": "Hospital",
+        "number": 2,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150200",
+          "plex": {
+            "guid": "5d9c1a152df347001e45daa7"
+          },
+          "tmdb": 1583481,
+          "tvdb": 6846444,
+          "trakt": 3178604
+        },
+        "title": "Keepy Uppy",
+        "number": 3,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150204",
+          "plex": {
+            "guid": "5d9c1a152df347001e45daa1"
+          },
+          "tmdb": 1583484,
+          "tvdb": 6846441,
+          "trakt": 3178605
+        },
+        "title": "Daddy Robot",
+        "number": 4,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150214",
+          "plex": {
+            "guid": "5d9c1a152df347001e45daaa"
+          },
+          "tmdb": 1583486,
+          "tvdb": 6846443,
+          "trakt": 3178606
+        },
+        "title": "Shadowlands",
+        "number": 5,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150216",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f3583fe"
+          },
+          "tmdb": 1593872,
+          "tvdb": 6850502,
+          "trakt": 3183499
+        },
+        "title": "The Weekend",
+        "number": 6,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150220",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f3f1"
+          },
+          "tmdb": 1593873,
+          "tvdb": 6850505,
+          "trakt": 3183518
+        },
+        "title": "BBQ",
+        "number": 7,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150590",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f35840a"
+          },
+          "tmdb": 1593874,
+          "tvdb": 6850506,
+          "trakt": 3183532
+        },
+        "title": "Fruitbat",
+        "number": 8,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150592",
+          "plex": {
+            "guid": "5d9c1a153c3f87001f407915"
+          },
+          "tmdb": 1593881,
+          "tvdb": 6850507,
+          "trakt": 3183546
+        },
+        "title": "Horsey Ride",
+        "number": 9,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150594",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f3f4"
+          },
+          "tmdb": 1593882,
+          "tvdb": 6852862,
+          "trakt": 3190788
+        },
+        "title": "Hotel",
+        "number": 10,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150596",
+          "plex": {
+            "guid": "5d9c1a157b5c2e001e70b066"
+          },
+          "tmdb": 1593885,
+          "tvdb": 6857148,
+          "trakt": 3190794
+        },
+        "title": "Bike",
+        "number": 11,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150598",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f3fa"
+          },
+          "tmdb": 1593937,
+          "tvdb": 6852849,
+          "trakt": 3190786
+        },
+        "title": "Bob Bilby",
+        "number": 12,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150600",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f3583fb"
+          },
+          "tmdb": 1593938,
+          "tvdb": 6857149,
+          "trakt": 3186157
+        },
+        "title": "Spy Game",
+        "number": 13,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150602",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f358401"
+          },
+          "tmdb": 1593939,
+          "tvdb": 6857270,
+          "trakt": 3186185
+        },
+        "title": "Takeaway",
+        "number": 14,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150606",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f358410"
+          },
+          "tmdb": 1593940,
+          "tvdb": 6859038,
+          "trakt": 3192464
+        },
+        "title": "Butterflies",
+        "number": 15,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150608",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f35840d"
+          },
+          "tmdb": 1593941,
+          "tvdb": 6862364,
+          "trakt": 3186200
+        },
+        "title": "Yoga Ball",
+        "number": 16,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150610",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f358413"
+          },
+          "tmdb": 1593942,
+          "tvdb": 6852853,
+          "trakt": 3190787
+        },
+        "title": "Calypso",
+        "number": 17,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150616",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f358407"
+          },
+          "tmdb": 1593943,
+          "tvdb": 6866130,
+          "trakt": 3198436
+        },
+        "title": "The Doctor",
+        "number": 18,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150618",
+          "plex": {
+            "guid": "5d9c1a1508fddd001f358404"
+          },
+          "tmdb": 1593966,
+          "tvdb": 6852863,
+          "trakt": 3186172
+        },
+        "title": "The Claw",
+        "number": 19,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150630",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f3f7"
+          },
+          "tmdb": 1597231,
+          "tvdb": 6866133,
+          "trakt": 3198437
+        },
+        "title": "Markets",
+        "number": 20,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150640",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f403"
+          },
+          "tmdb": 1597232,
+          "tvdb": 6867150,
+          "trakt": 3199392
+        },
+        "title": "Blue Mountains",
+        "number": 21,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150642",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f406"
+          },
+          "tmdb": 1597233,
+          "tvdb": 6868485,
+          "trakt": 3200576
+        },
+        "title": "The Pool",
+        "number": 22,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150644",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f409"
+          },
+          "tmdb": 1597234,
+          "tvdb": 6868489,
+          "trakt": 3200577
+        },
+        "title": "Shops",
+        "number": 23,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150646",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f3fd"
+          },
+          "tmdb": 1601150,
+          "tvdb": 6869403,
+          "trakt": 3200928
+        },
+        "title": "Wagonride",
+        "number": 24,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150648",
+          "plex": {
+            "guid": "5d9c1a15705e7a001e7ab5da"
+          },
+          "tmdb": 1601151,
+          "tvdb": 6870673,
+          "trakt": 3201888
+        },
+        "title": "Taxi",
+        "number": 25,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9150650",
+          "plex": {
+            "guid": "5d9c1a15ba6eb9001fc5f400"
+          },
+          "tmdb": 1601152,
+          "tvdb": 6871585,
+          "trakt": 3203408
+        },
+        "title": "The Beach",
+        "number": 26,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12539140",
+          "plex": {
+            "guid": "5e1618a967f14f001e692ded"
+          },
+          "tmdb": 1833711,
+          "tvdb": 7053096,
+          "trakt": 3186207
+        },
+        "title": "Pirates",
+        "number": 27,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378024",
+          "plex": {
+            "guid": "5e1618a967f14f001e692deb"
+          },
+          "tmdb": 1833712,
+          "tvdb": 7101934,
+          "trakt": 3443841
+        },
+        "title": "Grannies",
+        "number": 28,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377992",
+          "plex": {
+            "guid": "5e1618a967f14f001e692de9"
+          },
+          "tmdb": 1833713,
+          "tvdb": 7101935,
+          "trakt": 3443848
+        },
+        "title": "The Creek",
+        "number": 29,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt10655430",
+          "plex": {
+            "guid": "5e1618a967f14f001e692def"
+          },
+          "tmdb": 1833714,
+          "tvdb": 7101936,
+          "trakt": 3443853
+        },
+        "title": "Fairies",
+        "number": 30,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378016",
+          "plex": {
+            "guid": "5e1618a967f14f001e692df1"
+          },
+          "tmdb": 1833716,
+          "tvdb": 7101938,
+          "trakt": 3443857
+        },
+        "title": "Work",
+        "number": 31,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378000",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b0d"
+          },
+          "tmdb": 1833719,
+          "tvdb": 7116577,
+          "trakt": 3462132
+        },
+        "title": "Bumpy and the Wise Old Wolfhound",
+        "number": 32,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377990",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b10"
+          },
+          "tmdb": 1833720,
+          "tvdb": 7116583,
+          "trakt": 3462141
+        },
+        "title": "Trampoline",
+        "number": 33,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12612654",
+          "plex": {
+            "guid": "5e1618a967f14f001e692df5"
+          },
+          "tmdb": 1833721,
+          "tvdb": 7116584,
+          "trakt": 3462149
+        },
+        "title": "The Dump",
+        "number": 34,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12612658",
+          "plex": {
+            "guid": "5e1618aa67f14f001e692dfb"
+          },
+          "tmdb": 1836006,
+          "tvdb": 7116586,
+          "trakt": 3462152
+        },
+        "title": "Zoo",
+        "number": 35,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377952",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b15"
+          },
+          "tmdb": 1836007,
+          "tvdb": 7116587,
+          "trakt": 3462157
+        },
+        "title": "Backpackers",
+        "number": 36,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12612672",
+          "plex": {
+            "guid": "5e1618ac67f14f001e692e13"
+          },
+          "tmdb": 1836008,
+          "tvdb": 7116588,
+          "trakt": 3462159
+        },
+        "title": "The Adventure",
+        "number": 37,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12612678",
+          "plex": {
+            "guid": "5e1618ac67f14f001e692e11"
+          },
+          "tmdb": 1836009,
+          "tvdb": 7116589,
+          "trakt": 3462160
+        },
+        "title": "Copycat",
+        "number": 38,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12612680",
+          "plex": {
+            "guid": "5e1618aa67f14f001e692dfd"
+          },
+          "tmdb": 1836010,
+          "tvdb": 7131404,
+          "trakt": 3462161
+        },
+        "title": "The Sleepover",
+        "number": 39,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378008",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b27"
+          },
+          "tmdb": 1836011,
+          "tvdb": 7116592,
+          "trakt": 3462162
+        },
+        "title": "Early Baby",
+        "number": 40,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt11605520",
+          "plex": {
+            "guid": "5e1618aa67f14f001e692e01"
+          },
+          "tmdb": 1836012,
+          "tvdb": 7131408,
+          "trakt": 3462163
+        },
+        "title": "Mums and Dads",
+        "number": 41,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378022",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b1c"
+          },
+          "tmdb": 1836013,
+          "tvdb": 7116591,
+          "trakt": 3462164
+        },
+        "title": "Hide and Seek",
+        "number": 42,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12587960",
+          "plex": {
+            "guid": "5e1618aa67f14f001e692e03"
+          },
+          "tmdb": 1836014,
+          "tvdb": 7131409,
+          "trakt": 3462166
+        },
+        "title": "Camping",
+        "number": 43,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377986",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b2d"
+          },
+          "tmdb": 1836016,
+          "tvdb": 7116597,
+          "trakt": 3462167
+        },
+        "title": "Mount Mumandad",
+        "number": 44,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378018",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b37"
+          },
+          "tmdb": 1836017,
+          "tvdb": 7116599,
+          "trakt": 3462168
+        },
+        "title": "Kids",
+        "number": 45,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377920",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b24"
+          },
+          "tmdb": 1836018,
+          "tvdb": 7116595,
+          "trakt": 3462170
+        },
+        "title": "Chickenrat",
+        "number": 46,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377998",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b32"
+          },
+          "tmdb": 1836019,
+          "tvdb": 7116602,
+          "trakt": 3462175
+        },
+        "title": "Neighbours",
+        "number": 47,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9377912",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b21"
+          },
+          "tmdb": 1836020,
+          "tvdb": 7116590,
+          "trakt": 3462176
+        },
+        "title": "Teasing",
+        "number": 48,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12587964",
+          "plex": {
+            "guid": "5e1618ab67f14f001e692e0f"
+          },
+          "tmdb": 1836021,
+          "tvdb": 7116601,
+          "trakt": 3462177
+        },
+        "title": "Asparagus",
+        "number": 49,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt9378012",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b2a"
+          },
+          "tmdb": 1836022,
+          "tvdb": 7116596,
+          "trakt": 3462178
+        },
+        "title": "Shaun",
+        "number": 50,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12612638",
+          "plex": {
+            "guid": "5e1618ae67f14f001e692e1c"
+          },
+          "tmdb": 1836023,
+          "tvdb": 7116600,
+          "trakt": 3477414
+        },
+        "title": "Daddy Putdown",
+        "number": 51,
+        "season": 1
+      },
+      {
+        "ids": {
+          "imdb": "tt12587990",
+          "plex": {
+            "guid": "5e1ade8bdd619f003d8326e6"
+          },
+          "tmdb": 4121335,
+          "tvdb": 7432609,
+          "trakt": 3477402
+        },
+        "title": "Verandah Santa",
+        "number": 52,
+        "season": 1
+      }
+    ]
+  },
+  {
+    "ids": {
+      "plex": {
+        "guid": "602e754e67f4c8002ce54b48"
+      },
+      "tmdb": 143749,
+      "tvdb": 1821212,
+      "trakt": 211122
+    },
+    "number": 2,
+    "episodes": [
+      {
+        "ids": {
+          "imdb": "tt12539144",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b4e"
+          },
+          "tmdb": 2194075,
+          "tvdb": 7591711,
+          "trakt": 4002223
+        },
+        "title": "Dance Mode",
+        "number": 1,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12539148",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b46"
+          },
+          "tmdb": 2194076,
+          "tvdb": 7629367,
+          "trakt": 4049963
+        },
+        "title": "Hammerbarn",
+        "number": 2,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12539152",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b44"
+          },
+          "tmdb": 2194119,
+          "tvdb": 7629368,
+          "trakt": 4050705
+        },
+        "title": "Featherwand",
+        "number": 3,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12539160",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b4a"
+          },
+          "tmdb": 2194120,
+          "tvdb": 7629369,
+          "trakt": 4050706
+        },
+        "title": "Squash",
+        "number": 4,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12539162",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b50"
+          },
+          "tmdb": 2194122,
+          "tvdb": 7629370,
+          "trakt": 4050708
+        },
+        "title": "Hairdressers",
+        "number": 5,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12567140",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b54"
+          },
+          "tmdb": 2194155,
+          "tvdb": 7635053,
+          "trakt": 4057778
+        },
+        "title": "Stumpfest",
+        "number": 6,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12567150",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b48"
+          },
+          "tmdb": 2194157,
+          "tvdb": 7635057,
+          "trakt": 4057779
+        },
+        "title": "Favourite Thing",
+        "number": 7,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587744",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b52"
+          },
+          "tmdb": 2194073,
+          "tvdb": 7635061,
+          "trakt": 4057780
+        },
+        "title": "Daddy Dropoff",
+        "number": 8,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12567156",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b56"
+          },
+          "tmdb": 2194074,
+          "tvdb": 7635068,
+          "trakt": 4057781
+        },
+        "title": "Bingo",
+        "number": 9,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587752",
+          "plex": {
+            "guid": "5e833ca85161b50041ca8b4c"
+          },
+          "tmdb": 2194072,
+          "tvdb": 7635072,
+          "trakt": 4057782
+        },
+        "title": "Rug Island",
+        "number": 10,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587758",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b5a"
+          },
+          "tmdb": 2194160,
+          "tvdb": 7635076,
+          "trakt": 4057783
+        },
+        "title": "Charades",
+        "number": 11,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587778",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b5c"
+          },
+          "tmdb": 2170397,
+          "tvdb": 7635079,
+          "trakt": 4057784
+        },
+        "title": "Sticky Gecko",
+        "number": 12,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587780",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b58"
+          },
+          "tmdb": 2204631,
+          "tvdb": 7644666,
+          "trakt": 4067374
+        },
+        "title": "Dad Baby",
+        "number": 13,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587784",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b5e"
+          },
+          "tmdb": 2204632,
+          "tvdb": 7644667,
+          "trakt": 4067377
+        },
+        "title": "Mum School",
+        "number": 14,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587790",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b60"
+          },
+          "tmdb": 2204633,
+          "tvdb": 7644669,
+          "trakt": 4067380
+        },
+        "title": "Trains",
+        "number": 15,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587798",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b64"
+          },
+          "tmdb": 2194162,
+          "tvdb": 7644670,
+          "trakt": 4067382
+        },
+        "title": "Army",
+        "number": 16,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587806",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b62"
+          },
+          "tmdb": 2204634,
+          "tvdb": 7644672,
+          "trakt": 4067384
+        },
+        "title": "Fancy Restaurant",
+        "number": 17,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587810",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b66"
+          },
+          "tmdb": 2204636,
+          "tvdb": 7644673,
+          "trakt": 4067386
+        },
+        "title": "Piggyback",
+        "number": 18,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587818",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b68"
+          },
+          "tmdb": 2204637,
+          "tvdb": 7644674,
+          "trakt": 4067388
+        },
+        "title": "The Show",
+        "number": 19,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587822",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b6a"
+          },
+          "tmdb": 2204638,
+          "tvdb": 7648248,
+          "trakt": 4072621
+        },
+        "title": "Ticklecrabs",
+        "number": 20,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587828",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b70"
+          },
+          "tmdb": 2218571,
+          "tvdb": 7656717,
+          "trakt": 4079901
+        },
+        "title": "Escape",
+        "number": 21,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587830",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b6c"
+          },
+          "tmdb": 2218572,
+          "tvdb": 7656718,
+          "trakt": 4079902
+        },
+        "title": "Bus",
+        "number": 22,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587834",
+          "plex": {
+            "guid": "5e833ca95161b50041ca8b6e"
+          },
+          "tmdb": 2218573,
+          "tvdb": 7658405,
+          "trakt": 4083824
+        },
+        "title": "Queens",
+        "number": 23,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587840",
+          "plex": {
+            "guid": "5e85db90d109520041043e49"
+          },
+          "tmdb": 2218574,
+          "tvdb": 7659852,
+          "trakt": 4086856
+        },
+        "title": "Flat Pack",
+        "number": 24,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12587846",
+          "plex": {
+            "guid": "5e85db90d109520041043e47"
+          },
+          "tmdb": 2218575,
+          "tvdb": 7661889,
+          "trakt": 4086859
+        },
+        "title": "Helicopter",
+        "number": 25,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt12539164",
+          "plex": {
+            "guid": "5e887dbb90a0110040de6bdb"
+          },
+          "tmdb": 2218576,
+          "tvdb": 7662149,
+          "trakt": 4086861
+        },
+        "title": "Sleepytime",
+        "number": 26,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303692",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d43"
+          },
+          "tmdb": 2477727,
+          "tvdb": 8010501,
+          "trakt": 4145314
+        },
+        "title": "Grandad",
+        "number": 27,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303694",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d45"
+          },
+          "tmdb": 2477728,
+          "tvdb": 8010507,
+          "trakt": 4558007
+        },
+        "title": "Seesaw",
+        "number": 28,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303696",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d47"
+          },
+          "tmdb": 2480557,
+          "tvdb": 8010508,
+          "trakt": 4555785
+        },
+        "title": "Movies",
+        "number": 29,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303700",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d49"
+          },
+          "tmdb": 2477729,
+          "tvdb": 8010509,
+          "trakt": 4550120
+        },
+        "title": "Library",
+        "number": 30,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303704",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d4b"
+          },
+          "tmdb": 2477730,
+          "tvdb": 8010510,
+          "trakt": 4550121
+        },
+        "title": "Barky Boats",
+        "number": 31,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303706",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d4d"
+          },
+          "tmdb": 2477731,
+          "tvdb": 8010512,
+          "trakt": 4550122
+        },
+        "title": "Burger Shop",
+        "number": 32,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303712",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d4f"
+          },
+          "tmdb": 2477732,
+          "tvdb": 8010515,
+          "trakt": 4550123
+        },
+        "title": "Circus",
+        "number": 33,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13451968",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d51"
+          },
+          "tmdb": 2477733,
+          "tvdb": 8010518,
+          "trakt": 4550124
+        },
+        "title": "Swim School",
+        "number": 34,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13424484",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d53"
+          },
+          "tmdb": 2477734,
+          "tvdb": 8010520,
+          "trakt": 4550125
+        },
+        "title": "Cafe",
+        "number": 35,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13424490",
+          "plex": {
+            "guid": "5ea7d7402e7ab10042e74d55"
+          },
+          "tmdb": 2477735,
+          "tvdb": 8010521,
+          "trakt": 4550126
+        },
+        "title": "Postman",
+        "number": 36,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417248",
+          "plex": {
+            "guid": "5ea7d7412e7ab10042e74d61"
+          },
+          "tmdb": 2477736,
+          "tvdb": 8010522,
+          "trakt": 4550127
+        },
+        "title": "The Quiet Game",
+        "number": 37,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417258",
+          "plex": {
+            "guid": "5fbdc995bd6a1c002deb7971"
+          },
+          "tmdb": 2477737,
+          "tvdb": 8010523,
+          "trakt": 4550128
+        },
+        "title": "Mr Monkeyjocks",
+        "number": 38,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13424700",
+          "plex": {
+            "guid": "5fbdc996bd6a1c002deb7978"
+          },
+          "tmdb": 2477739,
+          "tvdb": 8010524,
+          "trakt": 4550129
+        },
+        "title": "Double Babysitter",
+        "number": 39,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13451960",
+          "plex": {
+            "guid": "5fbdc997bd6a1c002deb7980"
+          },
+          "tmdb": 2499229,
+          "tvdb": 8031269,
+          "trakt": 4555788
+        },
+        "title": "Bad Mood",
+        "number": 40,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417330",
+          "plex": {
+            "guid": "5fbdc998bd6a1c002deb7987"
+          },
+          "tmdb": 2499230,
+          "tvdb": 8031270,
+          "trakt": 4555791
+        },
+        "title": "Octopus",
+        "number": 41,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417346",
+          "plex": {
+            "guid": "5fbdc999bd6a1c002deb798d"
+          },
+          "tmdb": 2499231,
+          "tvdb": 8031273,
+          "trakt": 4555780
+        },
+        "title": "Bin Night",
+        "number": 42,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417358",
+          "plex": {
+            "guid": "5fbdc99abd6a1c002deb7998"
+          },
+          "tmdb": 2499233,
+          "tvdb": 8031275,
+          "trakt": 4558008
+        },
+        "title": "Muffin Cone",
+        "number": 43,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417368",
+          "plex": {
+            "guid": "5fbdc99bbd6a1c002deb79a0"
+          },
+          "tmdb": 2499234,
+          "tvdb": 8031276,
+          "trakt": 4576254
+        },
+        "title": "Duck Cake",
+        "number": 44,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13417378",
+          "plex": {
+            "guid": "5fbdc99cbd6a1c002deb79a8"
+          },
+          "tmdb": 2499235,
+          "tvdb": 8031278,
+          "trakt": 4576255
+        },
+        "title": "Handstand",
+        "number": 45,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303718",
+          "plex": {
+            "guid": "5fbdc99dbd6a1c002deb79af"
+          },
+          "tmdb": 2477748,
+          "tvdb": 8014137,
+          "trakt": 4576253
+        },
+        "title": "Road Trip",
+        "number": 46,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13423316",
+          "plex": {
+            "guid": "5fbdc99ebd6a1c002deb79b7"
+          },
+          "tmdb": 2477742,
+          "tvdb": 8014111,
+          "trakt": 4576250
+        },
+        "title": "Ice Cream",
+        "number": 47,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303720",
+          "plex": {
+            "guid": "5fbdc99fbd6a1c002deb79be"
+          },
+          "tmdb": 2477745,
+          "tvdb": 8014125,
+          "trakt": 4576251
+        },
+        "title": "Dunny",
+        "number": 48,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13303722",
+          "plex": {
+            "guid": "5fbdc9a0bd6a1c002deb79c6"
+          },
+          "tmdb": 2477738,
+          "tvdb": 8014134,
+          "trakt": 4576252
+        },
+        "title": "Typewriter",
+        "number": 49,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13429908",
+          "plex": {
+            "guid": "5fbdc9a1bd6a1c002deb79cc"
+          },
+          "tmdb": 2499236,
+          "tvdb": 8031280,
+          "trakt": 4576256
+        },
+        "title": "Baby Race",
+        "number": 50,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt13509874",
+          "plex": {
+            "guid": "5fbdc9a2bd6a1c002deb79cf"
+          },
+          "tmdb": 2546303,
+          "tvdb": 8062307,
+          "trakt": 4608768
+        },
+        "title": "Christmas Swim",
+        "number": 51,
+        "season": 2
+      },
+      {
+        "ids": {
+          "imdb": "tt14433116",
+          "plex": {
+            "guid": "606c099f6577e6002c78e6c0"
+          },
+          "tmdb": 2849947,
+          "tvdb": 9196031,
+          "trakt": 5048850
+        },
+        "title": "Easter",
+        "number": 52,
+        "season": 2
+      }
+    ]
+  },
+  {
+    "ids": {
+      "plex": {
+        "guid": "6136232616c9472c3bcba8aa"
+      },
+      "tmdb": 209453,
+      "tvdb": 1954120,
+      "trakt": 270796
+    },
+    "number": 3,
+    "episodes": [
+      {
+        "ids": {
+          "imdb": "tt15314646",
+          "plex": {
+            "guid": "6136232716c9472c3bcba8ac"
+          },
+          "tmdb": 3184754,
+          "tvdb": 8622075,
+          "trakt": 5446414
+        },
+        "title": "Perfect",
+        "number": 1,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550968",
+          "plex": {
+            "guid": "619ba91d775b5ee960b3288b"
+          },
+          "tmdb": 3348511,
+          "tvdb": 8842445,
+          "trakt": 5708977
+        },
+        "title": "Bedroom",
+        "number": 2,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550974",
+          "plex": {
+            "guid": "619e444c374c179689047262"
+          },
+          "tmdb": 3350881,
+          "tvdb": 8842446,
+          "trakt": 5713691
+        },
+        "title": "Obstacle Course",
+        "number": 3,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550972",
+          "plex": {
+            "guid": "619e444b374c179689047260"
+          },
+          "tmdb": 3350894,
+          "tvdb": 8842447,
+          "trakt": 5713693
+        },
+        "title": "Promises",
+        "number": 4,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550980",
+          "plex": {
+            "guid": "619e444b374c17968904725e"
+          },
+          "tmdb": 3350903,
+          "tvdb": 8842448,
+          "trakt": 5713694
+        },
+        "title": "Omelette",
+        "number": 5,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550982",
+          "plex": {
+            "guid": "619e444a374c17968904725c"
+          },
+          "tmdb": 3350918,
+          "tvdb": 8842449,
+          "trakt": 5713695
+        },
+        "title": "Born Yesterday",
+        "number": 6,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550990",
+          "plex": {
+            "guid": "619e444a374c17968904725b"
+          },
+          "tmdb": 3350928,
+          "tvdb": 8842450,
+          "trakt": 5713702
+        },
+        "title": "Mini Bluey",
+        "number": 7,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550986",
+          "plex": {
+            "guid": "619e4449374c179689047259"
+          },
+          "tmdb": 3350930,
+          "tvdb": 8842451,
+          "trakt": 5713703
+        },
+        "title": "Unicorse",
+        "number": 8,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550984",
+          "plex": {
+            "guid": "61a4e9cd8365d8b7cbc6177c"
+          },
+          "tmdb": 3358405,
+          "tvdb": 8842452,
+          "trakt": 5726621
+        },
+        "title": "Curry Quest",
+        "number": 9,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550996",
+          "plex": {
+            "guid": "61a66b3c4b58e1470e03b1f1"
+          },
+          "tmdb": 3359686,
+          "tvdb": 8851164,
+          "trakt": 5730366
+        },
+        "title": "Magic",
+        "number": 10,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15550994",
+          "plex": {
+            "guid": "61a66b3c4b58e1470e03b1f0"
+          },
+          "tmdb": 3359687,
+          "tvdb": 8851165,
+          "trakt": 5730367
+        },
+        "title": "Chest",
+        "number": 11,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551002",
+          "plex": {
+            "guid": "61a7767ce791a9a4411afd3d"
+          },
+          "tmdb": 3366773,
+          "tvdb": 8851166,
+          "trakt": 5731883
+        },
+        "title": "Sheep Dog",
+        "number": 12,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551006",
+          "plex": {
+            "guid": "61a7767ce791a9a4411afd3b"
+          },
+          "tmdb": 3366774,
+          "tvdb": 8851167,
+          "trakt": 5731885
+        },
+        "title": "Housework",
+        "number": 13,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551004",
+          "plex": {
+            "guid": "61a7767ce791a9a4411afd39"
+          },
+          "tmdb": 3366777,
+          "tvdb": 8851168,
+          "trakt": 5731915
+        },
+        "title": "Pass the Parcel",
+        "number": 14,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551010",
+          "plex": {
+            "guid": "61a7767ce791a9a4411afd38"
+          },
+          "tmdb": 3366778,
+          "tvdb": 8858893,
+          "trakt": 5731918
+        },
+        "title": "Explorers",
+        "number": 15,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551014",
+          "plex": {
+            "guid": "61ae1d659b3fdeb2f8f2eaa8"
+          },
+          "tmdb": 3379491,
+          "tvdb": 8858894,
+          "trakt": 5744525
+        },
+        "title": "Phones",
+        "number": 16,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551012",
+          "plex": {
+            "guid": "61ae1d659b3fdeb2f8f2eaa7"
+          },
+          "tmdb": 3379492,
+          "tvdb": 8858895,
+          "trakt": 5744526
+        },
+        "title": "Pavlova",
+        "number": 17,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551024",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c2f"
+          },
+          "tmdb": 3381135,
+          "tvdb": 8858896,
+          "trakt": 5748297
+        },
+        "title": "Rain",
+        "number": 18,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551018",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c2e"
+          },
+          "tmdb": 3381138,
+          "tvdb": 8858897,
+          "trakt": 5748298
+        },
+        "title": "Pizza Girls",
+        "number": 19,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551020",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c2d"
+          },
+          "tmdb": 3381139,
+          "tvdb": 8858898,
+          "trakt": 5748299
+        },
+        "title": "Driving",
+        "number": 20,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551032",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c2c"
+          },
+          "tmdb": 3381140,
+          "tvdb": 8862167,
+          "trakt": 5748300
+        },
+        "title": "Tina",
+        "number": 21,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551034",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c2b"
+          },
+          "tmdb": 3381141,
+          "tvdb": 8862168,
+          "trakt": 5748301
+        },
+        "title": "Whale Watching",
+        "number": 22,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551040",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c29"
+          },
+          "tmdb": 3381142,
+          "tvdb": 8862169,
+          "trakt": 5748302
+        },
+        "title": "Family Meeting",
+        "number": 23,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551036",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c27"
+          },
+          "tmdb": 3381143,
+          "tvdb": 8864335,
+          "trakt": 5748307
+        },
+        "title": "Faceytalk",
+        "number": 24,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551046",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c26"
+          },
+          "tmdb": 3381144,
+          "tvdb": 8867955,
+          "trakt": 5748308
+        },
+        "title": "Ragdoll",
+        "number": 25,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt15551050",
+          "plex": {
+            "guid": "61b0d1584e7483d7d3285c24"
+          },
+          "tmdb": 3381145,
+          "tvdb": 8867956,
+          "trakt": 5748309
+        },
+        "title": "Fairytale",
+        "number": 26,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20261024",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bbe"
+          },
+          "tmdb": 3781848,
+          "tvdb": 9171585,
+          "trakt": 6461745
+        },
+        "title": "Musical Statues",
+        "number": 27,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20261764",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bbb"
+          },
+          "tmdb": 3781851,
+          "tvdb": 9171587,
+          "trakt": 6461778
+        },
+        "title": "Stories",
+        "number": 28,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20261922",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bba"
+          },
+          "tmdb": 3781854,
+          "tvdb": 9171589,
+          "trakt": 6461780
+        },
+        "title": "Puppets",
+        "number": 29,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20262320",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bb9"
+          },
+          "tmdb": 3781862,
+          "tvdb": 9171591,
+          "trakt": 6461781
+        },
+        "title": "Turtleboy",
+        "number": 30,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20262336",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bb8"
+          },
+          "tmdb": 3781865,
+          "tvdb": 9171593,
+          "trakt": 6461782
+        },
+        "title": "Onesies",
+        "number": 31,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20262928",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bb7"
+          },
+          "tmdb": 3781870,
+          "tvdb": 9171595,
+          "trakt": 6461783
+        },
+        "title": "Tradies",
+        "number": 32,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20262876",
+          "plex": {
+            "guid": "62a8abd6c9365aff98294bb6"
+          },
+          "tmdb": 3781875,
+          "tvdb": 9171597,
+          "trakt": 6461784
+        },
+        "title": "Granny Mobile",
+        "number": 33,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20263186",
+          "plex": {
+            "guid": "62851be49f6ddc6fbd8cf223"
+          },
+          "tmdb": 3787036,
+          "tvdb": 9171599,
+          "trakt": 6465360
+        },
+        "title": "Space",
+        "number": 34,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20262704",
+          "plex": {
+            "guid": "62851be59f6ddc6fbd8cf224"
+          },
+          "tmdb": 3787037,
+          "tvdb": 9171601,
+          "trakt": 6465363
+        },
+        "title": "Smoochy Kiss",
+        "number": 35,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20263572",
+          "plex": {
+            "guid": "62851be59f6ddc6fbd8cf225"
+          },
+          "tmdb": 3787038,
+          "tvdb": 9171603,
+          "trakt": 6465365
+        },
+        "title": "Dirt",
+        "number": 36,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt20263498",
+          "plex": {
+            "guid": "62851be59f6ddc6fbd8cf226"
+          },
+          "tmdb": 3787039,
+          "tvdb": 9171605,
+          "trakt": 6465366
+        },
+        "title": "The Decider",
+        "number": 37,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt22495974",
+          "plex": {
+            "guid": "638f5e393268e78d03b6c173"
+          },
+          "tmdb": 4215685,
+          "tvdb": 9491144,
+          "trakt": 7342468
+        },
+        "title": "Cubby",
+        "number": 38,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27122930",
+          "plex": {
+            "guid": "638f5e373268e78d03b6c167"
+          },
+          "tmdb": 4215656,
+          "tvdb": 9491130,
+          "trakt": 7342469
+        },
+        "title": "Exercise",
+        "number": 39,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27122931",
+          "plex": {
+            "guid": "638f5e373268e78d03b6c168"
+          },
+          "tmdb": 4215661,
+          "tvdb": 9491138,
+          "trakt": 7342470
+        },
+        "title": "Relax",
+        "number": 40,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27122934",
+          "plex": {
+            "guid": "63e15f5888ea1da96e07aa13"
+          },
+          "tmdb": 4215662,
+          "tvdb": 9491136,
+          "trakt": 7342471
+        },
+        "title": "Stickbird",
+        "number": 41,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27122935",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c16a"
+          },
+          "tmdb": 4215663,
+          "tvdb": 9491137,
+          "trakt": 7342472
+        },
+        "title": "Show & Tell",
+        "number": 42,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27122936",
+          "plex": {
+            "guid": "63e15f5888ea1da96e07aa12"
+          },
+          "tmdb": 4215669,
+          "tvdb": 9491143,
+          "trakt": 7342473
+        },
+        "title": "Dragon",
+        "number": 43,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27122938",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c16b"
+          },
+          "tmdb": 4215664,
+          "tvdb": 9491132,
+          "trakt": 7342474
+        },
+        "title": "Wild Girls",
+        "number": 44,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27301450",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c16c"
+          },
+          "tmdb": 4215665,
+          "tvdb": 9491135,
+          "trakt": 7342475
+        },
+        "title": "TV Shop",
+        "number": 45,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27301453",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c16e"
+          },
+          "tmdb": 4215670,
+          "tvdb": 9491133,
+          "trakt": 7342476
+        },
+        "title": "Slide",
+        "number": 46,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt27896202",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c16f"
+          },
+          "tmdb": 4215671,
+          "tvdb": 9491134,
+          "trakt": 7342477
+        },
+        "title": "Cricket",
+        "number": 47,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt31241605",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c172"
+          },
+          "tmdb": 4215674,
+          "tvdb": 10248227,
+          "trakt": 7342478
+        },
+        "title": "Ghostbasket",
+        "number": 48,
+        "season": 3
+      },
+      {
+        "ids": {
+          "imdb": "tt31990177",
+          "plex": {
+            "guid": "638f5e383268e78d03b6c171"
+          },
+          "tmdb": 4215673,
+          "tvdb": 10248226,
+          "trakt": 7342480
+        },
+        "title": "Surprise!",
+        "number": 49,
+        "season": 3
+      }
+    ]
+  },
+  {
+    "ids": {
+      "plex": {
+        "guid": null
+      },
+      "tmdb": 486095,
+      "tvdb": null,
+      "trakt": 500492
+    },
+    "number": 4,
+    "episodes": [
+      {
+        "ids": {
+          "imdb": null,
+          "plex": {
+            "guid": null
+          },
+          "tmdb": 6710783,
+          "tvdb": null,
+          "trakt": 13746202
+        },
+        "title": "Episode #4.1",
+        "number": 1,
+        "season": 4
+      }
+    ]
+  }
+]
