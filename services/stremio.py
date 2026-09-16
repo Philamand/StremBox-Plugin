@@ -455,10 +455,8 @@ class StremioOrchestrationService:
             )
             tr4ker_results = []
         elif self.tr4ker:
-            tr4ker_results = (
-                await self.tr4ker.search_series(
-                    season=season, episode=episode, tmdb_id=tmdb_id
-                ),
+            tr4ker_results = await self.tr4ker.search_series(
+                season=season, episode=episode, tmdb_id=tmdb_id
             )
             c411_results = []
         else:
