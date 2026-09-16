@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS public.users (
     id uuid DEFAULT uuidv7() NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL,
     c411_key character varying(255),
-    torr9_key character varying(255),
+    tr4ker_key character varying(255),
     lacale_key character varying(255),
     librebox_url character varying(255) NOT NULL,
     librebox_token character varying(255) NOT NULL,
@@ -86,7 +86,7 @@ async def _clean_users_table(conn: asyncpg.Connection) -> None:
 
 
 @pytest_asyncio.fixture(scope="session")
-async def pg_pool() -> AsyncGenerator[asyncpg.Pool, None]:
+async def pg_pool() -> AsyncGenerator[asyncpg.Pool]:
     """Session-scoped pool connected to the test database."""
     if not TEST_DATABASE_URL:
         pytest.fail("TEST_DATABASE_URL is not set – cannot connect to a test database.")
@@ -103,7 +103,7 @@ async def pg_pool() -> AsyncGenerator[asyncpg.Pool, None]:
 
 
 @pytest_asyncio.fixture()
-async def conn(pg_pool: asyncpg.Pool) -> AsyncGenerator[asyncpg.Connection, None]:
+async def conn(pg_pool: asyncpg.Pool) -> AsyncGenerator[asyncpg.Connection]:
     """Function-scoped connection with automatic cleanup of the users table."""
     async with pg_pool.acquire() as connection:
         # Clean up *before* the test to avoid "operation in progress" races
