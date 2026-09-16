@@ -1,4 +1,5 @@
 # This file is AI-generated
+import re
 import uuid
 from collections.abc import AsyncGenerator
 
@@ -32,6 +33,18 @@ def _make_create_data(
         tr4ker_key=tr4ker_key,
         lacale_key=lacale_key,
     )
+
+
+# Match the user_id embedded in the Stremio install link of success.html,
+# e.g. stremio://strembox.lidzee.fr/<user_id>/manifest.json
+_USER_ID_RE = re.compile(r"stremio://[^/]+/([^/]+)/manifest\.json")
+
+
+def _extract_user_id(html: str) -> str:
+    """Pull the user_id out of the success page's Stremio install link."""
+    match = _USER_ID_RE.search(html)
+    assert match is not None, f"user_id not found in response: {html!r}"
+    return match.group(1)
 
 
 # ---------------------------------------------------------------------------
@@ -174,10 +187,11 @@ async def test_create_user_returns_user_id(client: AsyncClient) -> None:
         },
     )
     assert resp.status_code == 200
-    data = resp.json()
-    assert "user_id" in data
+    assert "text/html" in resp.headers["content-type"]
+    # The ID is rendered into the Stremio install link on the success page.
+    user_id = _extract_user_id(resp.text)
     # Must be a valid UUID
-    uuid.UUID(data["user_id"])
+    uuid.UUID(user_id)
 
 
 async def test_create_user_persists_in_db(
@@ -195,7 +209,7 @@ async def test_create_user_persists_in_db(
         },
     )
     assert resp.status_code == 200
-    user_id = resp.json()["user_id"]
+    user_id = _extract_user_id(resp.text)
 
     row = await conn.fetchrow("SELECT * FROM users WHERE id = $1", user_id)
     assert row is not None
@@ -216,5 +230,5 @@ async def test_create_user_optional_keys_can_be_omitted(client: AsyncClient) -> 
         },
     )
     assert resp.status_code == 200
-    user_id = resp.json()["user_id"]
+    user_id = _extract_user_id(resp.text)
     uuid.UUID(user_id)
