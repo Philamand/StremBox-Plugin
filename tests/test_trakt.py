@@ -16,8 +16,10 @@ backing is required:
 Canned Trakt API payloads live under ``tests/fixtures`` as JSON and are loaded
 with the ``load_fixture`` helper.
 """
+
 import json
 from collections.abc import AsyncGenerator
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
@@ -26,8 +28,6 @@ import pytest_asyncio
 from aioresponses import aioresponses as aioresponses_ctx
 
 from http_client import init_http_session
-from datetime import UTC, datetime, timedelta
-
 from schemas.trakt import (
     TraktEpisode,
     TraktFavoriteMovieEntry,
@@ -61,7 +61,7 @@ def trakt_env(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 @pytest.fixture(autouse=True)
-def mock_cache() -> AsyncGenerator[None, None]:
+def mock_cache():
     """Bypass Redis: ``cached_call`` runs the factory and returns its value.
 
     The real ``cached_call`` talks to Redis (``get_cache_client``), which is not
@@ -81,7 +81,7 @@ def mock_cache() -> AsyncGenerator[None, None]:
 
 
 @pytest_asyncio.fixture
-async def http_session() -> AsyncGenerator[None, None]:
+async def http_session() -> AsyncGenerator[None]:
     """Initialise the shared aiohttp session for the duration of each test."""
     await init_http_session()
     try:
@@ -99,7 +99,7 @@ async def service(http_session: None) -> TraktService:
 
 
 @pytest.fixture
-def trakt_api() -> AsyncGenerator[aioresponses_ctx, None]:
+def trakt_api():
     """Mock the Trakt HTTP API for the duration of a test.
 
     Use ``trakt_api.get(url, payload=...)`` / ``trakt_api.post(...)`` to register
@@ -244,7 +244,7 @@ async def test_get_unfinished_shows_filters_partially_watched(
     # 17 watched shows, but only 5 are not fully watched.
     assert len(shows) == 5
     assert all(isinstance(s, TraktWatchedShow) for s in shows)
-    assert all(s.plays < s.show.aired_episodes for s in shows)
+    assert all(s.show.aired_episodes and s.plays < s.show.aired_episodes for s in shows)
     assert [s.show.title for s in shows] == [
         "PAW Patrol",
         "Kaamelott",
@@ -435,6 +435,3 @@ async def test_get_show_watched_history_returns_parsed_history(
     assert first.episode.ids.trakt == 460995
     assert first.show.title == "Kaamelott"
     assert first.show.ids.trakt == 11414
-
-
-
