@@ -51,7 +51,6 @@ def _reinject_apikey(url: str | None, apikey: str) -> str | None:
     return urlunparse(parsed._replace(query=urlencode(query)))
 
 
-
 class C411Service:
     """
     Client for the C411 torznab-style API.
@@ -429,7 +428,7 @@ class StremioOrchestrationService:
             c411_results = await self.c411.search_movie(imdb_id=imdb_id)
             tr4ker_results = []
         elif self.tr4ker:
-            (self.tr4ker.search_movie(tmdb_id=tmdb_id),)
+            tr4ker_results = await self.tr4ker.search_movie(tmdb_id=tmdb_id)
             c411_results = []
         else:
             return []
