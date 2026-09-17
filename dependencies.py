@@ -4,7 +4,16 @@ import asyncpg
 from fastapi import Depends, HTTPException, Path, Request
 
 from db.database import get_db_conn
+from services.betaseries import BetaSeriesService
 from services.users import UserService
+from settings import Settings, get_settings
+
+
+def get_betaseries_service(
+    settings: Annotated[Settings, Depends(get_settings)],
+) -> BetaSeriesService:
+    """Return a BetaSeriesService built from the application settings."""
+    return BetaSeriesService(api_key=settings.betaseries_api_key)
 
 
 async def get_user_service(

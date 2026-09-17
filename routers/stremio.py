@@ -1,9 +1,12 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
 from constants import MANIFEST
-from dependencies import check_user_key
+from dependencies import check_user_key, get_betaseries_service
 from schemas.stremio import StremioStreamsResponse
 from schemas.users import UserData
+from services.betaseries import BetaSeriesService
 from services.stremio import C411Service, StremioOrchestrationService, Tr4kerService
 
 router = APIRouter(dependencies=[Depends(check_user_key)])
@@ -18,6 +21,7 @@ async def get_manifest():
 @router.get("/{user_key}/stream/{type}/{id}.json")
 async def get_torrent_streams(
     request: Request,
+    betaseries_service: Annotated[BetaSeriesService, Depends(get_betaseries_service)],
     type: str,
     id: str,
 ) -> StremioStreamsResponse:
@@ -52,6 +56,7 @@ async def get_torrent_streams(
         user.librebox_token,
         c411_service=c411_service,
         tr4ker_service=tr4ker_service,
+        betaseries_service=betaseries_service,
     )
 
     response = await stremio_service.get_streams(type=type, id=id, user=user)

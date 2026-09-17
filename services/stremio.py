@@ -398,6 +398,7 @@ class StremioOrchestrationService:
     Args:
         c411_service: Configured C411 tracker client.
         tr4ker_service: Configured Tr4ker tracker client.
+        betaseries_service: Configured BetaSeries client (IMDb/TMDB mapping).
         torrent_service: DB-backed torrent service (get/create records).
         stream_service: Redis-backed stream link service.
     """
@@ -408,17 +409,19 @@ class StremioOrchestrationService:
         librebox_token: str,
         c411_service: C411Service | None = None,
         tr4ker_service: Tr4kerService | None = None,
+        betaseries_service: BetaSeriesService | None = None,
     ) -> None:
         self.c411 = c411_service
         self.tr4ker = tr4ker_service
+        self.betaseries = betaseries_service
         self.librebox_url = librebox_url
         self.librebox_token = librebox_token
 
     async def search_movie(self, imdb_id: str) -> list[dict]:
         """Run parallel C411 + Tr4ker searches for a movie and return deduplicated results."""
-        if self.tr4ker:
-            betaseries_service = BetaSeriesService()
-            tmdb_id = await betaseries_service.get_tmdb_id(imdb_id, movie=True)
+        tmdb_id = None
+        if self.tr4ker and self.betaseries:
+            tmdb_id = await self.betaseries.get_tmdb_id(imdb_id, movie=True)
         if self.c411 and self.tr4ker:
             c411_results, tr4ker_results = await asyncio.gather(
                 self.c411.search_movie(imdb_id=imdb_id),
@@ -437,9 +440,9 @@ class StremioOrchestrationService:
 
     async def search_serie(self, imdb_id: str, season: int, episode: int) -> list[dict]:
         """Run parallel C411 + Tr4ker searches for a series episode and return deduplicated results."""
-        if self.tr4ker:
-            betaseries_service = BetaSeriesService()
-            tmdb_id = await betaseries_service.get_tmdb_id(imdb_id)
+        tmdb_id = None
+        if self.tr4ker and self.betaseries:
+            tmdb_id = await self.betaseries.get_tmdb_id(imdb_id)
         if self.c411 and self.tr4ker:
             c411_results, tr4ker_results = await asyncio.gather(
                 self.c411.search_series(

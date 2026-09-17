@@ -2,18 +2,18 @@
 """Tests for :class:`services.betaseries.BetaSeriesService`.
 
 The BetaSeries API is reached through aiohttp (via ``http_client.get_session``)
-and authenticated with a single ``X-BetaSeries-Key`` header derived from the
-``BETASERIES_API_KEY`` environment variable. No Redis cache is involved.
+and authenticated with a single ``X-BetaSeries-Key`` header built from the
+API key injected into ``BetaSeriesService``. No Redis cache is involved.
 
 * ``aioresponses`` intercepts every aiohttp request issued by the shared
   session and replays canned responses.
-* ``BETASERIES_API_KEY`` is injected through the ``betaseries_env`` fixture so
-  ``BetaSeriesService`` reads a configured key.
+* The API key is passed to ``BetaSeriesService`` directly (no environment).
 * ``init_http_session`` / ``close_http_session`` manage the shared session.
 
 Canned BetaSeries API payloads live under ``tests/fixtures`` as JSON and are
 loaded with the ``load_fixture`` helper.
 """
+
 import json
 from collections.abc import AsyncGenerator
 from pathlib import Path
@@ -36,14 +36,8 @@ def load_fixture(name: str):
     return json.loads((FIXTURES_DIR / name).read_text())
 
 
-@pytest.fixture(autouse=True)
-def betaseries_env(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Populate the API key BetaSeriesService reads from the environment."""
-    monkeypatch.setenv("BETASERIES_API_KEY", BETASERIES_API_KEY)
-
-
 @pytest_asyncio.fixture
-async def http_session() -> AsyncGenerator[None, None]:
+async def http_session() -> AsyncGenerator[None]:
     """Initialise the shared aiohttp session for the duration of each test."""
     await init_http_session()
     try:
@@ -57,11 +51,11 @@ async def http_session() -> AsyncGenerator[None, None]:
 @pytest_asyncio.fixture
 async def service(http_session: None) -> BetaSeriesService:
     """A BetaSeriesService wired against the mocked HTTP session."""
-    return BetaSeriesService()
+    return BetaSeriesService(api_key=BETASERIES_API_KEY)
 
 
 @pytest.fixture
-def betaseries_api() -> AsyncGenerator[aioresponses_ctx, None]:
+def betaseries_api() -> AsyncGenerator[aioresponses_ctx]:
     """Mock the BetaSeries HTTP API for the duration of a test.
 
     Use ``betaseries_api.get(url, payload=...)`` to register canned responses
@@ -90,11 +84,10 @@ async def test_get_show_french_title_returns_title(
 
 
 async def test_get_show_french_title_returns_none_without_api_key(
-    monkeypatch: pytest.MonkeyPatch, http_session: None
+    http_session: None,
 ) -> None:
     """get_show_french_title should short-circuit to None without an API key."""
-    monkeypatch.delenv("BETASERIES_API_KEY")
-    service = BetaSeriesService()
+    service = BetaSeriesService(api_key=None)
 
     title = await service.get_show_french_title("tt3121722")
 
@@ -145,12 +138,9 @@ async def test_get_tmdb_id_returns_movie_tmdb_id_without_other_title(
     assert tmdb_id == 577242
 
 
-async def test_get_tmdb_id_returns_none_without_api_key(
-    monkeypatch: pytest.MonkeyPatch, http_session: None
-) -> None:
+async def test_get_tmdb_id_returns_none_without_api_key(http_session: None) -> None:
     """get_tmdb_id should short-circuit to None without an API key (both branches)."""
-    monkeypatch.delenv("BETASERIES_API_KEY")
-    service = BetaSeriesService()
+    service = BetaSeriesService(api_key=None)
 
     assert await service.get_tmdb_id("tt3121722") is None
     assert await service.get_tmdb_id("tt11832046", movie=True) is None

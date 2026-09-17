@@ -6,15 +6,18 @@ import asyncpg
 from cache import close_cache_client, init_cache_client
 from http_client import close_http_session, init_http_session
 from services.bauxite import BauxiteService
+from services.betaseries import BetaSeriesService
 from services.stremio import C411Service, StremioOrchestrationService, Tr4kerService
 from services.trakt import TraktService
 from services.users import UserService
+from settings import get_settings
 from utils.stremio import check_season_episode
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 
 async def main():
+    settings = get_settings()
     await init_http_session()
     await init_cache_client()
 
@@ -28,7 +31,11 @@ async def main():
         async with pool.acquire() as conn:
             user_service = UserService(conn)
             users = await user_service.get_all_users(filter_without_trakt_slug=True)
-            trakt_service = TraktService()
+            trakt_service = TraktService(
+                api_key=settings.trakt_api_key,
+                access_token=settings.trakt_access_token,
+            )
+            betaseries_service = BetaSeriesService(api_key=settings.betaseries_api_key)
 
             for user in users:
                 bauxite_service = BauxiteService(user.librebox_url, user.librebox_token)
@@ -50,6 +57,7 @@ async def main():
                         user.librebox_token,
                         c411_service=c411_service,
                         tr4ker_service=tr4ker_service,
+                        betaseries_service=betaseries_service,
                     )
 
                     movies = await trakt_service.get_movie_watched_history(

@@ -1,12 +1,10 @@
-import os
-
 from http_client import get_session
 
 
 class BetaSeriesService:
-    def __init__(self):
+    def __init__(self, api_key: str | None):
         self.base_url = "https://api.betaseries.com"
-        self.api_key = os.environ.get("BETASERIES_API_KEY", None)
+        self.api_key = api_key
 
     async def get_show_french_title(self, imdb_id) -> str | None:
         if self.api_key is None:

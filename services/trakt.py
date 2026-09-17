@@ -1,4 +1,3 @@
-import os
 from datetime import UTC, datetime, timedelta
 
 from cache import cached_call
@@ -21,10 +20,10 @@ class TraktError(Exception):
 
 
 class TraktService:
-    def __init__(self):
+    def __init__(self, api_key: str | None, access_token: str | None):
         self.base_url = "https://api.trakt.tv"
-        self.api_key = os.environ.get("TRAKT_API_KEY", None)
-        self.access_token = os.environ.get("TRAKT_ACCESS_TOKEN", None)
+        self.api_key = api_key
+        self.access_token = access_token
 
     def _get_headers(self) -> dict:
         if not self.api_key or not self.access_token:
@@ -84,7 +83,9 @@ class TraktService:
                 url, params=params, headers=self._get_headers()
             ) as response:
                 data = await response.json()
-                return [TraktSeason.model_validate(season).model_dump() for season in data]
+                return [
+                    TraktSeason.model_validate(season).model_dump() for season in data
+                ]
 
         cached = await cached_call(
             f"trakt:seasons:{show_id}", 86400, fetch, cache_none=True
@@ -98,7 +99,10 @@ class TraktService:
             session = get_session()
             async with session.get(url, headers=self._get_headers()) as response:
                 data = await response.json()
-                return [TraktEpisode.model_validate(episode).model_dump() for episode in data]
+                return [
+                    TraktEpisode.model_validate(episode).model_dump()
+                    for episode in data
+                ]
 
         cached = await cached_call(
             f"trakt:episodes:{id}:{season}", 86400, fetch, cache_none=True

@@ -986,6 +986,7 @@ dependencies = [
     { name = "bencode2" },
     { name = "fastapi", extra = ["standard"] },
     { name = "jinja2" },
+    { name = "pydantic-settings" },
     { name = "redis" },
 ]
 
@@ -1005,6 +1006,7 @@ requires-dist = [
     { name = "bencode2", specifier = ">=0.3.30" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.135.3" },
     { name = "jinja2", specifier = ">=3.1.6" },
+    { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "redis", specifier = ">=8.1.0" },
 ]
 

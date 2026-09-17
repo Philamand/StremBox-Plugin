@@ -10,8 +10,7 @@ backing is required:
   session and replays canned responses.
 * ``cached_call`` is patched to short-circuit the cache and invoke the
   factory directly, so the suite never talks to Redis.
-* ``TRAKT_API_KEY`` / ``TRAKT_ACCESS_TOKEN`` are injected through the
-  ``trakt_env`` fixture so ``TraktService._get_headers`` succeeds.
+* Credentials are passed to ``TraktService`` directly (no environment).
 
 Canned Trakt API payloads live under ``tests/fixtures`` as JSON and are loaded
 with the ``load_fixture`` helper.
@@ -54,13 +53,6 @@ def load_fixture(name: str):
 
 
 @pytest.fixture(autouse=True)
-def trakt_env(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Populate the credentials TraktService reads from the environment."""
-    monkeypatch.setenv("TRAKT_API_KEY", TRAKT_API_KEY)
-    monkeypatch.setenv("TRAKT_ACCESS_TOKEN", TRAKT_ACCESS_TOKEN)
-
-
-@pytest.fixture(autouse=True)
 def mock_cache():
     """Bypass Redis: ``cached_call`` runs the factory and returns its value.
 
@@ -95,7 +87,7 @@ async def http_session() -> AsyncGenerator[None]:
 @pytest_asyncio.fixture
 async def service(http_session: None) -> TraktService:
     """A TraktService wired against the mocked HTTP session and cache."""
-    return TraktService()
+    return TraktService(api_key=TRAKT_API_KEY, access_token=TRAKT_ACCESS_TOKEN)
 
 
 @pytest.fixture
