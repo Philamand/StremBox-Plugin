@@ -8,7 +8,7 @@ from services.users import UserService
 
 
 async def get_user_service(
-    conn: asyncpg.Connection = Depends(get_db_conn),
+    conn: Annotated[asyncpg.Connection, Depends(get_db_conn)],
 ) -> UserService:
     """Return a UserService instance with the given database connection."""
     return UserService(conn)
@@ -17,7 +17,7 @@ async def get_user_service(
 async def check_user_key(
     request: Request,
     user_service: Annotated[UserService, Depends(get_user_service)],
-    user_key: str = Path(..., description="Per-user key embedded in the URL"),
+    user_key: Annotated[str, Path(description="Per-user key embedded in the URL")],
 ) -> None:
     """Checks the user key and raises an HTTPException if it is invalid."""
 
