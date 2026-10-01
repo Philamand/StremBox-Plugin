@@ -18,7 +18,9 @@ from services.bauxite import BauxiteService
 from services.betaseries import BetaSeriesService
 from utils.stremio import (
     check_season_episode,
+    check_title_match,
     extract_download_params,
+    get_torrent_name,
     parse_torrent_name,
     sort_dicts_by_seeders_desc,
 )
@@ -177,7 +179,7 @@ class C411Service:
                         }
                         normalized.append(item)
                     return normalized or None
-            except TimeoutError, aiohttp.ClientError, ValueError:
+            except (TimeoutError, aiohttp.ClientError, ValueError):
                 return None
 
         cached = await cached_call(cache_key, 900, fetch, cache_none=False)
@@ -296,7 +298,7 @@ class Tr4kerService:
                     for result in results:
                         result["link"] = _strip_apikey(result["link"])
                     return results or None
-            except TimeoutError, aiohttp.ClientError:
+            except (TimeoutError, aiohttp.ClientError):
                 return None
 
         cached = await cached_call(cache_key, 900, fetch, cache_none=False)
@@ -500,8 +502,7 @@ class StremioOrchestrationService:
             season = None
             episode = None
 
-        if not results:
-            return StremioStreamsResponse(streams=[])
+        imdb_id = id.split(":")[0]
 
         results = sort_dicts_by_seeders_desc(results)
 
@@ -514,21 +515,9 @@ class StremioOrchestrationService:
             if result["info_hash"] in hashes:
                 torrent = hashes[result["info_hash"]]
 
-                if torrent["percent_done"] < 1:
-                    speed_emoji = "🐢 "
-                else:
-                    speed_emoji = "⚡️ "
-
-                if len(torrent) == 1:
-                    file_path = torrent["files"][0]
-                else:
-                    for filename in torrent["files"]:
-                        if check_season_episode(filename, season, episode):
-                            file_path = filename
-                            break
-                    if not file_path:
-                        file_path = torrent["files"][0]
-                stream_url = f"{self.librebox_url}/streams/{self.librebox_token}?file_path={file_path}"
+                speed_emoji, file_path, stream_url = self._bauxite_stream_link(
+                    torrent, season, episode
+                )
             else:
                 speed_emoji = ""
                 stream_url = f"{self.librebox_url}/streams/download/{self.librebox_token}/{result['info_hash']}?torrent_url={result['link']}"
@@ -541,7 +530,7 @@ class StremioOrchestrationService:
                     f"{speed_emoji}{result['name']}\n"
                     f"{details}\n"
                     f"📤 {result['seeders']}  📥 {result['leechers']} | {result['tracker_name']}\n"
-                    f"💾 {result['size'] / 1024 / 1024 / 1024:.2f} GB"
+                    f"💿 {result['size'] / 1024 / 1024 / 1024:.2f} GB"
                 ),
                 url=stream_url,
                 filename=file_path,
@@ -564,8 +553,93 @@ class StremioOrchestrationService:
             fast_streams.append(stream)
             slow_streams.clear()
 
-        streams = fast_streams + slow_streams
+        bauxite_only_streams = await self._get_bauxite_only_streams(
+            hashes, results, imdb_id, type, season, episode
+        )
+
+        streams = bauxite_only_streams + fast_streams + slow_streams
 
         response = StremioStreamsResponse(streams=streams)
 
         return response
+
+    def _bauxite_stream_link(
+        self, torrent: dict, season: int | None, episode: int | None
+    ) -> tuple[str, str, str]:
+        """Return ``(speed_emoji, file_path, stream_url)`` for a Bauxite torrent."""
+        if torrent["percent_done"] < 1:
+            speed_emoji = "🐢 "
+        else:
+            speed_emoji = "⚡️ "
+
+        files = torrent.get("files") or []
+        file_path = None
+        if len(files) == 1:
+            file_path = files[0]
+        else:
+            for filename in files:
+                if check_season_episode(filename, season, episode):
+                    file_path = filename
+                    break
+            if not file_path and files:
+                file_path = files[0]
+        if not file_path:
+            file_path = torrent.get("name", "")
+
+        stream_url = f"{self.librebox_url}/streams/{self.librebox_token}?file_path={file_path}"
+        return speed_emoji, file_path, stream_url
+
+    async def _get_bauxite_only_streams(
+        self,
+        hashes: dict,
+        results: list[dict],
+        imdb_id: str,
+        type: str,
+        season: int | None,
+        episode: int | None,
+    ) -> list[StremioStreamData]:
+        """Build streams for torrents already in Bauxite but absent from search results."""
+        result_hashes = {r["info_hash"] for r in results}
+        bauxite_only = [
+            torrent
+            for torrent_hash, torrent in hashes.items()
+            if torrent_hash not in result_hashes and torrent.get("name")
+        ]
+        if not bauxite_only:
+            return []
+
+        is_movie = type != "series"
+        title_en, year = await get_torrent_name(imdb_id, type)
+        title_fr = None
+        if not is_movie and self.betaseries:
+            title_fr = await self.betaseries.get_show_french_title(imdb_id)
+
+        streams: list[StremioStreamData] = []
+        for torrent in bauxite_only:
+            name = torrent["name"]
+            if not check_title_match(
+                name, title_fr, title_en, year=year, is_movie=is_movie
+            ):
+                continue
+            if not is_movie and not check_season_episode(name, season, episode):
+                continue
+
+            speed_emoji, file_path, stream_url = self._bauxite_stream_link(
+                torrent, season, episode
+            )
+            details = parse_torrent_name(name)
+            size = torrent.get("size", 0)
+            streams.append(
+                StremioStreamData(
+                    title=(
+                        f"{speed_emoji}{name}\n"
+                        f"{details}\n"
+                        f"Bauxite\n"
+                        f"💿 {size / 1024 / 1024 / 1024:.2f} GB"
+                    ),
+                    url=stream_url,
+                    filename=file_path,
+                    videoSize=int(size),
+                )
+            )
+        return streams

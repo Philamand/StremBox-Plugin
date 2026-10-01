@@ -32,7 +32,7 @@ async def check_user_key(
 
     try:
         user = await user_service.get_user(user_key)
-    except ValueError, asyncpg.exceptions.DataError:
+    except (ValueError, asyncpg.exceptions.DataError):
         raise HTTPException(status_code=401, detail="Invalid user key")
 
     if not user:
