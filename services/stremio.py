@@ -502,8 +502,6 @@ class StremioOrchestrationService:
             season = None
             episode = None
 
-        imdb_id = id.split(":")[0]
-
         results = sort_dicts_by_seeders_desc(results)
 
         fast_streams: list[StremioStreamData] = []
@@ -553,11 +551,7 @@ class StremioOrchestrationService:
             fast_streams.append(stream)
             slow_streams.clear()
 
-        bauxite_only_streams = await self._get_bauxite_only_streams(
-            hashes, results, imdb_id, type, season, episode
-        )
-
-        streams = bauxite_only_streams + fast_streams + slow_streams
+        streams = fast_streams + slow_streams
 
         response = StremioStreamsResponse(streams=streams)
 
