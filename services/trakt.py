@@ -20,20 +20,18 @@ class TraktError(Exception):
 
 
 class TraktService:
-    def __init__(self, api_key: str | None, access_token: str | None):
+    def __init__(self, api_key: str | None):
         self.base_url = "https://api.trakt.tv"
         self.api_key = api_key
-        self.access_token = access_token
 
     def _get_headers(self) -> dict:
-        if not self.api_key or not self.access_token:
-            raise TraktError("Missing Trakt API key or access token")
+        if not self.api_key:
+            raise TraktError("Missing Trakt API key")
         return {
             "accept": "application/json",
             "User-Agent": "readme/1.0",
             "trakt-api-version": "2",
             "trakt-api-key": self.api_key,
-            "authorization": f"Bearer {self.access_token}",
         }
 
     async def get_unwatched_movies(self, user_slug: str) -> list[TraktWatchlistMovie]:

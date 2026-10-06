@@ -87,7 +87,7 @@ async def http_session() -> AsyncGenerator[None]:
 @pytest_asyncio.fixture
 async def service(http_session: None) -> TraktService:
     """A TraktService wired against the mocked HTTP session and cache."""
-    return TraktService(api_key=TRAKT_API_KEY, access_token=TRAKT_ACCESS_TOKEN)
+    return TraktService(api_key=TRAKT_API_KEY)
 
 
 @pytest.fixture

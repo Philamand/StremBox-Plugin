@@ -33,7 +33,6 @@ async def main():
             users = await user_service.get_all_users(filter_without_trakt_slug=True)
             trakt_service = TraktService(
                 api_key=settings.trakt_api_key,
-                access_token=settings.trakt_access_token,
             )
             betaseries_service = BetaSeriesService(api_key=settings.betaseries_api_key)
 
