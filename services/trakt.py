@@ -37,7 +37,7 @@ class TraktService:
         }
 
     async def get_unwatched_movies(self, user_slug: str) -> list[TraktWatchlistMovie]:
-        url = f"{self.base_url}/users/{user_slug}/watchlist/movies/title"
+        url = f"{self.base_url}/users/{user_slug}/watchlist/movies/title/desc"
         params = {"hide": "unreleased"}
 
         session = get_session()
@@ -48,7 +48,7 @@ class TraktService:
             return [TraktWatchlistMovie.model_validate(item) for item in data]
 
     async def get_unwatched_shows(self, user_slug: str) -> list[TraktWatchlistShow]:
-        url = f"{self.base_url}/users/{user_slug}/watchlist/shows/title"
+        url = f"{self.base_url}/users/{user_slug}/watchlist/shows/title/desc"
         params = {"hide": "unreleased"}
 
         session = get_session()
