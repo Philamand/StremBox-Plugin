@@ -68,6 +68,11 @@ async def main():
                         if movie.movie.ids.imdb is None:
                             continue
 
+                        if await stremio_service.has_bauxite_torrent(
+                            hashes, movie.movie.ids.imdb, "movie"
+                        ):
+                            continue
+
                         results = await stremio_service.search_movie(
                             movie.movie.ids.imdb
                         )
@@ -86,6 +91,11 @@ async def main():
 
                     for show in shows:
                         if show.show.ids.imdb is None:
+                            continue
+
+                        if await stremio_service.has_bauxite_torrent(
+                            hashes, show.show.ids.imdb, "series", season=1, episode=1
+                        ):
                             continue
 
                         results = await stremio_service.search_serie(
@@ -113,6 +123,15 @@ async def main():
                         )
 
                         if next_episode:
+                            if await stremio_service.has_bauxite_torrent(
+                                hashes,
+                                show.show.ids.imdb,
+                                "series",
+                                season=next_episode.season,
+                                episode=next_episode.number,
+                            ):
+                                continue
+
                             results = await stremio_service.search_serie(
                                 show.show.ids.imdb,
                                 season=next_episode.season,

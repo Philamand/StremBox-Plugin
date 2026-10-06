@@ -179,7 +179,7 @@ class C411Service:
                         }
                         normalized.append(item)
                     return normalized or None
-            except (TimeoutError, aiohttp.ClientError, ValueError):
+            except TimeoutError, aiohttp.ClientError, ValueError:
                 return None
 
         cached = await cached_call(cache_key, 900, fetch, cache_none=False)
@@ -298,7 +298,7 @@ class Tr4kerService:
                     for result in results:
                         result["link"] = _strip_apikey(result["link"])
                     return results or None
-            except (TimeoutError, aiohttp.ClientError):
+            except TimeoutError, aiohttp.ClientError:
                 return None
 
         cached = await cached_call(cache_key, 900, fetch, cache_none=False)
@@ -586,8 +586,60 @@ class StremioOrchestrationService:
         if not file_path:
             file_path = torrent.get("name", "")
 
-        stream_url = f"{self.librebox_url}/streams/{self.librebox_token}?file_path={file_path}"
+        stream_url = (
+            f"{self.librebox_url}/streams/{self.librebox_token}?file_path={file_path}"
+        )
         return speed_emoji, file_path, stream_url
+
+    async def has_bauxite_torrent(
+        self,
+        hashes: dict,
+        imdb_id: str,
+        type: str,
+        season: int | None = None,
+        episode: int | None = None,
+    ) -> bool:
+        """Return whether a torrent matching *imdb_id* is already in Bauxite.
+
+        Mirrors the matching rules of ``_get_bauxite_only_streams``: a torrent
+        counts when its name matches the media title (French or English) and,
+        for series, the requested season/episode. When the English title cannot
+        be resolved, returns ``False`` so callers fall back to searching.
+
+        Args:
+            hashes: Torrents already in Bauxite, as returned by
+                ``BauxiteService.get_torrent_hashes``.
+            imdb_id: IMDb id of the movie or show.
+            type: ``"movie"`` or ``"series"``.
+            season: Season number, for series.
+            episode: Episode number, for series.
+
+        Returns:
+            True if a library torrent matches the requested media.
+        """
+        if not any(torrent.get("name") for torrent in hashes.values()):
+            return False
+
+        is_movie = type != "series"
+        title_en, year = await get_torrent_name(imdb_id, type)
+        if not title_en:
+            return False
+        title_fr = None
+        if not is_movie and self.betaseries:
+            title_fr = await self.betaseries.get_show_french_title(imdb_id)
+
+        for torrent in hashes.values():
+            name = torrent.get("name")
+            if not name:
+                continue
+            if not check_title_match(
+                name, title_fr, title_en, year=year, is_movie=is_movie
+            ):
+                continue
+            if not is_movie and not check_season_episode(name, season, episode):
+                continue
+            return True
+        return False
 
     async def _get_bauxite_only_streams(
         self,
