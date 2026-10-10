@@ -502,8 +502,6 @@ class StremioOrchestrationService:
             season = None
             episode = None
 
-        imdb_id = id.split(":")[0]
-
         results = sort_dicts_by_seeders_desc(results)
 
         fast_streams: list[StremioStreamData] = []
@@ -553,15 +551,39 @@ class StremioOrchestrationService:
             fast_streams.append(stream)
             slow_streams.clear()
 
-        bauxite_only_streams = await self._get_bauxite_only_streams(
-            hashes, results, imdb_id, type, season, episode
-        )
-
-        streams = bauxite_only_streams + fast_streams + slow_streams
+        streams = fast_streams + slow_streams
 
         response = StremioStreamsResponse(streams=streams)
 
         return response
+
+    async def get_bauxite_streams(self, type: str, id: str) -> StremioStreamsResponse:
+        """Build a ``StremioStreamsResponse`` from Bauxite torrents only.
+
+        Args:
+            type: ``"movie"`` or ``"series"``.
+            id: IMDb id for movies; ``"{imdbid}:{season}:{episode}"`` for series.
+
+        Returns:
+            A ``StremioStreamsResponse`` listing torrents already in Bauxite,
+            without any tracker search.
+        """
+        bauxite_service = BauxiteService(self.librebox_url, self.librebox_token)
+        hashes = await bauxite_service.get_torrent_hashes()
+
+        imdb_id = id.split(":")[0]
+        season = None
+        episode = None
+        if type == "series":
+            parts = id.split(":")
+            imdb_id = parts[0]
+            season = int(parts[1])
+            episode = int(parts[2])
+
+        streams = await self._get_bauxite_only_streams(
+            hashes, [], imdb_id, type, season, episode
+        )
+        return StremioStreamsResponse(streams=streams)
 
     def _bauxite_stream_link(
         self, torrent: dict, season: int | None, episode: int | None
