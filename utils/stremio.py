@@ -197,6 +197,9 @@ def normalize_title(title: str) -> str:
         unicodedata.normalize("NFD", title).encode("ascii", "ignore").decode("utf-8")
     )
 
+    # Strip apostrophes so that "Gabby's" and "Gabbys" normalise identically.
+    title = title.replace("'", "")
+
     title = re.sub(r"[^\w\s]", " ", title)
 
     return " ".join(title.lower().split())
