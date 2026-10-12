@@ -175,7 +175,7 @@ async def test_get_unwatched_movies_returns_parsed_watchlist(
 ) -> None:
     """get_unwatched_movies should parse the Trakt watchlist into TraktWatchlistMovie models."""
     payload = load_fixture("movie_watchlist.json")
-    url = f"{TRAKT_BASE_URL}/users/me/watchlist/movies/title?hide=unreleased"
+    url = f"{TRAKT_BASE_URL}/users/me/watchlist/movies/title/desc?hide=unreleased"
     trakt_api.get(url, payload=payload)
 
     movies = await service.get_unwatched_movies("me")
@@ -202,7 +202,7 @@ async def test_get_unwatched_shows_returns_parsed_watchlist(
 ) -> None:
     """get_unwatched_shows should parse the Trakt watchlist into TraktWatchlistShow models."""
     payload = load_fixture("show_watchlist.json")
-    url = f"{TRAKT_BASE_URL}/users/me/watchlist/shows/title?hide=unreleased"
+    url = f"{TRAKT_BASE_URL}/users/me/watchlist/shows/title/desc?hide=unreleased"
     trakt_api.get(url, payload=payload)
 
     shows = await service.get_unwatched_shows("me")
@@ -376,10 +376,15 @@ async def test_get_show_history_returns_parsed_history(
 # ---------------------------------------------------------------------------
 
 
-async def test_get_next_episode_returns_first_unwatched(
+async def test_get_next_episode_returns_episode_after_last_watched(
     service: TraktService, trakt_api: aioresponses_ctx
 ) -> None:
-    """get_next_episode should return the first episode (by season/number) not in history."""
+    """get_next_episode should return the episode after the most recently watched one.
+
+    The history fixture contains 100 entries (S1E5–S1E52 and S2E1–S2E52).
+    The most recently watched episode is S2E52, so the next episode should be
+    S3E1 — not S1E1, which is absent from the paginated history page.
+    """
     trakt_api.get(
         f"{TRAKT_BASE_URL}/shows/136999/seasons?extended=episodes",
         payload=load_fixture("bluey_seasons.json"),
@@ -392,10 +397,118 @@ async def test_get_next_episode_returns_first_unwatched(
     next_episode = await service.get_next_episode("me", "136999")
 
     assert isinstance(next_episode, TraktEpisode)
+    assert next_episode.season == 3
+    assert next_episode.number == 1
+    assert next_episode.title == "Perfect"
+    assert next_episode.ids.trakt == 5446414
+
+
+async def test_get_next_episode_returns_first_episode_when_no_history(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_next_episode should return the first episode of the first non-special season when history is empty."""
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/shows/136999/seasons?extended=episodes",
+        payload=load_fixture("bluey_seasons.json"),
+    )
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/users/me/history/shows/136999",
+        payload=[],
+    )
+
+    next_episode = await service.get_next_episode("me", "136999")
+
+    assert isinstance(next_episode, TraktEpisode)
     assert next_episode.season == 1
     assert next_episode.number == 1
     assert next_episode.title == "The Magic Xylophone"
     assert next_episode.ids.trakt == 3178595
+
+
+async def test_get_next_episode_returns_none_when_last_episode_watched(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_next_episode should return None when the last episode of the show has been watched."""
+    seasons_payload = load_fixture("bluey_seasons.json")
+    # Build a history entry for the very last episode (S4E1)
+    last_episode = None
+    for season in seasons_payload:
+        if season["number"] == 4:
+            last_episode = season["episodes"][0]
+            break
+    assert last_episode is not None
+
+    history_payload = [
+        {
+            "id": 1,
+            "watched_at": "2026-09-13T12:00:00.000Z",
+            "action": "watch",
+            "type": "episode",
+            "episode": last_episode,
+            "show": {
+                "title": "Bluey",
+                "ids": {"trakt": 136999, "imdb": "tt7678620"},
+            },
+        }
+    ]
+
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/shows/136999/seasons?extended=episodes",
+        payload=seasons_payload,
+    )
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/users/me/history/shows/136999",
+        payload=history_payload,
+    )
+
+    next_episode = await service.get_next_episode("me", "136999")
+
+    assert next_episode is None
+
+
+async def test_get_next_episode_rolls_over_to_next_season(
+    service: TraktService, trakt_api: aioresponses_ctx
+) -> None:
+    """get_next_episode should return the first episode of the next season when the last episode of a season is watched."""
+    seasons_payload = load_fixture("bluey_seasons.json")
+    # Build a history entry for S1E52 (last episode of season 1)
+    s1e52 = None
+    for season in seasons_payload:
+        if season["number"] == 1:
+            s1e52 = season["episodes"][-1]
+            break
+    assert s1e52 is not None
+    assert s1e52["number"] == 52
+
+    history_payload = [
+        {
+            "id": 1,
+            "watched_at": "2026-09-13T12:00:00.000Z",
+            "action": "watch",
+            "type": "episode",
+            "episode": s1e52,
+            "show": {
+                "title": "Bluey",
+                "ids": {"trakt": 136999, "imdb": "tt7678620"},
+            },
+        }
+    ]
+
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/shows/136999/seasons?extended=episodes",
+        payload=seasons_payload,
+    )
+    trakt_api.get(
+        f"{TRAKT_BASE_URL}/users/me/history/shows/136999",
+        payload=history_payload,
+    )
+
+    next_episode = await service.get_next_episode("me", "136999")
+
+    assert isinstance(next_episode, TraktEpisode)
+    assert next_episode.season == 2
+    assert next_episode.number == 1
+    assert next_episode.title == "Dance Mode"
 
 
 # ---------------------------------------------------------------------------
