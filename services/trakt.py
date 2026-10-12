@@ -177,16 +177,33 @@ class TraktService:
         seasons = await self.get_all_seasons(show_id)
         history = await self.get_show_history(user_slug, show_id)
 
-        watched_ids = {
-            entry.episode.ids.trakt
-            for entry in history
-            if entry.episode.ids.trakt is not None
-        }
+        all_episodes: list[TraktEpisode] = [
+            episode
+            for season in sorted(seasons, key=lambda s: s.number)
+            if season.number != 0
+            for episode in sorted(season.episodes, key=lambda e: e.number)
+        ]
 
-        for season in sorted(seasons, key=lambda s: s.number):
-            if season.number == 0:
-                continue
-            for episode in sorted(season.episodes, key=lambda e: e.number):
-                if episode.ids.trakt not in watched_ids:
-                    return episode
+        if not all_episodes:
+            return None
+
+        if not history:
+            return all_episodes[0]
+
+        last_watched = max(
+            history,
+            key=lambda entry: (entry.episode.season, entry.episode.number),
+        )
+        last_season = last_watched.episode.season
+        last_number = last_watched.episode.number
+
+        for i, episode in enumerate(all_episodes):
+            if episode.season == last_season and episode.number == last_number:
+                if i + 1 < len(all_episodes):
+                    return all_episodes[i + 1]
+                return None
+
+        for episode in all_episodes:
+            if (episode.season, episode.number) > (last_season, last_number):
+                return episode
         return None
