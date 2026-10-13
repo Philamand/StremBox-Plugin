@@ -6,6 +6,7 @@ import aiohttp
 
 from http_client import get_session
 from schemas.bauxite import DownloadRequest
+from schemas.torrents import TorrentTitleInfo
 
 
 def extract_download_params(url) -> DownloadRequest:
@@ -543,7 +544,7 @@ _CROSS_PATTERN = re.compile(r"(?<!\d)(\d{1,2})x(\d{1,3})(?!\d)", re.IGNORECASE)
 _EXTENSION_PATTERN = re.compile(r"\.[a-z0-9]{2,4}$", re.IGNORECASE)
 
 
-def extract_title_info(name: str) -> dict:
+def extract_title_info(name: str) -> TorrentTitleInfo:
     """Extract the title, year, season and episode from a torrent name.
 
     The title is the leading part of the name, up to the first token that
@@ -556,36 +557,16 @@ def extract_title_info(name: str) -> dict:
             ``"Movie.Name.2023.FRENCH.1080p.WEB.x264-GROUP"``.
 
     Returns:
-        dict: With keys:
-
-        - ``title`` (str | None): extracted title, separators replaced by
-          spaces; ``None`` when nothing could be extracted.
-        - ``year`` (int | None): release year.
-        - ``season`` (int | None): season number.
-        - ``episode_start`` (int | None): episode number, or first episode
-          of a range.
-        - ``episode_end`` (int | None): last episode when the name encodes a
-          range, ``None`` otherwise.
-        - ``type`` (str): ``"series"`` when season/episode markers were
-          found, ``"movie"`` otherwise.
-        - ``is_season_pack`` (bool): ``True`` when a season was found but
-          no episode.
+        TorrentTitleInfo: With fields for the extracted title, year,
+        season, episode range, media type and whether the torrent is a
+        season pack.
 
     Example:
         >>> extract_title_info("Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG")["title"]
         'Kaamelott'
     """
-    empty = {
-        "title": None,
-        "year": None,
-        "season": None,
-        "episode_start": None,
-        "episode_end": None,
-        "type": None,
-        "is_season_pack": False,
-    }
     if not name:
-        return empty
+        return TorrentTitleInfo()
 
     basename = re.split(r"[/\\]", name)[-1].strip()
 
@@ -639,12 +620,12 @@ def extract_title_info(name: str) -> dict:
     media_type = "series" if season is not None or episode_start is not None else "movie"
     is_season_pack = media_type == "series" and episode_start is None
 
-    return {
-        "title": title,
-        "year": year,
-        "season": season,
-        "episode_start": episode_start,
-        "episode_end": episode_end,
-        "type": media_type,
-        "is_season_pack": is_season_pack,
-    }
+    return TorrentTitleInfo(
+        title=title,
+        year=year,
+        season=season,
+        episode_start=episode_start,
+        episode_end=episode_end,
+        type=media_type,
+        is_season_pack=is_season_pack,
+    )
