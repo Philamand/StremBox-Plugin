@@ -497,3 +497,154 @@ def get_torrent_tracker_and_id(link: str) -> tuple:
         return tracker, torrent_id
     except (ValueError, AttributeError):
         return None, None
+
+
+# Tokens that mark the end of the title part of a scene release name. Anything
+# from the first matching token onward is a technical/language/release tag.
+_TAG_TOKEN_PATTERN = re.compile(
+    r"""^(?:
+        (?P<season_marker>
+            S\d{1,2}(?:E\d{1,3})?
+            | SAISON[ ._-]?\d{1,2}
+            | SEASON[ ._-]?\d{1,2}
+            | E\d{1,3}
+            | \d{1,2}x\d{1,2}
+        )
+        | (?P<resolution>2160P | 1080P | 720P | 480P | 4K | UHD)
+        | (?P<source>DVD(?:RIP)? | BLU-?RAY | BRRIP | BDRIP | BDLIGHT | WEB(?:-?DL | DL | RIP)? | HDTV | CAM | TS | PDTV | SD)
+        | (?P<codec>X26[45] | H26[45] | HEVC | AVC | AV1 | XVID | DIVX)
+        | (?P<audio>AC3 | EAC3 | DDP(?:\.\d|\d)? | DTS(?:-HD)? | TRUEHD | ATMOS | AAC(?:\.\d|\d)? | FLAC | MP3)
+        | (?P<language>MULTI(?:[FSHI])? | VOST(?:FR)? | VFF | VFQ | VF2 | VFI | VFA | TRUEFRENCH | FRENCH | VOF | VF | SUBFRENCH | ENGLISH | ENG | EN | DUAL)
+        | (?P<misc>HDR10(?:PLUS)? | HDR | DV | DOLBY[ ._-]?VISION | 10BIT | 8BIT | 60FPS | PROPER | REPACK | REMUX | INTERNAL | LIMITED | EXTENDED | UNRATED | REMASTERED | COMPLETE | NOTAG | HYBRID)
+    )$""",
+    re.VERBOSE | re.IGNORECASE,
+)
+
+_YEAR_PATTERN = re.compile(r"^(19\d{2}|20\d{2})$")
+
+# SEASON MARKER: S01, S01E02, Saison 3, E04, 1x02. Groups: season, episode,
+# optional end episode of a range (S01E02-E04).
+_SEASON_EPISODE_PATTERN = re.compile(
+    r"(?<!\d)(S(?:AISON|EASON)?[ ._-]?(\d{1,2}))"
+    r"(?:[ ._-]?E(\d{1,3}))?"
+    r"(?:[ ._-]*(?:E|-|~)[ ._-]*(\d{1,3}))?"
+    r"(?!\d)",
+    re.IGNORECASE,
+)
+
+_EPISODE_ONLY_PATTERN = re.compile(
+    r"(?<![A-Za-z0-9])(?:E|EP)[ ._-]?(\d{1,3})(?!\d)", re.IGNORECASE
+)
+
+_SEASON_WORD_PATTERN = re.compile(r"^(?:SAISON|SEASON)$", re.IGNORECASE)
+
+_CROSS_PATTERN = re.compile(r"(?<!\d)(\d{1,2})x(\d{1,3})(?!\d)", re.IGNORECASE)
+
+_EXTENSION_PATTERN = re.compile(r"\.[a-z0-9]{2,4}$", re.IGNORECASE)
+
+
+def extract_title_info(name: str) -> dict:
+    """Extract the title, year, season and episode from a torrent name.
+
+    The title is the leading part of the name, up to the first token that
+    looks like a technical tag (resolution, source, codec, audio, language,
+    release group) or a season/episode/year marker. Unknown tokens are kept
+    as part of the title so unusual scene names do not truncate it.
+
+    Args:
+        name (str): The raw torrent name, e.g.
+            ``"Movie.Name.2023.FRENCH.1080p.WEB.x264-GROUP"``.
+
+    Returns:
+        dict: With keys:
+
+        - ``title`` (str | None): extracted title, separators replaced by
+          spaces; ``None`` when nothing could be extracted.
+        - ``year`` (int | None): release year.
+        - ``season`` (int | None): season number.
+        - ``episode_start`` (int | None): episode number, or first episode
+          of a range.
+        - ``episode_end`` (int | None): last episode when the name encodes a
+          range, ``None`` otherwise.
+        - ``type`` (str): ``"series"`` when season/episode markers were
+          found, ``"movie"`` otherwise.
+        - ``is_season_pack`` (bool): ``True`` when a season was found but
+          no episode.
+
+    Example:
+        >>> extract_title_info("Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG")["title"]
+        'Kaamelott'
+    """
+    empty = {
+        "title": None,
+        "year": None,
+        "season": None,
+        "episode_start": None,
+        "episode_end": None,
+        "type": None,
+        "is_season_pack": False,
+    }
+    if not name:
+        return empty
+
+    basename = re.split(r"[/\\]", name)[-1].strip()
+
+    # An extension (.mkv, .avi, ...) never contributes to the title.
+    root = _EXTENSION_PATTERN.sub("", basename)
+    tokens = re.split(r"[._ ]", root)
+
+    title_tokens = []
+    year = None
+    season = None
+    episode_start = None
+    episode_end = None
+
+    for token in tokens:
+        if _YEAR_PATTERN.match(token):
+            year = int(token)
+            break
+
+        if (
+            _SEASON_EPISODE_PATTERN.search(token)
+            or _SEASON_WORD_PATTERN.match(token)
+            or _EPISODE_ONLY_PATTERN.search(token)
+            or _CROSS_PATTERN.search(token)
+        ):
+            break
+
+        if _TAG_TOKEN_PATTERN.match(token):
+            break
+
+        title_tokens.append(token)
+
+    title = " ".join(t for t in title_tokens if t) or None
+
+    season_match = _SEASON_EPISODE_PATTERN.search(root)
+    if season_match:
+        season = int(season_match.group(2))
+        if season_match.group(3):
+            episode_start = int(season_match.group(3))
+            if season_match.group(4):
+                episode_end = int(season_match.group(4))
+    else:
+        cross_match = _CROSS_PATTERN.search(root)
+        if cross_match:
+            season = int(cross_match.group(1))
+            episode_start = int(cross_match.group(2))
+        else:
+            ep_match = _EPISODE_ONLY_PATTERN.search(root)
+            if ep_match:
+                episode_start = int(ep_match.group(1))
+
+    media_type = "series" if season is not None or episode_start is not None else "movie"
+    is_season_pack = media_type == "series" and episode_start is None
+
+    return {
+        "title": title,
+        "year": year,
+        "season": season,
+        "episode_start": episode_start,
+        "episode_end": episode_end,
+        "type": media_type,
+        "is_season_pack": is_season_pack,
+    }
