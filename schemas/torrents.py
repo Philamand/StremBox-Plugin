@@ -11,8 +11,5 @@ class TorrentTitleInfo(BaseModel):
 
     title: str | None = None
     year: int | None = None
-    season: int | None = None
-    episode_start: int | None = None
-    episode_end: int | None = None
     type: str | None = None
     is_season_pack: bool = False

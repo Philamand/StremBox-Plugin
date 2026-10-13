@@ -524,33 +524,36 @@ _TAG_TOKEN_PATTERN = re.compile(
 
 _YEAR_PATTERN = re.compile(r"^(19\d{2}|20\d{2})$")
 
-# SEASON MARKER: S01, S01E02, Saison 3, E04, 1x02. Groups: season, episode,
-# optional end episode of a range (S01E02-E04).
+# SEASON/EPISODE MARKER: S01, S01E02, Saison 3, E04, 1x02. Used only for
+# detection (is this a series?); episode-level matching for a known target
+# is handled by ``check_season_episode``.
 _SEASON_EPISODE_PATTERN = re.compile(
-    r"(?<!\d)(S(?:AISON|EASON)?[ ._-]?(\d{1,2}))"
-    r"(?:[ ._-]?E(\d{1,3}))?"
-    r"(?:[ ._-]*(?:E|-|~)[ ._-]*(\d{1,3}))?"
-    r"(?!\d)",
+    r"(?<!\d)(?:S(?:AISON|EASON)[ ._-]?\d{1,2}"
+    r"|S\d{1,2}(?:[ ._-]?E\d{1,3})?"
+    r"|(?:E|EP)\d{1,3}"
+    r"|\d{1,2}x\d{1,3})",
     re.IGNORECASE,
 )
-
-_EPISODE_ONLY_PATTERN = re.compile(
-    r"(?<![A-Za-z0-9])(?:E|EP)[ ._-]?(\d{1,3})(?!\d)", re.IGNORECASE
-)
-
-_SEASON_WORD_PATTERN = re.compile(r"^(?:SAISON|SEASON)$", re.IGNORECASE)
 
 # INTEGRALE = the full series (French scene tag); no specific season can be
 # inferred, but the torrent is a series.
 _SERIES_SET_PATTERN = re.compile(r"^(?:INTEGRAL[E]?|INTEGRALE)$", re.IGNORECASE)
 
-_CROSS_PATTERN = re.compile(r"(?<!\d)(\d{1,2})x(\d{1,3})(?!\d)", re.IGNORECASE)
+# Bare "Saison"/"Season" word (the number is a separate token).
+_SEASON_WORD_PATTERN = re.compile(r"^(?:SAISON|SEASON)$", re.IGNORECASE)
+
+# An episode marker (S01E02, E04, 1x02) means the torrent targets specific
+# episodes rather than a whole season/show. ``S01E02`` counts because the
+# ``E`` there is preceded by a digit, not a letter.
+_EPISODE_MARKER_PATTERN = re.compile(
+    r"(?<![A-Za-z])(?:(?:E|EP)\d{1,3}|\d{1,2}x\d{1,3})", re.IGNORECASE
+)
 
 _EXTENSION_PATTERN = re.compile(r"\.[a-z0-9]{2,4}$", re.IGNORECASE)
 
 
 def extract_title_info(name: str) -> TorrentTitleInfo:
-    """Extract the title, year, season and episode from a torrent name.
+    """Extract the title, year and media type from a torrent name.
 
     The title is the leading part of the name, up to the first token that
     looks like a technical tag (resolution, source, codec, audio, language,
@@ -562,12 +565,12 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
             ``"Movie.Name.2023.FRENCH.1080p.WEB.x264-GROUP"``.
 
     Returns:
-        TorrentTitleInfo: With fields for the extracted title, year,
-        season, episode range, media type and whether the torrent is a
-        season pack.
+        TorrentTitleInfo: With fields for the extracted title, year, media
+        type (``"movie"`` or ``"series"``) and whether the torrent is a
+        season/full-series pack.
 
     Example:
-        >>> extract_title_info("Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG")["title"]
+        >>> extract_title_info("Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG").title
         'Kaamelott'
     """
     if not name:
@@ -581,9 +584,6 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
 
     title_tokens = []
     year = None
-    season = None
-    episode_start = None
-    episode_end = None
     is_series = False
 
     for token in tokens:
@@ -594,8 +594,6 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
         if (
             _SEASON_EPISODE_PATTERN.search(token)
             or _SEASON_WORD_PATTERN.match(token)
-            or _EPISODE_ONLY_PATTERN.search(token)
-            or _CROSS_PATTERN.search(token)
             or _SERIES_SET_PATTERN.match(token)
         ):
             is_series = True
@@ -608,36 +606,11 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
 
     title = " ".join(t for t in title_tokens if t) or None
 
-    season_match = _SEASON_EPISODE_PATTERN.search(root)
-    if season_match:
-        season = int(season_match.group(2))
-        if season_match.group(3):
-            episode_start = int(season_match.group(3))
-            if season_match.group(4):
-                episode_end = int(season_match.group(4))
-    else:
-        cross_match = _CROSS_PATTERN.search(root)
-        if cross_match:
-            season = int(cross_match.group(1))
-            episode_start = int(cross_match.group(2))
-        else:
-            ep_match = _EPISODE_ONLY_PATTERN.search(root)
-            if ep_match:
-                episode_start = int(ep_match.group(1))
-
-    media_type = (
-        "series"
-        if is_series or season is not None or episode_start is not None
-        else "movie"
-    )
-    is_season_pack = media_type == "series" and episode_start is None
+    is_pack = not _EPISODE_MARKER_PATTERN.search(root)
 
     return TorrentTitleInfo(
         title=title,
         year=year,
-        season=season,
-        episode_start=episode_start,
-        episode_end=episode_end,
-        type=media_type,
-        is_season_pack=is_season_pack,
+        type="series" if is_series else "movie",
+        is_season_pack=is_series and is_pack,
     )

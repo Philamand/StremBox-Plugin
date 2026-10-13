@@ -62,14 +62,12 @@ def test_check_title_match_series_apostrophe_in_title():
 
 
 def test_extract_title_info_series_season_pack():
-    """A season pack yields the title and season with no episode."""
+    """A season pack yields the title and is flagged as a pack."""
     result = extract_title_info(
         "Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"
     )
     assert result.title == "Kaamelott"
     assert result.year is None
-    assert result.season == 5
-    assert result.episode_start is None
     assert result.type == "series"
     assert result.is_season_pack is True
 
@@ -82,41 +80,29 @@ def test_extract_title_info_movie_with_year():
     )
     assert result.title == "28 Ans Plus Tard Le Temple Des Morts"
     assert result.year == 2026
-    assert result.season is None
     assert result.type == "movie"
     assert result.is_season_pack is False
 
 
 def test_extract_title_info_single_episode():
-    """SxxEyy yields season and episode numbers."""
+    """SxxEyy is recognised as a series targeting specific episodes."""
     result = extract_title_info("Show.Name.S01E02.FRENCH.1080p.WEB.x264-GROUP")
     assert result.title == "Show Name"
-    assert result.season == 1
-    assert result.episode_start == 2
-    assert result.episode_end is None
     assert result.type == "series"
     assert result.is_season_pack is False
 
 
-def test_extract_title_info_episode_range():
-    """SxxEyy-Ezz yields an episode range."""
-    result = extract_title_info("Show.Name.S01E02-E04.720p.WEB-DL.x264")
-    assert result.title == "Show Name"
-    assert result.season == 1
-    assert result.episode_start == 2
-    assert result.episode_end == 4
-
-
 def test_extract_title_info_french_season_word():
-    """Saison N and cross notation (1x02) are recognised."""
+    """Saison N and cross notation (1x02) are recognised as series."""
     result = extract_title_info("Kaamelott.Saison.3.VOSTFR.1080p.WEB.x264")
     assert result.title == "Kaamelott"
-    assert result.season == 3
+    assert result.type == "series"
+    assert result.is_season_pack is True
 
     result = extract_title_info("Old.Show.1x02.FRENCH.DVDRip.DivX")
     assert result.title == "Old Show"
-    assert result.season == 1
-    assert result.episode_start == 2
+    assert result.type == "series"
+    assert result.is_season_pack is False
 
 
 def test_extract_title_info_stops_at_first_tag():
@@ -154,7 +140,5 @@ def test_extract_title_info_integrale_series_set():
         "Malcolm.INTEGRALE.MULTi.1080p.WEBLight.AAC.2.0.H265-SahKelPlaisir"
     )
     assert result.title == "Malcolm"
-    assert result.season is None
-    assert result.episode_start is None
     assert result.type == "series"
     assert result.is_season_pack is True
