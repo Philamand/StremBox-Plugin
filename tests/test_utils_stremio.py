@@ -146,3 +146,15 @@ def test_extract_title_info_returns_schema():
     assert isinstance(result, TorrentTitleInfo)
     assert result.title == "Movie Name"
     assert result.year == 2020
+
+
+def test_extract_title_info_integrale_series_set():
+    """INTEGRALE marks a full-series pack: not part of the title, type series."""
+    result = extract_title_info(
+        "Malcolm.INTEGRALE.MULTi.1080p.WEBLight.AAC.2.0.H265-SahKelPlaisir"
+    )
+    assert result.title == "Malcolm"
+    assert result.season is None
+    assert result.episode_start is None
+    assert result.type == "series"
+    assert result.is_season_pack is True

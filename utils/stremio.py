@@ -517,6 +517,7 @@ _TAG_TOKEN_PATTERN = re.compile(
         | (?P<audio>AC3 | EAC3 | DDP(?:\.\d|\d)? | DTS(?:-HD)? | TRUEHD | ATMOS | AAC(?:\.\d|\d)? | FLAC | MP3)
         | (?P<language>MULTI(?:[FSHI])? | VOST(?:FR)? | VFF | VFQ | VF2 | VFI | VFA | TRUEFRENCH | FRENCH | VOF | VF | SUBFRENCH | ENGLISH | ENG | EN | DUAL)
         | (?P<misc>HDR10(?:PLUS)? | HDR | DV | DOLBY[ ._-]?VISION | 10BIT | 8BIT | 60FPS | PROPER | REPACK | REMUX | INTERNAL | LIMITED | EXTENDED | UNRATED | REMASTERED | COMPLETE | NOTAG | HYBRID)
+        | (?P<series_set>INTEGRAL[E]? | INTEGRALE | SAISON[ ._-]?\d{1,2}\s*(?:A|TO)\s*SAISON[ ._-]?\d{1,2} | S\d{1,2}[ ._-]*(?:A|TO)[ ._-]*S\d{1,2})
     )$""",
     re.VERBOSE | re.IGNORECASE,
 )
@@ -538,6 +539,10 @@ _EPISODE_ONLY_PATTERN = re.compile(
 )
 
 _SEASON_WORD_PATTERN = re.compile(r"^(?:SAISON|SEASON)$", re.IGNORECASE)
+
+# INTEGRALE = the full series (French scene tag); no specific season can be
+# inferred, but the torrent is a series.
+_SERIES_SET_PATTERN = re.compile(r"^(?:INTEGRAL[E]?|INTEGRALE)$", re.IGNORECASE)
 
 _CROSS_PATTERN = re.compile(r"(?<!\d)(\d{1,2})x(\d{1,3})(?!\d)", re.IGNORECASE)
 
@@ -579,6 +584,7 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
     season = None
     episode_start = None
     episode_end = None
+    is_series = False
 
     for token in tokens:
         if _YEAR_PATTERN.match(token):
@@ -590,7 +596,9 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
             or _SEASON_WORD_PATTERN.match(token)
             or _EPISODE_ONLY_PATTERN.search(token)
             or _CROSS_PATTERN.search(token)
+            or _SERIES_SET_PATTERN.match(token)
         ):
+            is_series = True
             break
 
         if _TAG_TOKEN_PATTERN.match(token):
@@ -617,7 +625,11 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
             if ep_match:
                 episode_start = int(ep_match.group(1))
 
-    media_type = "series" if season is not None or episode_start is not None else "movie"
+    media_type = (
+        "series"
+        if is_series or season is not None or episode_start is not None
+        else "movie"
+    )
     is_season_pack = media_type == "series" and episode_start is None
 
     return TorrentTitleInfo(
