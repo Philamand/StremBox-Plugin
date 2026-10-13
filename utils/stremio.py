@@ -551,9 +551,20 @@ _EPISODE_MARKER_PATTERN = re.compile(
 
 _EXTENSION_PATTERN = re.compile(r"\.[a-z0-9]{2,4}$", re.IGNORECASE)
 
+# Extensions of files that are not movies or shows. A torrent whose name
+# ends with one of these is skipped entirely by the parser.
+_NON_VIDEO_EXTENSION_PATTERN = re.compile(
+    r"\.(?:pdf|epub|mobi|azw3?|cb[rz]|cbr|zip|rar|7z|tar|gz|xz|iso|exe|msi|apk|dmg|txt|nfo|sfv|mp3|flac|wav|ogg|opus|m3u8?|jpg|jpeg|png|gif|webp|svg|psd|doc|docx|xls|xlsx|ppt|pptx|cbz)$",
+    re.IGNORECASE,
+)
+
 
 def extract_title_info(name: str) -> TorrentTitleInfo:
     """Extract the title, year and media type from a torrent name.
+
+    Returns an empty ``TorrentTitleInfo`` for non-video files (a torrent
+    whose name ends with a non-video extension such as ``.pdf`` or ``.zip``);
+    callers should skip those.
 
     The title is the leading part of the name, up to the first token that
     looks like a technical tag (resolution, source, codec, audio, language,
@@ -577,6 +588,11 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
         return TorrentTitleInfo()
 
     basename = re.split(r"[/\\]", name)[-1].strip()
+
+    # Non-video files (pdf, zip, music, images, ...) are not movies or
+    # shows; return an empty result so callers can skip them.
+    if _NON_VIDEO_EXTENSION_PATTERN.search(basename):
+        return TorrentTitleInfo()
 
     # An extension (.mkv, .avi, ...) never contributes to the title.
     root = _EXTENSION_PATTERN.sub("", basename)

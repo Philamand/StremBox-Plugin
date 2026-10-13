@@ -142,3 +142,18 @@ def test_extract_title_info_integrale_series_set():
     assert result.title == "Malcolm"
     assert result.type == "series"
     assert result.is_season_pack is True
+
+
+def test_extract_title_info_non_video_file():
+    """A non-video file (pdf, zip, music, ...) yields an empty result."""
+    result = extract_title_info("Investir - 10 Octobre 2026.pdf")
+    assert result.title is None
+    assert result.year is None
+    assert result.type is None
+    assert result.is_season_pack is False
+
+    result = extract_title_info("Discographie.Complete.2020.FLAC.zip")
+    assert result.title is None
+
+    result = extract_title_info("Vacances.2024.jpg")
+    assert result.title is None
