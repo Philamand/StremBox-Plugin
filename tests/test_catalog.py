@@ -17,9 +17,11 @@ from services.trakt import TraktService
 
 BAUXITE_BASE_URL = "http://librebox"
 TRAKT_BASE_URL = "https://api.trakt.tv"
+CINEMETA_BASE_URL = "https://v3-cinemeta.strem.io/meta"
 
 TRAKT_MOVIE_SEARCH_URL = re.compile(rf"{re.escape(TRAKT_BASE_URL)}/search/movie\?.*")
 TRAKT_SHOW_SEARCH_URL = re.compile(rf"{re.escape(TRAKT_BASE_URL)}/search/show\?.*")
+CINEMETA_BASE_URL = "https://v3-cinemeta.strem.io/meta"
 
 
 class _StubRedis:
@@ -99,6 +101,10 @@ async def test_get_catalog_movies(service):
                 _trakt_search_result("tt111111", "Movie One", 2020),
             ],
         )
+        m.get(
+            f"{CINEMETA_BASE_URL}/movie/tt111111.json",
+            payload={"meta": {"name": "Movie One", "poster": "https://images/poster.jpg"}},
+        )
 
         response = await service.get_catalog("movie")
 
@@ -106,6 +112,7 @@ async def test_get_catalog_movies(service):
     assert response.metas[0].id == "tt111111"
     assert response.metas[0].type == "movie"
     assert response.metas[0].name == "Movie One"
+    assert response.metas[0].poster == "https://images/poster.jpg"
 
 
 @pytest.mark.asyncio
@@ -130,6 +137,10 @@ async def test_get_catalog_series_and_search(service):
                     "show": {"ids": {"imdb": "tt222222"}, "title": "Kaamelott"},
                 },
             ],
+        )
+        m.get(
+            f"{CINEMETA_BASE_URL}/series/tt222222.json",
+            payload={"meta": {"name": "Kaamelott", "poster": "https://images/kaamelott.jpg"}},
         )
 
         response = await service.get_catalog("series")
@@ -184,11 +195,16 @@ async def test_get_meta_found(service):
             repeat=True,
             payload=[_trakt_search_result("tt111111", "Movie One", 2020)],
         )
+        m.get(
+            f"{CINEMETA_BASE_URL}/movie/tt111111.json",
+            payload={"meta": {"name": "Movie One", "poster": "https://images/poster.jpg"}},
+        )
         await service.get_catalog("movie")
 
     meta = await service.get_meta("movie", "tt111111")
     assert meta.meta.id == "tt111111"
     assert meta.meta.name == "Movie One"
+    assert meta.meta.poster == "https://images/poster.jpg"
 
 
 @pytest.mark.asyncio

@@ -7,6 +7,7 @@ class StremioMetaPreview(BaseModel):
     id: str
     type: str
     name: str
+    poster: str | None = None
 
 
 class StremioCatalogResponse(BaseModel):
@@ -21,6 +22,8 @@ class StremioMeta(BaseModel):
     id: str
     type: str
     name: str
+    poster: str | None = None
+    background: str | None = None
 
 
 class StremioMetaResponse(BaseModel):

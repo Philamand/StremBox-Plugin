@@ -8,7 +8,7 @@ from schemas.catalog import (
 )
 from services.bauxite import BauxiteService
 from services.trakt import TraktService
-from utils.stremio import extract_title_info, torrent_is_video
+from utils.stremio import extract_title_info, torrent_is_video, get_meta_poster
 
 CATALOG_TTL = 3600
 
@@ -68,7 +68,16 @@ class CatalogService:
                     continue
                 seen_imdb_ids.add(imdb_id)
 
-                metas.append({"id": imdb_id, "type": media_type, "name": info.title})
+                poster = await get_meta_poster(imdb_id, media_type)
+
+                metas.append(
+                    {
+                        "id": imdb_id,
+                        "type": media_type,
+                        "name": info.title,
+                        "poster": poster,
+                    }
+                )
 
             return metas
 
@@ -93,7 +102,12 @@ class CatalogService:
         for meta in catalog.metas:
             if meta.id == imdb_id:
                 return StremioMetaResponse(
-                    meta=StremioMeta(id=meta.id, type=meta.type, name=meta.name)
+                    meta=StremioMeta(
+                        id=meta.id,
+                        type=meta.type,
+                        name=meta.name,
+                        poster=meta.poster,
+                    )
                 )
         raise ValueError(f"Item not found in catalog: {imdb_id}")
 
