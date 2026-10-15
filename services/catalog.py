@@ -63,18 +63,13 @@ class CatalogService:
                 if query and query not in info.title.lower():
                     continue
 
-                imdb_id, poster = await self._resolve(info)
+                imdb_id = await self._resolve(info)
                 if not imdb_id or imdb_id in seen_imdb_ids:
                     continue
                 seen_imdb_ids.add(imdb_id)
 
                 metas.append(
-                    {
-                        "id": imdb_id,
-                        "type": media_type,
-                        "name": info.title,
-                        "poster": poster,
-                    }
+                    {"id": imdb_id, "type": media_type, "name": info.title}
                 )
 
             return metas
@@ -100,44 +95,26 @@ class CatalogService:
         for meta in catalog.metas:
             if meta.id == imdb_id:
                 return StremioMetaResponse(
-                    meta=StremioMeta(
-                        id=meta.id,
-                        type=meta.type,
-                        name=meta.name,
-                        poster=meta.poster,
-                    )
+                    meta=StremioMeta(id=meta.id, type=meta.type, name=meta.name)
                 )
         raise ValueError(f"Item not found in catalog: {imdb_id}")
 
-    async def _resolve(self, info) -> tuple[str | None, str | None]:
+    async def _resolve(self, info) -> str | None:
         """Resolve a parsed torrent title to an IMDb id via Trakt search.
 
-        The search is requested with ``extended=images`` so the poster URL
-        comes with the result and no second metadata call is needed.
-
         Results (including misses) are cached per title/type/year for a day.
-
-        Returns:
-            A ``(imdb_id, poster)`` tuple; either element is ``None`` when
-            unresolvable or without an image.
         """
         media_type = "show" if info.type == "series" else "movie"
         cache_key = f"trakt:resolve:{media_type}:{info.title}:{info.year}"
 
-        async def fetch() -> list | None:
+        async def fetch() -> str | None:
             results = await self.trakt_service.search_media(
                 info.title, media_type, year=info.year, limit=5
             )
             for result in results:
                 media = getattr(result, media_type)
                 if media and media.ids and media.ids.imdb:
-                    poster = None
-                    if media.images and media.images.poster:
-                        poster = media.images.poster[0]
-                    return [media.ids.imdb, poster]
+                    return media.ids.imdb
             return None
 
-        cached = await cached_call(cache_key, 86400, fetch, cache_none=True)
-        if cached is None:
-            return None, None
-        return cached[0], cached[1]
+        return await cached_call(cache_key, 86400, fetch, cache_none=True)

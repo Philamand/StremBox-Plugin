@@ -74,7 +74,6 @@ class TraktShow(BaseModel):
     title: str
     year: int | None = None
     aired_episodes: int | None = None
-    images: TraktImages | None = None
 
 
 class TraktFavoriteShow(BaseModel):
@@ -140,7 +139,6 @@ class TraktMovie(BaseModel):
     ids: TraktMovieIds
     title: str
     year: int | None = None
-    images: TraktImages | None = None
 
 
 class TraktFavoriteMovie(BaseModel):

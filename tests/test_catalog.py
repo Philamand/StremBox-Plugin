@@ -70,13 +70,12 @@ def _bauxite_hashes(names: list[str]) -> dict:
     }
 
 
-def _trakt_search_result(
-    imdb_id: str, title: str, year: int | None, poster: str | None = None
-) -> dict:
-    movie = {"ids": {"imdb": imdb_id}, "title": title, "year": year}
-    if poster:
-        movie["images"] = {"poster": [poster]}
-    return {"type": "movie", "score": 10.0, "movie": movie}
+def _trakt_search_result(imdb_id: str, title: str, year: int | None) -> dict:
+    return {
+        "type": "movie",
+        "score": 10.0,
+        "movie": {"ids": {"imdb": imdb_id}, "title": title, "year": year},
+    }
 
 
 @pytest.mark.asyncio
@@ -97,9 +96,7 @@ async def test_get_catalog_movies(service):
             TRAKT_MOVIE_SEARCH_URL,
             repeat=True,
             payload=[
-                _trakt_search_result(
-                    "tt111111", "Movie One", 2020, poster="https://images/poster.jpg"
-                ),
+                _trakt_search_result("tt111111", "Movie One", 2020),
             ],
         )
         response = await service.get_catalog("movie")
@@ -108,7 +105,6 @@ async def test_get_catalog_movies(service):
     assert response.metas[0].id == "tt111111"
     assert response.metas[0].type == "movie"
     assert response.metas[0].name == "Movie One"
-    assert response.metas[0].poster == "https://images/poster.jpg"
 
 
 @pytest.mark.asyncio
@@ -130,11 +126,7 @@ async def test_get_catalog_series_and_search(service):
                 {
                     "type": "show",
                     "score": 10.0,
-                    "show": {
-                        "ids": {"imdb": "tt222222"},
-                        "title": "Kaamelott",
-                        "images": {"poster": ["https://images/kaamelott.jpg"]},
-                    },
+                    "show": {"ids": {"imdb": "tt222222"}, "title": "Kaamelott"},
                 },
             ],
         )
@@ -144,7 +136,6 @@ async def test_get_catalog_series_and_search(service):
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt222222"
     assert response.metas[0].type == "series"
-    assert response.metas[0].poster == "https://images/kaamelott.jpg"
 
     # The search-filtered catalog has its own cache entry; Bauxite and
     # Trakt are re-fetched only when the cache key differs.
@@ -190,18 +181,13 @@ async def test_get_meta_found(service):
         m.get(
             TRAKT_MOVIE_SEARCH_URL,
             repeat=True,
-            payload=[
-                _trakt_search_result(
-                    "tt111111", "Movie One", 2020, poster="https://images/poster.jpg"
-                )
-            ],
+            payload=[_trakt_search_result("tt111111", "Movie One", 2020)],
         )
         await service.get_catalog("movie")
 
     meta = await service.get_meta("movie", "tt111111")
     assert meta.meta.id == "tt111111"
     assert meta.meta.name == "Movie One"
-    assert meta.meta.poster == "https://images/poster.jpg"
 
 
 @pytest.mark.asyncio
