@@ -1,4 +1,4 @@
-"""Tests for ``CatalogService.get_catalog``/``get_meta``.
+"""Tests for ``CatalogService.get_catalog``.
 
 Bauxite and Trakt HTTP calls are replayed with ``aioresponses``; the Redis
 cache is replaced by an in-memory stub so no real Redis is involved.
@@ -175,36 +175,3 @@ async def test_get_catalog_unresolvable_torrent_skipped(service):
         response = await service.get_catalog("movie")
 
     assert response.metas == []
-
-
-@pytest.mark.asyncio
-async def test_get_meta_found(service):
-    """``get_meta`` returns the meta of an item present in the catalog."""
-    with aioresponses_ctx() as m:
-        # The catalog is rebuilt on every call (no catalog cache), so
-        # Bauxite is hit twice: once for get_catalog, once inside get_meta.
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            repeat=True,
-            payload=_bauxite_hashes(["Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP"]),
-        )
-        m.get(
-            TRAKT_MOVIE_SEARCH_URL,
-            repeat=True,
-            payload=[_trakt_search_result("tt111111", "Movie One", 2020)],
-        )
-        meta = await service.get_meta("movie", "tt111111")
-
-    assert meta.meta.id == "tt111111"
-    assert meta.meta.name == "Movie One"
-
-
-@pytest.mark.asyncio
-async def test_get_meta_not_found(service):
-    """``get_meta`` raises for an item that is not in the catalog."""
-    with aioresponses_ctx() as m:
-        m.get(f"{BAUXITE_BASE_URL}/api/hashes/", payload={})
-        m.get(TRAKT_MOVIE_SEARCH_URL, payload=[], repeat=True)
-
-        with pytest.raises(ValueError):
-            await service.get_meta("movie", "tt999999")

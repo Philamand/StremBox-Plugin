@@ -1,11 +1,6 @@
 from cache import cached_call
 from constants import MANIFEST
-from schemas.catalog import (
-    StremioCatalogResponse,
-    StremioMeta,
-    StremioMetaPreview,
-    StremioMetaResponse,
-)
+from schemas.catalog import StremioCatalogResponse, StremioMetaPreview
 from services.bauxite import BauxiteService
 from services.trakt import TraktService
 from utils.stremio import extract_title_info, torrent_is_video
@@ -68,23 +63,6 @@ class CatalogService:
 
         previews = [StremioMetaPreview.model_validate(meta) for meta in metas]
         return StremioCatalogResponse(metas=previews)
-
-    async def get_meta(self, media_type: str, imdb_id: str) -> StremioMetaResponse:
-        """Return the meta of a single resolved item.
-
-        The item must currently be present in the user's catalog; Stremio
-        otherwise hydrates posters and synopsis from Cinemeta.
-        """
-        if media_type not in MANIFEST["types"]:
-            raise ValueError(f"Unsupported catalog type: {media_type}")
-
-        catalog = await self.get_catalog(media_type)
-        for meta in catalog.metas:
-            if meta.id == imdb_id:
-                return StremioMetaResponse(
-                    meta=StremioMeta(id=meta.id, type=meta.type, name=meta.name)
-                )
-        raise ValueError(f"Item not found in catalog: {imdb_id}")
 
     async def _resolve(self, info) -> str | None:
         """Resolve a parsed torrent title to an IMDb id via Trakt search.

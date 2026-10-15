@@ -8,7 +8,7 @@ from dependencies import (
     get_betaseries_service,
     get_trakt_service,
 )
-from schemas.catalog import StremioCatalogResponse, StremioMetaResponse
+from schemas.catalog import StremioCatalogResponse
 from schemas.stremio import StremioStreamsResponse
 from schemas.users import UserData
 from services.betaseries import BetaSeriesService
@@ -97,30 +97,3 @@ async def get_catalog(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Trakt search unavailable",
         )
-
-
-@router.get("/{user_key}/meta/{type}/{id}.json")
-async def get_meta(
-    request: Request,
-    trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
-    type: str,
-    id: str,
-) -> StremioMetaResponse:
-    """Return the meta of a movie/series from the user's catalog.
-
-    Stremio hydrates posters and synopsis from Cinemeta; only the id, type
-    and name are provided here.
-    """
-    if type not in MANIFEST["types"]:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-
-    user: UserData = request.state.user
-
-    catalog_service = CatalogService(
-        user.librebox_url, user.librebox_token, trakt_service=trakt_service
-    )
-
-    try:
-        return await catalog_service.get_meta(type, id)
-    except ValueError:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)

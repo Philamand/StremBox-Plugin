@@ -24,10 +24,5 @@ MANIFEST = {
                 {"name": "search", "isRequired": False},
             ],
         },
-        {
-            "name": "meta",
-            "types": ["movie", "series"],
-            "idPrefixes": ["tt"],
-        },
     ],
 }
