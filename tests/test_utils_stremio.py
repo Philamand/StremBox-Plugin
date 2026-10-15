@@ -170,3 +170,22 @@ def test_extract_title_info_video_game_repack():
 
     result = extract_title_info("Cyberpunk.2077.Phantom.Liberty.MULTi13-GOG")
     assert result.title is None
+
+
+def test_torrent_is_video():
+    """The content check filters non-video folders that look like titles."""
+    from utils.stremio import torrent_is_video
+
+    # RPG book collections: names look like titles, files are all PDFs.
+    assert torrent_is_video("D&D 5", ["D&D 5/Players Handbook.pdf"]) is False
+    assert torrent_is_video("pathfinder2e_collection_fr", ["core-rulebook.pdf"]) is False
+
+    # No file list: fall back to trusting the name.
+    assert torrent_is_video("D&D 5", []) is True
+
+    # Regular movies/shows with video files.
+    assert torrent_is_video("Some.Movie.2023.FRENCH.1080p.WEB.x264", ["Some.Movie.2023.mkv"]) is True
+    assert torrent_is_video("Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG", []) is True
+
+    # A video file inside a folder that also contains other files is video.
+    assert torrent_is_video("Movie.Pack", ["Movie.Pack/movie.mkv", "Movie.Pack/cover.jpg"]) is True

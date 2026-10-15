@@ -8,7 +8,7 @@ from schemas.catalog import (
 )
 from services.bauxite import BauxiteService
 from services.trakt import TraktService
-from utils.stremio import extract_title_info
+from utils.stremio import extract_title_info, torrent_is_video
 
 CATALOG_TTL = 3600
 
@@ -52,8 +52,12 @@ class CatalogService:
             seen_imdb_ids: set[str] = set()
 
             for info_hash, torrent in hashes.items():
+                if not torrent_is_video(
+                    torrent["name"], torrent.get("files") or []
+                ):
+                    continue
                 info = extract_title_info(torrent["name"])
-                if not info.title or info.type != media_type:
+                if info.type != media_type:
                     continue
 
                 if query and query not in info.title.lower():

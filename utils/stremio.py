@@ -646,3 +646,36 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
         type="series" if is_series else "movie",
         is_season_pack=is_series and is_pack,
     )
+
+
+_VIDEO_FILE_EXTENSION_PATTERN = re.compile(
+    r"\.(?:mkv|mp4|m4v|avi|mov|wmv|flv|webm|mpg|mpeg|ts|m2ts|mts|vob|ogm|rmvb|divx)$",
+    re.IGNORECASE,
+)
+
+
+def torrent_is_video(name: str, files: list[str]) -> bool:
+    """Check whether a torrent contains a movie or show.
+
+    Combines the name-based heuristics of ``extract_title_info`` with a
+    content check on the torrent's file list: a torrent whose files are
+    known and contain no video file (e.g. a folder of PDFs, music or
+    software) is not video content even when its name looks like a title.
+
+    Args:
+        name (str): The torrent/folder name.
+        files (list[str]): The file paths inside the torrent; may be empty
+            when Bauxite does not expose them, in which case only the name
+            is trusted.
+
+    Returns:
+        bool: ``True`` when the torrent should be treated as a movie/show.
+    """
+    info = extract_title_info(name)
+    if not info.title or info.type is None:
+        return False
+
+    if files:
+        return any(_VIDEO_FILE_EXTENSION_PATTERN.search(f) for f in files)
+
+    return True
