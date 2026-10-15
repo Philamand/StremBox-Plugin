@@ -1,3 +1,5 @@
+CATALOG_ID = "bauxite"
+
 MANIFEST = {
     "id": "StremBox-Plugin/Philamand/org.codeberg",
     "version": "1.0.0",

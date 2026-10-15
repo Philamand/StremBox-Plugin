@@ -8,6 +8,7 @@ from schemas.trakt import (
     TraktFavoriteShowEntry,
     TraktHistoryEntry,
     TraktMovieHistoryEntry,
+    TraktSearchResult,
     TraktSeason,
     TraktWatchedShow,
     TraktWatchlistMovie,
@@ -33,6 +34,45 @@ class TraktService:
             "trakt-api-version": "2",
             "trakt-api-key": self.api_key,
         }
+
+    async def search_media(
+        self,
+        query: str,
+        media_type: str,
+        *,
+        year: int | None = None,
+        limit: int = 5,
+    ) -> list[TraktSearchResult]:
+        """Search Trakt for a movie or show by title.
+
+        Args:
+            query: Title to search for (``fields=title`` search).
+            media_type: ``"movie"`` or ``"show"``.
+            year: Optional release year used to prefer an exact match among
+                the results (Trakt text search cannot filter on it).
+            limit: Maximum number of results to request.
+
+        Returns:
+            Search results ordered by Trakt score; when *year* is given,
+                results matching that year are ranked first.
+        """
+        url = f"{self.base_url}/search/{media_type}"
+        params = {"query": query, "fields": "title", "limit": limit}
+
+        session = get_session()
+        async with session.get(
+            url, params=params, headers=self._get_headers()
+        ) as response:
+            data = await response.json()
+            results = [TraktSearchResult.model_validate(item) for item in data]
+
+        if year is not None:
+            media_key = media_type if media_type != "show" else "show"
+            results.sort(
+                key=lambda r: (getattr(r, media_key).year == year), reverse=True
+            )
+
+        return results
 
     async def get_unwatched_movies(self, user_slug: str) -> list[TraktWatchlistMovie]:
         url = f"{self.base_url}/users/{user_slug}/watchlist/movies/title/desc"

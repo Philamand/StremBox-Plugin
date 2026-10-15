@@ -214,3 +214,12 @@ class TraktWatchedShow(BaseModel):
     last_updated_at: str
     reset_at: str | None = None
     show: TraktShow
+
+
+class TraktSearchResult(BaseModel):
+    """Entry from the Trakt text search endpoint."""
+
+    type: str
+    score: float | None = None
+    movie: TraktMovie | None = None
+    show: TraktShow | None = None

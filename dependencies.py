@@ -5,6 +5,7 @@ from fastapi import Depends, HTTPException, Path, Request
 
 from db.database import get_db_conn
 from services.betaseries import BetaSeriesService
+from services.trakt import TraktService
 from services.users import UserService
 from settings import Settings, get_settings
 
@@ -14,6 +15,13 @@ def get_betaseries_service(
 ) -> BetaSeriesService:
     """Return a BetaSeriesService built from the application settings."""
     return BetaSeriesService(api_key=settings.betaseries_api_key)
+
+
+def get_trakt_service(
+    settings: Annotated[Settings, Depends(get_settings)],
+) -> TraktService:
+    """Return a TraktService built from the application settings."""
+    return TraktService(api_key=settings.trakt_api_key)
 
 
 async def get_user_service(
