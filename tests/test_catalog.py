@@ -1,7 +1,7 @@
 """Tests for ``CatalogService.get_catalog``.
 
-Bauxite and Trakt HTTP calls are replayed with ``aioresponses``; the Redis
-cache is replaced by an in-memory stub so no real Redis is involved.
+Bauxite and BetaSeries HTTP calls are replayed with ``aioresponses``; the
+Redis cache is replaced by an in-memory stub so no real Redis is involved.
 """
 
 import re
@@ -12,14 +12,24 @@ import pytest_asyncio
 from aioresponses import aioresponses as aioresponses_ctx
 
 from cache import cached_call
+from services.betaseries import BetaSeriesService
 from services.catalog import CatalogService
-from services.trakt import TraktService
 
 BAUXITE_BASE_URL = "http://librebox"
-TRAKT_BASE_URL = "https://api.trakt.tv"
+BETASERIES_BASE_URL = "https://api.betaseries.com"
 
-TRAKT_MOVIE_SEARCH_URL = re.compile(rf"{re.escape(TRAKT_BASE_URL)}/search/movie\?.*")
-TRAKT_SHOW_SEARCH_URL = re.compile(rf"{re.escape(TRAKT_BASE_URL)}/search/show\?.*")
+BETASERIES_MOVIE_SEARCH_URL = re.compile(
+    rf"{re.escape(BETASERIES_BASE_URL)}/search/movies\?.*"
+)
+BETASERIES_SHOW_SEARCH_URL = re.compile(
+    rf"{re.escape(BETASERIES_BASE_URL)}/search/shows\?.*"
+)
+BETASERIES_MOVIE_URL = re.compile(
+    rf"{re.escape(BETASERIES_BASE_URL)}/movies/movie\?.*"
+)
+BETASERIES_SHOW_URL = re.compile(
+    rf"{re.escape(BETASERIES_BASE_URL)}/shows/display\?.*"
+)
 
 
 class _StubRedis:
@@ -59,7 +69,7 @@ async def service(stub_redis) -> CatalogService:
     return CatalogService(
         BAUXITE_BASE_URL,
         "token",
-        trakt_service=TraktService(api_key="trakt-key"),
+        betaseries_service=BetaSeriesService(api_key="betaseries-key"),
     )
 
 
@@ -70,65 +80,110 @@ def _bauxite_hashes(names: list[str]) -> dict:
     }
 
 
-def _trakt_search_result(imdb_id: str, title: str, year: int | None) -> dict:
+def _betaseries_movie(
+    bs_id: int, title: str, year: int | None, alias_title: str | None
+) -> dict:
     return {
-        "type": "movie",
-        "score": 10.0,
-        "movie": {"ids": {"imdb": imdb_id}, "title": title, "year": year},
+        "id": bs_id,
+        "slug": "slug",
+        "release_date": year,
+        "poster": None,
+        "alias_title": alias_title,
+        "title": title,
+    }
+
+
+def _betaseries_show(bs_id: int, title: str, year: int | None) -> dict:
+    return {
+        "id": bs_id,
+        "slug": "slug",
+        "release_date": year,
+        "poster": None,
+        "alias_title": None,
+        "title": title,
     }
 
 
 @pytest.mark.asyncio
-async def test_get_catalog_movies(service):
-    """Torrents are resolved to IMDb ids, deduplicated, non-video skipped."""
+async def test_get_catalog_movies_french_title(service):
+    """Movies resolve through BetaSeries; alias_title is the display name."""
     with aioresponses_ctx() as m:
         m.get(
             f"{BAUXITE_BASE_URL}/api/hashes/",
             payload=_bauxite_hashes(
                 [
-                    "Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP",
-                    "Movie.One.2020.VFF.720p.WEB-DL.XviD-OTHER",
-                    "Investir - 10 Octobre 2026.pdf",
+                    "28.Ans.Plus.Tard.Le.Temple.Des.Morts.2026.Multi.VFF.2160p."
+                    "Webrip.DV.HDR10Plus.EAC3.5.1.x265-Neostark.mkv",
                 ]
             ),
         )
         m.get(
-            TRAKT_MOVIE_SEARCH_URL,
-            repeat=True,
-            payload=[
-                _trakt_search_result("tt111111", "Movie One", 2020),
-            ],
+            BETASERIES_MOVIE_SEARCH_URL,
+            payload={
+                "movies": [
+                    _betaseries_movie(
+                        140245, "28 Years Later: The Bone Temple", 2026,
+                        "28 Ans plus tard : Le Temple des morts",
+                    )
+                ],
+                "total": 1,
+            },
         )
+        m.get(
+            BETASERIES_MOVIE_URL,
+            payload={"movie": {"id": 140245, "imdb_id": "tt111111"}},
+        )
+
         response = await service.get_catalog("movie")
 
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt111111"
     assert response.metas[0].type == "movie"
+    # French title preferred for movies.
+    assert response.metas[0].name == "28 Ans plus tard : Le Temple des morts"
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_movies_falls_back_to_original_title(service):
+    """Without an alias_title the original title is used."""
+    with aioresponses_ctx() as m:
+        m.get(
+            f"{BAUXITE_BASE_URL}/api/hashes/",
+            payload=_bauxite_hashes(
+                ["Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP"]
+            ),
+        )
+        m.get(
+            BETASERIES_MOVIE_SEARCH_URL,
+            payload={"movies": [_betaseries_movie(132475, "Movie One", 2020, None)]},
+        )
+        m.get(
+            BETASERIES_MOVIE_URL,
+            payload={"movie": {"id": 132475, "imdb_id": "tt333333"}},
+        )
+
+        response = await service.get_catalog("movie")
+
     assert response.metas[0].name == "Movie One"
 
 
 @pytest.mark.asyncio
 async def test_get_catalog_series_and_search(service):
-    """Series torrents resolve against the show search endpoint."""
+    """Series resolve through the BetaSeries show search."""
     with aioresponses_ctx() as m:
         m.get(
             f"{BAUXITE_BASE_URL}/api/hashes/",
             payload=_bauxite_hashes(
-                [
-                    "Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG",
-                ]
+                ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
             ),
         )
         m.get(
-            TRAKT_SHOW_SEARCH_URL,
-            repeat=True,
-            payload=[
-                {
-                    "type": "show",
-                    "score": 10.0,
-                    "show": {"ids": {"imdb": "tt222222"}, "title": "Kaamelott"},
-                },
-            ],
+            BETASERIES_SHOW_SEARCH_URL,
+            payload={"shows": [_betaseries_show(536, "Kaamelott", None)]},
+        )
+        m.get(
+            BETASERIES_SHOW_URL,
+            payload={"show": {"id": 536, "imdb_id": "tt222222"}},
         )
 
         response = await service.get_catalog("series")
@@ -136,10 +191,10 @@ async def test_get_catalog_series_and_search(service):
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt222222"
     assert response.metas[0].type == "series"
+    assert response.metas[0].name == "Kaamelott"
 
     # The catalog is always rebuilt from a fresh Bauxite listing, but the
-    # title resolutions stay cached, so the Trakt search endpoint is not
-    # hit again.
+    # title resolutions stay cached, so BetaSeries search is not hit again.
     with aioresponses_ctx() as m:
         m.get(
             f"{BAUXITE_BASE_URL}/api/hashes/",
@@ -150,7 +205,7 @@ async def test_get_catalog_series_and_search(service):
         cached = await service.get_catalog("series", search="kaamelott")
     assert cached.metas[0].id == "tt222222"
 
-    # A non-matching search yields an empty catalog without a Trakt call.
+    # A non-matching search yields an empty catalog without a BetaSeries call.
     with aioresponses_ctx() as m:
         m.get(
             f"{BAUXITE_BASE_URL}/api/hashes/",
@@ -170,8 +225,32 @@ async def test_get_catalog_unresolvable_torrent_skipped(service):
             f"{BAUXITE_BASE_URL}/api/hashes/",
             payload=_bauxite_hashes(["Unknown.thing.2019.FRENCH.1080p.WEB.x264-G"]),
         )
-        m.get(TRAKT_MOVIE_SEARCH_URL, payload=[], repeat=True)
+        m.get(BETASERIES_MOVIE_SEARCH_URL, payload={"movies": [], "total": 0})
 
         response = await service.get_catalog("movie")
 
     assert response.metas == []
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_search_filters_on_torrent_title(service):
+    """The search filter applies to the torrent title, case-insensitive."""
+    with aioresponses_ctx() as m:
+        m.get(
+            f"{BAUXITE_BASE_URL}/api/hashes/",
+            payload=_bauxite_hashes(
+                ["Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP"]
+            ),
+        )
+        m.get(
+            BETASERIES_MOVIE_SEARCH_URL,
+            payload={"movies": [_betaseries_movie(132475, "Movie One", 2020, None)]},
+        )
+        m.get(
+            BETASERIES_MOVIE_URL,
+            payload={"movie": {"id": 132475, "imdb_id": "tt333333"}},
+        )
+        matched = await service.get_catalog("movie", search="movie one")
+
+    assert len(matched.metas) == 1
+    assert matched.metas[0].id == "tt333333"

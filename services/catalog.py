@@ -2,7 +2,7 @@ from cache import cached_call
 from constants import MANIFEST
 from schemas.catalog import StremioCatalogResponse, StremioMetaPreview
 from services.bauxite import BauxiteService
-from services.trakt import TraktService
+from services.betaseries import BetaSeriesService
 from utils.stremio import extract_title_info, torrent_is_video
 
 
@@ -11,15 +11,22 @@ class CatalogService:
     """Build the Stremio catalog of the media available on a user's seedbox.
 
     Torrent names are parsed with ``extract_title_info`` and each unique
-    title is resolved to an IMDb id with the Trakt text search. The catalog
-    is always built from a fresh Bauxite listing so it stays up to date;
-    only the individual title resolutions are cached in Redis (for a day)
-    because the title to IMDb id mapping rarely changes.
+    title is resolved to an IMDb id via the BetaSeries search API (two
+    calls per title: search, then details for the IMDb id). The catalog is
+    always built from a fresh Bauxite listing so it stays up to date; the
+    individual title resolutions are cached in Redis for a day because the
+    mapping rarely changes. Movie titles are displayed in French using the
+    BetaSeries ``alias_title`` when available.
     """
 
-    def __init__(self, librebox_url: str, librebox_token: str, trakt_service: TraktService):
+    def __init__(
+        self,
+        librebox_url: str,
+        librebox_token: str,
+        betaseries_service: BetaSeriesService,
+    ):
         self.bauxite_service = BauxiteService(librebox_url, librebox_token)
-        self.trakt_service = trakt_service
+        self.betaseries_service = betaseries_service
 
     async def get_catalog(self, media_type: str, search: str | None = None) -> StremioCatalogResponse:
         """Return the list of metas of *media_type* present on the seedbox.
@@ -54,32 +61,50 @@ class CatalogService:
             if query and query not in info.title.lower():
                 continue
 
-            imdb_id = await self._resolve(info)
+            imdb_id, name = await self._resolve(info)
             if not imdb_id or imdb_id in seen_imdb_ids:
                 continue
             seen_imdb_ids.add(imdb_id)
 
-            metas.append({"id": imdb_id, "type": media_type, "name": info.title})
+            metas.append({"id": imdb_id, "type": media_type, "name": name})
 
         previews = [StremioMetaPreview.model_validate(meta) for meta in metas]
         return StremioCatalogResponse(metas=previews)
 
-    async def _resolve(self, info) -> str | None:
-        """Resolve a parsed torrent title to an IMDb id via Trakt search.
+    async def _resolve(self, info) -> tuple[str | None, str | None]:
+        """Resolve a parsed torrent title via the BetaSeries search API.
+
+        The first search result with an IMDb id wins. For movies the French
+        title (``alias_title``) is preferred over the original one.
 
         Results (including misses) are cached per title/type/year for a day.
-        """
-        media_type = "show" if info.type == "series" else "movie"
-        cache_key = f"trakt:resolve:{media_type}:{info.title}:{info.year}"
 
-        async def fetch() -> str | None:
-            results = await self.trakt_service.search_media(
-                info.title, media_type, year=info.year, limit=5
-            )
-            for result in results:
-                media = getattr(result, media_type)
-                if media and media.ids and media.ids.imdb:
-                    return media.ids.imdb
+        Returns:
+            A ``(imdb_id, display_name)`` tuple; the name is the French
+            title for movies when BetaSeries provides one.
+        """
+        cache_key = f"betaseries:resolve:{info.type}:{info.title}:{info.year}"
+
+        async def fetch() -> list | None:
+            if info.type == "series":
+                results = await self.betaseries_service.search_shows(
+                    info.title, year=info.year, limit=5
+                )
+                for show in results:
+                    imdb_id = await self.betaseries_service.get_show_imdb_id(show.id)
+                    if imdb_id:
+                        return [imdb_id, show.title]
+            else:
+                results = await self.betaseries_service.search_movies(
+                    info.title, year=info.year, limit=5
+                )
+                for movie in results:
+                    imdb_id = await self.betaseries_service.get_movie_imdb_id(movie.id)
+                    if imdb_id:
+                        return [imdb_id, movie.alias_title or movie.title]
             return None
 
-        return await cached_call(cache_key, 86400, fetch, cache_none=True)
+        cached = await cached_call(cache_key, 86400, fetch, cache_none=True)
+        if cached is None:
+            return None, None
+        return cached[0], cached[1]

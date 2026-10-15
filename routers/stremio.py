@@ -3,18 +3,14 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
 from constants import CATALOG_ID, MANIFEST
-from dependencies import (
-    check_user_key,
-    get_betaseries_service,
-    get_trakt_service,
-)
+from dependencies import check_user_key, get_betaseries_service
 from schemas.catalog import StremioCatalogResponse
 from schemas.stremio import StremioStreamsResponse
 from schemas.users import UserData
 from services.betaseries import BetaSeriesService
 from services.catalog import CatalogService
 from services.stremio import StremioOrchestrationService
-from services.trakt import TraktError, TraktService
+from services.betaseries import BetaSeriesService
 
 router = APIRouter(dependencies=[Depends(check_user_key)])
 
@@ -62,7 +58,9 @@ async def get_torrent_streams(
 @router.get("/{user_key}/catalog/{type}/{catalog_id}.json")
 async def get_catalog(
     request: Request,
-    trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
+    betaseries_service: Annotated[
+        BetaSeriesService, Depends(get_betaseries_service)
+    ],
     type: str,
     catalog_id: str,
     search: str | None = None,
@@ -76,10 +74,10 @@ async def get_catalog(
     Query parameters:
     - search: Optional search query sent by Stremio.
 
-    Torrent names are parsed and resolved to IMDb ids via Trakt; the
-    catalog is rebuilt from a fresh Bauxite listing on every request so
-    it always reflects the seedbox. Unresolvable or non-video torrents
-    are skipped.
+    Torrent names are parsed and resolved to IMDb ids via the BetaSeries
+    search API; the catalog is rebuilt from a fresh Bauxite listing on
+    every request so it always reflects the seedbox. Unresolvable or
+    non-video torrents are skipped.
     """
     if type not in MANIFEST["types"] or catalog_id != CATALOG_ID:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
@@ -87,13 +85,9 @@ async def get_catalog(
     user: UserData = request.state.user
 
     catalog_service = CatalogService(
-        user.librebox_url, user.librebox_token, trakt_service=trakt_service
+        user.librebox_url,
+        user.librebox_token,
+        betaseries_service=betaseries_service,
     )
 
-    try:
-        return await catalog_service.get_catalog(type, search=search)
-    except TraktError:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Trakt search unavailable",
-        )
+    return await catalog_service.get_catalog(type, search=search)
