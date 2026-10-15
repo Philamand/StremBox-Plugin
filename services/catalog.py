@@ -61,17 +61,21 @@ class CatalogService:
             if query and query not in info.title.lower():
                 continue
 
-            imdb_id, name = await self._resolve(info)
+            imdb_id, name, poster = await self._resolve(info)
             if not imdb_id or imdb_id in seen_imdb_ids:
                 continue
             seen_imdb_ids.add(imdb_id)
 
-            metas.append({"id": imdb_id, "type": media_type, "name": name})
+            metas.append(
+                {"id": imdb_id, "type": media_type, "name": name, "poster": poster}
+            )
 
         previews = [StremioMetaPreview.model_validate(meta) for meta in metas]
         return StremioCatalogResponse(metas=previews)
 
-    async def _resolve(self, info) -> tuple[str | None, str | None]:
+    async def _resolve(
+        self, info
+    ) -> tuple[str | None, str | None, str | None]:
         """Resolve a parsed torrent title via the BetaSeries search API.
 
         The first search result with an IMDb id wins. For movies the French
@@ -80,8 +84,9 @@ class CatalogService:
         Results (including misses) are cached per title/type/year for a day.
 
         Returns:
-            A ``(imdb_id, display_name)`` tuple; the name is the French
-            title for movies when BetaSeries provides one.
+            A ``(imdb_id, display_name, poster)`` tuple; the name is the
+            French title for movies when BetaSeries provides one and the
+            poster comes with the BetaSeries search result.
         """
         cache_key = f"betaseries:resolve:{info.type}:{info.title}:{info.year}"
 
@@ -93,7 +98,7 @@ class CatalogService:
                 for show in results:
                     imdb_id = await self.betaseries_service.get_show_imdb_id(show.id)
                     if imdb_id:
-                        return [imdb_id, show.title]
+                        return [imdb_id, show.title, show.poster]
             else:
                 results = await self.betaseries_service.search_movies(
                     info.title, year=info.year, limit=5
@@ -101,10 +106,14 @@ class CatalogService:
                 for movie in results:
                     imdb_id = await self.betaseries_service.get_movie_imdb_id(movie.id)
                     if imdb_id:
-                        return [imdb_id, movie.alias_title or movie.title]
+                        return [
+                            imdb_id,
+                            movie.alias_title or movie.title,
+                            movie.poster,
+                        ]
             return None
 
         cached = await cached_call(cache_key, 86400, fetch, cache_none=True)
         if cached is None:
-            return None, None
-        return cached[0], cached[1]
+            return None, None, None
+        return cached[0], cached[1], cached[2]

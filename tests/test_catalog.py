@@ -81,24 +81,30 @@ def _bauxite_hashes(names: list[str]) -> dict:
 
 
 def _betaseries_movie(
-    bs_id: int, title: str, year: int | None, alias_title: str | None
+    bs_id: int,
+    title: str,
+    year: int | None,
+    alias_title: str | None,
+    poster: str | None = None,
 ) -> dict:
     return {
         "id": bs_id,
         "slug": "slug",
         "release_date": year,
-        "poster": None,
+        "poster": poster,
         "alias_title": alias_title,
         "title": title,
     }
 
 
-def _betaseries_show(bs_id: int, title: str, year: int | None) -> dict:
+def _betaseries_show(
+    bs_id: int, title: str, year: int | None, poster: str | None = None
+) -> dict:
     return {
         "id": bs_id,
         "slug": "slug",
         "release_date": year,
-        "poster": None,
+        "poster": poster,
         "alias_title": None,
         "title": title,
     }
@@ -122,8 +128,11 @@ async def test_get_catalog_movies_french_title(service):
             payload={
                 "movies": [
                     _betaseries_movie(
-                        140245, "28 Years Later: The Bone Temple", 2026,
+                        140245,
+                        "28 Years Later: The Bone Temple",
+                        2026,
                         "28 Ans plus tard : Le Temple des morts",
+                        poster="https://pictures.betaseries.com/films/affiches/original/140245.jpg",
                     )
                 ],
                 "total": 1,
@@ -141,6 +150,10 @@ async def test_get_catalog_movies_french_title(service):
     assert response.metas[0].type == "movie"
     # French title preferred for movies.
     assert response.metas[0].name == "28 Ans plus tard : Le Temple des morts"
+    assert (
+        response.metas[0].poster
+        == "https://pictures.betaseries.com/films/affiches/original/140245.jpg"
+    )
 
 
 @pytest.mark.asyncio
@@ -179,7 +192,16 @@ async def test_get_catalog_series_and_search(service):
         )
         m.get(
             BETASERIES_SHOW_SEARCH_URL,
-            payload={"shows": [_betaseries_show(536, "Kaamelott", None)]},
+            payload={
+                "shows": [
+                    _betaseries_show(
+                        536,
+                        "Kaamelott",
+                        None,
+                        poster="https://pictures.betaseries.com/fonds/poster/d32448919bd236d3d58ab5d4bd2c1459.jpg",
+                    )
+                ]
+            },
         )
         m.get(
             BETASERIES_SHOW_URL,
@@ -192,6 +214,10 @@ async def test_get_catalog_series_and_search(service):
     assert response.metas[0].id == "tt222222"
     assert response.metas[0].type == "series"
     assert response.metas[0].name == "Kaamelott"
+    assert (
+        response.metas[0].poster
+        == "https://pictures.betaseries.com/fonds/poster/d32448919bd236d3d58ab5d4bd2c1459.jpg"
+    )
 
     # The catalog is always rebuilt from a fresh Bauxite listing, but the
     # title resolutions stay cached, so BetaSeries search is not hit again.
