@@ -76,8 +76,9 @@ async def get_catalog(
     Query parameters:
     - search: Optional search query sent by Stremio.
 
-    Torrent names are parsed and resolved to IMDb ids via Trakt; results
-    are cached in Redis for one hour. Unresolvable or non-video torrents
+    Torrent names are parsed and resolved to IMDb ids via Trakt; the
+    catalog is rebuilt from a fresh Bauxite listing on every request so
+    it always reflects the seedbox. Unresolvable or non-video torrents
     are skipped.
     """
     if type not in MANIFEST["types"] or catalog_id != CATALOG_ID:

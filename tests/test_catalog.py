@@ -137,8 +137,9 @@ async def test_get_catalog_series_and_search(service):
     assert response.metas[0].id == "tt222222"
     assert response.metas[0].type == "series"
 
-    # The search-filtered catalog has its own cache entry; Bauxite and
-    # Trakt are re-fetched only when the cache key differs.
+    # The catalog is always rebuilt from a fresh Bauxite listing, but the
+    # title resolutions stay cached, so the Trakt search endpoint is not
+    # hit again.
     with aioresponses_ctx() as m:
         m.get(
             f"{BAUXITE_BASE_URL}/api/hashes/",
@@ -149,10 +150,16 @@ async def test_get_catalog_series_and_search(service):
         cached = await service.get_catalog("series", search="kaamelott")
     assert cached.metas[0].id == "tt222222"
 
-    # Same key: served entirely from cache, no HTTP mock needed.
+    # A non-matching search yields an empty catalog without a Trakt call.
     with aioresponses_ctx() as m:
-        again = await service.get_catalog("series", search="kaamelott")
-    assert again.metas[0].id == "tt222222"
+        m.get(
+            f"{BAUXITE_BASE_URL}/api/hashes/",
+            payload=_bauxite_hashes(
+                ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
+            ),
+        )
+        empty = await service.get_catalog("series", search="inception")
+    assert empty.metas == []
 
 
 @pytest.mark.asyncio
@@ -174,8 +181,11 @@ async def test_get_catalog_unresolvable_torrent_skipped(service):
 async def test_get_meta_found(service):
     """``get_meta`` returns the meta of an item present in the catalog."""
     with aioresponses_ctx() as m:
+        # The catalog is rebuilt on every call (no catalog cache), so
+        # Bauxite is hit twice: once for get_catalog, once inside get_meta.
         m.get(
             f"{BAUXITE_BASE_URL}/api/hashes/",
+            repeat=True,
             payload=_bauxite_hashes(["Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP"]),
         )
         m.get(
@@ -183,9 +193,8 @@ async def test_get_meta_found(service):
             repeat=True,
             payload=[_trakt_search_result("tt111111", "Movie One", 2020)],
         )
-        await service.get_catalog("movie")
+        meta = await service.get_meta("movie", "tt111111")
 
-    meta = await service.get_meta("movie", "tt111111")
     assert meta.meta.id == "tt111111"
     assert meta.meta.name == "Movie One"
 
