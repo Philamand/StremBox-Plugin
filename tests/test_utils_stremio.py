@@ -157,3 +157,16 @@ def test_extract_title_info_non_video_file():
 
     result = extract_title_info("Vacances.2024.jpg")
     assert result.title is None
+
+
+def test_extract_title_info_video_game_repack():
+    """Video game repacks (FitGirl, crack groups) are not movies or shows."""
+    result = extract_title_info("Divinity - Original Sin 2 [FitGirl Repack]")
+    assert result.title is None
+    assert result.type is None
+
+    result = extract_title_info("Elden.Ring.v1.02.CrackOnly-CODEX")
+    assert result.title is None
+
+    result = extract_title_info("Cyberpunk.2077.Phantom.Liberty.MULTi13-GOG")
+    assert result.title is None

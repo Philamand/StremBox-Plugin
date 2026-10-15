@@ -558,6 +558,18 @@ _NON_VIDEO_EXTENSION_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+# Markers of video game releases (repack groups, crack groups, game-specific
+# release conventions). These never appear in movie/series torrent names, so
+# a name containing one is not a movie or a show.
+_GAME_RELEASE_MARKER_PATTERN = re.compile(
+    r"(?:\b(?:DARKZER0|CODEX|CPY|SKIDROW|RELOADED|PLAZA|HOODLUM|TiNYiSO|VREPAIR|GOG|RUNE|MONEY|ElAmigos|KaOs|DODI|FitGirl|Masquerade|Prophet|Fabulous|ScOOt3r|Meskeeter|Revenant|NoeR4t|CES|CROWN|Paradise|PureFury|TinyRoW|Stepwise|Toffeeland)\b"
+    r"|\bRepack\b"
+    r"|\b(?:Setup|Keygen|Crack(?:Only)?|Patch|DLC(?:s)?|Update\s?\d+|Build\s?\d+)\b"
+    r"|\b(?:v\d+\.\d+(?:\.\d+)?|Ver(?:sion)?[ ._-]?\d+)\b"
+    r"|\bMULTi\d+\b)",
+    re.IGNORECASE,
+)
+
 
 def extract_title_info(name: str) -> TorrentTitleInfo:
     """Extract the title, year and media type from a torrent name.
@@ -592,6 +604,10 @@ def extract_title_info(name: str) -> TorrentTitleInfo:
     # Non-video files (pdf, zip, music, images, ...) are not movies or
     # shows; return an empty result so callers can skip them.
     if _NON_VIDEO_EXTENSION_PATTERN.search(basename):
+        return TorrentTitleInfo()
+
+    # Video game releases (repacks, cracked games) are not movies or shows.
+    if _GAME_RELEASE_MARKER_PATTERN.search(basename):
         return TorrentTitleInfo()
 
     # An extension (.mkv, .avi, ...) never contributes to the title.
