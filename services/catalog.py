@@ -116,4 +116,8 @@ class CatalogService:
         cached = await cached_call(cache_key, 86400, fetch, cache_none=True)
         if cached is None:
             return None, None, None
+        # Tolerate cache entries written before the poster field existed
+        # (they only hold [imdb_id, name]).
+        while len(cached) < 3:
+            cached.append(None)
         return cached[0], cached[1], cached[2]

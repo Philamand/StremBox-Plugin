@@ -280,3 +280,26 @@ async def test_get_catalog_search_filters_on_torrent_title(service):
 
     assert len(matched.metas) == 1
     assert matched.metas[0].id == "tt333333"
+
+
+@pytest.mark.asyncio
+async def test_resolve_tolerates_old_cache_entries(service, stub_redis):
+    """Cache entries from before the poster field do not crash the build."""
+    # Simulate an entry written by a previous version: [imdb_id, name].
+    await stub_redis.set(
+        'betaseries:resolve:movie:Old Movie:2020',
+        '["tt999999", "Old Movie"]',
+        ex=86400,
+    )
+
+    with aioresponses_ctx() as m:
+        m.get(
+            f"{BAUXITE_BASE_URL}/api/hashes/",
+            payload=_bauxite_hashes(["Old.Movie.2020.FRENCH.1080p.WEB.x264-G"]),
+        )
+        response = await service.get_catalog("movie")
+
+    assert len(response.metas) == 1
+    assert response.metas[0].id == "tt999999"
+    assert response.metas[0].name == "Old Movie"
+    assert response.metas[0].poster is None
