@@ -57,7 +57,12 @@ class TraktService:
                 results matching that year are ranked first.
         """
         url = f"{self.base_url}/search/{media_type}"
-        params = {"query": query, "fields": "title", "limit": limit}
+        params = {
+            "query": query,
+            "fields": "title",
+            "limit": limit,
+            "extended": "images",
+        }
 
         session = get_session()
         async with session.get(

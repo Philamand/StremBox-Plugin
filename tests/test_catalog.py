@@ -17,11 +17,9 @@ from services.trakt import TraktService
 
 BAUXITE_BASE_URL = "http://librebox"
 TRAKT_BASE_URL = "https://api.trakt.tv"
-CINEMETA_BASE_URL = "https://v3-cinemeta.strem.io/meta"
 
 TRAKT_MOVIE_SEARCH_URL = re.compile(rf"{re.escape(TRAKT_BASE_URL)}/search/movie\?.*")
 TRAKT_SHOW_SEARCH_URL = re.compile(rf"{re.escape(TRAKT_BASE_URL)}/search/show\?.*")
-CINEMETA_BASE_URL = "https://v3-cinemeta.strem.io/meta"
 
 
 class _StubRedis:
@@ -72,12 +70,13 @@ def _bauxite_hashes(names: list[str]) -> dict:
     }
 
 
-def _trakt_search_result(imdb_id: str, title: str, year: int | None) -> dict:
-    return {
-        "type": "movie",
-        "score": 10.0,
-        "movie": {"ids": {"imdb": imdb_id}, "title": title, "year": year},
-    }
+def _trakt_search_result(
+    imdb_id: str, title: str, year: int | None, poster: str | None = None
+) -> dict:
+    movie = {"ids": {"imdb": imdb_id}, "title": title, "year": year}
+    if poster:
+        movie["images"] = {"poster": [poster]}
+    return {"type": "movie", "score": 10.0, "movie": movie}
 
 
 @pytest.mark.asyncio
@@ -98,14 +97,11 @@ async def test_get_catalog_movies(service):
             TRAKT_MOVIE_SEARCH_URL,
             repeat=True,
             payload=[
-                _trakt_search_result("tt111111", "Movie One", 2020),
+                _trakt_search_result(
+                    "tt111111", "Movie One", 2020, poster="https://images/poster.jpg"
+                ),
             ],
         )
-        m.get(
-            f"{CINEMETA_BASE_URL}/movie/tt111111.json",
-            payload={"meta": {"name": "Movie One", "poster": "https://images/poster.jpg"}},
-        )
-
         response = await service.get_catalog("movie")
 
     assert len(response.metas) == 1
@@ -134,13 +130,13 @@ async def test_get_catalog_series_and_search(service):
                 {
                     "type": "show",
                     "score": 10.0,
-                    "show": {"ids": {"imdb": "tt222222"}, "title": "Kaamelott"},
+                    "show": {
+                        "ids": {"imdb": "tt222222"},
+                        "title": "Kaamelott",
+                        "images": {"poster": ["https://images/kaamelott.jpg"]},
+                    },
                 },
             ],
-        )
-        m.get(
-            f"{CINEMETA_BASE_URL}/series/tt222222.json",
-            payload={"meta": {"name": "Kaamelott", "poster": "https://images/kaamelott.jpg"}},
         )
 
         response = await service.get_catalog("series")
@@ -148,6 +144,7 @@ async def test_get_catalog_series_and_search(service):
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt222222"
     assert response.metas[0].type == "series"
+    assert response.metas[0].poster == "https://images/kaamelott.jpg"
 
     # The search-filtered catalog has its own cache entry; Bauxite and
     # Trakt are re-fetched only when the cache key differs.
@@ -193,11 +190,11 @@ async def test_get_meta_found(service):
         m.get(
             TRAKT_MOVIE_SEARCH_URL,
             repeat=True,
-            payload=[_trakt_search_result("tt111111", "Movie One", 2020)],
-        )
-        m.get(
-            f"{CINEMETA_BASE_URL}/movie/tt111111.json",
-            payload={"meta": {"name": "Movie One", "poster": "https://images/poster.jpg"}},
+            payload=[
+                _trakt_search_result(
+                    "tt111111", "Movie One", 2020, poster="https://images/poster.jpg"
+                )
+            ],
         )
         await service.get_catalog("movie")
 

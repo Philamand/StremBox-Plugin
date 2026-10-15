@@ -679,25 +679,3 @@ def torrent_is_video(name: str, files: list[str]) -> bool:
         return any(_VIDEO_FILE_EXTENSION_PATTERN.search(f) for f in files)
 
     return True
-
-
-async def get_meta_poster(imdb_id: str, media_type: str) -> str | None:
-    """Fetch the poster URL of a movie or series from Cinemeta.
-
-    Args:
-        imdb_id (str): The IMDb ID of the media (e.g. ``"tt1234567"``).
-        media_type (str): ``"movie"`` or ``"series"``.
-
-    Returns:
-        str | None: The poster URL, or ``None`` when the metadata or the
-        poster field is missing.
-    """
-    session = get_session()
-    try:
-        async with session.get(
-            f"https://v3-cinemeta.strem.io/meta/{media_type}/{imdb_id}.json"
-        ) as response:
-            data = await response.json()
-            return data.get("meta", {}).get("poster") or None
-    except aiohttp.ClientError:
-        return None
