@@ -4,8 +4,28 @@ MANIFEST = {
     "name": "StremBox-Plugin",
     "description": "Sample addon made with FastAPI providing a few public domain movies",
     "types": ["movie", "series"],
-    "catalogs": [],
+    "catalogs": [
+        {"type": "movie", "id": "bauxite", "name": "Ma seedbox"},
+        {"type": "series", "id": "bauxite", "name": "Ma seedbox"},
+    ],
     "resources": [
-        {"name": "stream", "types": ["movie", "series"], "idPrefixes": ["tt", "hpy"]}
+        {
+            "name": "stream",
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt", "hpy"],
+        },
+        {
+            "name": "catalog",
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt"],
+            "extraSupported": [
+                {"name": "search", "isRequired": False},
+            ],
+        },
+        {
+            "name": "meta",
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt"],
+        },
     ],
 }
