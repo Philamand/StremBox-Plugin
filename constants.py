@@ -31,5 +31,10 @@ MANIFEST = {
             "types": ["movie", "series"],
             "idPrefixes": ["tt"],
         },
+        {
+            "name": "meta",
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt"],
+        },
     ],
 }

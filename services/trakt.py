@@ -7,9 +7,11 @@ from schemas.trakt import (
     TraktFavoriteMovieEntry,
     TraktFavoriteShowEntry,
     TraktHistoryEntry,
+    TraktMovie,
     TraktMovieHistoryEntry,
     TraktSearchResult,
     TraktSeason,
+    TraktShow,
     TraktTrendingMovie,
     TraktTrendingShow,
     TraktWatchedShow,
@@ -75,6 +77,60 @@ class TraktService:
             )
 
         return results
+
+    async def get_movie_meta(self, imdb_id: str) -> TraktMovie | None:
+        """Fetch the full metadata of a movie by its IMDb id.
+
+        Uses the Trakt ID lookup (``/search/imdb/{id}``) with
+        ``extended=full``; the result is cached in Redis for a day.
+        """
+        async def fetch() -> dict | None:
+            url = f"{self.base_url}/search/imdb/{imdb_id}"
+            params = {"type": "movie", "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                for item in data:
+                    if item.get("type") == "movie" and item.get("movie"):
+                        return TraktMovie.model_validate(item["movie"]).model_dump()
+                return None
+
+        cached = await cached_call(
+            f"trakt:meta:movie:{imdb_id}", 86400, fetch, cache_none=True
+        )
+        if cached is None:
+            return None
+        return TraktMovie.model_validate(cached)
+
+    async def get_show_meta(self, imdb_id: str) -> TraktShow | None:
+        """Fetch the full metadata of a show by its IMDb id.
+
+        Uses the Trakt ID lookup (``/search/imdb/{id}``) with
+        ``extended=full``; the result is cached in Redis for a day.
+        """
+        async def fetch() -> dict | None:
+            url = f"{self.base_url}/search/imdb/{imdb_id}"
+            params = {"type": "show", "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                for item in data:
+                    if item.get("type") == "show" and item.get("show"):
+                        return TraktShow.model_validate(item["show"]).model_dump()
+                return None
+
+        cached = await cached_call(
+            f"trakt:meta:show:{imdb_id}", 86400, fetch, cache_none=True
+        )
+        if cached is None:
+            return None
+        return TraktShow.model_validate(cached)
 
     async def get_trending_movies(self, limit: int = 40) -> list[TraktTrendingMovie]:
         """Get the trending movies on Trakt.

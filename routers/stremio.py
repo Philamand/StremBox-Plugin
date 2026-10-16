@@ -8,7 +8,7 @@ from dependencies import (
     get_betaseries_service,
     get_trakt_service,
 )
-from schemas.catalog import StremioCatalogResponse
+from schemas.catalog import StremioCatalogResponse, StremioMetaResponse
 from schemas.stremio import StremioStreamsResponse
 from schemas.users import UserData
 from services.betaseries import BetaSeriesService
@@ -107,3 +107,25 @@ async def get_catalog(
     catalog_service = CatalogService(trakt_service=trakt_service)
 
     return await catalog_service.get_catalog(catalog_id, type, search=search)
+
+
+@router.get("/{user_key}/meta/{type}/{id}.json")
+async def get_meta(
+    trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
+    type: str,
+    id: str,
+) -> StremioMetaResponse:
+    """Return the metadata of a movie/series from Trakt.
+
+    Stremio may still merge this with metadata from other sources such
+    as Cinemeta.
+    """
+    if type not in MANIFEST["types"]:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+
+    catalog_service = CatalogService(trakt_service=trakt_service)
+
+    try:
+        return await catalog_service.get_meta(type, id)
+    except ValueError:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)

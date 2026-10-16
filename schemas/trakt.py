@@ -75,6 +75,15 @@ class TraktShow(BaseModel):
     year: int | None = None
     aired_episodes: int | None = None
     images: TraktImages | None = None
+    overview: str | None = None
+    genres: list[str] | None = None
+    runtime: float | None = None
+    status: str | None = None
+    network: str | None = None
+    country: str | None = None
+    trailer: str | None = None
+    homepage: str | None = None
+    certification: str | None = None
 
 
 class TraktFavoriteShow(BaseModel):
@@ -141,6 +150,16 @@ class TraktMovie(BaseModel):
     title: str
     year: int | None = None
     images: TraktImages | None = None
+    overview: str | None = None
+    genres: list[str] | None = None
+    runtime: float | None = None
+    status: str | None = None
+    country: str | None = None
+    trailer: str | None = None
+    homepage: str | None = None
+    certification: str | None = None
+    tagline: str | None = None
+    released: str | None = None
 
 
 class TraktFavoriteMovie(BaseModel):

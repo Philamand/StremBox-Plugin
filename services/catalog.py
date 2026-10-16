@@ -1,5 +1,10 @@
 from constants import MANIFEST, TRENDING_CATALOG_ID
-from schemas.catalog import StremioCatalogResponse, StremioMetaPreview
+from schemas.catalog import (
+    StremioCatalogResponse,
+    StremioMeta,
+    StremioMetaPreview,
+    StremioMetaResponse,
+)
 from services.trakt import TraktService
 from utils.stremio import normalize_poster_url
 
@@ -43,6 +48,47 @@ class CatalogService:
         if media_type == "series":
             return await self._get_trending_shows()
         return await self._get_trending_movies()
+
+    async def get_meta(self, media_type: str, imdb_id: str) -> StremioMetaResponse:
+        """Return the full metadata of a movie or series.
+
+        Served from Trakt (``extended=full``), cached for a day. Posters
+        and fanart are scheme-normalised; the fanart doubles as the
+        background image.
+        """
+        if media_type == "series":
+            media = await self.trakt_service.get_show_meta(imdb_id)
+        else:
+            media = await self.trakt_service.get_movie_meta(imdb_id)
+
+        if media is None:
+            raise ValueError(f"Metadata not found: {imdb_id}")
+
+        poster = None
+        background = None
+        if media.images:
+            if media.images.poster:
+                poster = normalize_poster_url(media.images.poster[0])
+            if media.images.fanart:
+                background = normalize_poster_url(media.images.fanart[0])
+
+        release_info = str(media.year) if media.year else None
+        runtime = f"{int(media.runtime)} min" if media.runtime else None
+
+        return StremioMetaResponse(
+            meta=StremioMeta(
+                id=imdb_id,
+                type=media_type,
+                name=media.title,
+                poster=poster,
+                background=background,
+                description=media.overview,
+                releaseInfo=release_info,
+                genres=media.genres,
+                runtime=runtime,
+                trailer=media.trailer,
+            )
+        )
 
     async def _search(
         self, media_type: str, search: str

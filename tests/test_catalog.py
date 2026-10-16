@@ -21,6 +21,7 @@ TRAKT_TRENDING_SHOWS_URL = re.compile(
     r"https://api\.trakt\.tv/shows/trending\?.*"
 )
 TRAKT_MOVIE_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/movie\?.*")
+TRAKT_IMDB_LOOKUP_URL = re.compile(r"https://api\.trakt\.tv/search/imdb/.*")
 TRAKT_SHOW_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/show\?.*")
 
 
@@ -233,3 +234,98 @@ async def test_get_catalog_search_shows(service):
         response.metas[0].poster
         == "https://media.trakt.tv/images/shows/000/136/999/posters/medium/e5e8d5dd92.jpg.webp"
     )
+
+
+@pytest.mark.asyncio
+async def test_get_meta_movie(service):
+    """Movie meta is served from the Trakt ID lookup with full fields."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_IMDB_LOOKUP_URL,
+            payload=[
+                {
+                    "score": 1.0,
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": "tt32141377", "trakt": 1033738},
+                        "title": "28 Years Later: The Bone Temple",
+                        "year": 2026,
+                        "overview": (
+                            "Dr. Kelson finds himself in a shocking new "
+                            "relationship..."
+                        ),
+                        "genres": ["horror", "science-fiction", "thriller"],
+                        "runtime": 109,
+                        "trailer": "https://youtube.com/watch?v=rl_DJZCyEH4",
+                        "images": {
+                            "poster": [
+                                "media.trakt.tv/images/movies/001/033/738/posters/medium/490a2d3fbb.jpg.webp"
+                            ],
+                            "fanart": [
+                                "media.trakt.tv/images/movies/001/033/738/fanarts/medium/4d1014abc0.jpg.webp"
+                            ],
+                        },
+                    },
+                },
+            ],
+        )
+        meta = await service.get_meta("movie", "tt32141377")
+
+    assert meta.meta.id == "tt32141377"
+    assert meta.meta.type == "movie"
+    assert meta.meta.name == "28 Years Later: The Bone Temple"
+    assert meta.meta.releaseInfo == "2026"
+    assert meta.meta.genres == ["horror", "science-fiction", "thriller"]
+    assert meta.meta.runtime == "109 min"
+    assert (
+        meta.meta.poster
+        == "https://media.trakt.tv/images/movies/001/033/738/posters/medium/490a2d3fbb.jpg.webp"
+    )
+    assert (
+        meta.meta.background
+        == "https://media.trakt.tv/images/movies/001/033/738/fanarts/medium/4d1014abc0.jpg.webp"
+    )
+
+
+@pytest.mark.asyncio
+async def test_get_meta_show(service):
+    """Show meta is served from the Trakt ID lookup."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_IMDB_LOOKUP_URL,
+            payload=[
+                {
+                    "score": 1.0,
+                    "type": "show",
+                    "show": {
+                        "ids": {"imdb": "tt27497393", "trakt": 280856},
+                        "title": "Stuart Fails to Save the Universe",
+                        "year": 2026,
+                        "overview": (
+                            "After accidentally creating a new multiverse..."
+                        ),
+                        "genres": ["comedy", "fantasy", "science-fiction"],
+                        "runtime": 24,
+                        "network": "HBO Max",
+                        "images": {"poster": ["media.trakt.tv/images/shows/poster.jpg"]},
+                    },
+                },
+            ],
+        )
+        meta = await service.get_meta("series", "tt27497393")
+
+    assert meta.meta.id == "tt27497393"
+    assert meta.meta.type == "series"
+    assert meta.meta.name == "Stuart Fails to Save the Universe"
+    assert meta.meta.releaseInfo == "2026"
+    assert meta.meta.runtime == "24 min"
+
+
+@pytest.mark.asyncio
+async def test_get_meta_not_found(service):
+    """An unknown id raises ValueError (the route turns it into a 404)."""
+    with aioresponses_ctx() as m:
+        m.get(TRAKT_IMDB_LOOKUP_URL, payload=[])
+
+        with pytest.raises(ValueError):
+            await service.get_meta("movie", "tt9999999")
