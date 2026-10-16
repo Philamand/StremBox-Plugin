@@ -194,9 +194,20 @@ class TraktService:
         )
         return [TraktTrendingShow.model_validate(item) for item in cached]
 
-    async def get_unwatched_movies(self, user_slug: str) -> list[TraktWatchlistMovie]:
+    async def get_unwatched_movies(
+        self, user_slug: str, *, extended: bool = False
+    ) -> list[TraktWatchlistMovie]:
+        """Get the movies in the user's watchlist.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/watchlist/movies/title/desc"
         params = {"hide": "unreleased"}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
         async with session.get(
@@ -205,9 +216,20 @@ class TraktService:
             data = await response.json()
             return [TraktWatchlistMovie.model_validate(item) for item in data]
 
-    async def get_unwatched_shows(self, user_slug: str) -> list[TraktWatchlistShow]:
+    async def get_unwatched_shows(
+        self, user_slug: str, *, extended: bool = False
+    ) -> list[TraktWatchlistShow]:
+        """Get the shows in the user's watchlist.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/watchlist/shows/title/desc"
         params = {"hide": "unreleased"}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
         async with session.get(
@@ -278,9 +300,20 @@ class TraktService:
             return [TraktHistoryEntry.model_validate(entry) for entry in data]
 
     async def get_favorite_movies(
-        self, user_slug: str, sort: str = "rank"
+        self, user_slug: str, sort: str = "rank", *, extended: bool = False
     ) -> list[TraktFavoriteMovieEntry]:
+        """Get the user's favorite movies.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            sort: Order of the favorites.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/favorites/movies/{sort}"
+        params = {}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
         async with session.get(url, headers=self._get_headers()) as response:
@@ -288,9 +321,20 @@ class TraktService:
             return [TraktFavoriteMovieEntry.model_validate(item) for item in data]
 
     async def get_favorite_shows(
-        self, user_slug: str, sort: str = "rank"
+        self, user_slug: str, sort: str = "rank", *, extended: bool = False
     ) -> list[TraktFavoriteShowEntry]:
+        """Get the user's favorite shows.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            sort: Order of the favorites.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/favorites/shows/{sort}"
+        params = {}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
         async with session.get(url, headers=self._get_headers()) as response:

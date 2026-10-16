@@ -90,6 +90,7 @@ class TraktFavoriteShow(BaseModel):
     ids: TraktShowIds
     title: str
     year: int | None = None
+    images: TraktImages | None = None
     tagline: str | None = None
     overview: str | None = None
     first_aired: str | None = None
@@ -166,6 +167,7 @@ class TraktFavoriteMovie(BaseModel):
     ids: TraktMovieIds
     title: str
     year: int | None = None
+    images: TraktImages | None = None
     tagline: str | None = None
     overview: str | None = None
     released: str | None = None

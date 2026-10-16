@@ -355,12 +355,14 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
         "ids": {"imdb": "tt111111", "trakt": 1},
         "title": "Favorite Movie",
         "year": 2020,
+        "images": {"poster": ["media.trakt.tv/images/posters/fav.jpg"]},
     }
     # Watchlist entry present on the seedbox...
     watchlisted_present = {
         "ids": {"imdb": "tt222222", "trakt": 2},
         "title": "Watchlisted Movie",
         "year": 2021,
+        "images": {"poster": ["media.trakt.tv/images/posters/watch.jpg"]},
     }
     # ...and one absent from it.
     watchlisted_absent = {
@@ -410,34 +412,6 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
                     "files": [],
                 }
             },
-        )
-        # Posters are fetched via the Trakt ID lookup (cached a day),
-        # one id-specific mock per item.
-        m.get(
-            re.compile(r"https://api\.trakt\.tv/search/imdb/tt222222\?.*"),
-            payload=[
-                {
-                    "type": "movie",
-                    "movie": {
-                        "ids": {"imdb": "tt222222"},
-                        "title": "Watchlisted Movie",
-                        "images": {"poster": ["media.trakt.tv/images/posters/watch.jpg"]},
-                    },
-                }
-            ],
-        )
-        m.get(
-            re.compile(r"https://api\.trakt\.tv/search/imdb/tt111111\?.*"),
-            payload=[
-                {
-                    "type": "movie",
-                    "movie": {
-                        "ids": {"imdb": "tt111111"},
-                        "title": "Favorite Movie",
-                        "images": {"poster": ["media.trakt.tv/images/posters/fav.jpg"]},
-                    },
-                }
-            ],
         )
         # has_bauxite_torrent resolves titles via Cinemeta; the absent
         # entry resolves too but matches no torrent.

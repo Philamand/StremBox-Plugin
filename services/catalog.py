@@ -87,7 +87,9 @@ class CatalogService:
 
         Watchlist entries come first, included only when a matching
         torrent exists on the user's seedbox; that check is re-evaluated
-        on every request. Favorites follow, cached an hour per user.
+        on every request. Favorites follow, cached an hour per user. Both
+        lists are requested with ``extended=full`` so the posters come
+        with the entries.
         """
         metas: list[StremioMetaPreview] = []
 
@@ -95,11 +97,11 @@ class CatalogService:
         if self.bauxite_matcher and self.user_slug:
             if media_type == "series":
                 watchlist = await self.trakt_service.get_unwatched_shows(
-                    self.user_slug
+                    self.user_slug, extended=True
                 )
             else:
                 watchlist = await self.trakt_service.get_unwatched_movies(
-                    self.user_slug
+                    self.user_slug, extended=True
                 )
 
             hashes = await self.bauxite_service.get_torrent_hashes()
@@ -111,7 +113,9 @@ class CatalogService:
                     hashes, media.ids.imdb, media_type
                 ):
                     continue
-                metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
+                metas.append(
+                    self._preview_from_media(media, media.ids.imdb, media_type)
+                )
 
         # Favorites: identical for an hour, cached.
         if self.user_slug:
@@ -124,35 +128,28 @@ class CatalogService:
             for media in favorites:
                 if not media.ids.imdb or media.ids.imdb in existing_ids:
                     continue
-                metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
+                metas.append(
+                    self._preview_from_media(media, media.ids.imdb, media_type)
+                )
 
         return StremioCatalogResponse(metas=metas)
 
-    async def _meta_preview(
-        self, imdb_id: str, media_type: str, title: str
-    ) -> StremioMetaPreview:
-        """Build a meta preview, fetching the poster from Trakt metadata.
-
-        The metadata lookups are cached for a day, so a library entry
-        costs at most one Trakt call per day.
-        """
-        if media_type == "series":
-            media = await self.trakt_service.get_show_meta(imdb_id)
-        else:
-            media = await self.trakt_service.get_movie_meta(imdb_id)
-
+    @staticmethod
+    def _preview_from_media(media, imdb_id: str, media_type: str) -> StremioMetaPreview:
+        """Build a meta preview from a Trakt media object with images."""
         poster = None
-        if media and media.images and media.images.poster:
+        if media.images and media.images.poster:
             poster = normalize_poster_url(media.images.poster[0])
-
         return StremioMetaPreview(
-            id=imdb_id, type=media_type, name=title, poster=poster
+            id=imdb_id, type=media_type, name=media.title, poster=poster
         )
 
     async def _get_favorite_movies(self):
         """Fetch the user's favorite movies, cached an hour."""
         async def fetch():
-            entries = await self.trakt_service.get_favorite_movies(self.user_slug)
+            entries = await self.trakt_service.get_favorite_movies(
+                self.user_slug, extended=True
+            )
             return [e.movie.model_dump() for e in entries]
 
         cached = await cached_call(
@@ -163,7 +160,9 @@ class CatalogService:
     async def _get_favorite_shows(self):
         """Fetch the user's favorite shows, cached an hour."""
         async def fetch():
-            entries = await self.trakt_service.get_favorite_shows(self.user_slug)
+            entries = await self.trakt_service.get_favorite_shows(
+                self.user_slug, extended=True
+            )
             return [e.show.model_dump() for e in entries]
 
         cached = await cached_call(
