@@ -10,8 +10,13 @@ from schemas.catalog import (
     StremioMetaPreview,
     StremioMetaResponse,
 )
+from schemas.trakt import (
+    TraktFavoriteMovie,
+    TraktFavoriteShow,
+    TraktWatchlistMovie,
+    TraktWatchlistShow,
+)
 from services.trakt import TraktService
-from schemas.trakt import TraktFavoriteMovie, TraktFavoriteShow
 from utils.stremio import normalize_poster_url
 
 
@@ -94,7 +99,7 @@ class CatalogService:
         metas: list[StremioMetaPreview] = []
 
         # Watchlist: only entries already present in Bauxite.
-        if self.bauxite_matcher and self.user_slug:
+        if self.bauxite_matcher and self.bauxite_service and self.user_slug:
             if media_type == "series":
                 watchlist = await self.trakt_service.get_unwatched_shows(
                     self.user_slug, extended=True
@@ -106,7 +111,14 @@ class CatalogService:
 
             hashes = await self.bauxite_service.get_torrent_hashes()
             for entry in watchlist:
-                media = entry.show if media_type == "series" else entry.movie
+                if media_type == "series":
+                    if not isinstance(entry, TraktWatchlistShow):
+                        continue
+                    media = entry.show
+                else:
+                    if not isinstance(entry, TraktWatchlistMovie):
+                        continue
+                    media = entry.movie
                 if not media.ids.imdb:
                     continue
                 if not await self.bauxite_matcher.has_bauxite_torrent(
@@ -114,9 +126,7 @@ class CatalogService:
                 ):
                     continue
                 trakt_type = "show" if media_type == "series" else "movie"
-                metas.append(
-                    await self._french_preview(media, trakt_type, media_type)
-                )
+                metas.append(await self._french_preview(media, trakt_type, media_type))
 
         # Favorites: identical for an hour, cached.
         if self.user_slug:
@@ -130,9 +140,7 @@ class CatalogService:
                 if not media.ids.imdb or media.ids.imdb in existing_ids:
                     continue
                 trakt_type = "show" if media_type == "series" else "movie"
-                metas.append(
-                    await self._french_preview(media, trakt_type, media_type)
-                )
+                metas.append(await self._french_preview(media, trakt_type, media_type))
 
         return StremioCatalogResponse(metas=metas)
 
@@ -155,9 +163,7 @@ class CatalogService:
         slug = getattr(media.ids, "slug", None)
         if not slug:
             return media.title
-        translation = await self.trakt_service.get_french_translation(
-            media_type, slug
-        )
+        translation = await self.trakt_service.get_french_translation(media_type, slug)
         if translation and translation.get("title"):
             return translation["title"]
         return media.title
@@ -181,27 +187,33 @@ class CatalogService:
 
     async def _get_favorite_movies(self):
         """Fetch the user's favorite movies, cached an hour."""
+
+        if not self.user_slug:
+            return []
+        slug = self.user_slug
+
         async def fetch():
-            entries = await self.trakt_service.get_favorite_movies(
-                self.user_slug, extended=True
-            )
+            entries = await self.trakt_service.get_favorite_movies(slug, extended=True)
             return [e.movie.model_dump() for e in entries]
 
         cached = await cached_call(
-            f"trakt:favorites:movie:{self.user_slug}", 3600, fetch, cache_none=True
+            f"trakt:favorites:movie:{slug}", 3600, fetch, cache_none=True
         )
         return [TraktFavoriteMovie.model_validate(item) for item in cached or []]
 
     async def _get_favorite_shows(self):
         """Fetch the user's favorite shows, cached an hour."""
+
+        if not self.user_slug:
+            return []
+        slug = self.user_slug
+
         async def fetch():
-            entries = await self.trakt_service.get_favorite_shows(
-                self.user_slug, extended=True
-            )
+            entries = await self.trakt_service.get_favorite_shows(slug, extended=True)
             return [e.show.model_dump() for e in entries]
 
         cached = await cached_call(
-            f"trakt:favorites:show:{self.user_slug}", 3600, fetch, cache_none=True
+            f"trakt:favorites:show:{slug}", 3600, fetch, cache_none=True
         )
         return [TraktFavoriteShow.model_validate(item) for item in cached or []]
 
@@ -246,14 +258,10 @@ class CatalogService:
             )
         )
 
-    async def _search(
-        self, media_type: str, search: str
-    ) -> StremioCatalogResponse:
+    async def _search(self, media_type: str, search: str) -> StremioCatalogResponse:
         """Search movies or shows by title via the Trakt text search."""
         trakt_type = "show" if media_type == "series" else "movie"
-        results = await self.trakt_service.search_media(
-            search, trakt_type, limit=40
-        )
+        results = await self.trakt_service.search_media(search, trakt_type, limit=40)
         metas = []
         for result in results:
             media = getattr(result, trakt_type)
@@ -269,9 +277,7 @@ class CatalogService:
         for entry in trending:
             if not entry.movie.ids.imdb:
                 continue
-            metas.append(
-                await self._french_preview(entry.movie, "movie")
-            )
+            metas.append(await self._french_preview(entry.movie, "movie"))
         return StremioCatalogResponse(metas=metas)
 
     async def _get_trending_shows(self) -> StremioCatalogResponse:
@@ -281,7 +287,5 @@ class CatalogService:
         for entry in trending:
             if not entry.show.ids.imdb:
                 continue
-            metas.append(
-                await self._french_preview(entry.show, "show")
-            )
+            metas.append(await self._french_preview(entry.show, "show"))
         return StremioCatalogResponse(metas=metas)
