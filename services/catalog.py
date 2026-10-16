@@ -141,13 +141,19 @@ class CatalogService:
     async def _get_trending_movies(self) -> StremioCatalogResponse:
         """Return the Trakt trending movies catalog (English titles)."""
         trending = await self.trakt_service.get_trending_movies(limit=40)
-        metas = [
-            StremioMetaPreview(
-                id=entry.movie.ids.imdb,
-                type="movie",
-                name=entry.movie.title,
+        metas = []
+        for entry in trending:
+            if not entry.movie.ids.imdb:
+                continue
+            poster = None
+            if entry.movie.images and entry.movie.images.poster:
+                poster = entry.movie.images.poster[0]
+            metas.append(
+                StremioMetaPreview(
+                    id=entry.movie.ids.imdb,
+                    type="movie",
+                    name=entry.movie.title,
+                    poster=poster,
+                )
             )
-            for entry in trending
-            if entry.movie.ids.imdb
-        ]
         return StremioCatalogResponse(metas=metas)

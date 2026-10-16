@@ -326,6 +326,11 @@ async def test_get_catalog_trending_movies(service):
                         },
                         "title": "Spider-Man: Brand New Day",
                         "year": 2026,
+                        "images": {
+                            "poster": [
+                                "media.trakt.tv/images/movies/000/905/132/posters/medium/7d648ba4cb.jpg.webp"
+                            ]
+                        },
                     },
                 },
                 {
@@ -344,6 +349,10 @@ async def test_get_catalog_trending_movies(service):
     assert response.metas[0].id == "tt22084616"
     assert response.metas[0].type == "movie"
     assert response.metas[0].name == "Spider-Man: Brand New Day"
+    assert (
+        response.metas[0].poster
+        == "media.trakt.tv/images/movies/000/905/132/posters/medium/7d648ba4cb.jpg.webp"
+    )
 
 
 @pytest.mark.asyncio

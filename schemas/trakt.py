@@ -139,6 +139,7 @@ class TraktMovie(BaseModel):
     ids: TraktMovieIds
     title: str
     year: int | None = None
+    images: TraktImages | None = None
 
 
 class TraktFavoriteMovie(BaseModel):
