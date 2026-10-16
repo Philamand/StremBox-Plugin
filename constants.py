@@ -7,8 +7,18 @@ MANIFEST = {
     "description": "Sample addon made with FastAPI providing a few public domain movies",
     "types": ["movie", "series"],
     "catalogs": [
-        {"type": "movie", "id": "trending", "name": "Tendances"},
-        {"type": "series", "id": "trending", "name": "Tendances"},
+        {
+            "type": "movie",
+            "id": "trending",
+            "name": "Tendances",
+            "extra": [{"name": "search", "isRequired": False}],
+        },
+        {
+            "type": "series",
+            "id": "trending",
+            "name": "Tendances",
+            "extra": [{"name": "search", "isRequired": False}],
+        },
     ],
     "resources": [
         {
@@ -20,9 +30,6 @@ MANIFEST = {
             "name": "catalog",
             "types": ["movie", "series"],
             "idPrefixes": ["tt"],
-            "extraSupported": [
-                {"name": "search", "isRequired": False},
-            ],
         },
     ],
 }
