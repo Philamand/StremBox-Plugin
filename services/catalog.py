@@ -1,8 +1,9 @@
 from cache import cached_call
-from constants import MANIFEST
+from constants import CATALOG_ID, MANIFEST, TRENDING_CATALOG_ID
 from schemas.catalog import StremioCatalogResponse, StremioMetaPreview
 from services.bauxite import BauxiteService
 from services.betaseries import BetaSeriesService
+from services.trakt import TraktService
 from utils.stremio import extract_title_info, torrent_is_video
 
 
@@ -24,12 +25,23 @@ class CatalogService:
         librebox_url: str,
         librebox_token: str,
         betaseries_service: BetaSeriesService,
+        trakt_service: TraktService | None = None,
     ):
         self.bauxite_service = BauxiteService(librebox_url, librebox_token)
         self.betaseries_service = betaseries_service
+        self.trakt_service = trakt_service
 
-    async def get_catalog(self, media_type: str, search: str | None = None) -> StremioCatalogResponse:
-        """Return the list of metas of *media_type* present on the seedbox.
+    async def get_catalog(
+        self,
+        catalog_id: str,
+        media_type: str,
+        search: str | None = None,
+    ) -> StremioCatalogResponse:
+        """Return the metas of a catalog.
+
+        Args:
+            catalog_id: ``"bauxite"`` (the user's seedbox) or
+                ``"trending"`` (Trakt trending movies).
 
         Args:
             media_type: ``"movie"`` or ``"series"`` (must be declared in the
@@ -42,6 +54,9 @@ class CatalogService:
         """
         if media_type not in MANIFEST["types"]:
             raise ValueError(f"Unsupported catalog type: {media_type}")
+
+        if catalog_id == TRENDING_CATALOG_ID:
+            return await self._get_trending_movies()
 
         query = search.lower() if search else None
 
@@ -121,3 +136,18 @@ class CatalogService:
         while len(cached) < 3:
             cached.append(None)
         return cached[0], cached[1], cached[2]
+
+
+    async def _get_trending_movies(self) -> StremioCatalogResponse:
+        """Return the Trakt trending movies catalog (English titles)."""
+        trending = await self.trakt_service.get_trending_movies(limit=40)
+        metas = [
+            StremioMetaPreview(
+                id=entry.movie.ids.imdb,
+                type="movie",
+                name=entry.movie.title,
+            )
+            for entry in trending
+            if entry.movie.ids.imdb
+        ]
+        return StremioCatalogResponse(metas=metas)

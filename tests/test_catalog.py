@@ -14,10 +14,12 @@ from aioresponses import aioresponses as aioresponses_ctx
 from cache import cached_call
 from services.betaseries import BetaSeriesService
 from services.catalog import CatalogService
+from services.trakt import TraktService
 
 BAUXITE_BASE_URL = "http://librebox"
 BETASERIES_BASE_URL = "https://api.betaseries.com"
 
+TRAKT_TRENDING_URL = re.compile(r"https://api\.trakt\.tv/movies/trending\?.*")
 BETASERIES_MOVIE_SEARCH_URL = re.compile(
     rf"{re.escape(BETASERIES_BASE_URL)}/search/movies\?.*"
 )
@@ -70,6 +72,7 @@ async def service(stub_redis) -> CatalogService:
         BAUXITE_BASE_URL,
         "token",
         betaseries_service=BetaSeriesService(api_key="betaseries-key"),
+        trakt_service=TraktService(api_key="trakt-key"),
     )
 
 
@@ -143,7 +146,7 @@ async def test_get_catalog_movies_french_title(service):
             payload={"movie": {"id": 140245, "imdb_id": "tt111111"}},
         )
 
-        response = await service.get_catalog("movie")
+        response = await service.get_catalog("bauxite", "movie")
 
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt111111"
@@ -175,7 +178,7 @@ async def test_get_catalog_movies_falls_back_to_original_title(service):
             payload={"movie": {"id": 132475, "imdb_id": "tt333333"}},
         )
 
-        response = await service.get_catalog("movie")
+        response = await service.get_catalog("bauxite", "movie")
 
     assert response.metas[0].name == "Movie One"
 
@@ -208,7 +211,7 @@ async def test_get_catalog_series_and_search(service):
             payload={"show": {"id": 536, "imdb_id": "tt222222"}},
         )
 
-        response = await service.get_catalog("series")
+        response = await service.get_catalog("bauxite", "series")
 
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt222222"
@@ -228,7 +231,7 @@ async def test_get_catalog_series_and_search(service):
                 ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
             ),
         )
-        cached = await service.get_catalog("series", search="kaamelott")
+        cached = await service.get_catalog("bauxite", "series", search="kaamelott")
     assert cached.metas[0].id == "tt222222"
 
     # A non-matching search yields an empty catalog without a BetaSeries call.
@@ -239,7 +242,7 @@ async def test_get_catalog_series_and_search(service):
                 ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
             ),
         )
-        empty = await service.get_catalog("series", search="inception")
+        empty = await service.get_catalog("bauxite", "series", search="inception")
     assert empty.metas == []
 
 
@@ -253,7 +256,7 @@ async def test_get_catalog_unresolvable_torrent_skipped(service):
         )
         m.get(BETASERIES_MOVIE_SEARCH_URL, payload={"movies": [], "total": 0})
 
-        response = await service.get_catalog("movie")
+        response = await service.get_catalog("bauxite", "movie")
 
     assert response.metas == []
 
@@ -276,7 +279,7 @@ async def test_get_catalog_search_filters_on_torrent_title(service):
             BETASERIES_MOVIE_URL,
             payload={"movie": {"id": 132475, "imdb_id": "tt333333"}},
         )
-        matched = await service.get_catalog("movie", search="movie one")
+        matched = await service.get_catalog("bauxite", "movie", search="movie one")
 
     assert len(matched.metas) == 1
     assert matched.metas[0].id == "tt333333"
@@ -297,9 +300,71 @@ async def test_resolve_tolerates_old_cache_entries(service, stub_redis):
             f"{BAUXITE_BASE_URL}/api/hashes/",
             payload=_bauxite_hashes(["Old.Movie.2020.FRENCH.1080p.WEB.x264-G"]),
         )
-        response = await service.get_catalog("movie")
+        response = await service.get_catalog("bauxite", "movie")
 
     assert len(response.metas) == 1
     assert response.metas[0].id == "tt999999"
     assert response.metas[0].name == "Old Movie"
     assert response.metas[0].poster is None
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_trending_movies(service):
+    """The trending catalog serves Trakt trending movies, English titles."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_TRENDING_URL,
+            payload=[
+                {
+                    "watchers": 1686,
+                    "movie": {
+                        "ids": {
+                            "imdb": "tt22084616",
+                            "slug": "spider-man-brand-new-day-2026",
+                            "tmdb": 969681,
+                            "trakt": 905132,
+                        },
+                        "title": "Spider-Man: Brand New Day",
+                        "year": 2026,
+                    },
+                },
+                {
+                    "watchers": 900,
+                    "movie": {
+                        "ids": {"imdb": None, "trakt": 123},
+                        "title": "No IMDb id",
+                        "year": 2024,
+                    },
+                },
+            ],
+        )
+        response = await service.get_catalog("trending", "movie")
+
+    assert len(response.metas) == 1
+    assert response.metas[0].id == "tt22084616"
+    assert response.metas[0].type == "movie"
+    assert response.metas[0].name == "Spider-Man: Brand New Day"
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_trending_cached(service):
+    """Trending is cached in Redis; a second call makes no HTTP request."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_TRENDING_URL,
+            payload=[
+                {
+                    "watchers": 10,
+                    "movie": {
+                        "ids": {"imdb": "tt22084616"},
+                        "title": "Spider-Man: Brand New Day",
+                        "year": 2026,
+                    },
+                },
+            ],
+        )
+        await service.get_catalog("trending", "movie")
+
+    # No mock context: any HTTP call would raise.
+    cached = await service.get_catalog("trending", "movie")
+    assert cached.metas[0].id == "tt22084616"

@@ -223,3 +223,10 @@ class TraktSearchResult(BaseModel):
     score: float | None = None
     movie: TraktMovie | None = None
     show: TraktShow | None = None
+
+
+class TraktTrendingMovie(BaseModel):
+    """A movie entry from the Trakt trending endpoint."""
+
+    watchers: int | None = None
+    movie: TraktMovie

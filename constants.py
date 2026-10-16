@@ -1,4 +1,5 @@
 CATALOG_ID = "bauxite"
+TRENDING_CATALOG_ID = "trending"
 
 MANIFEST = {
     "id": "StremBox-Plugin/Philamand/org.codeberg",
@@ -8,6 +9,7 @@ MANIFEST = {
     "types": ["movie", "series"],
     "catalogs": [
         {"type": "movie", "id": "bauxite", "name": "Ma seedbox"},
+        {"type": "movie", "id": "trending", "name": "Tendances"},
         {"type": "series", "id": "bauxite", "name": "Ma seedbox"},
     ],
     "resources": [
