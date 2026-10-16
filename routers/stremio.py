@@ -66,6 +66,7 @@ async def get_catalog(
     trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
     type: str,
     catalog_id: str,
+    search: str | None = None,
 ) -> StremioCatalogResponse:
     """Return the trending catalog of movies/series.
 
@@ -73,12 +74,16 @@ async def get_catalog(
     - type: ``"movie"`` or ``"series"`` (must be declared in the manifest).
     - catalog_id: The catalog id declared in the manifest (``"trending"``).
 
-    The lists come from the Trakt trending endpoints and are cached for an
-    hour (they are identical for every user).
+    Query parameters:
+    - search: Optional search query sent by Stremio; served through the
+      Trakt text search instead of the trending list.
+
+    The trending lists come from the Trakt trending endpoints and are
+    cached for an hour (they are identical for every user).
     """
     if type not in MANIFEST["types"] or catalog_id != TRENDING_CATALOG_ID:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
     catalog_service = CatalogService(trakt_service=trakt_service)
 
-    return await catalog_service.get_catalog(catalog_id, type)
+    return await catalog_service.get_catalog(catalog_id, type, search=search)

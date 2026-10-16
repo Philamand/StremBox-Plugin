@@ -19,12 +19,15 @@ class CatalogService:
         self,
         catalog_id: str,
         media_type: str,
+        search: str | None = None,
     ) -> StremioCatalogResponse:
         """Return the metas of a catalog.
 
         Args:
             catalog_id: ``"trending"`` (Trakt trending movies or shows).
             media_type: ``"movie"`` or ``"series"``.
+            search: Optional search query from Stremio; when given, the
+                Trakt text search is used instead of the trending list.
 
         Returns:
             A ``StremioCatalogResponse`` with one meta preview per entry.
@@ -34,9 +37,38 @@ class CatalogService:
         if catalog_id != TRENDING_CATALOG_ID:
             raise ValueError(f"Unknown catalog: {catalog_id}")
 
+        if search:
+            return await self._search(media_type, search)
+
         if media_type == "series":
             return await self._get_trending_shows()
         return await self._get_trending_movies()
+
+    async def _search(
+        self, media_type: str, search: str
+    ) -> StremioCatalogResponse:
+        """Search movies or shows by title via the Trakt text search."""
+        trakt_type = "show" if media_type == "series" else "movie"
+        results = await self.trakt_service.search_media(
+            search, trakt_type, limit=40
+        )
+        metas = []
+        for result in results:
+            media = getattr(result, trakt_type)
+            if not media or not media.ids.imdb:
+                continue
+            poster = None
+            if media.images and media.images.poster:
+                poster = normalize_poster_url(media.images.poster[0])
+            metas.append(
+                StremioMetaPreview(
+                    id=media.ids.imdb,
+                    type=media_type,
+                    name=media.title,
+                    poster=poster,
+                )
+            )
+        return StremioCatalogResponse(metas=metas)
 
     async def _get_trending_movies(self) -> StremioCatalogResponse:
         """Return the Trakt trending movies catalog (English titles)."""

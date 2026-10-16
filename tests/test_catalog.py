@@ -20,6 +20,8 @@ TRAKT_TRENDING_MOVIES_URL = re.compile(
 TRAKT_TRENDING_SHOWS_URL = re.compile(
     r"https://api\.trakt\.tv/shows/trending\?.*"
 )
+TRAKT_MOVIE_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/movie\?.*")
+TRAKT_SHOW_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/show\?.*")
 
 
 class _StubRedis:
@@ -153,3 +155,81 @@ async def test_get_catalog_rejects_unknown_ids(service):
 
     with pytest.raises(ValueError):
         await service.get_catalog("trending", "other")
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_search_movies(service):
+    """A search on the movie catalog queries the Trakt movie search."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_MOVIE_SEARCH_URL,
+            payload=[
+                {
+                    "score": 2893615515668842500,
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": "tt0109440", "trakt": 9159},
+                        "title": "Fear City: A Family-Style Comedy",
+                        "year": 1994,
+                        "images": {
+                            "poster": [
+                                "media.trakt.tv/images/movies/000/009/159/posters/medium/ac399a6d86.jpg.webp"
+                            ]
+                        },
+                    },
+                },
+                {
+                    "score": 2893615515668842500,
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": None, "trakt": 327018},
+                        "title": "No IMDb",
+                        "year": 2026,
+                    },
+                },
+            ],
+        )
+        response = await service.get_catalog("trending", "movie", search="la cite de la peur")
+
+    assert len(response.metas) == 1
+    assert response.metas[0].id == "tt0109440"
+    assert response.metas[0].name == "Fear City: A Family-Style Comedy"
+    assert (
+        response.metas[0].poster
+        == "https://media.trakt.tv/images/movies/000/009/159/posters/medium/ac399a6d86.jpg.webp"
+    )
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_search_shows(service):
+    """A search on the series catalog queries the Trakt show search."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_SHOW_SEARCH_URL,
+            payload=[
+                {
+                    "score": 578730123365189600,
+                    "type": "show",
+                    "show": {
+                        "ids": {"imdb": "tt7678620", "trakt": 136999},
+                        "title": "Bluey",
+                        "year": 2018,
+                        "images": {
+                            "poster": [
+                                "media.trakt.tv/images/shows/000/136/999/posters/medium/e5e8d5dd92.jpg.webp"
+                            ]
+                        },
+                    },
+                },
+            ],
+        )
+        response = await service.get_catalog("trending", "series", search="bluey")
+
+    assert len(response.metas) == 1
+    assert response.metas[0].id == "tt7678620"
+    assert response.metas[0].type == "series"
+    assert response.metas[0].name == "Bluey"
+    assert (
+        response.metas[0].poster
+        == "https://media.trakt.tv/images/shows/000/136/999/posters/medium/e5e8d5dd92.jpg.webp"
+    )
