@@ -178,7 +178,7 @@ async def get_torrent_name(imdb_id: str, media_type: str):
                 else None
             )
             return name, year
-    except (aiohttp.ClientError, KeyError, ValueError):
+    except aiohttp.ClientError, KeyError, ValueError:
         return None, None
 
 
@@ -496,7 +496,7 @@ def get_torrent_tracker_and_id(link: str) -> tuple:
                 torrent_id = match.group(1)
 
         return tracker, torrent_id
-    except (ValueError, AttributeError):
+    except ValueError, AttributeError:
         return None, None
 
 
@@ -696,6 +696,6 @@ def normalize_poster_url(url: str | None) -> str | None:
     """
     if not url:
         return None
-    if url.startswith("http://") or url.startswith("https://"):
+    if url.startswith(("http://", "https://")):
         return url
     return f"https://{url}"
