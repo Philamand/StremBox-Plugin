@@ -95,8 +95,9 @@ async def get_catalog(
     - extra: Optional Stremio extras path segment, e.g. ``search=spiderman``.
 
     The trending lists come from the Trakt trending endpoints and are
-    cached for an hour (they are identical for every user). A ``search``
-    extra is served through the Trakt text search.
+    cached for an hour (they are identical for every user with the same
+    certification). A ``search`` extra is served through the Trakt text
+    search.
     """
     if type not in MANIFEST["types"] or catalog_id not in (
         TRENDING_CATALOG_ID,
@@ -112,6 +113,7 @@ async def get_catalog(
     catalog_service = CatalogService(
         trakt_service=trakt_service,
         user_slug=user.trakt_slug,
+        certification=user.certification,
         librebox_url=user.librebox_url,
         librebox_token=user.librebox_token,
         betaseries_service=betaseries_service,
