@@ -1,7 +1,7 @@
-"""Tests for ``CatalogService.get_catalog``.
+"""Tests for ``CatalogService`` (Trakt trending catalogs).
 
-Bauxite and BetaSeries HTTP calls are replayed with ``aioresponses``; the
-Redis cache is replaced by an in-memory stub so no real Redis is involved.
+Trakt HTTP calls are replayed with ``aioresponses``; the Redis cache is
+replaced by an in-memory stub so no real Redis is involved.
 """
 
 import re
@@ -11,27 +11,14 @@ import pytest
 import pytest_asyncio
 from aioresponses import aioresponses as aioresponses_ctx
 
-from cache import cached_call
-from services.betaseries import BetaSeriesService
 from services.catalog import CatalogService
 from services.trakt import TraktService
 
-BAUXITE_BASE_URL = "http://librebox"
-BETASERIES_BASE_URL = "https://api.betaseries.com"
-
-TRAKT_TRENDING_MOVIES_URL = re.compile(r"https://api\.trakt\.tv/movies/trending\?.*")
-TRAKT_TRENDING_SHOWS_URL = re.compile(r"https://api\.trakt\.tv/shows/trending\?.*")
-BETASERIES_MOVIE_SEARCH_URL = re.compile(
-    rf"{re.escape(BETASERIES_BASE_URL)}/search/movies\?.*"
+TRAKT_TRENDING_MOVIES_URL = re.compile(
+    r"https://api\.trakt\.tv/movies/trending\?.*"
 )
-BETASERIES_SHOW_SEARCH_URL = re.compile(
-    rf"{re.escape(BETASERIES_BASE_URL)}/search/shows\?.*"
-)
-BETASERIES_MOVIE_URL = re.compile(
-    rf"{re.escape(BETASERIES_BASE_URL)}/movies/movie\?.*"
-)
-BETASERIES_SHOW_URL = re.compile(
-    rf"{re.escape(BETASERIES_BASE_URL)}/shows/display\?.*"
+TRAKT_TRENDING_SHOWS_URL = re.compile(
+    r"https://api\.trakt\.tv/shows/trending\?.*"
 )
 
 
@@ -69,279 +56,38 @@ async def stub_redis(monkeypatch, http_session) -> AsyncGenerator[_StubRedis]:
 
 @pytest_asyncio.fixture
 async def service(stub_redis) -> CatalogService:
-    return CatalogService(
-        BAUXITE_BASE_URL,
-        "token",
-        betaseries_service=BetaSeriesService(api_key="betaseries-key"),
-        trakt_service=TraktService(api_key="trakt-key"),
-    )
+    return CatalogService(trakt_service=TraktService(api_key="trakt-key"))
 
 
-def _bauxite_hashes(names: list[str]) -> dict:
-    return {
-        f"hash{i}": {"name": name, "percent_done": 1.0, "files": []}
-        for i, name in enumerate(names)
-    }
+def _trending_movie_payload(imdb_id: str, title: str, poster: str | None) -> dict:
+    movie = {"ids": {"imdb": imdb_id}, "title": title, "year": 2026}
+    if poster:
+        movie["images"] = {"poster": [poster]}
+    return {"watchers": 1686, "movie": movie}
 
 
-def _betaseries_movie(
-    bs_id: int,
-    title: str,
-    year: int | None,
-    alias_title: str | None,
-    poster: str | None = None,
-) -> dict:
-    return {
-        "id": bs_id,
-        "slug": "slug",
-        "release_date": year,
-        "poster": poster,
-        "alias_title": alias_title,
-        "title": title,
-    }
-
-
-def _betaseries_show(
-    bs_id: int, title: str, year: int | None, poster: str | None = None
-) -> dict:
-    return {
-        "id": bs_id,
-        "slug": "slug",
-        "release_date": year,
-        "poster": poster,
-        "alias_title": None,
-        "title": title,
-    }
-
-
-@pytest.mark.asyncio
-async def test_get_catalog_movies_french_title(service):
-    """Movies resolve through BetaSeries; alias_title is the display name."""
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(
-                [
-                    "28.Ans.Plus.Tard.Le.Temple.Des.Morts.2026.Multi.VFF.2160p."
-                    "Webrip.DV.HDR10Plus.EAC3.5.1.x265-Neostark.mkv",
-                ]
-            ),
-        )
-        m.get(
-            BETASERIES_MOVIE_SEARCH_URL,
-            payload={
-                "movies": [
-                    _betaseries_movie(
-                        140245,
-                        "28 Years Later: The Bone Temple",
-                        2026,
-                        "28 Ans plus tard : Le Temple des morts",
-                        poster="https://pictures.betaseries.com/films/affiches/original/140245.jpg",
-                    )
-                ],
-                "total": 1,
-            },
-        )
-        m.get(
-            BETASERIES_MOVIE_URL,
-            payload={"movie": {"id": 140245, "imdb_id": "tt111111"}},
-        )
-
-        response = await service.get_catalog("bauxite", "movie")
-
-    assert len(response.metas) == 1
-    assert response.metas[0].id == "tt111111"
-    assert response.metas[0].type == "movie"
-    # French title preferred for movies.
-    assert response.metas[0].name == "28 Ans plus tard : Le Temple des morts"
-    assert (
-        response.metas[0].poster
-        == "https://pictures.betaseries.com/films/affiches/original/140245.jpg"
-    )
-
-
-@pytest.mark.asyncio
-async def test_get_catalog_movies_falls_back_to_original_title(service):
-    """Without an alias_title the original title is used."""
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(
-                ["Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP"]
-            ),
-        )
-        m.get(
-            BETASERIES_MOVIE_SEARCH_URL,
-            payload={"movies": [_betaseries_movie(132475, "Movie One", 2020, None)]},
-        )
-        m.get(
-            BETASERIES_MOVIE_URL,
-            payload={"movie": {"id": 132475, "imdb_id": "tt333333"}},
-        )
-
-        response = await service.get_catalog("bauxite", "movie")
-
-    assert response.metas[0].name == "Movie One"
-
-
-@pytest.mark.asyncio
-async def test_get_catalog_series_and_search(service):
-    """Series resolve through the BetaSeries show search."""
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(
-                ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
-            ),
-        )
-        m.get(
-            BETASERIES_SHOW_SEARCH_URL,
-            payload={
-                "shows": [
-                    _betaseries_show(
-                        536,
-                        "Kaamelott",
-                        None,
-                        poster="https://pictures.betaseries.com/fonds/poster/d32448919bd236d3d58ab5d4bd2c1459.jpg",
-                    )
-                ]
-            },
-        )
-        m.get(
-            BETASERIES_SHOW_URL,
-            payload={"show": {"id": 536, "imdb_id": "tt222222"}},
-        )
-
-        response = await service.get_catalog("bauxite", "series")
-
-    assert len(response.metas) == 1
-    assert response.metas[0].id == "tt222222"
-    assert response.metas[0].type == "series"
-    assert response.metas[0].name == "Kaamelott"
-    assert (
-        response.metas[0].poster
-        == "https://pictures.betaseries.com/fonds/poster/d32448919bd236d3d58ab5d4bd2c1459.jpg"
-    )
-
-    # The catalog is always rebuilt from a fresh Bauxite listing, but the
-    # title resolutions stay cached, so BetaSeries search is not hit again.
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(
-                ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
-            ),
-        )
-        cached = await service.get_catalog("bauxite", "series", search="kaamelott")
-    assert cached.metas[0].id == "tt222222"
-
-    # A non-matching search yields an empty catalog without a BetaSeries call.
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(
-                ["Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG"]
-            ),
-        )
-        empty = await service.get_catalog("bauxite", "series", search="inception")
-    assert empty.metas == []
-
-
-@pytest.mark.asyncio
-async def test_get_catalog_unresolvable_torrent_skipped(service):
-    """A torrent whose title resolves to nothing is not in the catalog."""
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(["Unknown.thing.2019.FRENCH.1080p.WEB.x264-G"]),
-        )
-        m.get(BETASERIES_MOVIE_SEARCH_URL, payload={"movies": [], "total": 0})
-
-        response = await service.get_catalog("bauxite", "movie")
-
-    assert response.metas == []
-
-
-@pytest.mark.asyncio
-async def test_get_catalog_search_filters_on_torrent_title(service):
-    """The search filter applies to the torrent title, case-insensitive."""
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(
-                ["Movie.One.2020.FRENCH.1080p.WEB.x264-GROUP"]
-            ),
-        )
-        m.get(
-            BETASERIES_MOVIE_SEARCH_URL,
-            payload={"movies": [_betaseries_movie(132475, "Movie One", 2020, None)]},
-        )
-        m.get(
-            BETASERIES_MOVIE_URL,
-            payload={"movie": {"id": 132475, "imdb_id": "tt333333"}},
-        )
-        matched = await service.get_catalog("bauxite", "movie", search="movie one")
-
-    assert len(matched.metas) == 1
-    assert matched.metas[0].id == "tt333333"
-
-
-@pytest.mark.asyncio
-async def test_resolve_tolerates_old_cache_entries(service, stub_redis):
-    """Cache entries from before the poster field do not crash the build."""
-    # Simulate an entry written by a previous version: [imdb_id, name].
-    await stub_redis.set(
-        'betaseries:resolve:movie:Old Movie:2020',
-        '["tt999999", "Old Movie"]',
-        ex=86400,
-    )
-
-    with aioresponses_ctx() as m:
-        m.get(
-            f"{BAUXITE_BASE_URL}/api/hashes/",
-            payload=_bauxite_hashes(["Old.Movie.2020.FRENCH.1080p.WEB.x264-G"]),
-        )
-        response = await service.get_catalog("bauxite", "movie")
-
-    assert len(response.metas) == 1
-    assert response.metas[0].id == "tt999999"
-    assert response.metas[0].name == "Old Movie"
-    assert response.metas[0].poster is None
+def _trending_show_payload(imdb_id: str, title: str, poster: str | None) -> dict:
+    show = {"ids": {"imdb": imdb_id}, "title": title, "year": 1997}
+    if poster:
+        show["images"] = {"poster": [poster]}
+    return {"watchers": 6836, "show": show}
 
 
 @pytest.mark.asyncio
 async def test_get_catalog_trending_movies(service):
-    """The trending catalog serves Trakt trending movies, English titles."""
+    """Trending movies serve English titles with scheme-normalised posters."""
     with aioresponses_ctx() as m:
         m.get(
             TRAKT_TRENDING_MOVIES_URL,
             payload=[
-                {
-                    "watchers": 1686,
-                    "movie": {
-                        "ids": {
-                            "imdb": "tt22084616",
-                            "slug": "spider-man-brand-new-day-2026",
-                            "tmdb": 969681,
-                            "trakt": 905132,
-                        },
-                        "title": "Spider-Man: Brand New Day",
-                        "year": 2026,
-                        "images": {
-                            "poster": [
-                                "media.trakt.tv/images/movies/000/905/132/posters/medium/7d648ba4cb.jpg.webp"
-                            ]
-                        },
-                    },
-                },
-                {
-                    "watchers": 900,
-                    "movie": {
-                        "ids": {"imdb": None, "trakt": 123},
-                        "title": "No IMDb id",
-                        "year": 2024,
-                    },
-                },
+                _trending_movie_payload(
+                    "tt22084616",
+                    "Spider-Man: Brand New Day",
+                    "media.trakt.tv/images/movies/000/905/132/posters/medium/7d648ba4cb.jpg.webp",
+                ),
+                # No IMDb id: dropped from the catalog.
+                _trending_movie_payload("tt999999", "Has IMDb", None)
+                | {"movie": {"ids": {"imdb": None}, "title": "No IMDb", "year": 2024}},
             ],
         )
         response = await service.get_catalog("trending", "movie")
@@ -357,20 +103,39 @@ async def test_get_catalog_trending_movies(service):
 
 
 @pytest.mark.asyncio
+async def test_get_catalog_trending_shows(service):
+    """Trending series serve English titles with scheme-normalised posters."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_TRENDING_SHOWS_URL,
+            payload=[
+                _trending_show_payload(
+                    "tt0121955",
+                    "South Park",
+                    "media.trakt.tv/images/shows/000/002/177/posters/medium/9cb5875b93.jpg.webp",
+                ),
+            ],
+        )
+        response = await service.get_catalog("trending", "series")
+
+    assert len(response.metas) == 1
+    assert response.metas[0].id == "tt0121955"
+    assert response.metas[0].type == "series"
+    assert response.metas[0].name == "South Park"
+    assert (
+        response.metas[0].poster
+        == "https://media.trakt.tv/images/shows/000/002/177/posters/medium/9cb5875b93.jpg.webp"
+    )
+
+
+@pytest.mark.asyncio
 async def test_get_catalog_trending_cached(service):
     """Trending is cached in Redis; a second call makes no HTTP request."""
     with aioresponses_ctx() as m:
         m.get(
             TRAKT_TRENDING_MOVIES_URL,
             payload=[
-                {
-                    "watchers": 10,
-                    "movie": {
-                        "ids": {"imdb": "tt22084616"},
-                        "title": "Spider-Man: Brand New Day",
-                        "year": 2026,
-                    },
-                },
+                _trending_movie_payload("tt22084616", "Spider-Man: Brand New Day", None),
             ],
         )
         await service.get_catalog("trending", "movie")
@@ -381,42 +146,10 @@ async def test_get_catalog_trending_cached(service):
 
 
 @pytest.mark.asyncio
-async def test_get_catalog_trending_shows(service):
-    """The trending series catalog serves Trakt trending shows with posters."""
-    with aioresponses_ctx() as m:
-        m.get(
-            TRAKT_TRENDING_SHOWS_URL,
-            payload=[
-                {
-                    "watchers": 6836,
-                    "show": {
-                        "ids": {
-                            "imdb": "tt0121955",
-                            "slug": "south-park",
-                            "tmdb": 2190,
-                            "tvdb": 75897,
-                            "trakt": 2177,
-                        },
-                        "title": "South Park",
-                        "year": 1997,
-                        "aired_episodes": 334,
-                        "images": {
-                            "poster": [
-                                "media.trakt.tv/images/shows/000/002/177/posters/medium/9cb5875b93.jpg.webp"
-                            ]
-                        },
-                    },
-                },
-            ],
-        )
-        response = await service.get_catalog("trending", "series")
+async def test_get_catalog_rejects_unknown_ids(service):
+    """Only the trending catalog id is accepted."""
+    with pytest.raises(ValueError):
+        await service.get_catalog("bauxite", "movie")
 
-    assert len(response.metas) == 1
-    assert response.metas[0].id == "tt0121955"
-    assert response.metas[0].type == "series"
-    assert response.metas[0].name == "South Park"
-    # Scheme-less Trakt URL gets https:// prefixed.
-    assert (
-        response.metas[0].poster
-        == "https://media.trakt.tv/images/shows/000/002/177/posters/medium/9cb5875b93.jpg.webp"
-    )
+    with pytest.raises(ValueError):
+        await service.get_catalog("trending", "other")

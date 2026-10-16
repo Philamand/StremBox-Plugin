@@ -1,4 +1,3 @@
-CATALOG_ID = "bauxite"
 TRENDING_CATALOG_ID = "trending"
 
 MANIFEST = {
@@ -8,10 +7,8 @@ MANIFEST = {
     "description": "Sample addon made with FastAPI providing a few public domain movies",
     "types": ["movie", "series"],
     "catalogs": [
-        {"type": "movie", "id": "bauxite", "name": "Ma seedbox"},
         {"type": "movie", "id": "trending", "name": "Tendances"},
         {"type": "series", "id": "trending", "name": "Tendances"},
-        {"type": "series", "id": "bauxite", "name": "Ma seedbox"},
     ],
     "resources": [
         {

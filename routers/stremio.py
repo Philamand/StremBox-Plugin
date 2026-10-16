@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
-from constants import CATALOG_ID, MANIFEST, TRENDING_CATALOG_ID
+from constants import MANIFEST, TRENDING_CATALOG_ID
 from dependencies import (
     check_user_key,
     get_betaseries_service,
@@ -63,42 +63,22 @@ async def get_torrent_streams(
 
 @router.get("/{user_key}/catalog/{type}/{catalog_id}.json")
 async def get_catalog(
-    request: Request,
-    betaseries_service: Annotated[
-        BetaSeriesService, Depends(get_betaseries_service)
-    ],
     trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
     type: str,
     catalog_id: str,
-    search: str | None = None,
 ) -> StremioCatalogResponse:
-    """Return the catalog of movies/series available on the user's seedbox.
+    """Return the trending catalog of movies/series.
 
     Path parameters:
     - type: ``"movie"`` or ``"series"`` (must be declared in the manifest).
-    - catalog_id: The catalog id declared in the manifest (``"bauxite"``).
+    - catalog_id: The catalog id declared in the manifest (``"trending"``).
 
-    Query parameters:
-    - search: Optional search query sent by Stremio.
-
-    Torrent names are parsed and resolved to IMDb ids via the BetaSeries
-    search API; the catalog is rebuilt from a fresh Bauxite listing on
-    every request so it always reflects the seedbox. Unresolvable or
-    non-video torrents are skipped.
+    The lists come from the Trakt trending endpoints and are cached for an
+    hour (they are identical for every user).
     """
-    if type not in MANIFEST["types"] or catalog_id not in (
-        CATALOG_ID,
-        TRENDING_CATALOG_ID,
-    ):
+    if type not in MANIFEST["types"] or catalog_id != TRENDING_CATALOG_ID:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    user: UserData = request.state.user
+    catalog_service = CatalogService(trakt_service=trakt_service)
 
-    catalog_service = CatalogService(
-        user.librebox_url,
-        user.librebox_token,
-        betaseries_service=betaseries_service,
-        trakt_service=trakt_service,
-    )
-
-    return await catalog_service.get_catalog(catalog_id, type, search=search)
+    return await catalog_service.get_catalog(catalog_id, type)
