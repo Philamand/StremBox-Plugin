@@ -102,7 +102,7 @@ class TraktFavoriteShow(BaseModel):
     network: str | None = None
     country: str | None = None
     status: str | None = None
-    rating: int | None = None
+    rating: float | None = None
     votes: int | None = None
     comment_count: int | None = None
     trailer: str | None = None
@@ -174,7 +174,7 @@ class TraktFavoriteMovie(BaseModel):
     runtime: int | None = None
     country: str | None = None
     status: str | None = None
-    rating: int | None = None
+    rating: float | None = None
     votes: int | None = None
     comment_count: int | None = None
     trailer: str | None = None
