@@ -113,8 +113,9 @@ class CatalogService:
                     hashes, media.ids.imdb, media_type
                 ):
                     continue
+                trakt_type = "show" if media_type == "series" else "movie"
                 metas.append(
-                    self._preview_from_media(media, media.ids.imdb, media_type)
+                    await self._french_preview(media, trakt_type, media_type)
                 )
 
         # Favorites: identical for an hour, cached.
@@ -128,8 +129,9 @@ class CatalogService:
             for media in favorites:
                 if not media.ids.imdb or media.ids.imdb in existing_ids:
                     continue
+                trakt_type = "show" if media_type == "series" else "movie"
                 metas.append(
-                    self._preview_from_media(media, media.ids.imdb, media_type)
+                    await self._french_preview(media, trakt_type, media_type)
                 )
 
         return StremioCatalogResponse(metas=metas)
@@ -143,6 +145,39 @@ class CatalogService:
         return StremioMetaPreview(
             id=imdb_id, type=media_type, name=media.title, poster=poster
         )
+
+    async def _french_name(self, media_type: str, media) -> str:
+        """Return the French (France) title of a media, English fallback.
+
+        Translations are cached for a month; items without a French
+        translation keep their original title.
+        """
+        slug = getattr(media.ids, "slug", None)
+        if not slug:
+            return media.title
+        translation = await self.trakt_service.get_french_translation(
+            media_type, slug
+        )
+        if translation and translation.get("title"):
+            return translation["title"]
+        return media.title
+
+    async def _french_preview(
+        self, media, trakt_type: str, stremio_type: str | None = None
+    ) -> StremioMetaPreview:
+        """Build a meta preview with the French (France) title.
+
+        Args:
+            media: A Trakt media object (movie or show) with images.
+            trakt_type: ``"movie"`` or ``"show"``.
+            stremio_type: ``"movie"`` or ``"series"``; defaults to the
+                Stremio equivalent of *trakt_type*.
+        """
+        if stremio_type is None:
+            stremio_type = "series" if trakt_type == "show" else "movie"
+        preview = self._preview_from_media(media, media.ids.imdb, stremio_type)
+        preview.name = await self._french_name(trakt_type, media)
+        return preview
 
     async def _get_favorite_movies(self):
         """Fetch the user's favorite movies, cached an hour."""
@@ -224,55 +259,29 @@ class CatalogService:
             media = getattr(result, trakt_type)
             if not media or not media.ids.imdb:
                 continue
-            poster = None
-            if media.images and media.images.poster:
-                poster = normalize_poster_url(media.images.poster[0])
-            metas.append(
-                StremioMetaPreview(
-                    id=media.ids.imdb,
-                    type=media_type,
-                    name=media.title,
-                    poster=poster,
-                )
-            )
+            metas.append(await self._french_preview(media, trakt_type, media_type))
         return StremioCatalogResponse(metas=metas)
 
     async def _get_trending_movies(self) -> StremioCatalogResponse:
-        """Return the Trakt trending movies catalog (English titles)."""
+        """Return the Trakt trending movies catalog (French titles)."""
         trending = await self.trakt_service.get_trending_movies(limit=40)
         metas = []
         for entry in trending:
             if not entry.movie.ids.imdb:
                 continue
-            poster = None
-            if entry.movie.images and entry.movie.images.poster:
-                poster = normalize_poster_url(entry.movie.images.poster[0])
             metas.append(
-                StremioMetaPreview(
-                    id=entry.movie.ids.imdb,
-                    type="movie",
-                    name=entry.movie.title,
-                    poster=poster,
-                )
+                await self._french_preview(entry.movie, "movie")
             )
         return StremioCatalogResponse(metas=metas)
 
     async def _get_trending_shows(self) -> StremioCatalogResponse:
-        """Return the Trakt trending shows catalog (English titles)."""
+        """Return the Trakt trending shows catalog (French titles)."""
         trending = await self.trakt_service.get_trending_shows(limit=40)
         metas = []
         for entry in trending:
             if not entry.show.ids.imdb:
                 continue
-            poster = None
-            if entry.show.images and entry.show.images.poster:
-                poster = normalize_poster_url(entry.show.images.poster[0])
             metas.append(
-                StremioMetaPreview(
-                    id=entry.show.ids.imdb,
-                    type="series",
-                    name=entry.show.title,
-                    poster=poster,
-                )
+                await self._french_preview(entry.show, "show")
             )
         return StremioCatalogResponse(metas=metas)

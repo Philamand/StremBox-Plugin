@@ -132,6 +132,45 @@ class TraktService:
             return None
         return TraktShow.model_validate(cached)
 
+    async def get_french_translation(
+        self, media_type: str, slug: str
+    ) -> dict | None:
+        """Fetch the French (France) translation of a movie or show.
+
+        Args:
+            media_type: ``"movie"`` or ``"show"``.
+            slug: The Trakt slug of the media.
+
+        Returns:
+            The ``country=fr`` translation (``title``/``overview``/
+            ``tagline``), or ``None`` when there is none. Cached for a
+            month; a miss (no translation) is cached too.
+        """
+        async def fetch() -> dict | None:
+            url = f"{self.base_url}/{media_type}s/{slug}/translations"
+            params = {"language": "fr"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                for entry in data:
+                    if entry.get("country") == "fr":
+                        return {
+                            "title": entry.get("title"),
+                            "overview": entry.get("overview"),
+                            "tagline": entry.get("tagline"),
+                        }
+                return None
+
+        return await cached_call(
+            f"trakt:translation:{media_type}:{slug}",
+            2592000,
+            fetch,
+            cache_none=True,
+        )
+
     async def get_trending_movies(self, limit: int = 40) -> list[TraktTrendingMovie]:
         """Get the trending movies on Trakt.
 

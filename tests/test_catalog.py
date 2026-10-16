@@ -22,6 +22,9 @@ TRAKT_TRENDING_SHOWS_URL = re.compile(
 )
 TRAKT_MOVIE_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/movie\?.*")
 TRAKT_IMDB_LOOKUP_URL = re.compile(r"https://api\.trakt\.tv/search/imdb/.*")
+TRAKT_TRANSLATIONS_URL = re.compile(
+    r"https://api\.trakt\.tv/(movies|shows)/.*/translations\?.*"
+)
 TRAKT_FAVORITES_URL = re.compile(r"https://api\.trakt\.tv/users/.*/favorites/.*")
 TRAKT_WATCHLIST_URL = re.compile(r"https://api\.trakt\.tv/users/.*/watchlist/.*")
 CINEMETA_URL = re.compile(r"https://v3-cinemeta\.strem\.io/meta/.*")
@@ -445,3 +448,133 @@ async def test_get_catalog_library_without_trakt_slug(stub_redis, http_session):
     service = CatalogService(TraktService(api_key="trakt-key"))
     response = await service.get_catalog("library", "movie")
     assert response.metas == []
+
+
+@pytest.mark.asyncio
+async def test_trending_movies_use_french_titles(service):
+    """Trending entries display the French (France) title."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_TRENDING_MOVIES_URL,
+            payload=[
+                {
+                    "watchers": 10,
+                    "movie": {
+                        "ids": {
+                            "imdb": "tt1",
+                            "slug": "kaamelott-the-second-chapter-part-i-2025",
+                        },
+                        "title": "Kaamelott: The Second Chapter",
+                        "year": 2025,
+                    },
+                },
+            ],
+        )
+        m.get(
+            re.compile(
+                r"https://api\.trakt\.tv/movies/kaamelott-the-second-chapter-part-i-2025/translations\?.*"
+            ),
+            payload=[
+                {
+                    "title": "Kaamelott : Deuxième Volet, partie 1",
+                    "overview": "Les Dieux sont en colère contre Arthur !",
+                    "tagline": "Qui part à l'aventure ?",
+                    "language": "fr",
+                    "country": "fr",
+                },
+                {
+                    # Canada entry: must be ignored even with a title.
+                    "title": "Kaamelott Canada",
+                    "overview": None,
+                    "tagline": None,
+                    "language": "fr",
+                    "country": "ca",
+                },
+            ],
+        )
+        response = await service.get_catalog("trending", "movie")
+
+    assert response.metas[0].name == "Kaamelott : Deuxième Volet, partie 1"
+
+
+@pytest.mark.asyncio
+async def test_search_shows_use_french_titles(service):
+    """Search entries display the French title, English fallback."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_SHOW_SEARCH_URL,
+            payload=[
+                {
+                    "score": 1,
+                    "type": "show",
+                    "show": {
+                        "ids": {"imdb": "tt2", "slug": "stuart-fails-to-save-the-universe"},
+                        "title": "Stuart Fails to Save the Universe",
+                        "year": 2026,
+                    },
+                },
+                {
+                    "score": 2,
+                    "type": "show",
+                    # No slug: no translation call, English title kept.
+                    "show": {
+                        "ids": {"imdb": "tt3"},
+                        "title": "No Slug Show",
+                        "year": 2020,
+                    },
+                },
+            ],
+        )
+        m.get(
+            re.compile(
+                r"https://api\.trakt\.tv/shows/stuart-fails-to-save-the-universe/translations\?.*"
+            ),
+            payload=[
+                {
+                    "title": "Stuart fails to save the Universe",
+                    "overview": "Le propriétaire de la boutique de comics...",
+                    "tagline": "Chaque univers a besoin d'un héros.",
+                    "language": "fr",
+                    "country": "fr",
+                },
+                {
+                    # Canada entry with a null title: ignored anyway.
+                    "title": None,
+                    "overview": "Stuart Bloom...",
+                    "tagline": None,
+                    "language": "fr",
+                    "country": "ca",
+                },
+            ],
+        )
+        response = await service.get_catalog("trending", "series", search="stuart")
+
+    names = {meta.id: meta.name for meta in response.metas}
+    assert names["tt2"] == "Stuart fails to save the Universe"
+    assert names["tt3"] == "No Slug Show"
+
+
+@pytest.mark.asyncio
+async def test_french_title_falls_back_to_english(service):
+    """Without a French translation the original title is kept."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_TRENDING_MOVIES_URL,
+            payload=[
+                {
+                    "watchers": 10,
+                    "movie": {
+                        "ids": {"imdb": "tt4", "slug": "some-movie"},
+                        "title": "Some Movie",
+                        "year": 2020,
+                    },
+                },
+            ],
+        )
+        m.get(
+            re.compile(r"https://api\.trakt\.tv/movies/some-movie/translations\?.*"),
+            payload=[],
+        )
+        response = await service.get_catalog("trending", "movie")
+
+    assert response.metas[0].name == "Some Movie"
