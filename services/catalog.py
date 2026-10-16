@@ -83,25 +83,13 @@ class CatalogService:
         return await self._get_trending_movies()
 
     async def _get_library(self, media_type: str) -> StremioCatalogResponse:
-        """Return the user's Trakt library: favorites plus downloadable watchlist.
+        """Return the user's Trakt library: downloadable watchlist then favorites.
 
-        Favorites are always included (cached an hour per user). Watchlist
-        entries are only included when a matching torrent exists on the
-        user's seedbox; that check is re-evaluated on every request.
+        Watchlist entries come first, included only when a matching
+        torrent exists on the user's seedbox; that check is re-evaluated
+        on every request. Favorites follow, cached an hour per user.
         """
         metas: list[StremioMetaPreview] = []
-
-        # Favorites: identical for an hour, cached.
-        if self.user_slug:
-            if media_type == "series":
-                favorites = await self._get_favorite_shows()
-            else:
-                favorites = await self._get_favorite_movies()
-
-            for media in favorites:
-                if not media.ids.imdb:
-                    continue
-                metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
 
         # Watchlist: only entries already present in Bauxite.
         if self.bauxite_matcher and self.user_slug:
@@ -115,14 +103,26 @@ class CatalogService:
                 )
 
             hashes = await self.bauxite_service.get_torrent_hashes()
-            existing_ids = {meta.id for meta in metas}
             for entry in watchlist:
                 media = entry.show if media_type == "series" else entry.movie
-                if not media.ids.imdb or media.ids.imdb in existing_ids:
+                if not media.ids.imdb:
                     continue
                 if not await self.bauxite_matcher.has_bauxite_torrent(
                     hashes, media.ids.imdb, media_type
                 ):
+                    continue
+                metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
+
+        # Favorites: identical for an hour, cached.
+        if self.user_slug:
+            if media_type == "series":
+                favorites = await self._get_favorite_shows()
+            else:
+                favorites = await self._get_favorite_movies()
+
+            existing_ids = {meta.id for meta in metas}
+            for media in favorites:
+                if not media.ids.imdb or media.ids.imdb in existing_ids:
                     continue
                 metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
 

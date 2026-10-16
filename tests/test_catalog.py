@@ -411,22 +411,10 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
                 }
             },
         )
-        # Posters are fetched via the Trakt ID lookup (cached a day).
+        # Posters are fetched via the Trakt ID lookup (cached a day),
+        # one id-specific mock per item.
         m.get(
-            TRAKT_IMDB_LOOKUP_URL,
-            payload=[
-                {
-                    "type": "movie",
-                    "movie": {
-                        "ids": {"imdb": "tt111111"},
-                        "title": "Favorite Movie",
-                        "images": {"poster": ["media.trakt.tv/images/posters/fav.jpg"]},
-                    },
-                }
-            ],
-        )
-        m.get(
-            TRAKT_IMDB_LOOKUP_URL,
+            re.compile(r"https://api\.trakt\.tv/search/imdb/tt222222\?.*"),
             payload=[
                 {
                     "type": "movie",
@@ -439,8 +427,17 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
             ],
         )
         m.get(
-            TRAKT_IMDB_LOOKUP_URL,
-            payload=[],
+            re.compile(r"https://api\.trakt\.tv/search/imdb/tt111111\?.*"),
+            payload=[
+                {
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": "tt111111"},
+                        "title": "Favorite Movie",
+                        "images": {"poster": ["media.trakt.tv/images/posters/fav.jpg"]},
+                    },
+                }
+            ],
         )
         # has_bauxite_torrent resolves titles via Cinemeta; the absent
         # entry resolves too but matches no torrent.
@@ -463,6 +460,9 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
     posters = {meta.id: meta.poster for meta in response.metas}
     assert posters["tt111111"] == "https://media.trakt.tv/images/posters/fav.jpg"
     assert posters["tt222222"] == "https://media.trakt.tv/images/posters/watch.jpg"
+
+    # Watchlist entries are listed before favorites.
+    assert ids.index("tt222222") < ids.index("tt111111")
 
 
 @pytest.mark.asyncio
