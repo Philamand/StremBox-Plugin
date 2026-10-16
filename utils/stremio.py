@@ -679,3 +679,23 @@ def torrent_is_video(name: str, files: list[str]) -> bool:
         return any(_VIDEO_FILE_EXTENSION_PATTERN.search(f) for f in files)
 
     return True
+
+
+def normalize_poster_url(url: str | None) -> str | None:
+    """Return *url* with an explicit https scheme.
+
+    Trakt serves image URLs without the protocol (e.g.
+    ``media.trakt.tv/images/...``), which some clients refuse to load.
+
+    Args:
+        url (str | None): The poster URL as returned by an API.
+
+    Returns:
+        str | None: The URL prefixed with ``https://`` when the scheme is
+        missing; ``None`` is passed through unchanged.
+    """
+    if not url:
+        return None
+    if url.startswith("http://") or url.startswith("https://"):
+        return url
+    return f"https://{url}"

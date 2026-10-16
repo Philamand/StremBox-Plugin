@@ -189,3 +189,20 @@ def test_torrent_is_video():
 
     # A video file inside a folder that also contains other files is video.
     assert torrent_is_video("Movie.Pack", ["Movie.Pack/movie.mkv", "Movie.Pack/cover.jpg"]) is True
+
+
+def test_normalize_poster_url():
+    """Scheme-less URLs get https://; full URLs and None pass through."""
+    from utils.stremio import normalize_poster_url
+
+    assert (
+        normalize_poster_url("media.trakt.tv/images/posters/medium/7d648ba4cb.jpg.webp")
+        == "https://media.trakt.tv/images/posters/medium/7d648ba4cb.jpg.webp"
+    )
+    assert (
+        normalize_poster_url("https://pictures.betaseries.com/films/140245.jpg")
+        == "https://pictures.betaseries.com/films/140245.jpg"
+    )
+    assert normalize_poster_url("http://example.com/a.jpg") == "http://example.com/a.jpg"
+    assert normalize_poster_url(None) is None
+    assert normalize_poster_url("") is None

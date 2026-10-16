@@ -351,7 +351,7 @@ async def test_get_catalog_trending_movies(service):
     assert response.metas[0].name == "Spider-Man: Brand New Day"
     assert (
         response.metas[0].poster
-        == "media.trakt.tv/images/movies/000/905/132/posters/medium/7d648ba4cb.jpg.webp"
+        == "https://media.trakt.tv/images/movies/000/905/132/posters/medium/7d648ba4cb.jpg.webp"
     )
 
 

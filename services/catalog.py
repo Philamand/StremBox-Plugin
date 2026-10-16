@@ -4,7 +4,7 @@ from schemas.catalog import StremioCatalogResponse, StremioMetaPreview
 from services.bauxite import BauxiteService
 from services.betaseries import BetaSeriesService
 from services.trakt import TraktService
-from utils.stremio import extract_title_info, torrent_is_video
+from utils.stremio import extract_title_info, normalize_poster_url, torrent_is_video
 
 
 
@@ -147,7 +147,7 @@ class CatalogService:
                 continue
             poster = None
             if entry.movie.images and entry.movie.images.poster:
-                poster = entry.movie.images.poster[0]
+                poster = normalize_poster_url(entry.movie.images.poster[0])
             metas.append(
                 StremioMetaPreview(
                     id=entry.movie.ids.imdb,
