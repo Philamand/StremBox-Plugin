@@ -1,6 +1,37 @@
 TRENDING_CATALOG_ID = "trending"
 LIBRARY_CATALOG_ID = "library"
 
+# Maximum certification rating a user can see, as a single unified scale
+# shared by movies and series: each entry covers the equivalent movie and TV
+# ratings (e.g. "r" matches both R and TV-MA). "Not Rated" is excluded.
+CERTIFICATIONS = [
+    {
+        "name": "G",
+        "slug": "g",
+        "description": "All Ages (G, TV-Y, TV-G)",
+    },
+    {
+        "name": "PG-7",
+        "slug": "pg-7",
+        "description": "Older Children - Ages 7+ Recommended (TV-Y7)",
+    },
+    {
+        "name": "PG",
+        "slug": "pg",
+        "description": "Parental Guidance Suggested (PG, TV-PG)",
+    },
+    {
+        "name": "PG-13",
+        "slug": "pg-13",
+        "description": "Parents Strongly Cautioned - Ages 13+ Recommended (PG-13, TV-14)",
+    },
+    {
+        "name": "R",
+        "slug": "r",
+        "description": "Mature Audiences - Ages 17+ Recommended (R, TV-MA)",
+    },
+]
+
 MANIFEST = {
     "id": "StremBox-Plugin/Philamand/org.codeberg",
     "version": "1.0.0",

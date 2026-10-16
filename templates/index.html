@@ -133,6 +133,28 @@
                     />
                 </div>
 
+                <div class="mb-3">
+                    <label for="certification" class="form-label"
+                        >Certification maximale visible (films et séries)</label
+                    >
+                    <select
+                        class="form-select"
+                        id="certification"
+                        name="certification"
+                    >
+                        {% for cert in certifications %}
+                        <option
+                            value="{{ cert.slug }}"
+                            {% if user and user.certification == cert.slug %}
+                            selected
+                            {% endif %}
+                        >
+                            {{ cert.name }} - {{ cert.description }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Générer</button>
             </form>
         </div>

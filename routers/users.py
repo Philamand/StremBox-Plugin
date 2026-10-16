@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from constants import CERTIFICATIONS
 from dependencies import get_user_service
 from schemas.users import UserCreateData
 from services.users import UserService
@@ -15,7 +16,11 @@ templates = Jinja2Templates(directory="templates")
 @router.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     """Display the index page."""
-    return templates.TemplateResponse(request=request, name="index.html")
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={"certifications": CERTIFICATIONS},
+    )
 
 
 @router.post("/", response_class=HTMLResponse)

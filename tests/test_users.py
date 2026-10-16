@@ -24,6 +24,7 @@ def _make_create_data(
     c411_key: str | None = "c411-key-123",
     tr4ker_key: str | None = "tr4ker-key-456",
     lacale_key: str | None = "lacale-key-789",
+    certification: str | None = "pg-13",
 ) -> UserCreateData:
     """Build a UserCreateData with sensible defaults so tests stay concise."""
     return UserCreateData(
@@ -32,6 +33,7 @@ def _make_create_data(
         c411_key=c411_key,
         tr4ker_key=tr4ker_key,
         lacale_key=lacale_key,
+        certification=certification,
     )
 
 
@@ -70,6 +72,7 @@ async def test_create_user_persists_all_fields(conn: asyncpg.Connection) -> None
         c411_key="c411-x",
         tr4ker_key="tr4ker-y",
         lacale_key="lacale-z",
+        certification="r",
     )
     user_id = await svc.create_user(data)
 
@@ -80,6 +83,7 @@ async def test_create_user_persists_all_fields(conn: asyncpg.Connection) -> None
     assert row["c411_key"] == data.c411_key
     assert row["tr4ker_key"] == data.tr4ker_key
     assert row["lacale_key"] == data.lacale_key
+    assert row["certification"] == "r"
 
 
 async def test_create_user_optional_keys_can_be_none(conn: asyncpg.Connection) -> None:
@@ -120,6 +124,7 @@ async def test_get_user_returns_user_data(conn: asyncpg.Connection) -> None:
             c411_key="ck",
             tr4ker_key="tk",
             lacale_key="lk",
+            certification="r",
         )
     )
 
@@ -132,6 +137,7 @@ async def test_get_user_returns_user_data(conn: asyncpg.Connection) -> None:
     assert user.c411_key == "ck"
     assert user.tr4ker_key == "tk"
     assert user.lacale_key == "lk"
+    assert user.certification == "r"
 
 
 async def test_get_user_nonexistent_raises_valueerror(conn: asyncpg.Connection) -> None:
@@ -177,6 +183,15 @@ async def test_index_returns_html(client: AsyncClient) -> None:
     assert "text/html" in resp.headers["content-type"]
 
 
+async def test_index_renders_certification_select(client: AsyncClient) -> None:
+    """GET / should render the certification select with every US option."""
+    resp = await client.get("/")
+    assert resp.status_code == 200
+    assert 'name="certification"' in resp.text
+    for slug in ("g", "pg-7", "pg", "pg-13", "r"):
+        assert f'value="{slug}"' in resp.text
+
+
 async def test_create_user_returns_user_id(client: AsyncClient) -> None:
     """POST / with valid form data should create a user and return the ID."""
     resp = await client.post(
@@ -206,6 +221,7 @@ async def test_create_user_persists_in_db(
             "c411_key": "c411-persist",
             "tr4ker_key": "tr4ker-persist",
             "lacale_key": "lacale-persist",
+            "certification": "pg-13",
         },
     )
     assert resp.status_code == 200
@@ -218,6 +234,7 @@ async def test_create_user_persists_in_db(
     assert row["c411_key"] == "c411-persist"
     assert row["tr4ker_key"] == "tr4ker-persist"
     assert row["lacale_key"] == "lacale-persist"
+    assert row["certification"] == "pg-13"
 
 
 async def test_create_user_optional_keys_can_be_omitted(client: AsyncClient) -> None:

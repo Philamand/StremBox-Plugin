@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS public.users (
     tr4ker_key character varying(255),
     lacale_key character varying(255),
     trakt_slug character varying(255),
+    certification character varying(255),
     librebox_url character varying(255) NOT NULL,
     librebox_token character varying(255) NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (id)
