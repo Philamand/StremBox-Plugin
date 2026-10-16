@@ -101,14 +101,7 @@ class CatalogService:
             for media in favorites:
                 if not media.ids.imdb:
                     continue
-                metas.append(
-                    StremioMetaPreview(
-                        id=media.ids.imdb,
-                        type=media_type,
-                        name=media.title,
-                        poster=None,
-                    )
-                )
+                metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
 
         # Watchlist: only entries already present in Bauxite.
         if self.bauxite_matcher and self.user_slug:
@@ -131,16 +124,30 @@ class CatalogService:
                     hashes, media.ids.imdb, media_type
                 ):
                     continue
-                metas.append(
-                    StremioMetaPreview(
-                        id=media.ids.imdb,
-                        type=media_type,
-                        name=media.title,
-                        poster=None,
-                    )
-                )
+                metas.append(await self._meta_preview(media.ids.imdb, media_type, media.title))
 
         return StremioCatalogResponse(metas=metas)
+
+    async def _meta_preview(
+        self, imdb_id: str, media_type: str, title: str
+    ) -> StremioMetaPreview:
+        """Build a meta preview, fetching the poster from Trakt metadata.
+
+        The metadata lookups are cached for a day, so a library entry
+        costs at most one Trakt call per day.
+        """
+        if media_type == "series":
+            media = await self.trakt_service.get_show_meta(imdb_id)
+        else:
+            media = await self.trakt_service.get_movie_meta(imdb_id)
+
+        poster = None
+        if media and media.images and media.images.poster:
+            poster = normalize_poster_url(media.images.poster[0])
+
+        return StremioMetaPreview(
+            id=imdb_id, type=media_type, name=title, poster=poster
+        )
 
     async def _get_favorite_movies(self):
         """Fetch the user's favorite movies, cached an hour."""

@@ -411,6 +411,37 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
                 }
             },
         )
+        # Posters are fetched via the Trakt ID lookup (cached a day).
+        m.get(
+            TRAKT_IMDB_LOOKUP_URL,
+            payload=[
+                {
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": "tt111111"},
+                        "title": "Favorite Movie",
+                        "images": {"poster": ["media.trakt.tv/images/posters/fav.jpg"]},
+                    },
+                }
+            ],
+        )
+        m.get(
+            TRAKT_IMDB_LOOKUP_URL,
+            payload=[
+                {
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": "tt222222"},
+                        "title": "Watchlisted Movie",
+                        "images": {"poster": ["media.trakt.tv/images/posters/watch.jpg"]},
+                    },
+                }
+            ],
+        )
+        m.get(
+            TRAKT_IMDB_LOOKUP_URL,
+            payload=[],
+        )
         # has_bauxite_torrent resolves titles via Cinemeta; the absent
         # entry resolves too but matches no torrent.
         m.get(
@@ -428,6 +459,10 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
     assert "tt111111" in ids  # favorite
     assert "tt222222" in ids  # watchlisted + on the seedbox
     assert "tt333333" not in ids  # watchlisted but absent
+
+    posters = {meta.id: meta.poster for meta in response.metas}
+    assert posters["tt111111"] == "https://media.trakt.tv/images/posters/fav.jpg"
+    assert posters["tt222222"] == "https://media.trakt.tv/images/posters/watch.jpg"
 
 
 @pytest.mark.asyncio
