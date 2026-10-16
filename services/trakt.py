@@ -316,7 +316,9 @@ class TraktService:
             params["extended"] = "full"
 
         session = get_session()
-        async with session.get(url, headers=self._get_headers()) as response:
+        async with session.get(
+            url, params=params, headers=self._get_headers()
+        ) as response:
             data = await response.json()
             return [TraktFavoriteMovieEntry.model_validate(item) for item in data]
 
@@ -337,7 +339,9 @@ class TraktService:
             params["extended"] = "full"
 
         session = get_session()
-        async with session.get(url, headers=self._get_headers()) as response:
+        async with session.get(
+            url, params=params, headers=self._get_headers()
+        ) as response:
             data = await response.json()
             return [TraktFavoriteShowEntry.model_validate(item) for item in data]
 
