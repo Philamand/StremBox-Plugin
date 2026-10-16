@@ -11,6 +11,7 @@ from schemas.trakt import (
     TraktSearchResult,
     TraktSeason,
     TraktTrendingMovie,
+    TraktTrendingShow,
     TraktWatchedShow,
     TraktWatchlistMovie,
     TraktWatchlistShow,
@@ -105,6 +106,37 @@ class TraktService:
             "trakt:trending:movies", 3600, fetch, cache_none=True
         )
         return [TraktTrendingMovie.model_validate(item) for item in cached]
+
+    async def get_trending_shows(self, limit: int = 40) -> list[TraktTrendingShow]:
+        """Get the trending shows on Trakt.
+
+        The list is identical for every user, so it is cached in Redis for
+        an hour regardless of the caller.
+
+        Args:
+            limit: Maximum number of shows to return.
+
+        Returns:
+            Trending shows ordered by watcher count.
+        """
+        async def fetch() -> list[dict]:
+            url = f"{self.base_url}/shows/trending"
+            params = {"limit": limit, "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                return [
+                    TraktTrendingShow.model_validate(item).model_dump()
+                    for item in data
+                ]
+
+        cached = await cached_call(
+            "trakt:trending:shows", 3600, fetch, cache_none=True
+        )
+        return [TraktTrendingShow.model_validate(item) for item in cached]
 
     async def get_unwatched_movies(self, user_slug: str) -> list[TraktWatchlistMovie]:
         url = f"{self.base_url}/users/{user_slug}/watchlist/movies/title/desc"

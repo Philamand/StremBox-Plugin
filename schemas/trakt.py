@@ -74,6 +74,7 @@ class TraktShow(BaseModel):
     title: str
     year: int | None = None
     aired_episodes: int | None = None
+    images: TraktImages | None = None
 
 
 class TraktFavoriteShow(BaseModel):
@@ -231,3 +232,10 @@ class TraktTrendingMovie(BaseModel):
 
     watchers: int | None = None
     movie: TraktMovie
+
+
+class TraktTrendingShow(BaseModel):
+    """A show entry from the Trakt trending endpoint."""
+
+    watchers: int | None = None
+    show: TraktShow

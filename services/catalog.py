@@ -56,6 +56,8 @@ class CatalogService:
             raise ValueError(f"Unsupported catalog type: {media_type}")
 
         if catalog_id == TRENDING_CATALOG_ID:
+            if media_type == "series":
+                return await self._get_trending_shows()
             return await self._get_trending_movies()
 
         query = search.lower() if search else None
@@ -153,6 +155,26 @@ class CatalogService:
                     id=entry.movie.ids.imdb,
                     type="movie",
                     name=entry.movie.title,
+                    poster=poster,
+                )
+            )
+        return StremioCatalogResponse(metas=metas)
+
+    async def _get_trending_shows(self) -> StremioCatalogResponse:
+        """Return the Trakt trending shows catalog (English titles)."""
+        trending = await self.trakt_service.get_trending_shows(limit=40)
+        metas = []
+        for entry in trending:
+            if not entry.show.ids.imdb:
+                continue
+            poster = None
+            if entry.show.images and entry.show.images.poster:
+                poster = normalize_poster_url(entry.show.images.poster[0])
+            metas.append(
+                StremioMetaPreview(
+                    id=entry.show.ids.imdb,
+                    type="series",
+                    name=entry.show.title,
                     poster=poster,
                 )
             )

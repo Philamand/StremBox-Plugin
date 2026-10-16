@@ -10,6 +10,7 @@ MANIFEST = {
     "catalogs": [
         {"type": "movie", "id": "bauxite", "name": "Ma seedbox"},
         {"type": "movie", "id": "trending", "name": "Tendances"},
+        {"type": "series", "id": "trending", "name": "Tendances"},
         {"type": "series", "id": "bauxite", "name": "Ma seedbox"},
     ],
     "resources": [

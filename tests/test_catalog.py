@@ -19,7 +19,8 @@ from services.trakt import TraktService
 BAUXITE_BASE_URL = "http://librebox"
 BETASERIES_BASE_URL = "https://api.betaseries.com"
 
-TRAKT_TRENDING_URL = re.compile(r"https://api\.trakt\.tv/movies/trending\?.*")
+TRAKT_TRENDING_MOVIES_URL = re.compile(r"https://api\.trakt\.tv/movies/trending\?.*")
+TRAKT_TRENDING_SHOWS_URL = re.compile(r"https://api\.trakt\.tv/shows/trending\?.*")
 BETASERIES_MOVIE_SEARCH_URL = re.compile(
     rf"{re.escape(BETASERIES_BASE_URL)}/search/movies\?.*"
 )
@@ -313,7 +314,7 @@ async def test_get_catalog_trending_movies(service):
     """The trending catalog serves Trakt trending movies, English titles."""
     with aioresponses_ctx() as m:
         m.get(
-            TRAKT_TRENDING_URL,
+            TRAKT_TRENDING_MOVIES_URL,
             payload=[
                 {
                     "watchers": 1686,
@@ -360,7 +361,7 @@ async def test_get_catalog_trending_cached(service):
     """Trending is cached in Redis; a second call makes no HTTP request."""
     with aioresponses_ctx() as m:
         m.get(
-            TRAKT_TRENDING_URL,
+            TRAKT_TRENDING_MOVIES_URL,
             payload=[
                 {
                     "watchers": 10,
@@ -377,3 +378,45 @@ async def test_get_catalog_trending_cached(service):
     # No mock context: any HTTP call would raise.
     cached = await service.get_catalog("trending", "movie")
     assert cached.metas[0].id == "tt22084616"
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_trending_shows(service):
+    """The trending series catalog serves Trakt trending shows with posters."""
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_TRENDING_SHOWS_URL,
+            payload=[
+                {
+                    "watchers": 6836,
+                    "show": {
+                        "ids": {
+                            "imdb": "tt0121955",
+                            "slug": "south-park",
+                            "tmdb": 2190,
+                            "tvdb": 75897,
+                            "trakt": 2177,
+                        },
+                        "title": "South Park",
+                        "year": 1997,
+                        "aired_episodes": 334,
+                        "images": {
+                            "poster": [
+                                "media.trakt.tv/images/shows/000/002/177/posters/medium/9cb5875b93.jpg.webp"
+                            ]
+                        },
+                    },
+                },
+            ],
+        )
+        response = await service.get_catalog("trending", "series")
+
+    assert len(response.metas) == 1
+    assert response.metas[0].id == "tt0121955"
+    assert response.metas[0].type == "series"
+    assert response.metas[0].name == "South Park"
+    # Scheme-less Trakt URL gets https:// prefixed.
+    assert (
+        response.metas[0].poster
+        == "https://media.trakt.tv/images/shows/000/002/177/posters/medium/9cb5875b93.jpg.webp"
+    )
