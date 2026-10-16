@@ -22,6 +22,9 @@ TRAKT_TRENDING_SHOWS_URL = re.compile(
 )
 TRAKT_MOVIE_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/movie\?.*")
 TRAKT_IMDB_LOOKUP_URL = re.compile(r"https://api\.trakt\.tv/search/imdb/.*")
+TRAKT_FAVORITES_URL = re.compile(r"https://api\.trakt\.tv/users/.*/favorites/.*")
+TRAKT_WATCHLIST_URL = re.compile(r"https://api\.trakt\.tv/users/.*/watchlist/.*")
+CINEMETA_URL = re.compile(r"https://v3-cinemeta\.strem\.io/meta/.*")
 TRAKT_SHOW_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/show\?.*")
 
 
@@ -329,3 +332,107 @@ async def test_get_meta_not_found(service):
 
         with pytest.raises(ValueError):
             await service.get_meta("movie", "tt9999999")
+
+
+def _library_service(stub_redis) -> CatalogService:
+    from services.betaseries import BetaSeriesService
+
+    return CatalogService(
+        TraktService(api_key="trakt-key"),
+        user_slug="some-user",
+        librebox_url="http://librebox",
+        librebox_token="token",
+        betaseries_service=BetaSeriesService(api_key="bs-key"),
+    )
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_library_movies(stub_redis, http_session):
+    """Favorites are included; watchlist only when present in Bauxite."""
+    service = _library_service(stub_redis)
+
+    favorite_movie = {
+        "ids": {"imdb": "tt111111", "trakt": 1},
+        "title": "Favorite Movie",
+        "year": 2020,
+    }
+    # Watchlist entry present on the seedbox...
+    watchlisted_present = {
+        "ids": {"imdb": "tt222222", "trakt": 2},
+        "title": "Watchlisted Movie",
+        "year": 2021,
+    }
+    # ...and one absent from it.
+    watchlisted_absent = {
+        "ids": {"imdb": "tt333333", "trakt": 3},
+        "title": "Not Downloaded",
+        "year": 2022,
+    }
+
+    with aioresponses_ctx() as m:
+        m.get(
+            TRAKT_FAVORITES_URL,
+            payload=[
+                {
+                    "id": 1,
+                    "listed_at": "2026-01-01T00:00:00Z",
+                    "rank": 0,
+                    "type": "movie",
+                    "movie": favorite_movie,
+                }
+            ],
+        )
+        m.get(
+            TRAKT_WATCHLIST_URL,
+            payload=[
+                {
+                    "type": "movie",
+                    "movie": watchlisted_present,
+                    "rank": 1,
+                    "id": 2,
+                    "listed_at": "2026-01-01T00:00:00Z",
+                },
+                {
+                    "type": "movie",
+                    "movie": watchlisted_absent,
+                    "rank": 2,
+                    "id": 3,
+                    "listed_at": "2026-01-01T00:00:00Z",
+                },
+            ],
+        )
+        m.get(
+            "http://librebox/api/hashes/",
+            payload={
+                "abc": {
+                    "name": "Watchlisted.Movie.2021.FRENCH.1080p.WEB.x264-G",
+                    "percent_done": 1.0,
+                    "files": [],
+                }
+            },
+        )
+        # has_bauxite_torrent resolves titles via Cinemeta; the absent
+        # entry resolves too but matches no torrent.
+        m.get(
+            CINEMETA_URL,
+            payload={"meta": {"name": "Watchlisted Movie", "year": "2021"}},
+        )
+        m.get(
+            CINEMETA_URL,
+            payload={"meta": {"name": "Not Downloaded", "year": "2022"}},
+        )
+
+        response = await service.get_catalog("library", "movie")
+
+    ids = [meta.id for meta in response.metas]
+    assert "tt111111" in ids  # favorite
+    assert "tt222222" in ids  # watchlisted + on the seedbox
+    assert "tt333333" not in ids  # watchlisted but absent
+
+
+@pytest.mark.asyncio
+async def test_get_catalog_library_without_trakt_slug(stub_redis, http_session):
+    """Without a trakt_slug the library catalog is simply empty."""
+    service = CatalogService(TraktService(api_key="trakt-key"))
+    response = await service.get_catalog("library", "movie")
+    assert response.metas == []

@@ -1,4 +1,9 @@
-from constants import MANIFEST, TRENDING_CATALOG_ID
+from cache import cached_call
+from constants import (
+    LIBRARY_CATALOG_ID,
+    MANIFEST,
+    TRENDING_CATALOG_ID,
+)
 from schemas.catalog import (
     StremioCatalogResponse,
     StremioMeta,
@@ -6,6 +11,7 @@ from schemas.catalog import (
     StremioMetaResponse,
 )
 from services.trakt import TraktService
+from schemas.trakt import TraktFavoriteMovie, TraktFavoriteShow
 from utils.stremio import normalize_poster_url
 
 
@@ -17,8 +23,31 @@ class CatalogService:
     service, so a catalog request is at most one Trakt call per hour.
     """
 
-    def __init__(self, trakt_service: TraktService):
+    def __init__(
+        self,
+        trakt_service: TraktService,
+        *,
+        user_slug: str | None = None,
+        librebox_url: str | None = None,
+        librebox_token: str | None = None,
+        betaseries_service=None,
+    ):
         self.trakt_service = trakt_service
+        self.user_slug = user_slug
+        if librebox_url and librebox_token:
+            from services.stremio import StremioOrchestrationService
+
+            self.bauxite_matcher = StremioOrchestrationService(
+                librebox_url,
+                librebox_token,
+                betaseries_service=betaseries_service,
+            )
+            from services.bauxite import BauxiteService
+
+            self.bauxite_service = BauxiteService(librebox_url, librebox_token)
+        else:
+            self.bauxite_matcher = None
+            self.bauxite_service = None
 
     async def get_catalog(
         self,
@@ -39,6 +68,10 @@ class CatalogService:
         """
         if media_type not in MANIFEST["types"]:
             raise ValueError(f"Unsupported catalog type: {media_type}")
+
+        if catalog_id == LIBRARY_CATALOG_ID:
+            return await self._get_library(media_type)
+
         if catalog_id != TRENDING_CATALOG_ID:
             raise ValueError(f"Unknown catalog: {catalog_id}")
 
@@ -48,6 +81,88 @@ class CatalogService:
         if media_type == "series":
             return await self._get_trending_shows()
         return await self._get_trending_movies()
+
+    async def _get_library(self, media_type: str) -> StremioCatalogResponse:
+        """Return the user's Trakt library: favorites plus downloadable watchlist.
+
+        Favorites are always included (cached an hour per user). Watchlist
+        entries are only included when a matching torrent exists on the
+        user's seedbox; that check is re-evaluated on every request.
+        """
+        metas: list[StremioMetaPreview] = []
+
+        # Favorites: identical for an hour, cached.
+        if self.user_slug:
+            if media_type == "series":
+                favorites = await self._get_favorite_shows()
+            else:
+                favorites = await self._get_favorite_movies()
+
+            for media in favorites:
+                if not media.ids.imdb:
+                    continue
+                metas.append(
+                    StremioMetaPreview(
+                        id=media.ids.imdb,
+                        type=media_type,
+                        name=media.title,
+                        poster=None,
+                    )
+                )
+
+        # Watchlist: only entries already present in Bauxite.
+        if self.bauxite_matcher and self.user_slug:
+            if media_type == "series":
+                watchlist = await self.trakt_service.get_unwatched_shows(
+                    self.user_slug
+                )
+            else:
+                watchlist = await self.trakt_service.get_unwatched_movies(
+                    self.user_slug
+                )
+
+            hashes = await self.bauxite_service.get_torrent_hashes()
+            existing_ids = {meta.id for meta in metas}
+            for entry in watchlist:
+                media = entry.show if media_type == "series" else entry.movie
+                if not media.ids.imdb or media.ids.imdb in existing_ids:
+                    continue
+                if not await self.bauxite_matcher.has_bauxite_torrent(
+                    hashes, media.ids.imdb, media_type
+                ):
+                    continue
+                metas.append(
+                    StremioMetaPreview(
+                        id=media.ids.imdb,
+                        type=media_type,
+                        name=media.title,
+                        poster=None,
+                    )
+                )
+
+        return StremioCatalogResponse(metas=metas)
+
+    async def _get_favorite_movies(self):
+        """Fetch the user's favorite movies, cached an hour."""
+        async def fetch():
+            entries = await self.trakt_service.get_favorite_movies(self.user_slug)
+            return [e.movie.model_dump() for e in entries]
+
+        cached = await cached_call(
+            f"trakt:favorites:movie:{self.user_slug}", 3600, fetch, cache_none=True
+        )
+        return [TraktFavoriteMovie.model_validate(item) for item in cached or []]
+
+    async def _get_favorite_shows(self):
+        """Fetch the user's favorite shows, cached an hour."""
+        async def fetch():
+            entries = await self.trakt_service.get_favorite_shows(self.user_slug)
+            return [e.show.model_dump() for e in entries]
+
+        cached = await cached_call(
+            f"trakt:favorites:show:{self.user_slug}", 3600, fetch, cache_none=True
+        )
+        return [TraktFavoriteShow.model_validate(item) for item in cached or []]
 
     async def get_meta(self, media_type: str, imdb_id: str) -> StremioMetaResponse:
         """Return the full metadata of a movie or series.
