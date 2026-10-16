@@ -74,12 +74,23 @@ class TraktShow(BaseModel):
     title: str
     year: int | None = None
     aired_episodes: int | None = None
+    images: TraktImages | None = None
+    overview: str | None = None
+    genres: list[str] | None = None
+    runtime: float | None = None
+    status: str | None = None
+    network: str | None = None
+    country: str | None = None
+    trailer: str | None = None
+    homepage: str | None = None
+    certification: str | None = None
 
 
 class TraktFavoriteShow(BaseModel):
     ids: TraktShowIds
     title: str
     year: int | None = None
+    images: TraktImages | None = None
     tagline: str | None = None
     overview: str | None = None
     first_aired: str | None = None
@@ -91,7 +102,7 @@ class TraktFavoriteShow(BaseModel):
     network: str | None = None
     country: str | None = None
     status: str | None = None
-    rating: int | None = None
+    rating: float | None = None
     votes: int | None = None
     comment_count: int | None = None
     trailer: str | None = None
@@ -139,19 +150,31 @@ class TraktMovie(BaseModel):
     ids: TraktMovieIds
     title: str
     year: int | None = None
+    images: TraktImages | None = None
+    overview: str | None = None
+    genres: list[str] | None = None
+    runtime: float | None = None
+    status: str | None = None
+    country: str | None = None
+    trailer: str | None = None
+    homepage: str | None = None
+    certification: str | None = None
+    tagline: str | None = None
+    released: str | None = None
 
 
 class TraktFavoriteMovie(BaseModel):
     ids: TraktMovieIds
     title: str
     year: int | None = None
+    images: TraktImages | None = None
     tagline: str | None = None
     overview: str | None = None
     released: str | None = None
     runtime: int | None = None
     country: str | None = None
     status: str | None = None
-    rating: int | None = None
+    rating: float | None = None
     votes: int | None = None
     comment_count: int | None = None
     trailer: str | None = None
@@ -213,4 +236,27 @@ class TraktWatchedShow(BaseModel):
     last_watched_at: str
     last_updated_at: str
     reset_at: str | None = None
+    show: TraktShow
+
+
+class TraktSearchResult(BaseModel):
+    """Entry from the Trakt text search endpoint."""
+
+    type: str
+    score: float | None = None
+    movie: TraktMovie | None = None
+    show: TraktShow | None = None
+
+
+class TraktTrendingMovie(BaseModel):
+    """A movie entry from the Trakt trending endpoint."""
+
+    watchers: int | None = None
+    movie: TraktMovie
+
+
+class TraktTrendingShow(BaseModel):
+    """A show entry from the Trakt trending endpoint."""
+
+    watchers: int | None = None
     show: TraktShow

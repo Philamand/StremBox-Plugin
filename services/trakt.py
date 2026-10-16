@@ -7,8 +7,13 @@ from schemas.trakt import (
     TraktFavoriteMovieEntry,
     TraktFavoriteShowEntry,
     TraktHistoryEntry,
+    TraktMovie,
     TraktMovieHistoryEntry,
+    TraktSearchResult,
     TraktSeason,
+    TraktShow,
+    TraktTrendingMovie,
+    TraktTrendingShow,
     TraktWatchedShow,
     TraktWatchlistMovie,
     TraktWatchlistShow,
@@ -34,9 +39,214 @@ class TraktService:
             "trakt-api-key": self.api_key,
         }
 
-    async def get_unwatched_movies(self, user_slug: str) -> list[TraktWatchlistMovie]:
+    async def search_media(
+        self,
+        query: str,
+        media_type: str,
+        *,
+        year: int | None = None,
+        limit: int = 5,
+    ) -> list[TraktSearchResult]:
+        """Search Trakt for a movie or show by title.
+
+        Args:
+            query: Title to search for (``fields=title`` search).
+            media_type: ``"movie"`` or ``"show"``.
+            year: Optional release year used to prefer an exact match among
+                the results (Trakt text search cannot filter on it).
+            limit: Maximum number of results to request.
+
+        Returns:
+            Search results ordered by Trakt score; when *year* is given,
+                results matching that year are ranked first.
+        """
+        url = f"{self.base_url}/search/{media_type}"
+        params = {"query": query, "fields": "title", "limit": limit}
+
+        session = get_session()
+        async with session.get(
+            url, params=params, headers=self._get_headers()
+        ) as response:
+            data = await response.json()
+            results = [TraktSearchResult.model_validate(item) for item in data]
+
+        if year is not None:
+            media_key = media_type if media_type != "show" else "show"
+            results.sort(
+                key=lambda r: (getattr(r, media_key).year == year), reverse=True
+            )
+
+        return results
+
+    async def get_movie_meta(self, imdb_id: str) -> TraktMovie | None:
+        """Fetch the full metadata of a movie by its IMDb id.
+
+        Uses the Trakt ID lookup (``/search/imdb/{id}``) with
+        ``extended=full``; the result is cached in Redis for a day.
+        """
+        async def fetch() -> dict | None:
+            url = f"{self.base_url}/search/imdb/{imdb_id}"
+            params = {"type": "movie", "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                for item in data:
+                    if item.get("type") == "movie" and item.get("movie"):
+                        return TraktMovie.model_validate(item["movie"]).model_dump()
+                return None
+
+        cached = await cached_call(
+            f"trakt:meta:movie:{imdb_id}", 86400, fetch, cache_none=True
+        )
+        if cached is None:
+            return None
+        return TraktMovie.model_validate(cached)
+
+    async def get_show_meta(self, imdb_id: str) -> TraktShow | None:
+        """Fetch the full metadata of a show by its IMDb id.
+
+        Uses the Trakt ID lookup (``/search/imdb/{id}``) with
+        ``extended=full``; the result is cached in Redis for a day.
+        """
+        async def fetch() -> dict | None:
+            url = f"{self.base_url}/search/imdb/{imdb_id}"
+            params = {"type": "show", "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                for item in data:
+                    if item.get("type") == "show" and item.get("show"):
+                        return TraktShow.model_validate(item["show"]).model_dump()
+                return None
+
+        cached = await cached_call(
+            f"trakt:meta:show:{imdb_id}", 86400, fetch, cache_none=True
+        )
+        if cached is None:
+            return None
+        return TraktShow.model_validate(cached)
+
+    async def get_french_translation(
+        self, media_type: str, slug: str
+    ) -> dict | None:
+        """Fetch the French (France) translation of a movie or show.
+
+        Args:
+            media_type: ``"movie"`` or ``"show"``.
+            slug: The Trakt slug of the media.
+
+        Returns:
+            The ``country=fr`` translation (``title``/``overview``/
+            ``tagline``), or ``None`` when there is none. Cached for a
+            month; a miss (no translation) is cached too.
+        """
+        async def fetch() -> dict | None:
+            url = f"{self.base_url}/{media_type}s/{slug}/translations"
+            params = {"language": "fr"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                for entry in data:
+                    if entry.get("country") == "fr":
+                        return {
+                            "title": entry.get("title"),
+                            "overview": entry.get("overview"),
+                            "tagline": entry.get("tagline"),
+                        }
+                return None
+
+        return await cached_call(
+            f"trakt:translation:{media_type}:{slug}",
+            2592000,
+            fetch,
+            cache_none=True,
+        )
+
+    async def get_trending_movies(self, limit: int = 40) -> list[TraktTrendingMovie]:
+        """Get the trending movies on Trakt.
+
+        The list is identical for every user, so it is cached in Redis for
+        an hour regardless of the caller.
+
+        Args:
+            limit: Maximum number of movies to return.
+
+        Returns:
+            Trending movies ordered by watcher count.
+        """
+        async def fetch() -> list[dict]:
+            url = f"{self.base_url}/movies/trending"
+            params = {"limit": limit, "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                return [
+                    TraktTrendingMovie.model_validate(item).model_dump()
+                    for item in data
+                ]
+
+        cached = await cached_call(
+            "trakt:trending:movies", 3600, fetch, cache_none=True
+        )
+        return [TraktTrendingMovie.model_validate(item) for item in cached]
+
+    async def get_trending_shows(self, limit: int = 40) -> list[TraktTrendingShow]:
+        """Get the trending shows on Trakt.
+
+        The list is identical for every user, so it is cached in Redis for
+        an hour regardless of the caller.
+
+        Args:
+            limit: Maximum number of shows to return.
+
+        Returns:
+            Trending shows ordered by watcher count.
+        """
+        async def fetch() -> list[dict]:
+            url = f"{self.base_url}/shows/trending"
+            params = {"limit": limit, "extended": "full"}
+
+            session = get_session()
+            async with session.get(
+                url, params=params, headers=self._get_headers()
+            ) as response:
+                data = await response.json()
+                return [
+                    TraktTrendingShow.model_validate(item).model_dump()
+                    for item in data
+                ]
+
+        cached = await cached_call(
+            "trakt:trending:shows", 3600, fetch, cache_none=True
+        )
+        return [TraktTrendingShow.model_validate(item) for item in cached]
+
+    async def get_unwatched_movies(
+        self, user_slug: str, *, extended: bool = False
+    ) -> list[TraktWatchlistMovie]:
+        """Get the movies in the user's watchlist.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/watchlist/movies/title/desc"
         params = {"hide": "unreleased"}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
         async with session.get(
@@ -45,9 +255,20 @@ class TraktService:
             data = await response.json()
             return [TraktWatchlistMovie.model_validate(item) for item in data]
 
-    async def get_unwatched_shows(self, user_slug: str) -> list[TraktWatchlistShow]:
+    async def get_unwatched_shows(
+        self, user_slug: str, *, extended: bool = False
+    ) -> list[TraktWatchlistShow]:
+        """Get the shows in the user's watchlist.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/watchlist/shows/title/desc"
         params = {"hide": "unreleased"}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
         async with session.get(
@@ -118,22 +339,48 @@ class TraktService:
             return [TraktHistoryEntry.model_validate(entry) for entry in data]
 
     async def get_favorite_movies(
-        self, user_slug: str, sort: str = "rank"
+        self, user_slug: str, sort: str = "rank", *, extended: bool = False
     ) -> list[TraktFavoriteMovieEntry]:
+        """Get the user's favorite movies.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            sort: Order of the favorites.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/favorites/movies/{sort}"
+        params = {}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
-        async with session.get(url, headers=self._get_headers()) as response:
+        async with session.get(
+            url, params=params, headers=self._get_headers()
+        ) as response:
             data = await response.json()
             return [TraktFavoriteMovieEntry.model_validate(item) for item in data]
 
     async def get_favorite_shows(
-        self, user_slug: str, sort: str = "rank"
+        self, user_slug: str, sort: str = "rank", *, extended: bool = False
     ) -> list[TraktFavoriteShowEntry]:
+        """Get the user's favorite shows.
+
+        Args:
+            user_slug: The user's Trakt slug.
+            sort: Order of the favorites.
+            extended: When true, request ``extended=full`` so the
+                entries include images and other full metadata.
+        """
         url = f"{self.base_url}/users/{user_slug}/favorites/shows/{sort}"
+        params = {}
+        if extended:
+            params["extended"] = "full"
 
         session = get_session()
-        async with session.get(url, headers=self._get_headers()) as response:
+        async with session.get(
+            url, params=params, headers=self._get_headers()
+        ) as response:
             data = await response.json()
             return [TraktFavoriteShowEntry.model_validate(item) for item in data]
 

@@ -6,6 +6,7 @@ import aiohttp
 
 from http_client import get_session
 from schemas.bauxite import DownloadRequest
+from schemas.torrents import TorrentTitleInfo
 
 
 def extract_download_params(url) -> DownloadRequest:
@@ -497,3 +498,204 @@ def get_torrent_tracker_and_id(link: str) -> tuple:
         return tracker, torrent_id
     except (ValueError, AttributeError):
         return None, None
+
+
+# Tokens that mark the end of the title part of a scene release name. Anything
+# from the first matching token onward is a technical/language/release tag.
+_TAG_TOKEN_PATTERN = re.compile(
+    r"""^(?:
+        (?P<season_marker>
+            S\d{1,2}(?:E\d{1,3})?
+            | SAISON[ ._-]?\d{1,2}
+            | SEASON[ ._-]?\d{1,2}
+            | E\d{1,3}
+            | \d{1,2}x\d{1,2}
+        )
+        | (?P<resolution>2160P | 1080P | 720P | 480P | 4K | UHD)
+        | (?P<source>DVD(?:RIP)? | BLU-?RAY | BRRIP | BDRIP | BDLIGHT | WEB(?:-?DL | DL | RIP)? | HDTV | CAM | TS | PDTV | SD)
+        | (?P<codec>X26[45] | H26[45] | HEVC | AVC | AV1 | XVID | DIVX)
+        | (?P<audio>AC3 | EAC3 | DDP(?:\.\d|\d)? | DTS(?:-HD)? | TRUEHD | ATMOS | AAC(?:\.\d|\d)? | FLAC | MP3)
+        | (?P<language>MULTI(?:[FSHI])? | VOST(?:FR)? | VFF | VFQ | VF2 | VFI | VFA | TRUEFRENCH | FRENCH | VOF | VF | SUBFRENCH | ENGLISH | ENG | EN | DUAL)
+        | (?P<misc>HDR10(?:PLUS)? | HDR | DV | DOLBY[ ._-]?VISION | 10BIT | 8BIT | 60FPS | PROPER | REPACK | REMUX | INTERNAL | LIMITED | EXTENDED | UNRATED | REMASTERED | COMPLETE | NOTAG | HYBRID)
+        | (?P<series_set>INTEGRAL[E]? | INTEGRALE | SAISON[ ._-]?\d{1,2}\s*(?:A|TO)\s*SAISON[ ._-]?\d{1,2} | S\d{1,2}[ ._-]*(?:A|TO)[ ._-]*S\d{1,2})
+    )$""",
+    re.VERBOSE | re.IGNORECASE,
+)
+
+_YEAR_PATTERN = re.compile(r"^(19\d{2}|20\d{2})$")
+
+# SEASON/EPISODE MARKER: S01, S01E02, Saison 3, E04, 1x02. Used only for
+# detection (is this a series?); episode-level matching for a known target
+# is handled by ``check_season_episode``.
+_SEASON_EPISODE_PATTERN = re.compile(
+    r"(?<!\d)(?:S(?:AISON|EASON)[ ._-]?\d{1,2}"
+    r"|S\d{1,2}(?:[ ._-]?E\d{1,3})?"
+    r"|(?:E|EP)\d{1,3}"
+    r"|\d{1,2}x\d{1,3})",
+    re.IGNORECASE,
+)
+
+# INTEGRALE = the full series (French scene tag); no specific season can be
+# inferred, but the torrent is a series.
+_SERIES_SET_PATTERN = re.compile(r"^(?:INTEGRAL[E]?|INTEGRALE)$", re.IGNORECASE)
+
+# Bare "Saison"/"Season" word (the number is a separate token).
+_SEASON_WORD_PATTERN = re.compile(r"^(?:SAISON|SEASON)$", re.IGNORECASE)
+
+# An episode marker (S01E02, E04, 1x02) means the torrent targets specific
+# episodes rather than a whole season/show. ``S01E02`` counts because the
+# ``E`` there is preceded by a digit, not a letter.
+_EPISODE_MARKER_PATTERN = re.compile(
+    r"(?<![A-Za-z])(?:(?:E|EP)\d{1,3}|\d{1,2}x\d{1,3})", re.IGNORECASE
+)
+
+_EXTENSION_PATTERN = re.compile(r"\.[a-z0-9]{2,4}$", re.IGNORECASE)
+
+# Extensions of files that are not movies or shows. A torrent whose name
+# ends with one of these is skipped entirely by the parser.
+_NON_VIDEO_EXTENSION_PATTERN = re.compile(
+    r"\.(?:pdf|epub|mobi|azw3?|cb[rz]|cbr|zip|rar|7z|tar|gz|xz|iso|exe|msi|apk|dmg|txt|nfo|sfv|mp3|flac|wav|ogg|opus|m3u8?|jpg|jpeg|png|gif|webp|svg|psd|doc|docx|xls|xlsx|ppt|pptx|cbz)$",
+    re.IGNORECASE,
+)
+
+# Markers of video game releases (repack groups, crack groups, game-specific
+# release conventions). These never appear in movie/series torrent names, so
+# a name containing one is not a movie or a show.
+_GAME_RELEASE_MARKER_PATTERN = re.compile(
+    r"(?:\b(?:DARKZER0|CODEX|CPY|SKIDROW|RELOADED|PLAZA|HOODLUM|TiNYiSO|VREPAIR|GOG|RUNE|MONEY|ElAmigos|KaOs|DODI|FitGirl|Masquerade|Prophet|Fabulous|ScOOt3r|Meskeeter|Revenant|NoeR4t|CES|CROWN|Paradise|PureFury|TinyRoW|Stepwise|Toffeeland)\b"
+    r"|\bRepack\b"
+    r"|\b(?:Setup|Keygen|Crack(?:Only)?|Patch|DLC(?:s)?|Update\s?\d+|Build\s?\d+)\b"
+    r"|\b(?:v\d+\.\d+(?:\.\d+)?|Ver(?:sion)?[ ._-]?\d+)\b"
+    r"|\bMULTi\d+\b)",
+    re.IGNORECASE,
+)
+
+
+def extract_title_info(name: str) -> TorrentTitleInfo:
+    """Extract the title, year and media type from a torrent name.
+
+    Returns an empty ``TorrentTitleInfo`` for non-video files (a torrent
+    whose name ends with a non-video extension such as ``.pdf`` or ``.zip``);
+    callers should skip those.
+
+    The title is the leading part of the name, up to the first token that
+    looks like a technical tag (resolution, source, codec, audio, language,
+    release group) or a season/episode/year marker. Unknown tokens are kept
+    as part of the title so unusual scene names do not truncate it.
+
+    Args:
+        name (str): The raw torrent name, e.g.
+            ``"Movie.Name.2023.FRENCH.1080p.WEB.x264-GROUP"``.
+
+    Returns:
+        TorrentTitleInfo: With fields for the extracted title, year, media
+        type (``"movie"`` or ``"series"``) and whether the torrent is a
+        season/full-series pack.
+
+    Example:
+        >>> extract_title_info("Kaamelott.S05.VOF.1080p.BluRay.x265.DDP.5.1-NOTAG").title
+        'Kaamelott'
+    """
+    if not name:
+        return TorrentTitleInfo()
+
+    basename = re.split(r"[/\\]", name)[-1].strip()
+
+    # Non-video files (pdf, zip, music, images, ...) are not movies or
+    # shows; return an empty result so callers can skip them.
+    if _NON_VIDEO_EXTENSION_PATTERN.search(basename):
+        return TorrentTitleInfo()
+
+    # Video game releases (repacks, cracked games) are not movies or shows.
+    if _GAME_RELEASE_MARKER_PATTERN.search(basename):
+        return TorrentTitleInfo()
+
+    # An extension (.mkv, .avi, ...) never contributes to the title.
+    root = _EXTENSION_PATTERN.sub("", basename)
+    tokens = re.split(r"[._ ]", root)
+
+    title_tokens = []
+    year = None
+    is_series = False
+
+    for token in tokens:
+        if _YEAR_PATTERN.match(token):
+            year = int(token)
+            break
+
+        if (
+            _SEASON_EPISODE_PATTERN.search(token)
+            or _SEASON_WORD_PATTERN.match(token)
+            or _SERIES_SET_PATTERN.match(token)
+        ):
+            is_series = True
+            break
+
+        if _TAG_TOKEN_PATTERN.match(token):
+            break
+
+        title_tokens.append(token)
+
+    title = " ".join(t for t in title_tokens if t) or None
+
+    is_pack = not _EPISODE_MARKER_PATTERN.search(root)
+
+    return TorrentTitleInfo(
+        title=title,
+        year=year,
+        type="series" if is_series else "movie",
+        is_season_pack=is_series and is_pack,
+    )
+
+
+_VIDEO_FILE_EXTENSION_PATTERN = re.compile(
+    r"\.(?:mkv|mp4|m4v|avi|mov|wmv|flv|webm|mpg|mpeg|ts|m2ts|mts|vob|ogm|rmvb|divx)$",
+    re.IGNORECASE,
+)
+
+
+def torrent_is_video(name: str, files: list[str]) -> bool:
+    """Check whether a torrent contains a movie or show.
+
+    Combines the name-based heuristics of ``extract_title_info`` with a
+    content check on the torrent's file list: a torrent whose files are
+    known and contain no video file (e.g. a folder of PDFs, music or
+    software) is not video content even when its name looks like a title.
+
+    Args:
+        name (str): The torrent/folder name.
+        files (list[str]): The file paths inside the torrent; may be empty
+            when Bauxite does not expose them, in which case only the name
+            is trusted.
+
+    Returns:
+        bool: ``True`` when the torrent should be treated as a movie/show.
+    """
+    info = extract_title_info(name)
+    if not info.title or info.type is None:
+        return False
+
+    if files:
+        return any(_VIDEO_FILE_EXTENSION_PATTERN.search(f) for f in files)
+
+    return True
+
+
+def normalize_poster_url(url: str | None) -> str | None:
+    """Return *url* with an explicit https scheme.
+
+    Trakt serves image URLs without the protocol (e.g.
+    ``media.trakt.tv/images/...``), which some clients refuse to load.
+
+    Args:
+        url (str | None): The poster URL as returned by an API.
+
+    Returns:
+        str | None: The URL prefixed with ``https://`` when the scheme is
+        missing; ``None`` is passed through unchanged.
+    """
+    if not url:
+        return None
+    if url.startswith("http://") or url.startswith("https://"):
+        return url
+    return f"https://{url}"
