@@ -12,10 +12,8 @@ from schemas.catalog import StremioCatalogResponse, StremioMetaResponse
 from schemas.stremio import StremioStreamsResponse
 from schemas.users import UserData
 from services.betaseries import BetaSeriesService
-from services.trakt import TraktService
 from services.catalog import CatalogService
 from services.stremio import StremioOrchestrationService
-from services.betaseries import BetaSeriesService
 from services.trakt import TraktService
 
 router = APIRouter(dependencies=[Depends(check_user_key)])
@@ -84,9 +82,7 @@ def _parse_catalog_extras(extra_segment: str) -> dict[str, str]:
 async def get_catalog(
     request: Request,
     trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
-    betaseries_service: Annotated[
-        BetaSeriesService, Depends(get_betaseries_service)
-    ],
+    betaseries_service: Annotated[BetaSeriesService, Depends(get_betaseries_service)],
     type: str,
     catalog_id: str,
     extra: str = "",
