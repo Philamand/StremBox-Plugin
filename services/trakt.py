@@ -24,6 +24,29 @@ class TraktError(Exception):
     pass
 
 
+# Trakt certification strings allowed for each unified certification slug,
+# from the mildest rating up to the slug's own level. Trakt's
+# ``certifications`` filter matches items having any of the listed
+# ratings, so a maximum rating is expressed as the full list up to that
+# level. "Not Rated" content is never included.
+TRAKT_CERTIFICATIONS = {
+    "movies": {
+        "g": ["g"],
+        "pg-7": ["g"],
+        "pg": ["g", "pg"],
+        "pg-13": ["g", "pg", "pg-13"],
+        "r": ["g", "pg", "pg-13", "r"],
+    },
+    "shows": {
+        "g": ["tv-y", "tv-g"],
+        "pg-7": ["tv-y", "tv-g", "tv-y7"],
+        "pg": ["tv-y", "tv-g", "tv-y7", "tv-pg"],
+        "pg-13": ["tv-y", "tv-g", "tv-y7", "tv-pg", "tv-14"],
+        "r": ["tv-y", "tv-g", "tv-y7", "tv-pg", "tv-14", "tv-ma"],
+    },
+}
+
+
 class TraktService:
     def __init__(self, api_key: str | None):
         self.base_url = "https://api.trakt.tv"
@@ -38,6 +61,28 @@ class TraktService:
             "trakt-api-version": "2",
             "trakt-api-key": self.api_key,
         }
+
+    @staticmethod
+    def _certifications_param(
+        media_type: str, certification: str | None
+    ) -> str | None:
+        """Map a unified certification slug to Trakt's ``certifications`` filter.
+
+        Args:
+            media_type: ``"movies"`` or ``"shows"``.
+            certification: Unified certification slug (e.g. ``"pg-13"``).
+
+        Returns:
+            The comma-separated Trakt certifications allowed up to that
+            level, or ``None`` when no filtering should be applied (no
+            certification given, or an unknown slug).
+        """
+        if not certification:
+            return None
+        allowed = TRAKT_CERTIFICATIONS[media_type].get(certification)
+        if not allowed:
+            return None
+        return ",".join(allowed)
 
     async def search_media(
         self,
@@ -171,21 +216,31 @@ class TraktService:
             cache_none=True,
         )
 
-    async def get_trending_movies(self, limit: int = 40) -> list[TraktTrendingMovie]:
+    async def get_trending_movies(
+        self, limit: int = 40, *, certification: str | None = None
+    ) -> list[TraktTrendingMovie]:
         """Get the trending movies on Trakt.
 
-        The list is identical for every user, so it is cached in Redis for
-        an hour regardless of the caller.
+        The list is cached in Redis for an hour per certification, so
+        users sharing a certification share the cached list.
 
         Args:
             limit: Maximum number of movies to return.
+            certification: Optional maximum certification rating; mapped
+                to the Trakt certifications allowed up to that level and
+                sent as the ``certifications`` query parameter. When
+                ``None`` (or unknown) no filtering is applied.
 
         Returns:
             Trending movies ordered by watcher count.
         """
+        certifications = self._certifications_param("movies", certification)
+
         async def fetch() -> list[dict]:
             url = f"{self.base_url}/movies/trending"
             params = {"limit": limit, "extended": "full"}
+            if certifications:
+                params["certifications"] = certifications
 
             session = get_session()
             async with session.get(
@@ -198,25 +253,38 @@ class TraktService:
                 ]
 
         cached = await cached_call(
-            "trakt:trending:movies", 3600, fetch, cache_none=True
+            f"trakt:trending:movies:{certifications or 'all'}",
+            3600,
+            fetch,
+            cache_none=True,
         )
         return [TraktTrendingMovie.model_validate(item) for item in cached]
 
-    async def get_trending_shows(self, limit: int = 40) -> list[TraktTrendingShow]:
+    async def get_trending_shows(
+        self, limit: int = 40, *, certification: str | None = None
+    ) -> list[TraktTrendingShow]:
         """Get the trending shows on Trakt.
 
-        The list is identical for every user, so it is cached in Redis for
-        an hour regardless of the caller.
+        The list is cached in Redis for an hour per certification, so
+        users sharing a certification share the cached list.
 
         Args:
             limit: Maximum number of shows to return.
+            certification: Optional maximum certification rating; mapped
+                to the Trakt certifications allowed up to that level and
+                sent as the ``certifications`` query parameter. When
+                ``None`` (or unknown) no filtering is applied.
 
         Returns:
             Trending shows ordered by watcher count.
         """
+        certifications = self._certifications_param("shows", certification)
+
         async def fetch() -> list[dict]:
             url = f"{self.base_url}/shows/trending"
             params = {"limit": limit, "extended": "full"}
+            if certifications:
+                params["certifications"] = certifications
 
             session = get_session()
             async with session.get(
@@ -229,7 +297,10 @@ class TraktService:
                 ]
 
         cached = await cached_call(
-            "trakt:trending:shows", 3600, fetch, cache_none=True
+            f"trakt:trending:shows:{certifications or 'all'}",
+            3600,
+            fetch,
+            cache_none=True,
         )
         return [TraktTrendingShow.model_validate(item) for item in cached]
 

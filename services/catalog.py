@@ -24,8 +24,9 @@ class CatalogService:
     """Build the Stremio catalogs.
 
     The trending catalogs are served from the Trakt trending endpoints;
-    the lists are identical for every user and cached inside the Trakt
-    service, so a catalog request is at most one Trakt call per hour.
+    the lists are identical for every user sharing a certification and
+    cached inside the Trakt service, so a catalog request is at most one
+    Trakt call per hour per certification.
     """
 
     def __init__(
@@ -33,12 +34,14 @@ class CatalogService:
         trakt_service: TraktService,
         *,
         user_slug: str | None = None,
+        certification: str | None = None,
         librebox_url: str | None = None,
         librebox_token: str | None = None,
         betaseries_service=None,
     ):
         self.trakt_service = trakt_service
         self.user_slug = user_slug
+        self.certification = certification
         if librebox_url and librebox_token:
             from services.stremio import StremioOrchestrationService
 
@@ -272,7 +275,9 @@ class CatalogService:
 
     async def _get_trending_movies(self) -> StremioCatalogResponse:
         """Return the Trakt trending movies catalog (French titles)."""
-        trending = await self.trakt_service.get_trending_movies(limit=40)
+        trending = await self.trakt_service.get_trending_movies(
+            limit=40, certification=self.certification
+        )
         metas = []
         for entry in trending:
             if not entry.movie.ids.imdb:
@@ -282,7 +287,9 @@ class CatalogService:
 
     async def _get_trending_shows(self) -> StremioCatalogResponse:
         """Return the Trakt trending shows catalog (French titles)."""
-        trending = await self.trakt_service.get_trending_shows(limit=40)
+        trending = await self.trakt_service.get_trending_shows(
+            limit=40, certification=self.certification
+        )
         metas = []
         for entry in trending:
             if not entry.show.ids.imdb:

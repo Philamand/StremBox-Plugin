@@ -12,6 +12,7 @@ class UserCreateData(BaseModel):
     tr4ker_key: str | None = None
     lacale_key: str | None = None
     trakt_slug: str | None = None
+    certification: str | None = None
 
 
 class UserData(BaseModel):
@@ -24,3 +25,4 @@ class UserData(BaseModel):
     tr4ker_key: str | None = None
     lacale_key: str | None = None
     trakt_slug: str | None = None
+    certification: str | None = None
