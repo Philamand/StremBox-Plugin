@@ -52,6 +52,7 @@ class TraktEpisode(BaseModel):
     title: str | None = None
     number: int
     season: int
+    first_aired: str | None = None
 
 
 class TraktSeason(BaseModel):

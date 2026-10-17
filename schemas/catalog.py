@@ -16,6 +16,17 @@ class StremioCatalogResponse(BaseModel):
     metas: list[StremioMetaPreview]
 
 
+class StremioVideo(BaseModel):
+    """An episode entry of a series meta as consumed by Stremio."""
+
+    id: str
+    title: str
+    released: str
+    season: int
+    episode: int
+    overview: str | None = None
+
+
 class StremioMeta(BaseModel):
     """Meta detail of a single movie or series as consumed by Stremio."""
 
@@ -29,6 +40,7 @@ class StremioMeta(BaseModel):
     genres: list[str] | None = None
     runtime: str | None = None
     trailer: str | None = None
+    videos: list[StremioVideo] | None = None
 
 
 class StremioMetaResponse(BaseModel):

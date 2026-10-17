@@ -9,8 +9,10 @@ from schemas.catalog import (
     StremioMeta,
     StremioMetaPreview,
     StremioMetaResponse,
+    StremioVideo,
 )
 from schemas.trakt import (
+    TraktEpisode,
     TraktFavoriteMovie,
     TraktFavoriteShow,
     TraktWatchlistMovie,
@@ -245,6 +247,9 @@ class CatalogService:
 
         release_info = str(media.year) if media.year else None
         runtime = f"{int(media.runtime)} min" if media.runtime else None
+        videos = None
+        if media_type == "series":
+            videos = await self._get_series_videos(imdb_id)
 
         return StremioMetaResponse(
             meta=StremioMeta(
@@ -258,8 +263,36 @@ class CatalogService:
                 genres=media.genres,
                 runtime=runtime,
                 trailer=media.trailer,
+                videos=videos,
             )
         )
+
+    async def _get_series_videos(self, imdb_id: str) -> list[StremioVideo]:
+        """Build the Stremio video list of a series from the Trakt seasons."""
+        show = await self.trakt_service.get_show_meta(imdb_id)
+        if show is None or not show.ids.trakt:
+            return []
+        seasons = await self.trakt_service.get_all_seasons(str(show.ids.trakt))
+        videos = []
+        for season in sorted(seasons, key=lambda s: s.number):
+            for episode in sorted(season.episodes, key=lambda e: e.number):
+                videos.append(
+                    StremioVideo(
+                        id=f"{imdb_id}:{episode.season}:{episode.number}",
+                        title=episode.title or f"Episode {episode.number}",
+                        released=self._episode_released(episode),
+                        season=episode.season,
+                        episode=episode.number,
+                    )
+                )
+        return videos
+
+    @staticmethod
+    def _episode_released(episode: TraktEpisode) -> str:
+        """Return an ISO 8601 release date, falling back to a safe default."""
+        if episode.first_aired:
+            return episode.first_aired
+        return "2000-01-01T00:00:00.000Z"
 
     async def _search(self, media_type: str, search: str) -> StremioCatalogResponse:
         """Search movies or shows by title via the Trakt text search."""
