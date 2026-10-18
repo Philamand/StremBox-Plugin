@@ -464,8 +464,9 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
                 }
             },
         )
-        # has_bauxite_torrent resolves titles via Cinemeta; the absent
-        # entry resolves too but matches no torrent.
+        # has_bauxite_torrent resolves titles via Cinemeta and the French
+        # title via the Trakt slug lookup; the absent entry resolves too but
+        # matches no torrent.
         m.get(
             CINEMETA_URL,
             payload={"meta": {"name": "Watchlisted Movie", "year": "2021"}},
@@ -473,6 +474,37 @@ async def test_get_catalog_library_movies(stub_redis, http_session):
         m.get(
             CINEMETA_URL,
             payload={"meta": {"name": "Not Downloaded", "year": "2022"}},
+        )
+        m.get(
+            re.compile(r"https://api\.trakt\.tv/search/imdb/tt222222.*"),
+            payload=[
+                {
+                    "type": "movie",
+                    "movie": {
+                        "ids": {"imdb": "tt222222", "slug": "watchlisted-movie"},
+                        "title": "Watchlisted Movie",
+                        "year": 2021,
+                    },
+                }
+            ],
+        )
+        m.get(
+            re.compile(r"https://api\.trakt\.tv/search/imdb/tt333333.*"),
+            payload=[],
+        )
+        m.get(
+            re.compile(
+                r"https://api\.trakt\.tv/movies/watchlisted-movie/translations\?.*"
+            ),
+            payload=[
+                {
+                    "title": "Film Sur Liste",
+                    "overview": None,
+                    "tagline": None,
+                    "language": "fr",
+                    "country": "fr",
+                }
+            ],
         )
 
         response = await service.get_catalog("library", "movie")

@@ -51,6 +51,7 @@ class CatalogService:
                 librebox_url,
                 librebox_token,
                 betaseries_service=betaseries_service,
+                trakt_service=trakt_service,
             )
             from services.bauxite import BauxiteService
 

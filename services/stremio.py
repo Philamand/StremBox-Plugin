@@ -16,6 +16,7 @@ from schemas.stremio import (
 from schemas.users import UserData
 from services.bauxite import BauxiteService
 from services.betaseries import BetaSeriesService
+from services.trakt import TraktError, TraktService
 from utils.stremio import (
     check_season_episode,
     check_title_match,
@@ -412,10 +413,12 @@ class StremioOrchestrationService:
         c411_service: C411Service | None = None,
         tr4ker_service: Tr4kerService | None = None,
         betaseries_service: BetaSeriesService | None = None,
+        trakt_service: TraktService | None = None,
     ) -> None:
         self.c411 = c411_service
         self.tr4ker = tr4ker_service
         self.betaseries = betaseries_service
+        self.trakt = trakt_service
         self.librebox_url = librebox_url
         self.librebox_token = librebox_token
 
@@ -613,6 +616,45 @@ class StremioOrchestrationService:
         )
         return speed_emoji, file_path, stream_url
 
+    async def _get_french_title(self, imdb_id: str, type: str) -> str | None:
+        """Return the French (France) title of a movie or show from Trakt.
+
+        The Trakt slug is resolved from the IMDb id (``get_movie_meta`` /
+        ``get_show_meta``) and then the ``country=fr`` translation is fetched
+        with ``get_french_translation``. Both lookups are cached upstream.
+
+        Args:
+            imdb_id: IMDb id of the movie or show.
+            type: ``"movie"`` or ``"series"``.
+
+        Returns:
+            The French title, or ``None`` when unavailable (no Trakt client,
+            missing API key, unknown id or no French translation).
+        """
+        if not self.trakt:
+            return None
+        try:
+            if type == "series":
+                media = await self.trakt.get_show_meta(imdb_id)
+            else:
+                media = await self.trakt.get_movie_meta(imdb_id)
+        except TraktError:
+            return None
+        if media is None:
+            return None
+        slug = getattr(media.ids, "slug", None)
+        if not slug:
+            return None
+        try:
+            translation = await self.trakt.get_french_translation(
+                "movie" if type != "series" else "show", slug
+            )
+        except TraktError:
+            return None
+        if translation and translation.get("title"):
+            return translation["title"]
+        return None
+
     async def has_bauxite_torrent(
         self,
         hashes: dict,
@@ -646,9 +688,7 @@ class StremioOrchestrationService:
         title_en, year = await get_torrent_name(imdb_id, type)
         if not title_en:
             return False
-        title_fr = None
-        if not is_movie and self.betaseries:
-            title_fr = await self.betaseries.get_show_french_title(imdb_id)
+        title_fr = await self._get_french_title(imdb_id, type)
 
         for torrent in hashes.values():
             name = torrent.get("name")
@@ -684,9 +724,7 @@ class StremioOrchestrationService:
 
         is_movie = type != "series"
         title_en, year = await get_torrent_name(imdb_id, type)
-        title_fr = None
-        if not is_movie and self.betaseries:
-            title_fr = await self.betaseries.get_show_french_title(imdb_id)
+        title_fr = await self._get_french_title(imdb_id, type)
 
         streams: list[StremioStreamData] = []
         for torrent in bauxite_only:
