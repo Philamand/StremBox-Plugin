@@ -41,6 +41,65 @@ def test_check_title_match_movie_french_title_with_accents():
     assert result is True
 
 
+def test_check_title_match_movie_roman_numeral_sequel():
+    """A torrent named with a digit matches a title using a roman numeral.
+
+    Cinemeta names "Frozen II" while scene releases use "Frozen 2";
+    normalisation converts roman numerals to digits on both sides.
+    """
+    result = check_title_match(
+        torrent_name=(
+            "Frozen 2 (2019) MULTi VFF 2160p 10bit 4KLight HDR BluRay "
+            "AC3 5.1 x265-QTZ.mkv"
+        ),
+        title_fr=None,
+        title_en="Frozen II",
+        year=2019,
+        is_movie=True,
+    )
+    assert result is True
+
+
+def test_check_title_match_movie_roman_numeral_in_torrent_name():
+    """A torrent named with a roman numeral matches a digit sequel title."""
+    result = check_title_match(
+        torrent_name="Rocky.II.1979.1080p.BluRay.x264-GROUP",
+        title_fr=None,
+        title_en="Rocky 2",
+        year=1979,
+        is_movie=True,
+    )
+    assert result is True
+
+
+def test_check_title_match_roman_numeral_wrong_year():
+    """Roman numeral conversion does not bypass the year check."""
+    result = check_title_match(
+        torrent_name="Frozen 2 (2015) MULTi VFF 1080p BluRay x264-GROUP",
+        title_fr=None,
+        title_en="Frozen II",
+        year=2019,
+        is_movie=True,
+    )
+    assert result is False
+
+
+def test_normalize_title_roman_numerals():
+    """Standalone roman numeral tokens become digits; other words are kept."""
+    from utils.stremio import normalize_title
+
+    assert normalize_title("Frozen II") == "frozen 2"
+    assert normalize_title("La Reine Des Neiges II") == "la reine des neiges 2"
+    assert normalize_title("Rocky III") == "rocky 3"
+    assert normalize_title("Gabby's Dollhouse") == "gabbys dollhouse"
+    # Words merely containing i/v/x are untouched.
+    assert normalize_title("Inside Out") == "inside out"
+    # A lone "V" becomes "5" (of "V for Vendetta"); harmless because both
+    # the title and the torrent name are normalised the same way.
+    assert normalize_title("V for Vendetta") == "5 for vendetta"
+    assert normalize_title("V.For.Vendetta.2005.1080p.BluRay.x264") == "5 for vendetta 2005 1080p bluray x264"
+
+
 def test_check_title_match_series_apostrophe_in_title():
     """A series with an apostrophe in the English title matches the torrent.
 
