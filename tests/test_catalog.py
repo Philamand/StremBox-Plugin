@@ -29,6 +29,7 @@ TRAKT_FAVORITES_URL = re.compile(r"https://api\.trakt\.tv/users/.*/favorites/.*"
 TRAKT_WATCHLIST_URL = re.compile(r"https://api\.trakt\.tv/users/.*/watchlist/.*")
 CINEMETA_URL = re.compile(r"https://v3-cinemeta\.strem\.io/meta/.*")
 TRAKT_SHOW_SEARCH_URL = re.compile(r"https://api\.trakt\.tv/search/show\?.*")
+TRAKT_SEASONS_URL = re.compile(r"https://api\.trakt\.tv/shows/.*/seasons\?.*")
 
 
 class _StubRedis:
@@ -295,7 +296,7 @@ async def test_get_meta_movie(service):
 
 @pytest.mark.asyncio
 async def test_get_meta_show(service):
-    """Show meta is served from the Trakt ID lookup."""
+    """Show meta is served from the Trakt ID lookup, with episode videos."""
     with aioresponses_ctx() as m:
         m.get(
             TRAKT_IMDB_LOOKUP_URL,
@@ -318,6 +319,43 @@ async def test_get_meta_show(service):
                 },
             ],
         )
+        m.get(
+            TRAKT_SEASONS_URL,
+            payload=[
+                {
+                    "ids": {"trakt": 1, "tmdb": 1, "tvdb": 1},
+                    "number": 0,
+                    "episodes": [
+                        {
+                            "ids": {"trakt": 11, "imdb": "tt0000001"},
+                            "title": "Special",
+                            "number": 1,
+                            "season": 0,
+                            "first_aired": "2025-12-01T00:00:00.000Z",
+                        }
+                    ],
+                },
+                {
+                    "ids": {"trakt": 2, "tmdb": 2, "tvdb": 2},
+                    "number": 1,
+                    "episodes": [
+                        {
+                            "ids": {"trakt": 21, "imdb": "tt0000002"},
+                            "title": "Pilot",
+                            "number": 1,
+                            "season": 1,
+                            "first_aired": "2026-01-01T00:00:00.000Z",
+                        },
+                        {
+                            "ids": {"trakt": 22, "imdb": "tt0000003"},
+                            "title": None,
+                            "number": 2,
+                            "season": 1,
+                        },
+                    ],
+                },
+            ],
+        )
         meta = await service.get_meta("series", "tt27497393")
 
     assert meta.meta.id == "tt27497393"
@@ -325,6 +363,16 @@ async def test_get_meta_show(service):
     assert meta.meta.name == "Stuart Fails to Save the Universe"
     assert meta.meta.releaseInfo == "2026"
     assert meta.meta.runtime == "24 min"
+    assert meta.meta.videos is not None
+    assert len(meta.meta.videos) == 3
+    assert meta.meta.videos[0].id == "tt27497393:0:1"
+    assert meta.meta.videos[1].id == "tt27497393:1:1"
+    assert meta.meta.videos[1].title == "Pilot"
+    assert meta.meta.videos[1].released == "2026-01-01T00:00:00.000Z"
+    assert meta.meta.videos[1].season == 1
+    assert meta.meta.videos[1].episode == 1
+    assert meta.meta.videos[2].title == "Episode 2"
+    assert meta.meta.videos[2].released == "2000-01-01T00:00:00.000Z"
 
 
 @pytest.mark.asyncio
