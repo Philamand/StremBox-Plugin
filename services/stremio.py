@@ -179,7 +179,7 @@ class C411Service:
                         }
                         normalized.append(item)
                     return normalized or None
-            except TimeoutError, aiohttp.ClientError, ValueError:
+            except (TimeoutError, aiohttp.ClientError, ValueError):
                 return None
 
         cached = await cached_call(cache_key, 900, fetch, cache_none=False)
@@ -298,7 +298,7 @@ class Tr4kerService:
                     for result in results:
                         result["link"] = _strip_apikey(result["link"])
                     return results or None
-            except TimeoutError, aiohttp.ClientError:
+            except (TimeoutError, aiohttp.ClientError):
                 return None
 
         cached = await cached_call(cache_key, 900, fetch, cache_none=False)
