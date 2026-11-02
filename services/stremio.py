@@ -18,6 +18,7 @@ from services.bauxite import BauxiteService
 from services.betaseries import BetaSeriesService
 from services.trakt import TraktError, TraktService
 from utils.stremio import (
+    _VIDEO_FILE_EXTENSION_PATTERN,
     check_season_episode,
     check_title_match,
     extract_download_params,
@@ -598,18 +599,21 @@ class StremioOrchestrationService:
             speed_emoji = "⚡️ "
 
         files = torrent.get("files") or []
+        video_files = [f for f in files if _VIDEO_FILE_EXTENSION_PATTERN.search(f)]
         file_path = None
         if len(files) == 1:
             file_path = files[0]
         else:
-            for filename in files:
+            candidates = video_files or files
+            for filename in candidates:
                 if check_season_episode(filename, season, episode):
                     file_path = filename
                     break
-            if not file_path and files:
-                file_path = files[0]
+            if not file_path and candidates:
+                file_path = candidates[0]
         if not file_path:
             file_path = torrent.get("name", "")
+
 
         stream_url = (
             f"{self.librebox_url}/streams/{self.librebox_token}?file_path={file_path}"
