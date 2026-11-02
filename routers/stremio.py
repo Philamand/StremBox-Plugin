@@ -29,6 +29,7 @@ async def get_manifest():
 async def get_torrent_streams(
     request: Request,
     betaseries_service: Annotated[BetaSeriesService, Depends(get_betaseries_service)],
+    trakt_service: Annotated[TraktService, Depends(get_trakt_service)],
     type: str,
     id: str,
 ) -> StremioStreamsResponse:
@@ -52,6 +53,7 @@ async def get_torrent_streams(
         user.librebox_url,
         user.librebox_token,
         betaseries_service=betaseries_service,
+        trakt_service=trakt_service,
     )
 
     response = await stremio_service.get_bauxite_streams(type=type, id=id)

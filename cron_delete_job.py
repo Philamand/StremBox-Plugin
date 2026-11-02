@@ -57,6 +57,7 @@ async def main():
                         c411_service=c411_service,
                         tr4ker_service=tr4ker_service,
                         betaseries_service=betaseries_service,
+                        trakt_service=trakt_service,
                     )
 
                     movies = await trakt_service.get_movie_watched_history(

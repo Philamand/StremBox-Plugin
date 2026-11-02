@@ -178,12 +178,22 @@ async def get_torrent_name(imdb_id: str, media_type: str):
                 else None
             )
             return name, year
-    except aiohttp.ClientError, KeyError, ValueError:
+    except (aiohttp.ClientError, KeyError, ValueError):
         return None, None
+
+
+_ROMAN_VALUES = {"i": 1, "ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7, "viii": 8, "ix": 9, "x": 10}
+
+def _roman_token_to_int(token: str) -> int | None:
+    """Return the integer value of a lowercase roman numeral token, or None."""
+    return _ROMAN_VALUES.get(token)
 
 
 def normalize_title(title: str) -> str:
     """Normalize a title by removing accents, punctuation, and special characters, and converting to lowercase.
+
+    Roman numeral sequel markers (``ii``, ``iii``, ``iv``, ...) are converted
+    to digits so that "Frozen II" and "Frozen 2" normalise identically.
 
     Args:
         title (str): The title to normalize.
@@ -203,7 +213,13 @@ def normalize_title(title: str) -> str:
 
     title = re.sub(r"[^\w\s]", " ", title)
 
-    return " ".join(title.lower().split())
+    words = title.lower().split()
+    converted = []
+    for word in words:
+        value = _roman_token_to_int(word)
+        converted.append(str(value) if value is not None else word)
+
+    return " ".join(converted)
 
 
 def check_title_match(torrent_name, title_fr, title_en, year=None, is_movie=False):
@@ -496,7 +512,7 @@ def get_torrent_tracker_and_id(link: str) -> tuple:
                 torrent_id = match.group(1)
 
         return tracker, torrent_id
-    except ValueError, AttributeError:
+    except (ValueError, AttributeError):
         return None, None
 
 
