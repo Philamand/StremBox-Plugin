@@ -280,3 +280,36 @@ async def test_french_title_none_when_no_translation(http_session, cinemeta_api)
     hashes = {"abc123": _torrent("Inception.2010.1080p.BluRay.x264")}
 
     assert await service.has_bauxite_torrent(hashes, "tt1375666", "movie") is True
+
+
+def _bauxite_stream_link(service, files, season=None, episode=None):
+    torrent = {"name": "South.Park.S29E04.1080p.x265-ELiTE", "percent_done": 1.0, "files": files, "size": 0}
+    return service._bauxite_stream_link(torrent, season, episode)
+
+
+def test_bauxite_stream_link_prefers_video_over_screenshot(http_session):
+    """A Screens/*.png must not win over the .mkv when both match SxxEyy."""
+    service = StremioOrchestrationService("http://librebox", "token")
+    files = [
+        "South.Park.S29E04.1080p.x265-ELiTE/Screens/South.Park.S29E04.1080p.x265-ELiTE.Screen0001.png",
+        "South.Park.S29E04.1080p.x265-ELiTE/South.Park.S29E04.1080p.x265-ELiTE.mkv",
+    ]
+    _, file_path, stream_url = _bauxite_stream_link(service, files, season=29, episode=4)
+    assert file_path.endswith(".mkv")
+    assert ".png" not in stream_url
+
+
+def test_bauxite_stream_link_single_file_unchanged(http_session):
+    service = StremioOrchestrationService("http://librebox", "token")
+    _, file_path, _ = _bauxite_stream_link(service, ["Movie.2023.mkv"])
+    assert file_path == "Movie.2023.mkv"
+
+
+def test_bauxite_stream_link_no_season_match_falls_back_to_first_video(http_session):
+    service = StremioOrchestrationService("http://librebox", "token")
+    files = [
+        "Pack/cover.png",
+        "Pack/Episode.mkv",
+    ]
+    _, file_path, _ = _bauxite_stream_link(service, files, season=1, episode=1)
+    assert file_path == "Pack/Episode.mkv"
