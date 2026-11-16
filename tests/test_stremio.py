@@ -251,6 +251,90 @@ async def test_has_bauxite_torrent_matches_series_on_french_title(
 
 
 @pytest.mark.asyncio
+async def test_has_bauxite_torrent_matches_movie_when_cinemeta_year_differs(
+    http_session, cinemeta_api
+):
+    """Cinemeta says 2012 while Trakt says 2010; the (2010) torrent matches.
+
+    Regression test: A Turtle's Tale: Sammy's Adventures (tt1230204) has
+    year 2010 on Trakt but 2012 on Cinemeta, and French releases are tagged
+    (2010). The torrent must still match through the Trakt year.
+    """
+    trakt = _StubTraktService(
+        media=TraktMovie(
+            ids=TraktMovieIds(slug="a-turtle-s-tale-sammy-s-adventures-2010"),
+            title="A Turtle's Tale: Sammy's Adventures",
+            year=2010,
+        ),
+        translation={
+            "title": "Le Voyage extraordinaire de Samy",
+            "overview": None,
+            "tagline": None,
+        },
+    )
+    service = StremioOrchestrationService(
+        "http://librebox", "token", trakt_service=trakt
+    )
+    cinemeta_api.get(
+        f"{CINEMETA_BASE_URL}/movie/tt1230204.json",
+        payload=_cinemeta_payload("A Turtle's Tale: Sammy's Adventures", "2012"),
+    )
+    hashes = {
+        "abc123": _torrent(
+            "Le Voyage Extraordinaire De Samy (2010) VOF 1080p 10bit "
+            "BluRay AC3 5.1 x265-DeSs.mkv"
+        )
+    }
+
+    assert await service.has_bauxite_torrent(hashes, "tt1230204", "movie") is True
+
+
+@pytest.mark.asyncio
+async def test_bauxite_only_streams_movie_when_cinemeta_year_differs(
+    http_session, cinemeta_api
+):
+    """The stream endpoint returns the torrent despite the Cinemeta/Trakt year gap."""
+    trakt = _StubTraktService(
+        media=TraktMovie(
+            ids=TraktMovieIds(slug="a-turtle-s-tale-sammy-s-adventures-2010"),
+            title="A Turtle's Tale: Sammy's Adventures",
+            year=2010,
+        ),
+        translation={
+            "title": "Le Voyage extraordinaire de Samy",
+            "overview": None,
+            "tagline": None,
+        },
+    )
+    service = StremioOrchestrationService(
+        "http://librebox", "token", trakt_service=trakt
+    )
+    cinemeta_api.get(
+        f"{CINEMETA_BASE_URL}/movie/tt1230204.json",
+        payload=_cinemeta_payload("A Turtle's Tale: Sammy's Adventures", "2012"),
+    )
+    file_name = (
+        "Le Voyage Extraordinaire De Samy (2010) VOF 1080p 10bit "
+        "BluRay AC3 5.1 x265-DeSs.mkv"
+    )
+    hashes = {
+        "abc123": {
+            "name": file_name,
+            "percent_done": 1.0,
+            "files": [file_name],
+            "size": 2 * 1024**3,
+        }
+    }
+
+    streams = await service._get_bauxite_only_streams(
+        hashes, [], "tt1230204", "movie", None, None
+    )
+
+    assert len(streams) == 1
+    assert streams[0].filename == file_name
+
+
+@pytest.mark.asyncio
 async def test_french_title_none_without_trakt_service(http_session, cinemeta_api):
     """Without a Trakt client the French title is None; English still matches."""
     cinemeta_api.get(
