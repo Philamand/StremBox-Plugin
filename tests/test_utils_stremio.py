@@ -84,6 +84,42 @@ def test_check_title_match_roman_numeral_wrong_year():
     assert result is False
 
 
+def test_check_title_match_movie_any_of_several_years():
+    """A torrent matches when its year (±1) is any of the accepted years.
+
+    Cinemeta and Trakt can disagree on the release year of a movie (e.g.
+    original vs. US release); both years are accepted.
+    """
+    name = (
+        "Le Voyage Extraordinaire De Samy (2010) VOF 1080p 10bit BluRay "
+        "AC3 5.1 x265-DeSs.mkv"
+    )
+    result = check_title_match(
+        torrent_name=name,
+        title_fr="Le Voyage extraordinaire de Samy",
+        title_en="A Turtle's Tale: Sammy's Adventures",
+        year=[2012, 2010],
+        is_movie=True,
+    )
+    assert result is True
+
+
+def test_check_title_match_movie_several_years_none_match():
+    """When none of the accepted years appears in the torrent name, no match."""
+    name = (
+        "Le Voyage Extraordinaire De Samy (2010) VOF 1080p 10bit BluRay "
+        "AC3 5.1 x265-DeSs.mkv"
+    )
+    result = check_title_match(
+        torrent_name=name,
+        title_fr="Le Voyage extraordinaire de Samy",
+        title_en="A Turtle's Tale: Sammy's Adventures",
+        year=[2012, 2015],
+        is_movie=True,
+    )
+    assert result is False
+
+
 def test_normalize_title_roman_numerals():
     """Standalone roman numeral tokens become digits; other words are kept."""
     from utils.stremio import normalize_title

@@ -229,7 +229,10 @@ def check_title_match(torrent_name, title_fr, title_en, year=None, is_movie=Fals
         torrent_name (str): The name of the torrent.
         title_fr (str): The French title of the media.
         title_en (str): The English title of the media.
-        year (int, optional): The year of the media. Defaults to None.
+        year (int | list[int], optional): The year of the media, or several
+            accepted years (Cinemeta and Trakt can disagree on the release
+            year); the torrent matches when its year (±1) is any of them.
+            Defaults to None.
         is_movie (bool, optional): Whether the media is a movie. Defaults to False.
 
     Returns:
@@ -353,18 +356,25 @@ def check_title_match(torrent_name, title_fr, title_en, year=None, is_movie=Fals
     if not title_match:
         return False
     if is_movie and year:
-        try:
-            y = int(year)
-
+        candidate_years = [year] if isinstance(year, (int, str)) else list(year)
+        year_ok = False
+        for candidate in candidate_years:
+            try:
+                y = int(candidate)
+            except (TypeError, ValueError):
+                if str(candidate) in norm_torrent:
+                    year_ok = True
+                    break
+                continue
             if (
-                str(y) not in norm_torrent
-                and str(y - 1) not in norm_torrent
-                and str(y + 1) not in norm_torrent
+                str(y) in norm_torrent
+                or str(y - 1) in norm_torrent
+                or str(y + 1) in norm_torrent
             ):
-                return False
-        except ValueError:
-            if str(year) not in norm_torrent:
-                return False
+                year_ok = True
+                break
+        if not year_ok:
+            return False
 
     return True
 
