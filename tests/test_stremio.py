@@ -13,7 +13,7 @@ hash, mirroring what ``BauxiteService.get_torrent_hashes`` returns.
 """
 
 from collections.abc import AsyncGenerator
-from urllib.parse import parse_qsl, urlparse
+from urllib.parse import parse_qsl, quote, unquote, urlparse
 
 import aiohttp
 import pytest
@@ -367,8 +367,8 @@ async def test_french_title_none_when_no_translation(http_session, cinemeta_api)
     assert await service.has_bauxite_torrent(hashes, "tt1375666", "movie") is True
 
 
-def _bauxite_stream_link(service, files, season=None, episode=None):
-    torrent = {"name": "South.Park.S29E04.1080p.x265-ELiTE", "percent_done": 1.0, "files": files, "size": 0}
+def _bauxite_stream_link(service, files, season=None, episode=None, percent_done=1.0):
+    torrent = {"name": "South.Park.S29E04.1080p.x265-ELiTE", "percent_done": percent_done, "files": files, "size": 0}
     return service._bauxite_stream_link(torrent, season, episode)
 
 
@@ -401,14 +401,47 @@ def test_bauxite_stream_link_no_season_match_falls_back_to_first_video(http_sess
 
 
 def test_bauxite_stream_link_url_encodes_file_path(http_session):
-    """A '+' in the file name must be percent-encoded in the stream URL query."""
+    """A '+' in the file name must be percent-encoded in the streaming URL query."""
     service = StremioOrchestrationService("http://librebox", "token")
     moana = "Moana.2026.MULTI.VF2.2160p.WEBRip.MA.DV.HDR10+.x265.EAC3.5.1.Atmos-Amen.mkv"
-    _, file_path, stream_url = _bauxite_stream_link(service, [moana])
+    _, file_path, stream_url = _bauxite_stream_link(service, [moana], percent_done=0.5)
     assert file_path == moana
+    assert stream_url.startswith("http://librebox/streams/token?")
     assert "HDR10%2B" in stream_url
     query = dict(parse_qsl(urlparse(stream_url).query))
     assert query["file_path"] == moana
+
+
+def test_bauxite_stream_link_full_torrent_uses_static_route(http_session):
+    """A fully downloaded file is served via the static route, path-encoded."""
+    service = StremioOrchestrationService("http://librebox", "token")
+    moana = "Moana.2026.MULTI.VF2.2160p.WEBRip.MA.DV.HDR10+.x265.EAC3.5.1.Atmos-Amen.mkv"
+    _, file_path, stream_url = _bauxite_stream_link(service, [moana], percent_done=1.0)
+    assert file_path == moana
+    assert stream_url == f"http://librebox/static/{quote(moana, safe='/')}"
+    assert "HDR10%2B" in stream_url
+    assert unquote(urlparse(stream_url).path) == f"/static/{moana}"
+
+
+@pytest.mark.asyncio
+async def test_get_streams_full_torrent_uses_static_url(http_session, cinemeta_api):
+    """When the torrent is fully on the seedbox, the stream link is the static route."""
+    moana = "Moana.2026.MULTI.VF2.2160p.WEBRip.MA.DV.HDR10+.x265.EAC3.5.1.Atmos-Amen.mkv"
+    result = _slow_stream_result(moana, "https://c411.org/api?t=get&id=abc&apikey=k")
+    hashes = {
+        "hash1": {"name": moana, "percent_done": 1.0, "files": [moana], "size": 4 * 1024**3}
+    }
+
+    class _StubC411:
+        async def search_movie(self, imdb_id=None, **kwargs):
+            return [result]
+
+    cinemeta_api.get("http://librebox/api/hashes/", payload=hashes)
+    service = StremioOrchestrationService(
+        "http://librebox", "token", c411_service=_StubC411()
+    )
+    response = await service.get_streams("movie", "tt1234567", user=None)
+    assert response.streams[0].url == f"http://librebox/static/{quote(moana, safe='/')}"
 
 
 def _slow_stream_result(name, link):

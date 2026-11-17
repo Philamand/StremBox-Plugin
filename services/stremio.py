@@ -2,7 +2,7 @@ import asyncio
 import json
 import xml.etree.ElementTree as ET
 from typing import Any
-from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
+from urllib.parse import parse_qsl, quote, urlencode, urlparse, urlunparse
 
 import aiohttp
 from aiohttp import ClientTimeout
@@ -597,8 +597,14 @@ class StremioOrchestrationService:
     def _bauxite_stream_link(
         self, torrent: dict, season: int | None, episode: int | None
     ) -> tuple[str, str, str]:
-        """Return ``(speed_emoji, file_path, stream_url)`` for a Bauxite torrent."""
-        if torrent["percent_done"] < 1:
+        """Return ``(speed_emoji, file_path, stream_url)`` for a Bauxite torrent.
+
+        Fully downloaded torrents use the static route (served directly by
+        nginx); partially downloaded ones use the streaming route so they can
+        be played while still downloading.
+        """
+        fully_downloaded = torrent["percent_done"] >= 1
+        if not fully_downloaded:
             speed_emoji = "🐢 "
         else:
             speed_emoji = "⚡️ "
@@ -620,10 +626,13 @@ class StremioOrchestrationService:
             file_path = torrent.get("name", "")
 
 
-        stream_url = (
-            f"{self.librebox_url}/streams/{self.librebox_token}"
-            f"?{urlencode({'file_path': file_path})}"
-        )
+        if fully_downloaded:
+            stream_url = f"{self.librebox_url}/static/{quote(file_path, safe='/')}"
+        else:
+            stream_url = (
+                f"{self.librebox_url}/streams/{self.librebox_token}"
+                f"?{urlencode({'file_path': file_path})}"
+            )
         return speed_emoji, file_path, stream_url
 
     async def _get_trakt_title_year(
