@@ -522,9 +522,14 @@ class StremioOrchestrationService:
                 )
             else:
                 speed_emoji = ""
-                stream_url = f"{self.librebox_url}/streams/download/{self.librebox_token}/{result['info_hash']}?torrent_url={result['link']}"
+                query: dict[str, Any] = {"torrent_url": result["link"]}
                 if season and episode:
-                    stream_url += f"&season={season}&episode={episode}"
+                    query["season"] = season
+                    query["episode"] = episode
+                stream_url = (
+                    f"{self.librebox_url}/streams/download/{self.librebox_token}"
+                    f"/{result['info_hash']}?{urlencode(query)}"
+                )
                 file_path = result["name"]
 
             stream = StremioStreamData(
@@ -616,7 +621,8 @@ class StremioOrchestrationService:
 
 
         stream_url = (
-            f"{self.librebox_url}/streams/{self.librebox_token}?file_path={file_path}"
+            f"{self.librebox_url}/streams/{self.librebox_token}"
+            f"?{urlencode({'file_path': file_path})}"
         )
         return speed_emoji, file_path, stream_url
 

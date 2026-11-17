@@ -1,6 +1,6 @@
 import re
 import unicodedata
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlparse
 
 import aiohttp
 
@@ -20,12 +20,7 @@ def extract_download_params(url) -> DownloadRequest:
         path.strip("/").split("/")[-1] if path.strip("/") else None
     )
 
-    params: dict[str, str] = {}
-    if query:
-        for param in query.split("&"):
-            if "=" in param:
-                key, value = param.split("=", 1)
-                params[key] = value
+    params: dict[str, str] = dict(parse_qsl(query, keep_blank_values=True))
 
     tracker = params.get("tracker")
     api_key = params.get("api_key")

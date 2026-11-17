@@ -13,6 +13,7 @@ hash, mirroring what ``BauxiteService.get_torrent_hashes`` returns.
 """
 
 from collections.abc import AsyncGenerator
+from urllib.parse import parse_qsl, urlparse
 
 import aiohttp
 import pytest
@@ -397,3 +398,73 @@ def test_bauxite_stream_link_no_season_match_falls_back_to_first_video(http_sess
     ]
     _, file_path, _ = _bauxite_stream_link(service, files, season=1, episode=1)
     assert file_path == "Pack/Episode.mkv"
+
+
+def test_bauxite_stream_link_url_encodes_file_path(http_session):
+    """A '+' in the file name must be percent-encoded in the stream URL query."""
+    service = StremioOrchestrationService("http://librebox", "token")
+    moana = "Moana.2026.MULTI.VF2.2160p.WEBRip.MA.DV.HDR10+.x265.EAC3.5.1.Atmos-Amen.mkv"
+    _, file_path, stream_url = _bauxite_stream_link(service, [moana])
+    assert file_path == moana
+    assert "HDR10%2B" in stream_url
+    query = dict(parse_qsl(urlparse(stream_url).query))
+    assert query["file_path"] == moana
+
+
+def _slow_stream_result(name, link):
+    return {
+        "name": name,
+        "size": 4 * 1024**3,
+        "tracker_name": "Tr4ker",
+        "info_hash": "hash1",
+        "magnet": None,
+        "link": link,
+        "seeders": 10,
+        "leechers": 2,
+    }
+
+
+@pytest.mark.asyncio
+async def test_get_streams_encodes_torrent_url_in_slow_stream(http_session, cinemeta_api):
+    """Tracker download links contain '&', '+', '?' and must be percent-encoded."""
+    link = "https://api.torr9.net/api/v1/torznab/torrents/183639/download?passkey=abc+def&foo=a b"
+    result = _slow_stream_result(
+        "Moana.2026.MULTI.VF2.2160p.WEBRip.MA.DV.HDR10+.x265-EAC3.Atmos-Amen", link
+    )
+
+    class _StubC411:
+        async def search_movie(self, imdb_id=None, **kwargs):
+            return [result]
+
+    cinemeta_api.get("http://librebox/api/hashes/", payload={})
+    service = StremioOrchestrationService(
+        "http://librebox", "token", c411_service=_StubC411()
+    )
+    response = await service.get_streams("movie", "tt1234567", user=None)
+    url = response.streams[0].url
+    assert url.startswith("http://librebox/streams/download/token/hash1?")
+    query = dict(parse_qsl(urlparse(url).query))
+    assert query["torrent_url"] == link
+
+
+@pytest.mark.asyncio
+async def test_get_streams_series_slow_stream_keeps_season_episode(
+    http_session, cinemeta_api
+):
+    """Season/episode stay readable query params next to the encoded torrent_url."""
+    link = "https://c411.org/api?t=get&id=abc123&apikey=key"
+    result = _slow_stream_result("Some.Show.S02E05.1080p.WEB.h264", link)
+
+    class _StubC411:
+        async def search_series(self, season=None, episode=None, imdb_id=None, **kwargs):
+            return [result]
+
+    cinemeta_api.get("http://librebox/api/hashes/", payload={})
+    service = StremioOrchestrationService(
+        "http://librebox", "token", c411_service=_StubC411()
+    )
+    response = await service.get_streams("series", "tt1234567:2:5", user=None)
+    query = dict(parse_qsl(urlparse(response.streams[0].url).query))
+    assert query["torrent_url"] == link
+    assert query["season"] == "2"
+    assert query["episode"] == "5"

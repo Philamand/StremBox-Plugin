@@ -1,8 +1,28 @@
 # This file is AI-generated
 """Tests for ``utils.stremio.check_title_match``."""
 
+from urllib.parse import urlencode
+
 from schemas.torrents import TorrentTitleInfo
-from utils.stremio import check_title_match, extract_title_info
+from utils.stremio import check_title_match, extract_download_params, extract_title_info
+
+
+def test_extract_download_params_percent_decodes_query_values():
+    """Encoded stream URLs must round-trip back to the original values."""
+    link = "https://api.torr9.net/api/v1/torznab/torrents/183639/download?passkey=abc+def&x=1"
+    url = "http://box/streams/download/token/hash123?" + urlencode(
+        {
+            "tracker": "torr9",
+            "api_key": "k+e y",
+            "torrent_id": "183639",
+            "torrent_url": link,
+        }
+    )
+    req = extract_download_params(url)
+    assert req.torrent_hash == "hash123"
+    assert req.tracker == "torr9"
+    assert req.api_key == "k+e y"
+    assert req.torrent_id == 183639
 
 
 def test_check_title_match_series_season_pack():
